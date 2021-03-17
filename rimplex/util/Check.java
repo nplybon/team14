@@ -6,7 +6,7 @@ import java.util.List;
  * A utility class that performs checks of various kinds.
  * 
  * @author Prof. David Bernstein, James Madison University
- * @version see the Git commit History
+ * @version 1.0
  */
 public class Check
 { 
