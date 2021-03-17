@@ -7,7 +7,7 @@ package util;
  * @version 1.0
  */
 public class Check
-{
+{ 
   /**
    * Check to see if an array of String objects contains a particular
    * String.
@@ -20,7 +20,7 @@ public class Check
   {
     for (int i=0; i<haystack.length; i++)
     {
-      if (haystack[i].equals(needle)) return true;
+      if (haystack[i].endsWith(needle)) return true;
     }
     return false;
   }
