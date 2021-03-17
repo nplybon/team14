@@ -1,5 +1,7 @@
 package util;
 
+import java.util.List;
+
 /**
  * A utility class that performs checks of various kinds.
  * 
@@ -29,7 +31,21 @@ public class Check
     return false;
   }
   
+// <<<<<<< HEAD
+  public static boolean forContains(final List<String> list, final String str)
+  {
+	  for (String example : list)
+	  {
+		  if (example.equals(str));
+		  {
+			  return true;
+		  }
+	  }
+	  return false;
+  }
+// =======
   public void forContainsIgnoreCase(String[] list, String word) {
     
+// >>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
   }
 }
