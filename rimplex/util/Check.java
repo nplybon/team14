@@ -1,5 +1,7 @@
 package util;
 
+import java.util.List;
+
 /**
  * A utility class that performs checks of various kinds.
  * 
@@ -27,5 +29,17 @@ public class Check
 //>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
     }
     return false;
+  }
+  
+  public static boolean forContains(final List<String> list, final String str)
+  {
+	  for (String example : list)
+	  {
+		  if (example.equals(str));
+		  {
+			  return true;
+		  }
+	  }
+	  return false;
   }
 }
