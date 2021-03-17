@@ -22,16 +22,11 @@ public class Check
   {
     for (int i=0; i<haystack.length; i++)
     {
-//<<<<<<< HEAD
       if (haystack[i].endsWith(needle)) return true;
-//=======
-//      if (haystack[i].equalsIgnoreCase(needle)) return true;
-//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
     }
     return false;
   }
   
-// <<<<<<< HEAD
   public static boolean forContains(final List<String> list, final String str)
   {
 	  for (String example : list)
@@ -43,9 +38,8 @@ public class Check
 	  }
 	  return false;
   }
-// =======
+
   public void forContainsIgnoreCase(String[] list, String word) {
-    
-// >>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
+
   }
 }
