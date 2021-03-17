@@ -31,6 +31,7 @@ public class Check
     return false;
   }
   
+// <<<<<<< HEAD
   public static boolean forContains(final List<String> list, final String str)
   {
 	  for (String example : list)
@@ -41,5 +42,10 @@ public class Check
 		  }
 	  }
 	  return false;
+  }
+// =======
+  public void forContainsIgnoreCase(String[] list, String word) {
+    
+// >>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
   }
 }
