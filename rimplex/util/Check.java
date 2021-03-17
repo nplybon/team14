@@ -20,7 +20,11 @@ public class Check
   {
     for (int i=0; i<haystack.length; i++)
     {
+//<<<<<<< HEAD
       if (haystack[i].endsWith(needle)) return true;
+//=======
+//      if (haystack[i].equalsIgnoreCase(needle)) return true;
+//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
     }
     return false;
   }
