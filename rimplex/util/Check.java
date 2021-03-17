@@ -9,8 +9,8 @@ package util;
 public class Check
 { 
   /**
-   * Check to see if an array of String objects contains a particular
-   * String.
+   * Check to see if an array of String objects (haystack) ends with a particular
+   * String(needle).
    * 
    * @param haystack  The array of String objects to search through
    * @param needle The String object to search for
