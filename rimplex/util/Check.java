@@ -28,4 +28,8 @@ public class Check
     }
     return false;
   }
+  
+  public void forContainsIgnoreCase(String[] list, String word) {
+    
+  }
 }
