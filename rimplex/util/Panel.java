@@ -1,9 +1,13 @@
 package util;
 
 import javax.swing.JPanel;
-
+/**
+ * Abstract Panel class.
+ * 
+ * @author John Curley
+ *
+ */
 public abstract class Panel extends JPanel {
-  
     /**
 	 * 
 	 */
