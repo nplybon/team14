@@ -1,12 +1,18 @@
 package util;
+
+import javax.swing.JPanel;
 /**
  * Abstract Panel class.
  * 
  * @author John Curley
  *
  */
-public abstract class Panel {
-  
+public abstract class Panel extends JPanel {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
   public abstract void createComponents();
   
   public abstract void addComponents();
