@@ -1,5 +1,10 @@
 package util;
-
+/**
+ * Abstract Panel class.
+ * 
+ * @author John Curley
+ *
+ */
 public abstract class Panel {
   
   public abstract void createComponents();
