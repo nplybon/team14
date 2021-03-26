@@ -6,9 +6,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JWindow;
 
 public class CalcPanel extends Panel {
 
@@ -29,6 +31,9 @@ public class CalcPanel extends Panel {
 	JScrollPane display;
 	
 	JTextField input;
+	
+	//JWindow window;
+	JFrame frame;
 	
 	private static CalcPanel panel = new CalcPanel();
 	/**
@@ -62,6 +67,9 @@ public class CalcPanel extends Panel {
 		
 		input = new JTextField();
 		
+		frame = new JFrame();
+		//window = new JWindow();
+		
 	}
 
 	@Override
@@ -83,6 +91,8 @@ public class CalcPanel extends Panel {
 		centerPanel.add( displayPanel );
 		centerPanel.add( inputPanel );
 		centerPanel.add( buttonPanel );
+		
+	
 	}
 
 	@Override
@@ -98,6 +108,8 @@ public class CalcPanel extends Panel {
 	    cancelButton.setText( "C" );
 	    
 		input.setEditable( true );
+		
+		frame.setVisible( true );
 	}
 
 	@Override
@@ -116,6 +128,7 @@ public class CalcPanel extends Panel {
 		
 		input.addFocusListener( TextFieldListener.getInstance() );
 		
+		frame.addWindowListener( ButtonListener.getInstance() );
 	}
 
 	@Override
@@ -127,6 +140,7 @@ public class CalcPanel extends Panel {
 		centerPanel.setLayout( new GridLayout( 0, 3 ) );
 		displayPanel.setLayout( new FlowLayout() );
 		inputPanel.setLayout( new FlowLayout() );
+		 
 	} 
 
 	public static CalcPanel getInstance() {
