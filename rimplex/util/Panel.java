@@ -11,8 +11,18 @@ public abstract class Panel extends JPanel {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+     private static final long serialVersionUID = 1L;
 
+  public Panel() {
+	  
+	  createComponents();
+      setParameters();
+      setPanel();
+      addComponents();
+      setListeners();
+      
+  }
+  
   public abstract void createComponents();
   
   public abstract void addComponents();
