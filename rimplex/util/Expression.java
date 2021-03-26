@@ -10,7 +10,7 @@ package util;
 public class Expression {
 
   private double real;
-  private double imagCoef = 0;
+  private double imagCoef;
   private ImaginaryNumber i = ImaginaryNumber.ONE;
   private Operator op = Operator.ADDITION;
 
@@ -23,6 +23,7 @@ public class Expression {
    */
   public Expression(double real, int imagPower, char symbol) {
     this.real = real;
+    imagCoef = 0;
     i = i.fromPower(imagPower);
     op = op.fromSymbol(symbol);
   }
