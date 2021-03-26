@@ -5,6 +5,7 @@ package util;
  * imaginary number.
  * 
  * @author John Curley
+ * @author Hunter Mann
  */
 public class Expression {
 
@@ -39,6 +40,27 @@ public class Expression {
     this.imagCoef = imagCoef;
     i = i.fromPower(imagPower);
     op = op.fromSymbol(symbol);
+  }
+  
+  /**
+   * Getter for real.
+   */
+  public int getReal() {
+	  return this.real;
+  }
+  
+  /**
+   * Getter for imaginary coefficient.
+   */
+  public int getImagCoef() {
+	  return this.imagCoef;
+  }
+  
+  /**
+   * Getter for imaginary number
+   */
+  public ImaginaryNumber getImaginary() {
+	  return this.i;
   }
 
   /**
