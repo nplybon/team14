@@ -3,7 +3,10 @@ package util;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-public class TextFieldListener implements FocusListener {
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
+
+public class TextFieldListener extends InputVerifier implements FocusListener {
 
 	private static TextFieldListener listener;
 	
@@ -12,7 +15,6 @@ public class TextFieldListener implements FocusListener {
 	}
 	
 	public static TextFieldListener getInstance() {
-		// TODO Auto-generated method stub
         if ( listener == null ) {
             listener = new TextFieldListener();
         }
@@ -30,6 +32,12 @@ public class TextFieldListener implements FocusListener {
 	public void focusLost(FocusEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean verify(JComponent input) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
