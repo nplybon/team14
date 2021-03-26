@@ -17,7 +17,7 @@ public class Arithmetic {
 	 * @return resultant expression; null if one, or both, expression/s 
 	 *  	is/are null
 	 */
-	public Expression addition(Expression exp1, Expression exp2) {
+	public static Expression addition(Expression exp1, Expression exp2) {
 
 		// error checking
 		if (exp1 == null || exp2 == null) {
@@ -41,7 +41,7 @@ public class Arithmetic {
 	 * @return resultant expression; null if one, or both, expression/s
 	 *  	is/are null
 	 */
-	public Expression multiplication(Expression exp1, Expression exp2) {
+	public static Expression multiplication(Expression exp1, Expression exp2) {
 		
 		// error checking
 		if (exp1 == null || exp2 == null)	return null;
@@ -59,5 +59,13 @@ public class Arithmetic {
 		
 		return addition(mid1, mid2);
 	}
+	
+	public static Expression subtraction(Expression exp1, Expression exp2) {
+	  return null;
+	}
+	
+	public static Expression division(Expression exp1, Expression exp2) {
+    return null;
+  }
 
 }

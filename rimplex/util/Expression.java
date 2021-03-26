@@ -9,8 +9,8 @@ package util;
  */
 public class Expression {
 
-  private double real;
-  private double imagCoef;
+  private Double real = null;
+  private Double imagCoef = null;
   private ImaginaryNumber i = ImaginaryNumber.ONE;
   private Operator op = Operator.ADDITION;
 
@@ -21,9 +21,9 @@ public class Expression {
    * @param imagPower
    * @param symbol
    */
-  public Expression(double real, int imagPower, char symbol) {
+  public Expression(Double real, int imagPower, char symbol) {
     this.real = real;
-    imagCoef = 0;
+    imagCoef = 0.0;
     i = i.fromPower(imagPower);
     op = op.fromSymbol(symbol);
   }
@@ -36,7 +36,7 @@ public class Expression {
    * @param imagPower int Imaginary Number's power
    * @param symbol String type of Operation in the expression
    */
-  public Expression(double real, double imagCoef, int imagPower, char symbol) {
+  public Expression(Double real, Double imagCoef, int imagPower, char symbol) {
     this.real = real;
     this.imagCoef = imagCoef;
     i = i.fromPower(imagPower);
@@ -46,14 +46,14 @@ public class Expression {
   /**
    * Getter for real.
    */
-  public double getReal() {
+  public Double getReal() {
 	  return real;
   }
   
   /**
    * Getter for imaginary coefficient.
    */
-  public double getImagCoef() {
+  public Double getImagCoef() {
 	  return imagCoef;
   }
   
