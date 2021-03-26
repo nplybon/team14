@@ -24,8 +24,8 @@ public class Arithmetic {
 			return null;
 		}
 
-		int realResult = exp1.getReal() + exp2.getReal();
-		int coefResult = exp1.getImagCoef() + exp2.getImagCoef();
+		double realResult = exp1.getReal() + exp2.getReal();
+		double coefResult = exp1.getImagCoef() + exp2.getImagCoef();
 
 		if (coefResult == 0)
 			return new Expression(realResult, 1, '+');
@@ -49,12 +49,12 @@ public class Arithmetic {
 		Expression mid1;
 		Expression mid2;
 		
-		int mid1Real = exp1.getReal() * exp2.getReal();
-		int mid1Coef = exp1.getReal() * exp2.getImagCoef();
+		double mid1Real = exp1.getReal() * exp2.getReal();
+		double mid1Coef = exp1.getReal() * exp2.getImagCoef();
 		mid1 = new Expression(mid1Real, mid1Coef, 1, '+');
 		
-		int mid2Coef = exp2.getReal() * exp1.getImagCoef();
-		int mid2Real = -1 * (exp1.getImagCoef() * exp2.getImagCoef());
+		double mid2Coef = exp2.getReal() * exp1.getImagCoef();
+		double mid2Real = -1 * (exp1.getImagCoef() * exp2.getImagCoef());
 		mid2 = new Expression(mid2Real, mid2Coef, 1, '+');
 		
 		return addition(mid1, mid2);

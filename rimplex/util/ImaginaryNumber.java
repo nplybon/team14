@@ -86,7 +86,7 @@ public enum ImaginaryNumber {
    * @param coef int coefficient of the imaginary number
    * @return the imaginary number factored to include a coefficient
    */
-  public String toString(int coef) {
+  public String toString(double coef) {
 
     String str;
 
