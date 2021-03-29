@@ -15,9 +15,10 @@ public class Arithmetic {
 	 * @param exp1 "left" expression
 	 * @param exp2 "right" expression
 	 * @return resultant expression; null if one, or both, expression/s 
-	 *  	is/are null, or either positive or negative overflow occurs
+	 *  	is/are null
+	 * @throws OverflowException when positive overflow has occurred when performing the operation
 	 */
-	public static Expression addition(Expression exp1, Expression exp2) {
+	public static Expression addition(Expression exp1, Expression exp2) throws OverflowException {
 
 		// null argument checking
 		if (exp1 == null || exp2 == null) {
@@ -26,11 +27,11 @@ public class Arithmetic {
 		
 		// overflow checking (positive)
 		if (exp1.getReal() + exp2.getReal() > Double.MAX_VALUE) {
-			return null;
+			throw new OverflowException("Overflow");
 		}
 		
 		if (exp1.getImagCoef() + exp2.getImagCoef() > Double.MAX_VALUE) {
-			return null;
+			throw new OverflowException("Overflow");
 		}
 
 		// local variables
@@ -48,8 +49,9 @@ public class Arithmetic {
 	 * @param exp2 "right" expression
 	 * @return resultant expression; null if one, or both, expression/s
 	 *  	is/are null
+	 * @throws OverflowException when positive overflow has occurred when performing the operation
 	 */
-	public static Expression multiplication(Expression exp1, Expression exp2) {
+	public static Expression multiplication(Expression exp1, Expression exp2) throws OverflowException {
 		
 		// null argument checking
 		if (exp1 == null || exp2 == null) {
