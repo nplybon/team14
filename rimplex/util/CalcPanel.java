@@ -1,5 +1,6 @@
 package util;
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -13,6 +14,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
 import javax.swing.border.TitledBorder;
+
+//import tempWorkSpace.ButtonListener;
+//import tempWorkSpace.CalcPanel;
+//import tempWorkSpace.Panel;
+//import tempWorkSpace.TextFieldListener;
 
 public class CalcPanel extends Panel {
 
@@ -84,18 +90,22 @@ public class CalcPanel extends Panel {
 		buttonPanel.add( multiButton );
 		buttonPanel.add( divButton );
 		
-		displayPanel.add( new JPanel() );
+//		displayPanel.add( new JPanel() );
 		displayPanel.add( display );
 		
 		inputPanel.add( new JPanel() );
 		inputPanel.add( input );
 		
 		centerPanel.add( displayPanel );
+//		centerPanel.add( new JPanel() );
 		centerPanel.add( inputPanel );
 		centerPanel.add( buttonPanel );
 		centerPanel.add( new JPanel() );
 		
 	    add( centerPanel, BorderLayout.CENTER );
+	    add( new JPanel(), BorderLayout.EAST );
+	    add( new JPanel(), BorderLayout.WEST );
+	    add( new JPanel(), BorderLayout.NORTH );
 	}
 
 	public void setParameters() {
@@ -122,6 +132,8 @@ public class CalcPanel extends Panel {
 		display.setBorder( title );
 //		display.setBackground( Color.blue );
 //		setBackground( Color.blue );
+		
+		buttonPanel.setBorder( BorderFactory.createLineBorder( Color.black ) );
 	}
 
 	public void setListeners() {
@@ -148,7 +160,7 @@ public class CalcPanel extends Panel {
 		
 		buttonPanel.setLayout( new FlowLayout() );
 		centerPanel.setLayout( new GridLayout( 4, 0 ) );
-		displayPanel.setLayout( new GridLayout( 2, 0 ) );
+		displayPanel.setLayout( new GridLayout( 1, 0 ) );
 		inputPanel.setLayout( new GridLayout( 2, 0 ) );
 		 
 	} 
