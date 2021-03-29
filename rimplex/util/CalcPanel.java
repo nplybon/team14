@@ -1,16 +1,18 @@
 package util;
-
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
+import javax.swing.border.TitledBorder;
 
 public class CalcPanel extends Panel {
 
@@ -46,7 +48,6 @@ public class CalcPanel extends Panel {
 		super();
 	}
 	
-	@Override
 	public void createComponents() {
 		// TODO Auto-generated method stub
 		answerButton = new JButton();
@@ -72,30 +73,31 @@ public class CalcPanel extends Panel {
 		
 	}
 
-	@Override
 	public void addComponents() {
 		// TODO Auto-generated method stub
-		buttonPanel.add( answerButton );
 		buttonPanel.add( cancelButton );
 		buttonPanel.add( resetButton );
 		buttonPanel.add( addButton );
 		buttonPanel.add( subButton );
+		buttonPanel.add( answerButton );
+		buttonPanel.add( equalButton );
 		buttonPanel.add( multiButton );
 		buttonPanel.add( divButton );
-		buttonPanel.add( equalButton );
 		
+		displayPanel.add( new JPanel() );
 		displayPanel.add( display );
 		
+		inputPanel.add( new JPanel() );
 		inputPanel.add( input );
 		
 		centerPanel.add( displayPanel );
 		centerPanel.add( inputPanel );
 		centerPanel.add( buttonPanel );
+		centerPanel.add( new JPanel() );
 		
-	
+	    add( centerPanel, BorderLayout.CENTER );
 	}
 
-	@Override
 	public void setParameters() {
 		// TODO Auto-generated method stub
 		answerButton.setText( "ans" );
@@ -107,12 +109,21 @@ public class CalcPanel extends Panel {
 	    resetButton.setText( "R" );
 	    cancelButton.setText( "C" );
 	    
+		TitledBorder inputTitle;
+		inputTitle = BorderFactory.createTitledBorder( "Input" );
+		input.setBorder( inputTitle );
 		input.setEditable( true );
+//		input.setBackground( Color.magenta );
 		
-		frame.setVisible( true );
+		TitledBorder title;
+		title = BorderFactory.createTitledBorder( "Display" );
+		
+//		display.setBorder( BorderFactory.createLineBorder( Color.blue ) );
+		display.setBorder( title );
+//		display.setBackground( Color.blue );
+//		setBackground( Color.blue );
 	}
 
-	@Override
 	public void setListeners() {
 		// TODO Auto-generated method stub
 		ActionListener button = ButtonListener.getInstance();
@@ -131,24 +142,23 @@ public class CalcPanel extends Panel {
 		frame.addWindowListener( ButtonListener.getInstance() );
 	}
 
-	@Override
 	public void setPanel() {
 		// TODO Auto-generated method stub
 		setLayout( new BorderLayout() );
 		
 		buttonPanel.setLayout( new FlowLayout() );
-		centerPanel.setLayout( new GridLayout( 0, 3 ) );
-		displayPanel.setLayout( new FlowLayout() );
-		inputPanel.setLayout( new FlowLayout() );
+		centerPanel.setLayout( new GridLayout( 4, 0 ) );
+		displayPanel.setLayout( new GridLayout( 2, 0 ) );
+		inputPanel.setLayout( new GridLayout( 2, 0 ) );
 		 
 	} 
 
-	public static CalcPanel getInstance() {
-		// TODO Auto-generated method stub
-        if ( panel == null ) {
-            panel = new CalcPanel();
-        }
-
-        return panel;
-	}
+//	public static CalcPanel getInstance() {
+//		// TODO Auto-generated method stub
+//        if ( panel == null ) {
+//            panel = new CalcPanel();
+//        }
+//
+//        return panel;
+//	}
 }
