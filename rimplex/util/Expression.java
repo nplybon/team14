@@ -13,20 +13,6 @@ public class Expression {
   private Double imagCoef = null;
   private ImaginaryNumber i = ImaginaryNumber.ONE;
   private Operator op = Operator.ADDITION;
-
-  /**
-   * Constructor without Imaginary Number Coefficient.
-   * 
-   * @param real
-   * @param imagPower
-   * @param symbol
-   */
-  public Expression(Double real, int imagPower, char symbol) {
-    this.real = real;
-    imagCoef = 1.0;
-    i = i.fromPower(imagPower);
-    op = op.fromSymbol(symbol);
-  }
   
   /**
    * Constructor with Imaginary Number Coefficient.
