@@ -15,22 +15,30 @@ public class Arithmetic {
 	 * @param exp1 "left" expression
 	 * @param exp2 "right" expression
 	 * @return resultant expression; null if one, or both, expression/s 
-	 *  	is/are null
+	 *  	is/are null, or either positive or negative overflow occurs
 	 */
 	public static Expression addition(Expression exp1, Expression exp2) {
 
-		// error checking
+		// null argument checking
 		if (exp1 == null || exp2 == null) {
 			return null;
 		}
+		
+		// overflow checking (positive)
+		if (exp1.getReal() + exp2.getReal() > Double.MAX_VALUE) {
+			return null;
+		}
+		
+		if (exp1.getImagCoef() + exp2.getImagCoef() > Double.MAX_VALUE) {
+			return null;
+		}
 
+		// local variables
 		double realResult = exp1.getReal() + exp2.getReal();
 		double coefResult = exp1.getImagCoef() + exp2.getImagCoef();
 
-		if (coefResult == 0)
-			return new Expression(realResult, 1, '+');
-		else
-			return new Expression(realResult, coefResult, 1, '+');
+		// return resultant expression
+		return new Expression(realResult, coefResult, 1, '+');
 	}
 	
 	/**
@@ -43,8 +51,19 @@ public class Arithmetic {
 	 */
 	public static Expression multiplication(Expression exp1, Expression exp2) {
 		
-		// error checking
-		if (exp1 == null || exp2 == null)	return null;
+		// null argument checking
+		if (exp1 == null || exp2 == null) {
+			return null;
+		}
+		
+		// overflow checking (positive)
+		if (exp1.getReal() * exp2.getReal() > Double.MAX_VALUE) {
+			return null;
+		}
+				
+		if (exp1.getImagCoef() * exp2.getImagCoef() > Double.MAX_VALUE) {
+			return null;
+		}
 		
 		Expression mid1;
 		Expression mid2;
