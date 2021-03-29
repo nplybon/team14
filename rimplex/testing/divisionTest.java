@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import util.Arithmetic;
 import util.Expression;
+import util.OverflowException;
 
 class divisionTest
 {
 
   @Test
-  void testBothReal()
+  void testBothReal() throws IllegalArgumentException, OverflowException
   {
     Expression exp1 = new Expression(15.0, 0.0, 1, '+');
     Expression exp2 = new Expression(3.0, 0.0, 1, '+');
@@ -29,7 +30,7 @@ class divisionTest
   }
   
   @Test
-  void testBothNegativeReal() {
+  void testBothNegativeReal() throws IllegalArgumentException, OverflowException {
     Expression exp1 = new Expression(-20.0, 0.0, 1, '+');
     Expression exp2 = new Expression(-4.0, 0.0, 1, '+');
     Expression expected = new Expression(5.0, 0.0, 1, '+');
@@ -45,7 +46,7 @@ class divisionTest
   }
   
   @Test
-  void testBothImag() {
+  void testBothImag() throws IllegalArgumentException, OverflowException {
     Expression exp1 = new Expression(0.0, 100.0, 1, '+');
     Expression exp2 = new Expression(0.0, 10.0, 1, '+');
     Expression expected = new Expression(10.0, 0.0, 1, '+');
@@ -61,7 +62,7 @@ class divisionTest
   }
   
   @Test
-  void testBothComplex() {
+  void testBothComplex() throws IllegalArgumentException, OverflowException {
     Expression exp1 = new Expression(60.0, 20.0, 1, '+');
     Expression exp2 = new Expression(30.0, 10.0, 1, '+');
     Expression expected = new Expression(2.0, 0.0, 1, '+');
@@ -77,7 +78,7 @@ class divisionTest
   }
   
   @Test
-  void testComplexAndReal() {
+  void testComplexAndReal() throws IllegalArgumentException, OverflowException {
     Expression exp1 = new Expression(60.0, 20.0, 1, '+');
     Expression exp2 = new Expression(3.0, 0.0, 1, '+');
     Expression expected = new Expression(20.0, 20.0/3, 1, '+');
@@ -102,7 +103,7 @@ class divisionTest
   }
   
   @Test
-  void testRandom() {
+  void testRandom() throws IllegalArgumentException, OverflowException {
     Expression exp1 = new Expression(0.0, 0.0, 1, '+');
     Expression exp2 = new Expression(0.0, 5.0, 1, '+');
     Expression expected = new Expression(0.0, 0.0, 1, '+');

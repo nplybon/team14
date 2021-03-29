@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import util.Arithmetic;
 import util.Expression;
+import util.OverflowException;
 
 class subtractionTest
 {
 
   @Test
-  void testBothReal()
+  void testBothReal() throws OverflowException
   {
     Expression exp1 = new Expression(5.0, 0.0, 1, '+');
     Expression exp2 = new Expression(3.0, 0.0, 1, '+');
@@ -29,7 +30,7 @@ class subtractionTest
   }
   
   @Test
-  void testBothNegativeReal() {
+  void testBothNegativeReal() throws OverflowException {
     Expression exp1 = new Expression(-5.0, 0.0, 1, '+');
     Expression exp2 = new Expression(-3.0, 0.0, 1, '+');
     Expression expected = new Expression(-2.0, 0.0, 1, '+');
@@ -46,7 +47,7 @@ class subtractionTest
   }
   
   @Test
-  void testBothImag() {
+  void testBothImag() throws OverflowException {
     Expression exp1 = new Expression(0.0, 7.0, 1, '+');
     Expression exp2 = new Expression(0.0, 1.0, 1, '+');
     Expression expected = new Expression(0.0, 6.0, 1, '+');
@@ -63,7 +64,7 @@ class subtractionTest
   }
   
   @Test
-  void testComplexAndReal() {
+  void testComplexAndReal() throws OverflowException {
     Expression exp1 = new Expression(11.0, 7.0, 1, '+');
     Expression exp2 = new Expression(4.0, 0.0, 1, '+');
     Expression expected = new Expression(7.0, 7.0, 1, '+');
@@ -80,7 +81,7 @@ class subtractionTest
   }
   
   @Test
-  void testBothComplex() {
+  void testBothComplex() throws OverflowException {
     Expression exp1 = new Expression(12.0, 4.0, 1, '+');
     Expression exp2 = new Expression(16.0, 5.0, 1, '+');
     Expression expected = new Expression(-4.0, -1.0, 1, '+');
@@ -97,7 +98,7 @@ class subtractionTest
   }
   
   @Test
-  void testSubtractSame() {
+  void testSubtractSame() throws OverflowException {
     Expression exp1 = new Expression(100.0, 100.0, 1, '+');
     Expression exp2 = new Expression(100.0, 100.0, 1, '+');
     Expression expected = new Expression(0.0, 0.0, 1, '+');
@@ -114,7 +115,7 @@ class subtractionTest
   }
   
   @Test
-  void testRandomTests() {
+  void testRandomTests() throws OverflowException {
     Expression exp1 = new Expression(0.0, 0.0, 1, '+');
     Expression exp2 = new Expression(0.0, 0.0, 1, '+');
     Expression expected = new Expression(0.0, 0.0, 1, '+');
