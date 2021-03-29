@@ -80,11 +80,29 @@ public class Arithmetic {
 	}
 	
 	public static Expression subtraction(Expression exp1, Expression exp2) {
-	  return null;
+	  exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef() * -1, 1, '+');
+	  
+	  return addition(exp1, exp2);
+	  
 	}
 	
-	public static Expression division(Expression exp1, Expression exp2) {
-    return null;
-  }
+	public static Expression division(Expression exp1, Expression exp2)throws IllegalArgumentException {
+	  Expression conjugate = new Expression(exp2.getReal(), exp2.getImagCoef() * -1, 1, '+');
+	  
+	  Expression numerator = multiplication(exp1, conjugate);
+	  Expression denominator = multiplication(exp2, conjugate);
+	  double realNum = numerator.getReal();
+	  double realDen = denominator.getReal();
+	  double imagNum = numerator.getImagCoef();
+	  double imagDen = denominator.getImagCoef();
+	  
+	  if (realDen == 0.0 && imagDen == 0.0) {
+	    throw new IllegalArgumentException("ERROR: DIVIDE BY 0");
+	  }
+	  
+	  Double realQuotient = realNum / realDen;
+	  Double imagQuotient = imagNum / realDen;
 
+    return new Expression(realQuotient, imagQuotient, 1, '+');
+  }
 }
