@@ -60,11 +60,11 @@ public class Arithmetic {
 		
 		// overflow checking (positive)
 		if (exp1.getReal() * exp2.getReal() > Double.MAX_VALUE) {
-			return null;
+			throw new OverflowException("Overflow");
 		}
 				
 		if (exp1.getImagCoef() * exp2.getImagCoef() > Double.MAX_VALUE) {
-			return null;
+			throw new OverflowException("Overflow");
 		}
 		
 		Expression mid1;
