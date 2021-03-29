@@ -23,7 +23,7 @@ public class Expression {
    */
   public Expression(Double real, int imagPower, char symbol) {
     this.real = real;
-    imagCoef = 0.0;
+    imagCoef = 1.0;
     i = i.fromPower(imagPower);
     op = op.fromSymbol(symbol);
   }
