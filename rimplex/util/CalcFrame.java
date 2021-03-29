@@ -1,9 +1,13 @@
 package util;
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class CalcFrame extends JFrame {
@@ -15,13 +19,23 @@ public class CalcFrame extends JFrame {
 
 	private static CalcFrame frame;
 	
+	private JMenuBar menuBar;
+	
+	private JMenu file;
+	private JMenu help;
+	
+	private JMenuItem about;
+	
 	private JPanel current;
 	
 	private CalcFrame() {
 		
 		createCompnents();
+		setLabels();
+		addMenus();
 		setPanel( new CalcPanel() );
 		setListeners();
+		setJMenuBar( menuBar );
 		 
 		setSize( 350, 450 );
 		setTitle( "Calculator" );
@@ -57,7 +71,22 @@ public class CalcFrame extends JFrame {
 		return frame;
 	}
 	
+	private void addMenus() {
+		
+		help.add( about );
+		
+		menuBar.add( file );
+		menuBar.add( help );
+		
+	}
 	private void createCompnents() {
+		
+		menuBar = new JMenuBar();
+		
+		file = new JMenu();
+		help = new JMenu();
+		
+		about = new JMenuItem();
 		
 		current = new JPanel();
 	}
@@ -81,6 +110,13 @@ public class CalcFrame extends JFrame {
                         ( dimScreenSize.height - dimFrameSize.height ) / 2 );
 
     } // method centerForm
+    
+    private void setLabels() {
+    	
+    	file.setText( "File" );
+    	help.setText( "Help" );
+    	about.setText( "About" );
+    }
     
     private void setListeners() {
     	
