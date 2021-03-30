@@ -13,7 +13,7 @@ public class Expression {
   private Double imagCoef = null;
   private ImaginaryNumber i = ImaginaryNumber.ONE;
   private Operator op = Operator.ADDITION;
-  
+
   /**
    * Constructor with Imaginary Number Coefficient.
    * 
@@ -21,33 +21,64 @@ public class Expression {
    * @param imagCoef int Imaginary Number coefficient in the expression
    * @param imagPower int Imaginary Number's power
    * @param symbol String type of Operation in the expression
+   * @throws InvalidExpressionException
    */
-  public Expression(Double real, Double imagCoef, int imagPower, char symbol) {
+  public Expression(Double real, Double imagCoef, int imagPower, char symbol)
+      throws InvalidExpressionException {
     this.real = real;
     this.imagCoef = imagCoef;
     i = i.fromPower(imagPower);
     op = op.fromSymbol(symbol);
+    simplify();
   }
-  
+
   /**
    * Getter for real.
    */
   public Double getReal() {
-	  return real;
+    return real;
   }
-  
+
   /**
    * Getter for imaginary coefficient.
    */
   public Double getImagCoef() {
-	  return imagCoef;
+    return imagCoef;
   }
-  
+
   /**
    * Getter for imaginary number
    */
   public ImaginaryNumber getImaginary() {
-	  return this.i;
+    return this.i;
+  }
+
+  private void simplify() throws InvalidExpressionException {
+    switch (op) {
+      case ADDITION:
+        if (imagCoef < 0) {
+          op = op.fromSymbol('-');
+          imagCoef *= -1;
+        }
+        break;
+      case SUBTRACTION:
+        if (imagCoef < 0) {
+          op = op.fromSymbol('+');
+          imagCoef *= -1;
+        }
+        break;
+      case MULTIPLICATION:
+        imagCoef *= real;
+        real = 0.0;
+        op = op.fromSymbol('+');
+        simplify();
+        break;
+      case DIVISION:
+        if (imagCoef == 0.0) {
+          throw new InvalidExpressionException("Cannot Divide by Zero");
+        }
+        break;
+    }
   }
 
   /**
@@ -55,13 +86,13 @@ public class Expression {
    */
   public String toString() {
     String str = "(" + real + " " + op.toString() + " ";
-    
+
     if (imagCoef != 0.0) {
-        str += i.toString(imagCoef);
+      str += i.toString(imagCoef);
     } else {
       str += i.toString();
     }
-    
+
     return str + ")";
   }
 

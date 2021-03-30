@@ -1,8 +1,8 @@
 package util;
 
 /**
- * **UNFINISHED AND UNTESTED**
- * Calculates every expression using order of operations.
+ * **UNFINISHED AND UNTESTED** Calculates every expression using order of
+ * operations.
  * 
  * @author John Curley
  */
@@ -31,8 +31,10 @@ public class Calculate {
    * @param op Operator the operator of the expressions
    * @param exp2 Expression the left expression
    * @return the result expression
+   * @throws OverflowException
    */
-  private Expression calculate(Expression exp1, Operator op, Expression exp2) {
+  private Expression calculate(Expression exp1, Operator op, Expression exp2)
+      throws OverflowException {
 
     Expression result = null;
 
@@ -58,8 +60,9 @@ public class Calculate {
    * Calculates the entire set of expressions.
    * 
    * @return the final calculated expression.
+   * @throws OverflowException
    */
-  public Expression calculateExpression() {
+  public Expression calculateExpression() throws OverflowException {
 
     Expression result = null;
 
