@@ -18,6 +18,15 @@ class ExpressionTest {
     assertTrue(test.getImaginary().equals(ImaginaryNumber.ONE));
     assertTrue(test.toString().equals("(10.0 + 10.0i)"));
   }
+  
+  @Test
+  void testAdditionExpression2() throws InvalidExpressionException {
+    Expression test = new Expression(10.0, 0.0, 1, '+');
+    assertEquals(test.getReal(), 10.0, 0.01);
+    assertEquals(test.getImagCoef(), 0.0, 0.01);
+    assertTrue(test.getImaginary().equals(ImaginaryNumber.ONE));
+    assertTrue(test.toString().equals("(10.0 + 0.0i)"));
+  }
 
   @Test
   void testSubtractionExpression() throws InvalidExpressionException {

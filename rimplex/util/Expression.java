@@ -53,6 +53,12 @@ public class Expression {
     return this.i;
   }
 
+  /**
+   * Simplifies Addition, Subtraction, Multiplication Expressions, Division
+   * Expressions only check for divide by zero currently.
+   * 
+   * @throws InvalidExpressionException
+   */
   private void simplify() throws InvalidExpressionException {
     switch (op) {
       case ADDITION:
@@ -85,13 +91,7 @@ public class Expression {
    * Returns the expression in a String surrounded by parentheses.
    */
   public String toString() {
-    String str = "(" + real + " " + op.toString() + " ";
-
-    if (imagCoef != 0.0) {
-      str += i.toString(imagCoef);
-    } else {
-      str += i.toString();
-    }
+    String str = "(" + real + " " + op.toString() + " " + i.toString(imagCoef);
 
     return str + ")";
   }
