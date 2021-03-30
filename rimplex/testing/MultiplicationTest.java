@@ -8,7 +8,7 @@ import util.Arithmetic;
 import util.Expression;
 import util.OverflowException;
 
-class multiplicationTest {
+class MultiplicationTest {
 
 	@Test
 	void testMultiplicationTwoRealNoImag() throws OverflowException {
@@ -110,16 +110,14 @@ class multiplicationTest {
 	void testMultiplicationOverflowOnReal() throws OverflowException {
 		Expression left = new Expression(Double.MAX_VALUE, 5.0, 1, '+');
 		Expression right = new Expression(3.0, 4.0, 1, '+');
-		Expression result = Arithmetic.multiplication(left, right);
-		assertEquals(null, result);
+		assertThrows(OverflowException.class, () -> Arithmetic.multiplication(left, right));
 	}
 	
 	@Test
 	void testMultiplicationOverflowOnCoef() throws OverflowException {
 		Expression left = new Expression(5.0, Double.MAX_VALUE, 1, '+');
 		Expression right = new Expression(3.0, 4.0, 1, '+');
-		Expression result = Arithmetic.multiplication(left, right);
-		assertEquals(null, result);
+		assertThrows(OverflowException.class, () -> Arithmetic.multiplication(left, right));
 	}
 
 }

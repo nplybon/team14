@@ -6,7 +6,7 @@ import util.*;
 
 import org.junit.jupiter.api.Test;
 
-class additionTest {
+class AdditionTest {
 
 	@Test
 	void testAdditionTwoRealNoImag() throws OverflowException {
@@ -84,7 +84,7 @@ class additionTest {
 		Expression left = new Expression(Double.MAX_VALUE, 0.0, 1, '+');
 		Expression right = new Expression(Double.MAX_VALUE, 0.0, 1, '+');
 		
-		assertEquals(null, Arithmetic.addition(left, right));
+		assertThrows(OverflowException.class, () -> Arithmetic.addition(left, right));
 		
 	}
 	
@@ -94,7 +94,7 @@ class additionTest {
 		Expression left = new Expression(5.0, Double.MAX_VALUE, 1, '+');
 		Expression right = new Expression(3.0, Double.MAX_VALUE, 1, '+');
 		
-		assertEquals(null, Arithmetic.addition(left, right));
+		assertThrows(OverflowException.class, () -> Arithmetic.addition(left, right));
 	}
 
 }
