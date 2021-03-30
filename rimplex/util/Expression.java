@@ -28,7 +28,6 @@ public class Expression {
     this.imagCoef = imagCoef;
     i = i.fromPower(imagPower);
     op = op.fromSymbol(symbol);
-    simplify();
   }
 
   /**
@@ -67,7 +66,7 @@ public class Expression {
    * 
    * @throws InvalidExpressionException
    */
-  private void simplify() throws InvalidExpressionException {
+  public void simplify() throws InvalidExpressionException {
     switch (op) {
       case ADDITION:
         if (imagCoef < 0) {

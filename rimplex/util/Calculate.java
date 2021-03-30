@@ -75,7 +75,7 @@ public class Calculate {
       expressions[order[i]] = result;
       expressions[order[i] + 1] = result;
     }
-
+    
     return result;
 
   }
