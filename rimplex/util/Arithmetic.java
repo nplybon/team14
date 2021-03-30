@@ -108,28 +108,19 @@ public class Arithmetic {
 	}
 	
 	public static Expression subtraction(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
-<<<<<<< HEAD
 	  // (a - c) + (b - d)
 	  double real = exp1.getReal() - exp2.getReal();
 	  double imag = exp1.getImagCoef() - exp2.getImagCoef();
-=======
 	  exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef() * -1, 1, '+');
->>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 	  
 	  return new Expression(real, imag, 1, '+');
 	  
 	}
 	
-<<<<<<< HEAD
-	public static Expression division(Expression exp1, Expression exp2)throws OverflowException, InvalidExpressionException {
-	
-	  //real part = ac + bd / c^2 + d^2
-	  //imag part = bc - ad / c^2 + d^2
-=======
 	public static Expression division(Expression exp1, Expression exp2)throws IllegalArgumentException, OverflowException, InvalidExpressionException {
 	  Expression conjugate = new Expression(exp2.getReal(), exp2.getImagCoef() * -1, 1, '+');
->>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
-	  
+	  //real part = ac + bd / c^2 + d^2
+    //imag part = bc - ad / c^2 + d^2
 	  double firstPart = exp1.getReal() * exp2.getReal() + exp1.getImagCoef() * exp2.getImagCoef();
 	  double secondPart = exp1.getImagCoef() * exp2.getReal() - exp1.getReal() * exp2.getImagCoef();
 	  double squaredPart = Math.pow(exp2.getReal(), 2) + Math.pow(exp2.getImagCoef(), 2);
@@ -141,11 +132,4 @@ public class Arithmetic {
 	  }
     return new Expression(realpart, imagpart, 1, '+');
   }
-	public static void main(String[] args) throws InvalidExpressionException, OverflowException
-  {
-    Expression exp1 = new Expression(1.0, 5.0, 1, '-');
-    Expression exp2 = new Expression(1.0, 5.0, 1, '-');
-    System.out.println(addition(exp1, exp2));
-  }
-
 }

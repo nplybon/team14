@@ -130,21 +130,5 @@ class DivisionTest
     
     assertEquals(expectedReal, resultReal, 0.0001);
     assertEquals(expectedCoef, resultCoef, 0.0001);
-    
-    
-    exp1 = new Expression(1.0, 1.0, 1, '+');
-    exp2 = new Expression(1.0, 1.0, 1, '+');
-    expected = new Expression(0.5, 0.0, 1, '+');
-    result = Arithmetic.division(exp1, exp2);
-    
-    expectedReal = expected.getReal();
-    resultReal = result.getReal();
-    expectedCoef = expected.getImagCoef();
-    resultCoef = result.getImagCoef();
-    
-    assertEquals(expectedReal, resultReal, 0.0001);
-    assertEquals(expectedCoef, resultCoef, 0.0001);
   }
-  
-  
 }

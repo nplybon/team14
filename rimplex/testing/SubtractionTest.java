@@ -85,7 +85,7 @@ class SubtractionTest
   void testBothComplex() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(12.0, 4.0, 1, '+');
     Expression exp2 = new Expression(16.0, 5.0, 1, '+');
-    Expression expected = new Expression(-4.0, 1.0, 1, '-');
+    Expression expected = new Expression(-4.0, -1.0, 1, '+');
     Expression result = Arithmetic.subtraction(exp1, exp2);
     
     double expectedReal = expected.getReal();
@@ -185,7 +185,7 @@ class SubtractionTest
     
     exp1 = new Expression(63.0, 0.0, 1, '+');
     exp2 = new Expression(0.0, 27.0, 1, '+');
-    expected = new Expression(63.0, 27.0, 1, '-');
+    expected = new Expression(63.0, -27.0, 1, '+');
     result = Arithmetic.subtraction(exp1, exp2);
     
     expectedReal = expected.getReal();
