@@ -10,7 +10,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-
+/**
+ * Top-Level container for CalcPanel.
+ * 
+ * @author Colton Shovlin
+ * @version Sprint1 CS345
+ */
 public class CalcFrame extends JFrame {
 
 	/**
@@ -20,15 +25,18 @@ public class CalcFrame extends JFrame {
 
 	private static CalcFrame frame;
 	
-	private JMenuBar menuBar;
-	
 	private JMenu file;
 	private JMenu help;
+	
+	private JMenuBar menuBar;
 	
 	private JMenuItem about;
 	
 	private JPanel current;
 	
+	/**
+	 * singleton constructor.
+	 */
 	private CalcFrame() {
 		
 		createCompnents();
@@ -92,9 +100,6 @@ public class CalcFrame extends JFrame {
 		current = new JPanel();
 	}
 	
-    /**
-     * center form on screen.
-     */
     private void centerForm() {
 
         Dimension dimScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -110,7 +115,7 @@ public class CalcFrame extends JFrame {
         setLocation( ( dimScreenSize.width - dimFrameSize.width ) / 2,
                         ( dimScreenSize.height - dimFrameSize.height ) / 2 );
 
-    } // method centerForm
+    }
     
     private void setLabels() {
     	

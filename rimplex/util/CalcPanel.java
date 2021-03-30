@@ -15,45 +15,49 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
 import javax.swing.border.TitledBorder;
-
-//import tempWorkSpace.ButtonListener;
-//import tempWorkSpace.CalcPanel;
-//import tempWorkSpace.Panel;
-//import tempWorkSpace.TextFieldListener;
-
+/**
+ * The Imaginary Number Calculator panel.
+ * 
+ * @author Colton Shovlin
+ * @version Sprint1 CS345
+ */
 public class CalcPanel extends Panel {
 
-	JButton answerButton;
-	JButton resetButton;
-	JButton cancelButton;
-	JButton addButton;
-	JButton multiButton;
-	JButton subButton;
-	JButton divButton;
-	JButton equalButton;
-	
-	JPanel buttonPanel;
-	JPanel centerPanel;
-	JPanel displayPanel;
-	JPanel inputPanel;
-	
-	JTextField display;
-	JTextField input;
-	
-	//JWindow window;
-	JFrame frame;
-	
 	private static CalcPanel panel;
+	
+	private JButton answerButton;
+	private JButton resetButton;
+	private JButton cancelButton;
+	private JButton addButton;
+	private JButton multiButton;
+	private JButton subButton;
+	private JButton divButton;
+	private JButton equalButton;
+	
+	private JPanel buttonPanel;
+	private JPanel centerPanel;
+	private JPanel displayPanel;
+	private JPanel inputPanel;
+	
+	private JTextField display;
+	private JTextField input;
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * singleton constructor.
+	 */
 	private CalcPanel() {
 		
 		super();
 	}
 	
+	/**
+	 * assemble JComponents.
+	 */
 	public void createComponents() {
 		// TODO Auto-generated method stub
 		answerButton = new JButton();
@@ -74,11 +78,11 @@ public class CalcPanel extends Panel {
 		
 		input = new JTextField();
 		
-		frame = new JFrame();
-		//window = new JWindow();
-		
 	}
 
+	/**
+	 * add components to panel.
+	 */
 	public void addComponents() {
 		// TODO Auto-generated method stub
 		buttonPanel.add( cancelButton );
@@ -90,14 +94,12 @@ public class CalcPanel extends Panel {
 		buttonPanel.add( multiButton );
 		buttonPanel.add( divButton );
 		
-//		displayPanel.add( new JPanel() );
 		displayPanel.add( display );
 		
 		inputPanel.add( new JPanel() );
 		inputPanel.add( input );
 		
 		centerPanel.add( displayPanel );
-//		centerPanel.add( new JPanel() );
 		centerPanel.add( inputPanel );
 		centerPanel.add( buttonPanel );
 		centerPanel.add( new JPanel() );
@@ -108,16 +110,25 @@ public class CalcPanel extends Panel {
 	    add( new JPanel(), BorderLayout.NORTH );
 	}
  
+	/**
+	 * grey out cancel.
+	 */
 	public void disableCancel() {
 		
 		cancelButton.setEnabled( false );
 	}
+	
+	/**
+	 * grey out equals
+	 */
 	public void disableEquals() {
 		
 		equalButton.setEnabled( false );
-//		cancelButton.setEnabled( false );
 	}
 	
+	/**
+	 * grey out operators button.
+	 */
 	public void disableOperators() {
 		
 		addButton.setEnabled( false );
@@ -126,17 +137,26 @@ public class CalcPanel extends Panel {
 		multiButton.setEnabled( false );
 	}
 	
+	/**
+	 * enable ans button.
+	 */
 	public void enableAnswer() {
 		
 		answerButton.setEnabled( true );
 	}
 	
+	/**
+	 * enable equals and cancel buttons.
+	 */
 	public void enableEquals() {
 		
 		equalButton.setEnabled( true );
 		cancelButton.setEnabled( true );
 	}
 	
+	/**
+	 * enable operator buttons.
+	 */
 	public void enableOperators() {
 		
 		addButton.setEnabled( true );
@@ -145,32 +165,50 @@ public class CalcPanel extends Panel {
 		multiButton.setEnabled( true );
 	}
 	
+	/**
+	 * @return text in input field
+	 */
 	public String getInput() {
 		
 		return input.getText();
 	}
 	
+	/**
+	 * @return text in display field
+	 */
 	public String getDisplay() {
 		
 		return display.getText();
 		
 	}
 	
+	/**
+	 * @param str set text in display field
+	 */
 	public void setDisplay( String str ) {
          
 		display.setText( str );
 	}
 	
+	/**
+	 * @param str added to text already in display field
+	 */
 	public void incrementDisplay( String str ) {
 		
 		display.setText( display.getText() + str );
 	}
 	
+	/**
+	 * @param str Set text in input field
+	 */
 	public void setInput( String str ) {
 		
 		input.setText( str );
 	}
 	
+	/**
+	 * set parameters of JComponents.
+	 */
 	public void setParameters() {
 		// TODO Auto-generated method stub
 		answerButton.setText( "ans" );
@@ -182,7 +220,6 @@ public class CalcPanel extends Panel {
 	    resetButton.setText( "R" );
 	    cancelButton.setText( "C" ); 
 	    
-	    
 	    disableEquals();
 	    answerButton.setEnabled( false );
 	    cancelButton.setEnabled( false );
@@ -191,20 +228,19 @@ public class CalcPanel extends Panel {
 		inputTitle = BorderFactory.createTitledBorder( "Input" );
 		input.setBorder( inputTitle );
 		input.setEditable( true );
-//		input.setBackground( Color.magenta );
 		
 		TitledBorder title;
 		title = BorderFactory.createTitledBorder( "Display" );
 		
-//		display.setBorder( BorderFactory.createLineBorder( Color.blue ) );
 		display.setBorder( title );
 		display.setEditable( false );
-//		display.setBackground( Color.blue );
-//		setBackground( Color.blue );
 		
 		buttonPanel.setBorder( BorderFactory.createLineBorder( Color.black ) );
 	}
 
+	/**
+	 * add listeners to JComponents.
+	 */
 	public void setListeners() {
 		// TODO Auto-generated method stub
 		ActionListener button = ButtonListener.getInstance();
@@ -220,9 +256,11 @@ public class CalcPanel extends Panel {
 		
 		input.addFocusListener( TextFieldListener.getInstance() );
 		
-		frame.addWindowListener( ButtonListener.getInstance() );
 	}
 
+	/**
+	 * set Layout for panels.
+	 */
 	public void setPanel() {
 		// TODO Auto-generated method stub
 		setLayout( new BorderLayout() );
@@ -234,6 +272,11 @@ public class CalcPanel extends Panel {
 		 
 	} 
 
+	/**
+	 * Singleton method.
+	 * 
+	 * @return instance of CalcPanel
+	 */
 	public static CalcPanel getInstance() {
 		// TODO Auto-generated method stub
         if ( panel == null ) {
