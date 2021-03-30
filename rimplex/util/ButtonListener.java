@@ -200,7 +200,7 @@ public class ButtonListener implements ActionListener, WindowListener {
 		ArrayList<Expression> expression = new ArrayList<Expression>();
 		expression.add( exp1 );
 		expression.add( exp2 );
-		Calculate calculate = new Calculate( expression, ops );
+		Calculate calculate = new Calculate((Expression[])expression.toArray(), (Operator[])ops.toArray());
 		calc.incrementDisplay( exp2.toString() + "=" + answer );
 		ops.clear();
 		calc.disableEquals();
