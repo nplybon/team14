@@ -98,14 +98,14 @@ public class Arithmetic {
 		return addition(mid1, mid2);
 	}
 	
-	public static Expression subtraction(Expression exp1, Expression exp2) throws OverflowException {
+	public static Expression subtraction(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 	  exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef() * -1, 1, '+');
 	  
 	  return addition(exp1, exp2);
 	  
 	}
 	
-	public static Expression division(Expression exp1, Expression exp2)throws IllegalArgumentException, OverflowException {
+	public static Expression division(Expression exp1, Expression exp2)throws IllegalArgumentException, OverflowException, InvalidExpressionException {
 	  Expression conjugate = new Expression(exp2.getReal(), exp2.getImagCoef() * -1, 1, '+');
 	  
 	  Expression numerator = multiplication(exp1, conjugate);
