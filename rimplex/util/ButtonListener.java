@@ -8,9 +8,10 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 /**
- * Handles button events.
+ * Handles action and window events.
  * 
  * @author Colton Shovlin
  * @version sprint1 CS345
@@ -33,13 +34,48 @@ public class ButtonListener implements ActionListener, WindowListener {
 	}
 	
 	/**
-	 * handles button events.
+	 * handles Action events.
 	 * 
 	 * @param e JButton
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if ( e.getSource() instanceof JButton ) {
+		
+			handleButtonEvents(e);
+		} else if ( e.getSource() instanceof JMenuItem ) {
+			
+			handleMenuItemEvents( e );
+		}
+	}
+
+	/**
+	 * handle about Panel.
+	 * 
+	 * @param e JMenuItem
+	 */
+	private void handleMenuItemEvents( ActionEvent e ) {
+		
+		JMenuItem item = (JMenuItem)e.getSource();
+		System.out.println( "IN MENU" );
+		switch ( item.getText() ) {
+		case "Help":
+			System.out.println( "IN HELP" );
+			String bad = "Input must be in the form of a+bi, bi, or a";
+			JOptionPane.showMessageDialog( null, bad, "Help", JOptionPane.PLAIN_MESSAGE );
+			break;
+		default:
+			break;
+		}
+	}
+	
+	/**
+	 * handle button events.
+	 * 
+	 * @param e JButton
+	 */
+	private void handleButtonEvents(ActionEvent e) {
 		JButton button = (JButton)e.getSource();
 		CalcPanel calc = CalcPanel.getInstance();
 		String str = calc.getInput();

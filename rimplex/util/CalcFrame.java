@@ -26,11 +26,11 @@ public class CalcFrame extends JFrame {
 	private static CalcFrame frame;
 	
 	private JMenu file;
-	private JMenu help;
+	private JMenu about;
 	
 	private JMenuBar menuBar;
 	
-	private JMenuItem about;
+	private JMenuItem help;
 	
 	private JPanel current;
 	
@@ -81,10 +81,10 @@ public class CalcFrame extends JFrame {
 	 */
 	private void addMenus() {
 		
-		help.add( about );
+		about.add( help );
 		
 		menuBar.add( file );
-		menuBar.add( help );
+		menuBar.add( about );
 		
 	}
 	
@@ -96,9 +96,9 @@ public class CalcFrame extends JFrame {
 		menuBar = new JMenuBar();
 		
 		file = new JMenu();
-		help = new JMenu();
+		help = new JMenuItem();
 		
-		about = new JMenuItem();
+		about = new JMenu();
 		
 		current = new JPanel();
 	}
@@ -139,7 +139,7 @@ public class CalcFrame extends JFrame {
     private void setListeners() {
     	
     	this.addWindowListener( ButtonListener.getInstance() );
-    	
+    	help.addActionListener( ButtonListener.getInstance() );
     }
 
     /**
