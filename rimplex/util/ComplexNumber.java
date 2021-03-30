@@ -102,5 +102,6 @@ public class ComplexNumber
     System.out.println("Complex Number 2: " + c2);
     System.out.println("The difference is: " + c.difference(c2));
     System.out.println("The conjugate is " + c.conjugate());
+    CalcFrame.getInstance();
   }
 }

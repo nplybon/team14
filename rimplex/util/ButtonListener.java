@@ -8,6 +8,7 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class ButtonListener implements ActionListener, WindowListener {
 
@@ -17,7 +18,7 @@ public class ButtonListener implements ActionListener, WindowListener {
 	private Expression exp2;
 	
 	private ButtonListener() {
-		
+	
 	}
 	
 	@Override
@@ -26,92 +27,142 @@ public class ButtonListener implements ActionListener, WindowListener {
 		JButton button = (JButton)e.getSource();
 		CalcPanel calc = CalcPanel.getInstance();
 		String str = calc.getInput();
-		
+	    TextFieldListener field = TextFieldListener.getInstance();
+	    
 		switch ( button.getText() ) {
 		case "+":
-            
-			if ( TextFieldListener.getInstance().verifyTarget( str ) ) {
-		    
-//				calc.setDisplay( calc.getInput() + "+" );
-//				calc.setInput( "" );
-				try {
-					setExp1( str );
-				} catch (NumberFormatException | InvalidExpressionException e1) {
-					// TODO Auto-generated catch block
-					System.out.println( "Verification error" );
-				}
-				
-				ops.add( Operator.ADDITION );
-				calc.setDisplay( exp1.toString() + ops.get( 0 ).toString() );
-			} else {
-				System.out.println( "Problem in buttons" );
-			}
-			calc.setInput( "" );
+			runOperation( Operator.ADDITION, str );
 			break;
 		case "-":
-			
-			if ( TextFieldListener.getInstance().verifyTarget( str ) ) {
-
-				try {
-					setExp1( str );
-				} catch (NumberFormatException | InvalidExpressionException e1) {
-					// TODO Auto-generated catch block
-					System.out.println( "Verification error" );
-				}				
-				ops.add( Operator.SUBTRACTION );
-				calc.setDisplay( exp1.toString() + ops.get( 0 ).toString() );
-			} else {
-				System.out.println( "Problem in buttons" );
-			}
-			calc.setInput( "" );
+			runOperation( Operator.SUBTRACTION, str );
 			break;
 		case "x":
-			
-			if ( TextFieldListener.getInstance().verifyTarget( str ) ) {
-
-				try {
-					setExp1( str );
-				} catch (NumberFormatException | InvalidExpressionException e1) {
-					// TODO Auto-generated catch block
-					System.out.println( "Verification error" );
-				}				
-				ops.add( Operator.MULTIPLICATION );
-				calc.setDisplay( exp1.toString() + ops.get( 0 ).toString() );
-			} else {
-				System.out.println( "Problem in buttons" );
-			}
-			calc.setInput( "" );
+			runOperation( Operator.MULTIPLICATION, str );
 			break;
 		case "÷":
-			
-			if ( TextFieldListener.getInstance().verifyTarget( str ) ) {
-
-				try {
-					setExp1( str );
-				} catch (NumberFormatException | InvalidExpressionException e1) {
-					// TODO Auto-generated catch block
-					System.out.println( "Verification error" );
-				}				
-				ops.add( Operator.DIVISION );
-				calc.setDisplay( exp1.toString() + ops.get( 0 ).toString() );
-			} else {
-				System.out.println( "Problem in buttons" );
-			}
-			calc.setInput( "" );
+			runOperation( Operator.DIVISION, str );
 			break;
 		case "ans":
 			break;
 		case "C":
+			runCancelButton();
+			calc.enableEquals();
+			calc.disableOperators();
 			break;
 		case "R":
 			CalcPanel cal = CalcPanel.getInstance();
 			cal.setDisplay( "" );
-			
+			ops.clear();
+			calc.disableEquals();
+			calc.enableOperators();
+			calc.disableCancel();
 			break;
 		case "=":
+			if ( field.verifyTarget( str ) ) {
+				
+				runEquals( str );
+			} else {
+				
+				errorMessage();
+			}
+			calc.setInput( "" );
 			break;
 		default:
 			break;
+		}
+	}
+
+	private void runOperation( Operator operator, String str ) {
+		
+		CalcPanel calc = CalcPanel.getInstance();
+		TextFieldListener field = TextFieldListener.getInstance();
+		
+		if ( field.verifyTarget( str ) ) {
+			trySetExpression1(str);
+			ops.add( operator );
+			updatePanel();
+		} else {
+			errorMessage();
+		}
+		calc.setInput( "" );
+	}
+	private void updatePanel() {
+		
+		CalcPanel calc = CalcPanel.getInstance();
+		calc.setDisplay( exp1.toString() + ops.get( ops.size() - 1 ).toString() );
+		calc.enableEquals();
+		calc.disableOperators();
+	}
+
+	private void runEquals( String str ) {
+		
+		CalcPanel calc = CalcPanel.getInstance();
+		trySetExpression2( str );
+		calc.incrementDisplay( exp2.toString() + "=" );
+		ops.clear();
+		calc.disableEquals();
+//		calc.disableCancel();
+		calc.enableOperators();
+		calc.enableAnswer();
+	}
+
+	private void runCancelButton() {
+		
+		CalcPanel calc = CalcPanel.getInstance();
+		int response;
+		String[] options = new String[] { "+", "-", "x", "÷" };
+		
+		do {
+		response = JOptionPane.showOptionDialog( null, 
+				"Please select a new operator", "Cancel Button", 
+				JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+				null, options, options[ 0 ] );
+		} while ( response == -1 );
+		
+//		ops.remove( ops.get( ops.size() - 1 ) );
+		ops.clear();
+		if ( response == 0 ) {
+			
+			ops.add( Operator.ADDITION );
+		} else if ( response == 1 ) {
+			
+			ops.add( Operator.SUBTRACTION );
+		} else if ( response == 2 ) {
+			
+			ops.add( Operator.MULTIPLICATION );
+		} else if ( response == 3 ) {
+			
+			ops.add( Operator.DIVISION );
+		}
+		
+		calc.setDisplay( exp1.toString() + ops.get( ops.size() - 1 ).toString() );
+	}
+
+	private void errorMessage() {
+		String bad = "Input must be in the form of a+bi, bi, or a";
+		JOptionPane.showMessageDialog( null, bad, "Bad Input", JOptionPane.PLAIN_MESSAGE );
+	}
+
+	public ArrayList<Operator> getOps() {
+		
+		return ops;
+	}
+	
+	private void trySetExpression1(String str) {
+		try {
+			setExp1( str );
+		} catch (NumberFormatException | InvalidExpressionException e1) {
+			// TODO Auto-generated catch block
+			System.out.println( "Verification error" );
+		}
+	}
+	
+	private void trySetExpression2(String str) {
+		try {
+			setExp2( str );
+		} catch (NumberFormatException | InvalidExpressionException e1) {
+			// TODO Auto-generated catch block
+			System.out.println( "Verification error" );
 		}
 	}
 
@@ -144,6 +195,38 @@ public class ButtonListener implements ActionListener, WindowListener {
 		} else {
 			
 			exp1 = new Expression( Double.parseDouble( str ), 0.0, 1, '+' );
+		}
+	}
+	
+	private void setExp2( String str ) throws NumberFormatException, InvalidExpressionException {
+		
+        int l = str.length();
+		int i;
+		
+		if ( str.indexOf( "+" ) != -1 ) {
+			
+			i = str.indexOf( '+' );
+			String real = str.substring( 0, i );
+			String img = str.substring( i + 1, l - 1 );
+			exp2 = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
+					1, str.charAt( i ) );
+			
+		} else if ( str.indexOf( "-" ) != -1 ) {
+			
+			i = str.indexOf( '-' );
+			String real = str.substring( 0, i );
+			String img = str.substring( i + 1, l - 1 );
+			exp2 = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
+					1, str.charAt( i ) );
+			
+		} else if ( str.charAt( str.length() - 1 ) == 'i' ) {
+			
+			String sub = str.substring( 0, str.length() - 1 );
+			exp2 = new Expression( 0.0, Double.parseDouble( sub ), 1, '+' );
+			
+		} else {
+			
+			exp2 = new Expression( Double.parseDouble( str ), 0.0, 1, '+' );
 		}
 	}
 

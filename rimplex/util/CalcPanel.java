@@ -107,7 +107,44 @@ public class CalcPanel extends Panel {
 	    add( new JPanel(), BorderLayout.WEST );
 	    add( new JPanel(), BorderLayout.NORTH );
 	}
-
+ 
+	public void disableCancel() {
+		
+		cancelButton.setEnabled( false );
+	}
+	public void disableEquals() {
+		
+		equalButton.setEnabled( false );
+//		cancelButton.setEnabled( false );
+	}
+	
+	public void disableOperators() {
+		
+		addButton.setEnabled( false );
+		divButton.setEnabled( false );
+		subButton.setEnabled( false );
+		multiButton.setEnabled( false );
+	}
+	
+	public void enableAnswer() {
+		
+		answerButton.setEnabled( true );
+	}
+	
+	public void enableEquals() {
+		
+		equalButton.setEnabled( true );
+		cancelButton.setEnabled( true );
+	}
+	
+	public void enableOperators() {
+		
+		addButton.setEnabled( true );
+		divButton.setEnabled( true );
+		subButton.setEnabled( true );
+		multiButton.setEnabled( true );
+	}
+	
 	public String getInput() {
 		
 		return input.getText();
@@ -143,7 +180,12 @@ public class CalcPanel extends Panel {
 		multiButton.setText( "x" );
 	    subButton.setText( "-" );
 	    resetButton.setText( "R" );
-	    cancelButton.setText( "C" );
+	    cancelButton.setText( "C" ); 
+	    
+	    
+	    disableEquals();
+	    answerButton.setEnabled( false );
+	    cancelButton.setEnabled( false );
 	    
 		TitledBorder inputTitle;
 		inputTitle = BorderFactory.createTitledBorder( "Input" );
