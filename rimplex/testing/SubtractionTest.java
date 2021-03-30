@@ -6,13 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import util.Arithmetic;
 import util.Expression;
+import util.InvalidExpressionException;
 import util.OverflowException;
 
-class subtractionTest
+class SubtractionTest
 {
 
   @Test
-  void testBothReal() throws OverflowException
+  void testBothReal() throws OverflowException, InvalidExpressionException
   {
     Expression exp1 = new Expression(5.0, 0.0, 1, '+');
     Expression exp2 = new Expression(3.0, 0.0, 1, '+');
@@ -30,7 +31,7 @@ class subtractionTest
   }
   
   @Test
-  void testBothNegativeReal() throws OverflowException {
+  void testBothNegativeReal() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(-5.0, 0.0, 1, '+');
     Expression exp2 = new Expression(-3.0, 0.0, 1, '+');
     Expression expected = new Expression(-2.0, 0.0, 1, '+');
@@ -47,7 +48,7 @@ class subtractionTest
   }
   
   @Test
-  void testBothImag() throws OverflowException {
+  void testBothImag() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(0.0, 7.0, 1, '+');
     Expression exp2 = new Expression(0.0, 1.0, 1, '+');
     Expression expected = new Expression(0.0, 6.0, 1, '+');
@@ -64,7 +65,7 @@ class subtractionTest
   }
   
   @Test
-  void testComplexAndReal() throws OverflowException {
+  void testComplexAndReal() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(11.0, 7.0, 1, '+');
     Expression exp2 = new Expression(4.0, 0.0, 1, '+');
     Expression expected = new Expression(7.0, 7.0, 1, '+');
@@ -81,10 +82,10 @@ class subtractionTest
   }
   
   @Test
-  void testBothComplex() throws OverflowException {
+  void testBothComplex() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(12.0, 4.0, 1, '+');
     Expression exp2 = new Expression(16.0, 5.0, 1, '+');
-    Expression expected = new Expression(-4.0, -1.0, 1, '+');
+    Expression expected = new Expression(-4.0, 1.0, 1, '-');
     Expression result = Arithmetic.subtraction(exp1, exp2);
     
     double expectedReal = expected.getReal();
@@ -98,7 +99,7 @@ class subtractionTest
   }
   
   @Test
-  void testSubtractSame() throws OverflowException {
+  void testSubtractSame() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(100.0, 100.0, 1, '+');
     Expression exp2 = new Expression(100.0, 100.0, 1, '+');
     Expression expected = new Expression(0.0, 0.0, 1, '+');
@@ -115,7 +116,7 @@ class subtractionTest
   }
   
   @Test
-  void testRandomTests() throws OverflowException {
+  void testRandomTests() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(0.0, 0.0, 1, '+');
     Expression exp2 = new Expression(0.0, 0.0, 1, '+');
     Expression expected = new Expression(0.0, 0.0, 1, '+');
@@ -169,8 +170,32 @@ class subtractionTest
     assertEquals(expectedReal, resultReal, 0.0001);
     assertEquals(expectedCoef, resultCoef, 0.0001);
     
+    exp1 = new Expression(123.45, 543.21, 1, '+');
+    exp2 = new Expression(543.21, 123.45, 1, '+');
+    expected = new Expression(-419.76, 419.76, 1, '+');
+    result = Arithmetic.subtraction(exp1, exp2);
     
-
+    expectedReal = expected.getReal();
+    resultReal = result.getReal();
+    expectedCoef = expected.getImagCoef();
+    resultCoef = result.getImagCoef();
+    
+    assertEquals(expectedReal, resultReal, 0.0001);
+    assertEquals(expectedCoef, resultCoef, 0.0001);
+    
+    exp1 = new Expression(63.0, 0.0, 1, '+');
+    exp2 = new Expression(0.0, 27.0, 1, '+');
+    expected = new Expression(63.0, 27.0, 1, '-');
+    result = Arithmetic.subtraction(exp1, exp2);
+    
+    expectedReal = expected.getReal();
+    resultReal = result.getReal();
+    expectedCoef = expected.getImagCoef();
+    resultCoef = result.getImagCoef();
+    
+    assertEquals(expectedReal, resultReal, 0.0001);
+    assertEquals(expectedCoef, resultCoef, 0.0001);
+    
   }
   
 
