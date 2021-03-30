@@ -124,6 +124,16 @@ public class ButtonListener implements ActionListener, WindowListener {
 		return ops;
 	}
 
+	/**
+	 * Close program when user exits.
+	 */
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+		System.exit( 0 );
+	}
+
 	private void addAnswer() {
 		
 		CalcPanel calc = CalcPanel.getInstance();
@@ -181,7 +191,7 @@ public class ButtonListener implements ActionListener, WindowListener {
 	    updateOps(response);
 	}
 
-	/**
+	    /**
 		 * evaluate expression.
 		 * 
 		 * @throws OverflowException WAP
@@ -355,18 +365,11 @@ public class ButtonListener implements ActionListener, WindowListener {
 
         return listener;
 	}
-
+	
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-		System.exit( 0 );
 	}
 
 	@Override
