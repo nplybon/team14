@@ -5,7 +5,6 @@ package util;
  * imaginary number.
  * 
  * @author John Curley
- * @author Hunter Mann
  */
 public class Expression {
 
