@@ -12,7 +12,7 @@ class CalculateTest
 
   @Test
   void testCalculateConstructor() {
-    
+     
   }
   
   @Test
