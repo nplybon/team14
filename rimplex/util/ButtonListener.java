@@ -180,23 +180,27 @@ public class ButtonListener implements ActionListener, WindowListener {
 	private void runEquals() throws OverflowException {
 		
 		CalcPanel calc = CalcPanel.getInstance();
-//        Expression expression = exp;
-		switch ( ops.get( 0 ) ) {
-		case ADDITION:
-			answer = Arithmetic.addition( exp1, exp2 );
-			break;
-		case SUBTRACTION:
-			answer = Arithmetic.subtraction( exp1, exp2 );
-			break;
-		case DIVISION:
-			answer = Arithmetic.division( exp1, exp2 );
-			break;
-		case MULTIPLICATION:
-			answer = Arithmetic.multiplication( exp1, exp2 );
-			break;
-		default:
-			break;
-		}
+////        Expression expression = exp;
+//		switch ( ops.get( 0 ) ) {
+//		case ADDITION:
+//			answer = Arithmetic.addition( exp1, exp2 );
+//			break;
+//		case SUBTRACTION:
+//			answer = Arithmetic.subtraction( exp1, exp2 );
+//			break;
+//		case DIVISION:
+//			answer = Arithmetic.division( exp1, exp2 );
+//			break;
+//		case MULTIPLICATION:
+//			answer = Arithmetic.multiplication( exp1, exp2 );
+//			break;
+//		default:
+//			break;
+//		}
+		ArrayList<Expression> expression = new ArrayList<Expression>();
+		expression.add( exp1 );
+		expression.add( exp2 );
+		Calculate calculate = new Calculate( expression, ops );
 		calc.incrementDisplay( exp2.toString() + "=" + answer );
 		ops.clear();
 		calc.disableEquals();
