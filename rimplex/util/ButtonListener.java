@@ -76,7 +76,7 @@ public class ButtonListener implements ActionListener, WindowListener {
 				exp2 = answer;
 				try {
 					runEquals();
-				} catch (OverflowException e1) {
+				} catch (OverflowException | InvalidExpressionException e1) {
 					// TODO Auto-generated catch block
 					System.out.println( "Equals Exception" );
 				}
@@ -101,7 +101,7 @@ public class ButtonListener implements ActionListener, WindowListener {
 				try {
 					trySetExpression2( str );
 					runEquals();
-				} catch (OverflowException e1) {
+				} catch (OverflowException | InvalidExpressionException e1) {
 					// TODO Auto-generated catch block
 					System.out.println( "Equals Exception" );
 				}
@@ -176,8 +176,9 @@ public class ButtonListener implements ActionListener, WindowListener {
 	 * evaluate expression.
 	 * 
 	 * @throws OverflowException WAP
+	 * @throws InvalidExpressionException 
 	 */
-	private void runEquals() throws OverflowException {
+	private void runEquals() throws OverflowException, InvalidExpressionException {
 		
 		CalcPanel calc = CalcPanel.getInstance();
 ////        Expression expression = exp;
@@ -200,7 +201,18 @@ public class ButtonListener implements ActionListener, WindowListener {
 		ArrayList<Expression> expression = new ArrayList<Expression>();
 		expression.add( exp1 );
 		expression.add( exp2 );
-		Calculate calculate = new Calculate((Expression[])expression.toArray(), (Operator[])ops.toArray());
+		
+		Expression[] e = new Expression[expression.size()];
+		Operator[] o = new Operator[ops.size()];
+		
+    for (int i = 0; i < expression.size(); i++) {
+      e[i] = expression.get(i);
+    }
+    for (int i = 0; i < ops.size(); i++) {
+      o[i] = ops.get(i);
+    }
+		Calculate calculate = new Calculate(e, o);
+		answer = calculate.calculateExpression();
 		calc.incrementDisplay( exp2.toString() + "=" + answer );
 		ops.clear();
 		calc.disableEquals();
