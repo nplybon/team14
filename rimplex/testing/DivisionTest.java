@@ -6,13 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import util.Arithmetic;
 import util.Expression;
+import util.InvalidExpressionException;
 import util.OverflowException;
 
-class divisionTest
+class DivisionTest
 {
 
   @Test
-  void testBothReal() throws IllegalArgumentException, OverflowException
+  void testBothReal() throws OverflowException, InvalidExpressionException
   {
     Expression exp1 = new Expression(15.0, 0.0, 1, '+');
     Expression exp2 = new Expression(3.0, 0.0, 1, '+');
@@ -30,7 +31,7 @@ class divisionTest
   }
   
   @Test
-  void testBothNegativeReal() throws IllegalArgumentException, OverflowException {
+  void testBothNegativeReal() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(-20.0, 0.0, 1, '+');
     Expression exp2 = new Expression(-4.0, 0.0, 1, '+');
     Expression expected = new Expression(5.0, 0.0, 1, '+');
@@ -46,7 +47,7 @@ class divisionTest
   }
   
   @Test
-  void testBothImag() throws IllegalArgumentException, OverflowException {
+  void testBothImag() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(0.0, 100.0, 1, '+');
     Expression exp2 = new Expression(0.0, 10.0, 1, '+');
     Expression expected = new Expression(10.0, 0.0, 1, '+');
@@ -62,7 +63,7 @@ class divisionTest
   }
   
   @Test
-  void testBothComplex() throws IllegalArgumentException, OverflowException {
+  void testBothComplex() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(60.0, 20.0, 1, '+');
     Expression exp2 = new Expression(30.0, 10.0, 1, '+');
     Expression expected = new Expression(2.0, 0.0, 1, '+');
@@ -78,7 +79,7 @@ class divisionTest
   }
   
   @Test
-  void testComplexAndReal() throws IllegalArgumentException, OverflowException {
+  void testComplexAndReal() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(60.0, 20.0, 1, '+');
     Expression exp2 = new Expression(3.0, 0.0, 1, '+');
     Expression expected = new Expression(20.0, 20.0/3, 1, '+');
@@ -94,16 +95,16 @@ class divisionTest
   }
   
   @Test
-  void testDivideByZero() {
+  void testDivideByZero() throws InvalidExpressionException {
     Expression exp1 = new Expression(4.0, 4.0, 1, '+');
     Expression exp2 = new Expression(0.0, 0.0, 1, '+');
-    assertThrows(IllegalArgumentException.class, () -> {
+    assertThrows(InvalidExpressionException.class, () -> {
       Arithmetic.division(exp1, exp2);
     });
   }
   
   @Test
-  void testRandom() throws IllegalArgumentException, OverflowException {
+  void testRandom() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(0.0, 0.0, 1, '+');
     Expression exp2 = new Expression(0.0, 5.0, 1, '+');
     Expression expected = new Expression(0.0, 0.0, 1, '+');
@@ -116,7 +117,18 @@ class divisionTest
     
     assertEquals(expectedReal, resultReal, 0.0001);
     assertEquals(expectedCoef, resultCoef, 0.0001);
+    
+    exp1 = new Expression(1.0, 1.0, 1, '+');
+    exp2 = new Expression(2.0, 2.0, 1, '+');
+    expected = new Expression(0.5, 0.0, 1, '+');
+    result = Arithmetic.division(exp1, exp2);
+    
+    expectedReal = expected.getReal();
+    resultReal = result.getReal();
+    expectedCoef = expected.getImagCoef();
+    resultCoef = result.getImagCoef();
+    
+    assertEquals(expectedReal, resultReal, 0.0001);
+    assertEquals(expectedCoef, resultCoef, 0.0001);
   }
-  
-  
 }

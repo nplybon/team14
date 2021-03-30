@@ -32,10 +32,9 @@ public class Calculate {
    * @param exp2 Expression the left expression
    * @return the result expression
    * @throws OverflowException
-   * @throws InvalidExpressionException
    */
   private Expression calculate(Expression exp1, Operator op, Expression exp2)
-      throws OverflowException, InvalidExpressionException {
+      throws OverflowException {
 
     Expression result = null;
 
@@ -62,10 +61,8 @@ public class Calculate {
    * 
    * @return the final calculated expression.
    * @throws OverflowException
-   * @throws InvalidExpressionException
    */
-  public Expression calculateExpression()
-      throws OverflowException, InvalidExpressionException {
+  public Expression calculateExpression() throws OverflowException {
 
     Expression result = null;
 
@@ -75,7 +72,7 @@ public class Calculate {
       expressions[order[i]] = result;
       expressions[order[i] + 1] = result;
     }
-    
+
     return result;
 
   }

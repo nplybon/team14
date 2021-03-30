@@ -6,12 +6,7 @@ import java.awt.event.FocusListener;
 
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
-/**
- * Handles and tests text Fields.
- * 
- * @author Colton Shovlin
- * @version Sprint1 CS 345
- */
+
 public class TextFieldListener implements FocusListener {
 
 	private static TextFieldListener listener;
@@ -20,6 +15,14 @@ public class TextFieldListener implements FocusListener {
 		
 	}
 	
+	public static TextFieldListener getInstance() {
+        if ( listener == null ) {
+            listener = new TextFieldListener();
+        }
+
+        return listener;
+	}
+
 	@Override
 	public void focusGained(FocusEvent e) {
 		// TODO Auto-generated method stub
@@ -28,16 +31,16 @@ public class TextFieldListener implements FocusListener {
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
+//		// TODO Auto-generated method stub
+//		JTextField input = (JTextField)e.getSource();
+//		String str = input.getText();
+////		int i;
+//		if ( !verifyTarget( str ) ) {
+//           
+////			CalcPanel.getInstance().setInput( "" );
+//		}
 	}
 
-	/**
-	 * Verify that user input is valid.
-	 * 
-	 * @param string user input
-	 * @return true if valid
-	 */
 	public boolean verifyTarget(String string) {
 		// TODO Auto-generated method stub
 		boolean bool = true;
@@ -50,7 +53,7 @@ public class TextFieldListener implements FocusListener {
 				bool = testInput( sub );
 				
 			} else {
-
+//				System.out.println( "in not minus" );
 				bool = testInput( str );
 			} 
 		} else {
@@ -61,84 +64,6 @@ public class TextFieldListener implements FocusListener {
 		return bool;
 	}
 
-	/**
-	 * is user input a valid imaginary number.
-	 * 
-	 * @param input user
-	 * @return true if valid
-	 */
-	private boolean isImag( String input ) {
-		
-		boolean bool;
-		String str = input;
-		
-		if ( str.charAt( str.length() - 1 ) == 'i' ) {
-			
-			String sub = str.substring( 0, str.length() - 1 );
-	
-			bool = isReal( sub );
-			
-		} else {
-			
-			bool = false;
-		}
-	
-		return bool;
-	}
-
-	/**
-	 * Is this character a minus sign?
-	 * 
-	 * @param str user input
-	 * @param i character of question
-	 * @return true if is minus
-	 */
-	private boolean isMinus( String str, int i ) {
-		
-		return str.charAt( i ) == '-';
-	}
-
-	/**
-	 * is user input a valid real number.
-	 * 
-	 * @param input user 
-	 * @return true if valid
-	 */
-	private boolean isReal( String input ) {
-		
-		boolean bool;
-		
-		String str = input;
-		
-		try {
-	
-			Double.parseDouble( str );
-		    bool = true;
-		} catch ( NumberFormatException e ) {
-	
-			bool = false;
-		}
-		
-		return bool;
-	}
-
-	/**
-	 * is user entry null or empty?
-	 * 
-	 * @param str user input
-	 * @return true if NOT null and NOT empty
-	 */
-	private boolean notNull( String str ) {
-		
-		return str != null && str.length() > 0;
-	}
-
-	/**
-	 * parse user input into imaginary and real parts.
-	 * 
-	 * @param input user input
-	 * @return true if user input is valid
-	 */
 	private boolean testInput( String input ) {
 		
 		boolean bool = true;
@@ -151,11 +76,11 @@ public class TextFieldListener implements FocusListener {
 		int l = str.length();
 		
 		if ( str.indexOf( '+' ) != -1 ) {
-
+//            System.out.println( "In plus index of" );
 			i = str.indexOf( '+' );
 			String real = str.substring( 0, i );
 			String img = str.substring( i + 1, l );
-
+//			System.out.println( "real:" + real + "Img:" + img );
 			isReal = isReal( real );
 			isImg = isImag( img );
 			
@@ -182,17 +107,66 @@ public class TextFieldListener implements FocusListener {
 		return bool;
 	}
 
-	/**
-	 * Singleton method.
-	 * 
-	 * @return TextFieldListener
-	 */
-	public static TextFieldListener getInstance() {
-	    if ( listener == null ) {
-	        listener = new TextFieldListener();
-	    }
-	
-	    return listener;
+	private boolean isImag( String input ) {
+		
+		boolean bool;
+		String str = input;
+		
+		if ( str.charAt( str.length() - 1 ) == 'i' ) {
+			
+			String sub = str.substring( 0, str.length() - 1 );
+//			System.out.println( "In isIMaG if :" + sub );
+			bool = isReal( sub );
+			
+		} else {
+			
+			bool = false;
+		}
+//		System.out.println( "isImag:" + bool );
+		return bool;
+	}
+
+	private boolean isReal( String input ) {
+		
+		boolean bool;
+		
+		String str = input;
+		
+		try {
+//			System.out.println( "In real try:" + str );
+			Double.parseDouble( str );
+		    bool = true;
+		} catch ( NumberFormatException e ) {
+//			System.out.println( "In real catch" );
+			bool = false;
+		}
+//		System.out.println( "Is real:" + bool );
+		return bool;
 	}
 	
+	private boolean notNull( String str ) {
+		
+		return str != null && str.length() > 0;
+	}
+	
+//	private boolean isNumOri( String str, int i ) {
+//		
+//		
+//		return str.charAt( i ) == '1';
+//	}
+	
+	private boolean isMinus( String str, int i ) {
+		
+		return str.charAt( i ) == '-';
+	}
+	
+//	private boolean isNum( String str, int i ) {
+//		
+//		return str.charAt( i ) == '1' ||  str.charAt( i ) == '2'
+//				|| str.charAt( i ) == '3' || str.charAt( i ) == '4'
+//				|| str.charAt( i ) == '5' || str.charAt( i ) == '6'
+//				|| str.charAt( i ) == '7' || str.charAt( i ) == '8'
+//				|| str.charAt( i ) == '9' || str.charAt( i ) == '0';
+//	}
+	//add get expressions method
 }
