@@ -17,8 +17,9 @@ public class Arithmetic {
 	 * @return resultant expression; null if one, or both, expression/s 
 	 *  	is/are null
 	 * @throws OverflowException when positive overflow has occurred when performing the operation
+	 * @throws InvalidExpressionException if expression operands are invalid
 	 */
-	public static Expression addition(Expression exp1, Expression exp2) throws OverflowException {
+	public static Expression addition(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 
 		// null argument checking
 		if (exp1 == null || exp2 == null) {
@@ -35,8 +36,23 @@ public class Arithmetic {
 		}
 
 		// local variables
+		double exp1NewCoef = 0;
+		double exp2NewCoef = 0;
 		double realResult = exp1.getReal() + exp2.getReal();
-		double coefResult = exp1.getImagCoef() + exp2.getImagCoef();
+		double coefResult;
+		
+		if (exp1.getSymbol() == Operator.SUBTRACTION && exp2.getSymbol() != Operator.SUBTRACTION) {
+			exp1NewCoef = exp1.getImagCoef() * -1;
+			exp2NewCoef = exp2.getImagCoef();
+		} else if (exp1.getSymbol() != Operator.SUBTRACTION && exp2.getSymbol() == Operator.SUBTRACTION) {
+			exp2NewCoef = exp2.getImagCoef() * -1;
+			exp2NewCoef = exp2.getImagCoef();
+		} else {
+			exp1NewCoef = exp1.getImagCoef();
+			exp2NewCoef = exp2.getImagCoef();
+		}
+		
+		coefResult = exp1NewCoef + exp2NewCoef;
 
 		// return resultant expression
 		return new Expression(realResult, coefResult, 1, '+');
@@ -50,8 +66,9 @@ public class Arithmetic {
 	 * @return resultant expression; null if one, or both, expression/s
 	 *  	is/are null
 	 * @throws OverflowException when positive overflow has occurred when performing the operation
+	 * @throws InvalidExpressionException if expression operands are invalid
 	 */
-	public static Expression multiplication(Expression exp1, Expression exp2) throws OverflowException {
+	public static Expression multiplication(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 		
 		// null argument checking
 		if (exp1 == null || exp2 == null) {
