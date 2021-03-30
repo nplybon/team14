@@ -1,6 +1,7 @@
 package util;
 import java.awt.BorderLayout;
 
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -33,7 +34,7 @@ public class CalcFrame extends JFrame {
 		createCompnents();
 		setLabels();
 		addMenus();
-		setPanel( new CalcPanel() );
+		setPanel( CalcPanel.getInstance() );
 		setListeners();
 		setJMenuBar( menuBar );
 		 

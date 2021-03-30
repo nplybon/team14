@@ -1,6 +1,7 @@
 package util;
 import java.awt.BorderLayout;
 
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -36,20 +37,19 @@ public class CalcPanel extends Panel {
 	JPanel displayPanel;
 	JPanel inputPanel;
 	
-	JScrollPane display;
-	
+	JTextField display;
 	JTextField input;
 	
 	//JWindow window;
 	JFrame frame;
 	
-	private static CalcPanel panel = new CalcPanel();
+	private static CalcPanel panel;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public CalcPanel() {
+	private CalcPanel() {
 		
 		super();
 	}
@@ -70,7 +70,7 @@ public class CalcPanel extends Panel {
 		displayPanel = new JPanel();
 		inputPanel = new JPanel();
 		
-		display = new JScrollPane();
+		display = new JTextField();
 		
 		input = new JTextField();
 		
@@ -108,6 +108,32 @@ public class CalcPanel extends Panel {
 	    add( new JPanel(), BorderLayout.NORTH );
 	}
 
+	public String getInput() {
+		
+		return input.getText();
+	}
+	
+	public String getDisplay() {
+		
+		return display.getText();
+		
+	}
+	
+	public void setDisplay( String str ) {
+         
+		display.setText( str );
+	}
+	
+	public void incrementDisplay( String str ) {
+		
+		display.setText( display.getText() + str );
+	}
+	
+	public void setInput( String str ) {
+		
+		input.setText( str );
+	}
+	
 	public void setParameters() {
 		// TODO Auto-generated method stub
 		answerButton.setText( "ans" );
@@ -130,6 +156,7 @@ public class CalcPanel extends Panel {
 		
 //		display.setBorder( BorderFactory.createLineBorder( Color.blue ) );
 		display.setBorder( title );
+		display.setEditable( false );
 //		display.setBackground( Color.blue );
 //		setBackground( Color.blue );
 		
@@ -165,12 +192,12 @@ public class CalcPanel extends Panel {
 		 
 	} 
 
-//	public static CalcPanel getInstance() {
-//		// TODO Auto-generated method stub
-//        if ( panel == null ) {
-//            panel = new CalcPanel();
-//        }
-//
-//        return panel;
-//	}
+	public static CalcPanel getInstance() {
+		// TODO Auto-generated method stub
+        if ( panel == null ) {
+            panel = new CalcPanel();
+        }
+
+        return panel;
+	}
 }
