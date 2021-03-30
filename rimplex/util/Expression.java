@@ -5,7 +5,6 @@ package util;
  * imaginary number.
  * 
  * @author John Curley
- * @author Hunter Mann
  */
 public class Expression {
 
@@ -38,13 +37,14 @@ public class Expression {
   public Double getReal() {
     return real;
   }
-  
+
   /**
    * Getter for the operator in the expression
+   * 
    * @return the Operator attribute
    */
   public Operator getSymbol() {
-	  return this.op;
+    return this.op;
   }
 
   /**
