@@ -59,7 +59,8 @@ public class ButtonListener implements ActionListener, WindowListener {
 			runOperation( Operator.DIVISION, str );
 			break;
 		case "ans":
-			if ( calc.getDisplay().isEmpty() ) {
+			if ( calc.getDisplay().indexOf( '=' ) != -1 ) {
+				calc.setDisplay( "" );
 				String[] options = new String[] { "+", "-", "x", "÷" };
 				int response;
 				exp1 = answer;
@@ -181,23 +182,6 @@ public class ButtonListener implements ActionListener, WindowListener {
 	private void runEquals() throws OverflowException, InvalidExpressionException {
 		
 		CalcPanel calc = CalcPanel.getInstance();
-////        Expression expression = exp;
-//		switch ( ops.get( 0 ) ) {
-//		case ADDITION:
-//			answer = Arithmetic.addition( exp1, exp2 );
-//			break;
-//		case SUBTRACTION:
-//			answer = Arithmetic.subtraction( exp1, exp2 );
-//			break;
-//		case DIVISION:
-//			answer = Arithmetic.division( exp1, exp2 );
-//			break;
-//		case MULTIPLICATION:
-//			answer = Arithmetic.multiplication( exp1, exp2 );
-//			break;
-//		default:
-//			break;
-//		}
 		ArrayList<Expression> expression = new ArrayList<Expression>();
 		expression.add( exp1 );
 		expression.add( exp2 );
