@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class AdditionTest {
 
 	@Test
-	void testAdditionTwoRealNoImag() throws OverflowException, InvalidExpressionException {
+	void testAdditionTwoRealNoImag() throws OverflowException {
 		Expression left = new Expression(5.0, 0.0, 1, '+');
 		Expression right = new Expression(3.0, 0.0, 1, '+');
 		Expression expected = new Expression(8.0, 0.0, 1, '+');
@@ -26,7 +26,7 @@ class AdditionTest {
 	}
 	
 	@Test
-	void testAdditionTwoNegativeNoImag() throws OverflowException, InvalidExpressionException {
+	void testAdditionTwoNegativeNoImag() throws OverflowException {
 		
 		Expression left = new Expression(-5.0, 0.0, 1, '+');
 		Expression right = new Expression(-3.0, 0.0, 1, '+');
@@ -43,7 +43,7 @@ class AdditionTest {
 	}
 	
 	@Test
-	void testAdditionTwoComplex() throws OverflowException, InvalidExpressionException {
+	void testAdditionTwoComplex() throws OverflowException {
 		
 		Expression left = new Expression(-5.0, 1.0, 1, '+');
 		Expression right = new Expression(-3.0, 3.0, 1, '+');
@@ -61,7 +61,7 @@ class AdditionTest {
 	}
 	
 	@Test
-	void testAdditionRealAndCompelx() throws OverflowException, InvalidExpressionException {
+	void testAdditionRealAndCompelx() throws OverflowException {
 		
 		Expression left = new Expression(-5.0, 1.0, 1, '+');
 		Expression right = new Expression(-3.0, 0.0, 1, '+');
@@ -79,7 +79,7 @@ class AdditionTest {
 	}
 	
 	@Test
-	void testAdditionOverflowOnReal() throws OverflowException, InvalidExpressionException {
+	void testAdditionOverflowOnReal() throws OverflowException {
 		
 		Expression left = new Expression(Double.MAX_VALUE, 0.0, 1, '+');
 		Expression right = new Expression(Double.MAX_VALUE, 0.0, 1, '+');
@@ -89,7 +89,7 @@ class AdditionTest {
 	}
 	
 	@Test
-	void testAdditionOverflowOnCoef() throws OverflowException, InvalidExpressionException {
+	void testAdditionOverflowOnCoef() throws OverflowException {
 		
 		Expression left = new Expression(5.0, Double.MAX_VALUE, 1, '+');
 		Expression right = new Expression(3.0, Double.MAX_VALUE, 1, '+');

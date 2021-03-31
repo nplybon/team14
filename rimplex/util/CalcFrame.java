@@ -10,12 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-/**
- * Top-Level container for CalcPanel.
- * 
- * @author Colton Shovlin
- * @version Sprint1 CS345
- */
+
 public class CalcFrame extends JFrame {
 
 	/**
@@ -25,18 +20,15 @@ public class CalcFrame extends JFrame {
 
 	private static CalcFrame frame;
 	
-	private JMenu file;
-	private JMenu help;
-	
 	private JMenuBar menuBar;
 	
-	private JMenuItem about;
+	private JMenu file;
+	private JMenu about;
+	
+	private JMenuItem help;
 	
 	private JPanel current;
 	
-	/**
-	 * singleton constructor.
-	 */
 	private CalcFrame() {
 		
 		createCompnents();
@@ -82,10 +74,10 @@ public class CalcFrame extends JFrame {
 	
 	private void addMenus() {
 		
-		help.add( about );
+		about.add( help );
 		
 		menuBar.add( file );
-		menuBar.add( help );
+		menuBar.add( about );
 		
 	}
 	private void createCompnents() {
@@ -93,13 +85,16 @@ public class CalcFrame extends JFrame {
 		menuBar = new JMenuBar();
 		
 		file = new JMenu();
-		help = new JMenu();
+		help = new JMenuItem();
 		
-		about = new JMenuItem();
+		about = new JMenu();
 		
 		current = new JPanel();
 	}
 	
+    /**
+     * center form on screen.
+     */
     private void centerForm() {
 
         Dimension dimScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -115,7 +110,7 @@ public class CalcFrame extends JFrame {
         setLocation( ( dimScreenSize.width - dimFrameSize.width ) / 2,
                         ( dimScreenSize.height - dimFrameSize.height ) / 2 );
 
-    }
+    } // method centerForm
     
     private void setLabels() {
     	
@@ -127,6 +122,6 @@ public class CalcFrame extends JFrame {
     private void setListeners() {
     	
     	this.addWindowListener( ButtonListener.getInstance() );
-    	
+    	help.addActionListener( ButtonListener.getInstance() );
     }
 }

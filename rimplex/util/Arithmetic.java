@@ -2,6 +2,7 @@ package util;
 
 /**
  * @author Hunter Mann
+ * @author Nic Plybon
  * @version 2-26-2021
  * 
  *          This class houses the arithmetic algorithms that will be performed
@@ -17,7 +18,11 @@ public class Arithmetic {
 	 * @return resultant expression; null if one, or both, expression/s 
 	 *  	is/are null
 	 * @throws OverflowException when positive overflow has occurred when performing the operation
+<<<<<<< HEAD
+	 * @throws InvalidExpressionException 
+=======
 	 * @throws InvalidExpressionException if expression operands are invalid
+>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 	 */
 	public static Expression addition(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 
@@ -66,7 +71,11 @@ public class Arithmetic {
 	 * @return resultant expression; null if one, or both, expression/s
 	 *  	is/are null
 	 * @throws OverflowException when positive overflow has occurred when performing the operation
+<<<<<<< HEAD
+	 * @throws InvalidExpressionException 
+=======
 	 * @throws InvalidExpressionException if expression operands are invalid
+>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 	 */
 	public static Expression multiplication(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 		
@@ -99,29 +108,28 @@ public class Arithmetic {
 	}
 	
 	public static Expression subtraction(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
+	  // (a - c) + (b - d)
+	  double real = exp1.getReal() - exp2.getReal();
+	  double imag = exp1.getImagCoef() - exp2.getImagCoef();
 	  exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef() * -1, 1, '+');
 	  
-	  return addition(exp1, exp2);
+	  return new Expression(real, imag, 1, '+');
 	  
 	}
 	
 	public static Expression division(Expression exp1, Expression exp2)throws IllegalArgumentException, OverflowException, InvalidExpressionException {
 	  Expression conjugate = new Expression(exp2.getReal(), exp2.getImagCoef() * -1, 1, '+');
+	  //real part = ac + bd / c^2 + d^2
+    //imag part = bc - ad / c^2 + d^2
+	  double firstPart = exp1.getReal() * exp2.getReal() + exp1.getImagCoef() * exp2.getImagCoef();
+	  double secondPart = exp1.getImagCoef() * exp2.getReal() - exp1.getReal() * exp2.getImagCoef();
+	  double squaredPart = Math.pow(exp2.getReal(), 2) + Math.pow(exp2.getImagCoef(), 2);
+	  double realpart  = firstPart / squaredPart;
+	  double imagpart  = secondPart/ squaredPart;
 	  
-	  Expression numerator = multiplication(exp1, conjugate);
-	  Expression denominator = multiplication(exp2, conjugate);
-	  double realNum = numerator.getReal();
-	  double realDen = denominator.getReal();
-	  double imagNum = numerator.getImagCoef();
-	  double imagDen = denominator.getImagCoef();
-	  
-	  if (realDen == 0.0 && imagDen == 0.0) {
-	    throw new IllegalArgumentException("ERROR: DIVIDE BY 0");
+	  if (Double.isNaN(realpart) && Double.isNaN(imagpart)) {
+	    throw new InvalidExpressionException("ERROR: CANNOT DIVIDE BY ZERO");
 	  }
-	  
-	  Double realQuotient = realNum / realDen;
-	  Double imagQuotient = imagNum / realDen;
-
-    return new Expression(realQuotient, imagQuotient, 1, '+');
+    return new Expression(realpart, imagpart, 1, '+');
   }
 }

@@ -6,13 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import util.Arithmetic;
 import util.Expression;
-import util.InvalidExpressionException;
 import util.OverflowException;
 
 class MultiplicationTest {
 
 	@Test
-	void testMultiplicationTwoRealNoImag() throws OverflowException, InvalidExpressionException {
+	void testMultiplicationTwoRealNoImag() throws OverflowException {
 		Expression left = new Expression(5.0, 0.0, 1, '+');
 		Expression right = new Expression(3.0, 0.0, 1, '+');
 		Expression expected = new Expression(15.0, 0.0, 1, '+');
@@ -28,7 +27,7 @@ class MultiplicationTest {
 	}
 	
 	@Test
-	void testMultiplicationTwoComplex() throws OverflowException, InvalidExpressionException {
+	void testMultiplicationTwoComplex() throws OverflowException {
 		Expression left = new Expression(5.0, 3.0, 1, '+');
 		Expression right = new Expression(3.0, 2.0, 1, '+');
 		Expression expected = new Expression(9.0, 19.0, 1, '+');
@@ -44,7 +43,7 @@ class MultiplicationTest {
 	}
 	
 	@Test
-	void testMultiplicationOneRealOneCompelx() throws OverflowException, InvalidExpressionException {
+	void testMultiplicationOneRealOneCompelx() throws OverflowException {
 		Expression left = new Expression(5.0, 0.0, 1, '+');
 		Expression right = new Expression(3.0, 3.0, 1, '+');
 		Expression expected = new Expression(15.0, 15.0, 1, '+');
@@ -60,7 +59,7 @@ class MultiplicationTest {
 	}
 	
 	@Test
-	void testMultiplicationTwoNegativeNoImag() throws OverflowException, InvalidExpressionException {
+	void testMultiplicationTwoNegativeNoImag() throws OverflowException {
 		Expression left = new Expression(-5.0, 0.0, 1, '+');
 		Expression right = new Expression(-3.0, 0.0, 1, '+');
 		Expression expected = new Expression(15.0, 0.0, 1, '+');
@@ -76,7 +75,7 @@ class MultiplicationTest {
 	}
 	
 	@Test
-	void testMultiplicationOneNegativeNoImag() throws OverflowException, InvalidExpressionException {
+	void testMultiplicationOneNegativeNoImag() throws OverflowException {
 		Expression left = new Expression(-5.0, 0.0, 1, '+');
 		Expression right = new Expression(3.0, 0.0, 1, '+');
 		Expression expected = new Expression(-15.0, 0.0, 1, '+');
@@ -92,7 +91,7 @@ class MultiplicationTest {
 	}
 	
 	@Test
-	void testMultiplicationOneNegativeComplex() throws OverflowException, InvalidExpressionException {
+	void testMultiplicationOneNegativeComplex() throws OverflowException {
 		Expression left = new Expression(-5.0, 5.0, 1, '+');
 		Expression right = new Expression(3.0, 4.0, 1, '+');
 		Expression expected = new Expression(-35.0, -5.0, 1, '+');
@@ -108,14 +107,14 @@ class MultiplicationTest {
 	}
 	
 	@Test
-	void testMultiplicationOverflowOnReal() throws OverflowException, InvalidExpressionException {
+	void testMultiplicationOverflowOnReal() throws OverflowException {
 		Expression left = new Expression(Double.MAX_VALUE, 5.0, 1, '+');
 		Expression right = new Expression(3.0, 4.0, 1, '+');
 		assertThrows(OverflowException.class, () -> Arithmetic.multiplication(left, right));
 	}
 	
 	@Test
-	void testMultiplicationOverflowOnCoef() throws OverflowException, InvalidExpressionException {
+	void testMultiplicationOverflowOnCoef() throws OverflowException {
 		Expression left = new Expression(5.0, Double.MAX_VALUE, 1, '+');
 		Expression right = new Expression(3.0, 4.0, 1, '+');
 		assertThrows(OverflowException.class, () -> Arithmetic.multiplication(left, right));
