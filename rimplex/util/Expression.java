@@ -29,7 +29,7 @@ public class Expression {
     this.imagCoef = imagCoef;
     i = i.fromPower(imagPower);
     op = op.fromSymbol(symbol);
-    simplify();
+    //simplify();
   }
 
   /**
@@ -37,11 +37,6 @@ public class Expression {
    */
   public Double getReal() {
     return real;
-  }
-  
-  public Operator getSymbol() {
-	  
-	  return op;
   }
 
   /**
@@ -56,6 +51,15 @@ public class Expression {
    */
   public ImaginaryNumber getImaginary() {
     return this.i;
+  }
+  
+  /**
+   * Getter for The symbol between the real portion and the imaginary 
+   * portion of a complex number.
+   * @return the operation in the Expression
+   */
+  public Operator getSymbol() {
+	  return this.op;
   }
 
   /**
