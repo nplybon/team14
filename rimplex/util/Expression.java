@@ -38,6 +38,11 @@ public class Expression {
   public Double getReal() {
     return real;
   }
+  
+  public Operator getSymbol() {
+	  
+	  return op;
+  }
 
   /**
    * Getter for imaginary coefficient.

@@ -25,16 +25,17 @@ public class Calculate {
   }
 
   /**
+ * @throws InvalidExpressionException 
    * Calculates a set of Expressions.
    * 
    * @param exp1 Expression the right expression
    * @param op Operator the operator of the expressions
    * @param exp2 Expression the left expression
    * @return the result expression
-   * @throws OverflowException
+ * @throws  
    */
   private Expression calculate(Expression exp1, Operator op, Expression exp2)
-      throws OverflowException {
+      throws OverflowException, InvalidExpressionException {
 
     Expression result = null;
 
@@ -61,8 +62,9 @@ public class Calculate {
    * 
    * @return the final calculated expression.
    * @throws OverflowException
+ * @throws InvalidExpressionException 
    */
-  public Expression calculateExpression() throws OverflowException {
+  public Expression calculateExpression() throws OverflowException, InvalidExpressionException {
 
     Expression result = null;
 

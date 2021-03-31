@@ -52,10 +52,8 @@ public class ButtonListener implements ActionListener, WindowListener {
 	private void handleMenuItemEvents( ActionEvent e ) {
 		
 		JMenuItem item = (JMenuItem)e.getSource();
-		System.out.println( "IN MENU" );
 		switch ( item.getText() ) {
 		case "Help":
-			System.out.println( "IN HELP" );
 			String bad = "Input must be in the form of a+bi, bi, or a";
 			JOptionPane.showMessageDialog( null, bad, "Help", JOptionPane.PLAIN_MESSAGE );
 			break;
@@ -92,8 +90,6 @@ public class ButtonListener implements ActionListener, WindowListener {
 			break;
 		case "C":
 			runCancelButton();
-			calc.enableEquals();
-			calc.disableOperators();
 			break;
 		case "R":
 			CalcPanel cal = CalcPanel.getInstance();
@@ -144,6 +140,8 @@ public class ButtonListener implements ActionListener, WindowListener {
 		
 		CalcPanel calc = CalcPanel.getInstance();
 		trySetExpression2( str );
+		Operator[] other = new Operator[] { ops.get( 0 ) };
+		Expression[] exps = new Expression[] { exp1, exp2 };
 		calc.incrementDisplay( exp2.toString() + "=" );
 		ops.clear();
 		calc.disableEquals();
@@ -166,6 +164,10 @@ public class ButtonListener implements ActionListener, WindowListener {
 		} while ( response == -1 );
 		
 //		ops.remove( ops.get( ops.size() - 1 ) );
+		updateOps(response);
+	}
+
+	private void updateOps(int response) {
 		ops.clear();
 		if ( response == 0 ) {
 			
@@ -181,7 +183,7 @@ public class ButtonListener implements ActionListener, WindowListener {
 			ops.add( Operator.DIVISION );
 		}
 		
-		calc.setDisplay( exp1.toString() + ops.get( ops.size() - 1 ).toString() );
+		updatePanel();
 	}
 
 	private void errorMessage() {
@@ -196,7 +198,7 @@ public class ButtonListener implements ActionListener, WindowListener {
 	
 	private void trySetExpression1(String str) {
 		try {
-			setExp1( str );
+			exp1 = setExp( str, exp1 );
 		} catch (NumberFormatException | InvalidExpressionException e1) {
 			// TODO Auto-generated catch block
 			System.out.println( "Verification error" );
@@ -205,24 +207,25 @@ public class ButtonListener implements ActionListener, WindowListener {
 	
 	private void trySetExpression2(String str) {
 		try {
-			setExp2( str );
+			exp2 = setExp( str, exp2 );
 		} catch (NumberFormatException | InvalidExpressionException e1) {
 			// TODO Auto-generated catch block
 			System.out.println( "Verification error" );
 		}
 	}
 
-	private void setExp1( String str ) throws NumberFormatException, InvalidExpressionException {
+	private Expression setExp( String str, Expression expression ) throws NumberFormatException, InvalidExpressionException {
 		
         int l = str.length();
 		int i;
+		Expression exp = expression;
 		
 		if ( str.indexOf( "+" ) != -1 ) {
 			
 			i = str.indexOf( '+' );
 			String real = str.substring( 0, i );
 			String img = str.substring( i + 1, l - 1 );
-			exp1 = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
+			exp = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
 					1, str.charAt( i ) );
 			
 		} else if ( str.indexOf( "-" ) != -1 ) {
@@ -230,51 +233,53 @@ public class ButtonListener implements ActionListener, WindowListener {
 			i = str.indexOf( '-' );
 			String real = str.substring( 0, i );
 			String img = str.substring( i + 1, l - 1 );
-			exp1 = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
+			exp = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
 					1, str.charAt( i ) );
 			
 		} else if ( str.charAt( str.length() - 1 ) == 'i' ) {
 			
 			String sub = str.substring( 0, str.length() - 1 );
-			exp1 = new Expression( 0.0, Double.parseDouble( sub ), 1, '+' );
+			exp = new Expression( 0.0, Double.parseDouble( sub ), 1, '+' );
 			
 		} else {
 			
-			exp1 = new Expression( Double.parseDouble( str ), 0.0, 1, '+' );
+			exp = new Expression( Double.parseDouble( str ), 0.0, 1, '+' );
 		}
+		
+		return exp;
 	}
 	
-	private void setExp2( String str ) throws NumberFormatException, InvalidExpressionException {
-		
-        int l = str.length();
-		int i;
-		
-		if ( str.indexOf( "+" ) != -1 ) {
-			
-			i = str.indexOf( '+' );
-			String real = str.substring( 0, i );
-			String img = str.substring( i + 1, l - 1 );
-			exp2 = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
-					1, str.charAt( i ) );
-			
-		} else if ( str.indexOf( "-" ) != -1 ) {
-			
-			i = str.indexOf( '-' );
-			String real = str.substring( 0, i );
-			String img = str.substring( i + 1, l - 1 );
-			exp2 = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
-					1, str.charAt( i ) );
-			
-		} else if ( str.charAt( str.length() - 1 ) == 'i' ) {
-			
-			String sub = str.substring( 0, str.length() - 1 );
-			exp2 = new Expression( 0.0, Double.parseDouble( sub ), 1, '+' );
-			
-		} else {
-			
-			exp2 = new Expression( Double.parseDouble( str ), 0.0, 1, '+' );
-		}
-	}
+//	private void setExp2( String str ) throws NumberFormatException, InvalidExpressionException {
+//		
+//        int l = str.length();
+//		int i;
+//		
+//		if ( str.indexOf( "+" ) != -1 ) {
+//			
+//			i = str.indexOf( '+' );
+//			String real = str.substring( 0, i );
+//			String img = str.substring( i + 1, l - 1 );
+//			exp2 = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
+//					1, str.charAt( i ) );
+//			
+//		} else if ( str.indexOf( "-" ) != -1 ) {
+//			
+//			i = str.indexOf( '-' );
+//			String real = str.substring( 0, i );
+//			String img = str.substring( i + 1, l - 1 );
+//			exp2 = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
+//					1, str.charAt( i ) );
+//			
+//		} else if ( str.charAt( str.length() - 1 ) == 'i' ) {
+//			
+//			String sub = str.substring( 0, str.length() - 1 );
+//			exp2 = new Expression( 0.0, Double.parseDouble( sub ), 1, '+' );
+//			
+//		} else {
+//			
+//			exp2 = new Expression( Double.parseDouble( str ), 0.0, 1, '+' );
+//		}
+//	}
 
 	public Expression getExpression1() {
 		
