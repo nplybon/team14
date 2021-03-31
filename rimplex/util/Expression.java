@@ -45,19 +45,21 @@ public class Expression {
   public Double getImagCoef() {
     return imagCoef;
   }
-  
-  /**
-   * Getter for the operator symbol.
-   */
-  public Operator getSymbol() {
-    return op;
-  }
 
   /**
    * Getter for imaginary number
    */
   public ImaginaryNumber getImaginary() {
     return this.i;
+  }
+  
+  /**
+   * Getter for The symbol between the real portion and the imaginary 
+   * portion of a complex number.
+   * @return the operation in the Expression
+   */
+  public Operator getSymbol() {
+	  return this.op;
   }
 
   /**
