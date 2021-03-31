@@ -29,7 +29,7 @@ public class Expression {
     this.imagCoef = imagCoef;
     i = i.fromPower(imagPower);
     op = op.fromSymbol(symbol);
-    simplify();
+    //simplify();
   }
 
   /**
@@ -44,6 +44,13 @@ public class Expression {
    */
   public Double getImagCoef() {
     return imagCoef;
+  }
+  
+  /**
+   * Getter for the operator symbol.
+   */
+  public Operator getSymbol() {
+    return op;
   }
 
   /**
