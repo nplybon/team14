@@ -55,13 +55,13 @@ public class ButtonListener implements ActionListener, WindowListener {
     case "x":
       runOperation( Operator.MULTIPLICATION, str );
       break;
-    case "�":
+    case "/":
       runOperation( Operator.DIVISION, str );
       break;
     case "ans":
       if ( calc.getDisplay().indexOf( '=' ) != -1 ) {
         calc.setDisplay( "" );
-        String[] options = new String[] { "+", "-", "x", "�" };
+        String[] options = new String[] { "+", "-", "x", "/" };
         int response;
         exp1 = answer;
         do {
@@ -337,7 +337,7 @@ public class ButtonListener implements ActionListener, WindowListener {
     
     CalcPanel calc = CalcPanel.getInstance();
     int response;
-    String[] options = new String[] { "+", "-", "x", "�" };
+    String[] options = new String[] { "+", "-", "x", "/" };
     
     do {
     response = JOptionPane.showOptionDialog( null, 
@@ -576,13 +576,13 @@ public class ButtonListener implements ActionListener, WindowListener {
   @Override
   public void windowClosing(WindowEvent e) {
     // TODO Auto-generated method stub
-    
+	  System.exit( 0 );
   }
 
   @Override
   public void windowClosed(WindowEvent e) {
     // TODO Auto-generated method stub
-    
+    System.exit( 0 );
   }
 
   @Override
