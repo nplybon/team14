@@ -32,9 +32,14 @@ public class Calculate {
    * @param exp2 Expression the left expression
    * @return the result expression
    * @throws OverflowException
+<<<<<<< HEAD
+   * @throws InvalidExpressionException 
+=======
+ * @throws InvalidExpressionException 
+>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
    */
   private Expression calculate(Expression exp1, Operator op, Expression exp2)
-      throws OverflowException {
+      throws OverflowException, InvalidExpressionException {
 
     Expression result = null;
 
@@ -61,8 +66,13 @@ public class Calculate {
    * 
    * @return the final calculated expression.
    * @throws OverflowException
+<<<<<<< HEAD
+   * @throws InvalidExpressionException 
+=======
+ * @throws InvalidExpressionException 
+>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
    */
-  public Expression calculateExpression() throws OverflowException {
+  public Expression calculateExpression() throws OverflowException, InvalidExpressionException {
 
     Expression result = null;
 
