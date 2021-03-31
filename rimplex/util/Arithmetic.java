@@ -18,11 +18,8 @@ public class Arithmetic {
 	 * @return resultant expression; null if one, or both, expression/s 
 	 *  	is/are null
 	 * @throws OverflowException when positive overflow has occurred when performing the operation
-<<<<<<< HEAD
 	 * @throws InvalidExpressionException 
-=======
 	 * @throws InvalidExpressionException if expression operands are invalid
->>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 	 */
 	public static Expression addition(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 
@@ -71,11 +68,7 @@ public class Arithmetic {
 	 * @return resultant expression; null if one, or both, expression/s
 	 *  	is/are null
 	 * @throws OverflowException when positive overflow has occurred when performing the operation
-<<<<<<< HEAD
-	 * @throws InvalidExpressionException 
-=======
 	 * @throws InvalidExpressionException if expression operands are invalid
->>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 	 */
 	public static Expression multiplication(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 		
@@ -106,19 +99,27 @@ public class Arithmetic {
 		
 		return addition(mid1, mid2);
 	}
-	
+	/**
+	 * Returns the difference of two expressions.
+	 * @param exp1 the first expression
+	 * @param exp2 the second expression
+	 * @return the difference
+	 * @throws InvalidExpressionException if expression operands are invalid
+	 */
 	public static Expression subtraction(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 	  // (a - c) + (b - d)
-	  double real = exp1.getReal() - exp2.getReal();
-	  double imag = exp1.getImagCoef() - exp2.getImagCoef();
 	  exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef() * -1, 1, '+');
-	  
-	  return new Expression(real, imag, 1, '+');
-	  
+	  return addition(exp1, exp2);  
 	}
 	
-	public static Expression division(Expression exp1, Expression exp2)throws IllegalArgumentException, OverflowException, InvalidExpressionException {
-	  Expression conjugate = new Expression(exp2.getReal(), exp2.getImagCoef() * -1, 1, '+');
+	/**
+	 * Returns the quotients of two expressions.
+	 * @param exp1 the first expression
+	 * @param exp2 the second expression
+	 * @return the quotient
+	 * @throws InvalidExpressionException if denominator is 0
+	 */
+	public static Expression division(Expression exp1, Expression exp2)throws OverflowException, InvalidExpressionException {
 	  //real part = ac + bd / c^2 + d^2
     //imag part = bc - ad / c^2 + d^2
 	  double firstPart = exp1.getReal() * exp2.getReal() + exp1.getImagCoef() * exp2.getImagCoef();
