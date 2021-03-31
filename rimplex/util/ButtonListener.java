@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 /**
- * Handles button events.
+ * Handles button events and such.
  * 
  * @author Colton Shovlin
  * @version sprint1 CS345
