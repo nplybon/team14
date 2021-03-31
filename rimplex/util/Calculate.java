@@ -33,6 +33,10 @@ public class Calculate {
    * @param exp2 Expression the left expression
    * @return the result expression
 <<<<<<< HEAD
+   * @throws OverflowException
+   * @throws InvalidExpressionException 
+=======
+<<<<<<< HEAD
  * @throws  
 =======
    * @throws OverflowException
@@ -40,6 +44,7 @@ public class Calculate {
    * @throws InvalidExpressionException 
 =======
  * @throws InvalidExpressionException 
+>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 >>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 >>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
    */
