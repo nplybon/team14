@@ -18,11 +18,7 @@ public class Arithmetic {
 	 * @return resultant expression; null if one, or both, expression/s 
 	 *  	is/are null
 	 * @throws OverflowException when positive overflow has occurred when performing the operation
-<<<<<<< HEAD
-	 * @throws InvalidExpressionException 
-=======
 	 * @throws InvalidExpressionException if expression operands are invalid
->>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 	 */
 	public static Expression addition(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 
@@ -71,11 +67,7 @@ public class Arithmetic {
 	 * @return resultant expression; null if one, or both, expression/s
 	 *  	is/are null
 	 * @throws OverflowException when positive overflow has occurred when performing the operation
-<<<<<<< HEAD
-	 * @throws InvalidExpressionException 
-=======
 	 * @throws InvalidExpressionException if expression operands are invalid
->>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 	 */
 	public static Expression multiplication(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 		
@@ -120,7 +112,7 @@ public class Arithmetic {
 	public static Expression division(Expression exp1, Expression exp2)throws IllegalArgumentException, OverflowException, InvalidExpressionException {
 	  Expression conjugate = new Expression(exp2.getReal(), exp2.getImagCoef() * -1, 1, '+');
 	  //real part = ac + bd / c^2 + d^2
-    //imag part = bc - ad / c^2 + d^2
+	  //imag part = bc - ad / c^2 + d^2
 	  double firstPart = exp1.getReal() * exp2.getReal() + exp1.getImagCoef() * exp2.getImagCoef();
 	  double secondPart = exp1.getImagCoef() * exp2.getReal() - exp1.getReal() * exp2.getImagCoef();
 	  double squaredPart = Math.pow(exp2.getReal(), 2) + Math.pow(exp2.getImagCoef(), 2);

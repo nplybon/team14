@@ -52,6 +52,15 @@ public class Expression {
   public ImaginaryNumber getImaginary() {
     return this.i;
   }
+  
+  /**
+   * Getter for The symbol between the real portion and the imaginary 
+   * portion of a complex number.
+   * @return the operation in the Expression
+   */
+  public Operator getSymbol() {
+	  return this.op;
+  }
 
   /**
    * Simplifies Addition, Subtraction, Multiplication Expressions, Division
