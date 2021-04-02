@@ -25,17 +25,27 @@ public class Calculate {
   }
 
   /**
+ * @throws InvalidExpressionException 
    * Calculates a set of Expressions.
    * 
    * @param exp1 Expression the right expression
    * @param op Operator the operator of the expressions
    * @param exp2 Expression the left expression
    * @return the result expression
+<<<<<<< HEAD
+   * @throws OverflowException
+   * @throws InvalidExpressionException 
+=======
+<<<<<<< HEAD
+ * @throws  
+=======
    * @throws OverflowException
 <<<<<<< HEAD
    * @throws InvalidExpressionException 
 =======
  * @throws InvalidExpressionException 
+>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
+>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 >>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
    */
   private Expression calculate(Expression exp1, Operator op, Expression exp2)
@@ -67,9 +77,13 @@ public class Calculate {
    * @return the final calculated expression.
    * @throws OverflowException
 <<<<<<< HEAD
+ * @throws InvalidExpressionException 
+=======
+<<<<<<< HEAD
    * @throws InvalidExpressionException 
 =======
  * @throws InvalidExpressionException 
+>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 >>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
    */
   public Expression calculateExpression() throws OverflowException, InvalidExpressionException {

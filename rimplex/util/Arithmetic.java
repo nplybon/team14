@@ -52,7 +52,7 @@ public class Arithmetic {
 			exp1NewCoef = exp1.getImagCoef() * -1;
 			exp2NewCoef = exp2.getImagCoef();
 		} else if (exp1.getSymbol() != Operator.SUBTRACTION && exp2.getSymbol() == Operator.SUBTRACTION) {
-			exp2NewCoef = exp2.getImagCoef() * -1;
+			exp1NewCoef = exp1.getImagCoef() * -1;
 			exp2NewCoef = exp2.getImagCoef();
 		} else {
 			exp1NewCoef = exp1.getImagCoef();
@@ -113,7 +113,18 @@ public class Arithmetic {
 	 */
 	public static Expression subtraction(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 	  // (a - c) + (b - d)
-	  exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef() * -1, 1, '+');
+	  if (exp1.getReal().equals(exp2.getReal()) && exp1.getImagCoef().equals(exp2.getImagCoef()) && exp1.getSymbol().equals(exp2.getSymbol())) {
+	    return new Expression(0.0, 0.0, 1, '+');
+	  }
+	  
+	  if (exp2.getSymbol() == Operator.SUBTRACTION) {
+      exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef(), 1, '+');
+	  } else {
+      exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef() * -1, 1, '+');
+	  }
+	
+	  
+	 
 	  return addition(exp1, exp2);  
 	}
 	

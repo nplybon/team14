@@ -175,7 +175,7 @@ public class CalcPanel extends Panel {
 		// TODO Auto-generated method stub
 		answerButton.setText( "ans" );
 		addButton.setText( "+" );
-		divButton.setText( "÷" );
+		divButton.setText( "/" );
 		equalButton.setText( "=" );
 		multiButton.setText( "x" );
 	    subButton.setText( "-" );

@@ -116,6 +116,51 @@ class SubtractionTest
   }
   
   @Test
+  void testSubtractionWithBothMinus() throws InvalidExpressionException, OverflowException {
+    Expression exp1 = new Expression(370.0, 370.0, 1, '-');
+    Expression exp2 = new Expression(370.0, 370.0, 1, '-');
+    Expression expected = new Expression(0.0, 0.0, 1, '+');
+    Expression result = Arithmetic.subtraction(exp1, exp2);
+    
+    double expectedReal = expected.getReal();
+    double resultReal = result.getReal();
+    double expectedCoef = expected.getImagCoef();
+    double resultCoef = result.getImagCoef();
+    
+    assertEquals(expectedReal, resultReal, 0.0001);
+    assertEquals(expectedCoef, resultCoef, 0.0001);
+  }
+  
+  @Test
+  void testSubtractionWithSingleMinus() throws InvalidExpressionException, OverflowException {
+    Expression exp1 = new Expression(5.0, 5.0, 1, '+');
+    Expression exp2 = new Expression(5.0, 5.0, 1, '-');
+    Expression expected = new Expression(0.0, 10.0, 1, '+');
+    Expression result = Arithmetic.subtraction(exp1, exp2);
+    
+    double expectedReal = expected.getReal();
+    double resultReal = result.getReal();
+    double expectedCoef = expected.getImagCoef();
+    double resultCoef = result.getImagCoef();
+    
+    assertEquals(expectedReal, resultReal, 0.0001);
+    assertEquals(expectedCoef, resultCoef, 0.0001);
+    
+    exp1 = new Expression(5.0, 5.0, 1, '-');
+    exp2 = new Expression(5.0, 5.0, 1, '+');
+    expected = new Expression(0.0, -10.0, 1, '+');
+    result = Arithmetic.subtraction(exp1, exp2);
+    
+    expectedReal = expected.getReal();
+    resultReal = result.getReal();
+    expectedCoef = expected.getImagCoef();
+    resultCoef = result.getImagCoef();
+    
+    assertEquals(expectedReal, resultReal, 0.0001);
+    assertEquals(expectedCoef, resultCoef, 0.0001);
+  }
+  
+  @Test
   void testRandomTests() throws OverflowException, InvalidExpressionException {
     Expression exp1 = new Expression(0.0, 0.0, 1, '+');
     Expression exp2 = new Expression(0.0, 0.0, 1, '+');

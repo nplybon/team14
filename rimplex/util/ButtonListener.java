@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 /**
- * Handles button events.
+ * Handles button events and such.
  * 
  * @author Colton Shovlin
  * @version sprint1 CS345
@@ -55,13 +55,13 @@ public class ButtonListener implements ActionListener, WindowListener {
     case "x":
       runOperation( Operator.MULTIPLICATION, str );
       break;
-    case "÷":
+    case "/":
       runOperation( Operator.DIVISION, str );
       break;
     case "ans":
       if ( calc.getDisplay().indexOf( '=' ) != -1 ) {
         calc.setDisplay( "" );
-        String[] options = new String[] { "+", "-", "x", "÷" };
+        String[] options = new String[] { "+", "-", "x", "/" };
         int response;
         exp1 = answer;
         do {
@@ -117,6 +117,77 @@ public class ButtonListener implements ActionListener, WindowListener {
     }
   }
 
+//<<<<<<< HEAD
+//	/**
+//	 * handle about Panel.
+//	 * 
+//	 * @param e JMenuItem
+//	 */
+//	private void handleMenuItemEvents( ActionEvent e ) {
+//		
+//		JMenuItem item = (JMenuItem)e.getSource();
+//		switch ( item.getText() ) {
+//		case "Help":
+//			String bad = "Input must be in the form of a+bi, bi, or a";
+//			JOptionPane.showMessageDialog( null, bad, "Help", JOptionPane.PLAIN_MESSAGE );
+//			break;
+//		default:
+//			break;
+//		}
+//	}
+//	
+//	/**
+//	 * handle button events.
+//	 * 
+//	 * @param e JButton
+//	 */
+//	private void handleButtonEvents(ActionEvent e) {
+//		JButton button = (JButton)e.getSource();
+//		CalcPanel calc = CalcPanel.getInstance();
+//		String str = calc.getInput();
+//	    TextFieldListener field = TextFieldListener.getInstance();
+//	    
+//		switch ( button.getText() ) {
+//		case "+":
+//			runOperation( Operator.ADDITION, str );
+//			break;
+//		case "-":
+//			runOperation( Operator.SUBTRACTION, str );
+//			break;
+//		case "x":
+//			runOperation( Operator.MULTIPLICATION, str );
+//			break;
+//		case "Ã·":
+//			runOperation( Operator.DIVISION, str );
+//			break;
+//		case "ans":
+//			break;
+//		case "C":
+//			runCancelButton();
+//			break;
+//		case "R":
+//			CalcPanel cal = CalcPanel.getInstance();
+//			cal.setDisplay( "" );
+//			ops.clear();
+//			calc.disableEquals();
+//			calc.enableOperators();
+//			calc.disableCancel();
+//			break;
+//		case "=":
+//			if ( field.verifyTarget( str ) ) {
+//				
+//				runEquals();
+//			} else {
+//				
+//				errorMessage();
+//			}
+//			calc.setInput( "" );
+//			break;
+//		default:
+//			break;
+//		}
+//	}
+//=======
   /**
    * clear operator list, add new operator, and update panel.
    * 
@@ -140,6 +211,7 @@ public class ButtonListener implements ActionListener, WindowListener {
     
     updatePanel();
   }
+//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 
   /**
    * transfer input text to display and clear input.
@@ -173,6 +245,21 @@ public class ButtonListener implements ActionListener, WindowListener {
     calc.disableOperators();
   }
 
+//<<<<<<< HEAD
+//	private void runEquals( String str ) {
+//		
+//		CalcPanel calc = CalcPanel.getInstance();
+//		trySetExpression2( str );
+//		Operator[] other = new Operator[] { ops.get( 0 ) };
+//		Expression[] exps = new Expression[] { exp1, exp2 };
+//		calc.incrementDisplay( exp2.toString() + "=" );
+//		ops.clear();
+//		calc.disableEquals();
+////		calc.disableCancel();
+//		calc.enableOperators();
+//		calc.enableAnswer();
+//	}
+//=======
   /**
    * evaluate expression.
    * 
@@ -204,7 +291,45 @@ public class ButtonListener implements ActionListener, WindowListener {
     calc.enableOperators();
     calc.enableAnswer();
   }
+//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 
+//<<<<<<< HEAD
+//	private void runCancelButton() {
+//		
+//		CalcPanel calc = CalcPanel.getInstance();
+//		int response;
+//		String[] options = new String[] { "+", "-", "x", "Ã·" };
+//		
+//		do {
+//		response = JOptionPane.showOptionDialog( null, 
+//				"Please select a new operator", "Cancel Button", 
+//				JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+//				null, options, options[ 0 ] );
+//		} while ( response == -1 );
+//		
+////		ops.remove( ops.get( ops.size() - 1 ) );
+//		updateOps(response);
+//	}
+//
+//	private void updateOps(int response) {
+//		ops.clear();
+//		if ( response == 0 ) {
+//			
+//			ops.add( Operator.ADDITION );
+//		} else if ( response == 1 ) {
+//			
+//			ops.add( Operator.SUBTRACTION );
+//		} else if ( response == 2 ) {
+//			
+//			ops.add( Operator.MULTIPLICATION );
+//		} else if ( response == 3 ) {
+//			
+//			ops.add( Operator.DIVISION );
+//		}
+//		
+//		updatePanel();
+//	}
+//=======
   /**
    * display option panel for new operator.
    */
@@ -212,7 +337,7 @@ public class ButtonListener implements ActionListener, WindowListener {
     
     CalcPanel calc = CalcPanel.getInstance();
     int response;
-    String[] options = new String[] { "+", "-", "x", "÷" };
+    String[] options = new String[] { "+", "-", "x", "/" };
     
     do {
     response = JOptionPane.showOptionDialog( null, 
@@ -223,6 +348,7 @@ public class ButtonListener implements ActionListener, WindowListener {
     
         updateOps(response);
   }
+//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 
   /**
    * if user enters in wrong format.
@@ -232,6 +358,30 @@ public class ButtonListener implements ActionListener, WindowListener {
     JOptionPane.showMessageDialog( null, bad, "Bad Input", JOptionPane.PLAIN_MESSAGE );
   }
 
+//<<<<<<< HEAD
+//	public ArrayList<Operator> getOps() {
+//		
+//		return ops;
+//	}
+//	
+//	private void trySetExpression1(String str) {
+//		try {
+//			exp1 = setExp( str, exp1 );
+//		} catch (NumberFormatException | InvalidExpressionException e1) {
+//			// TODO Auto-generated catch block
+//			System.out.println( "Verification error" );
+//		}
+//	}
+//	
+//	private void trySetExpression2(String str) {
+//		try {
+//			exp2 = setExp( str, exp2 );
+//		} catch (NumberFormatException | InvalidExpressionException e1) {
+//			// TODO Auto-generated catch block
+//			System.out.println( "Verification error" );
+//		}
+//	}
+//=======
   /**
    * for order of operations in expression.
    * 
@@ -269,7 +419,12 @@ public class ButtonListener implements ActionListener, WindowListener {
       System.out.println( "Verification error" );
     }
   }
+//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 
+//<<<<<<< HEAD
+//	private Expression setExp( String str, Expression expression ) throws NumberFormatException, InvalidExpressionException {
+//		
+//=======
   /**
    * Set input field to expression object.
    * 
@@ -282,7 +437,73 @@ public class ButtonListener implements ActionListener, WindowListener {
   private Expression setExp( String str, Expression exp ) throws NumberFormatException, 
   InvalidExpressionException {
     
+//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
         int l = str.length();
+//<<<<<<< HEAD
+//		int i;
+//		Expression exp = expression;
+//		
+//		if ( str.indexOf( "+" ) != -1 ) {
+//			
+//			i = str.indexOf( '+' );
+//			String real = str.substring( 0, i );
+//			String img = str.substring( i + 1, l - 1 );
+//			exp = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
+//					1, str.charAt( i ) );
+//			
+//		} else if ( str.indexOf( "-" ) != -1 ) {
+//			
+//			i = str.indexOf( '-' );
+//			String real = str.substring( 0, i );
+//			String img = str.substring( i + 1, l - 1 );
+//			exp = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
+//					1, str.charAt( i ) );
+//			
+//		} else if ( str.charAt( str.length() - 1 ) == 'i' ) {
+//			
+//			String sub = str.substring( 0, str.length() - 1 );
+//			exp = new Expression( 0.0, Double.parseDouble( sub ), 1, '+' );
+//			
+//		} else {
+//			
+//			exp = new Expression( Double.parseDouble( str ), 0.0, 1, '+' );
+//		}
+//		
+//		return exp;
+//	}
+//	
+////	private void setExp2( String str ) throws NumberFormatException, InvalidExpressionException {
+////		
+////        int l = str.length();
+////		int i;
+////		
+////		if ( str.indexOf( "+" ) != -1 ) {
+////			
+////			i = str.indexOf( '+' );
+////			String real = str.substring( 0, i );
+////			String img = str.substring( i + 1, l - 1 );
+////			exp2 = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
+////					1, str.charAt( i ) );
+////			
+////		} else if ( str.indexOf( "-" ) != -1 ) {
+////			
+////			i = str.indexOf( '-' );
+////			String real = str.substring( 0, i );
+////			String img = str.substring( i + 1, l - 1 );
+////			exp2 = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
+////					1, str.charAt( i ) );
+////			
+////		} else if ( str.charAt( str.length() - 1 ) == 'i' ) {
+////			
+////			String sub = str.substring( 0, str.length() - 1 );
+////			exp2 = new Expression( 0.0, Double.parseDouble( sub ), 1, '+' );
+////			
+////		} else {
+////			
+////			exp2 = new Expression( Double.parseDouble( str ), 0.0, 1, '+' );
+////		}
+////	}
+//=======
     int i;
     Expression expression = exp;
     
@@ -314,6 +535,7 @@ public class ButtonListener implements ActionListener, WindowListener {
     
     return expression;
   }
+//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 
   /**
    * For Expression class.
@@ -354,13 +576,13 @@ public class ButtonListener implements ActionListener, WindowListener {
   @Override
   public void windowClosing(WindowEvent e) {
     // TODO Auto-generated method stub
-    
+	  System.exit( 0 );
   }
 
   @Override
   public void windowClosed(WindowEvent e) {
     // TODO Auto-generated method stub
-    
+    System.exit( 0 );
   }
 
   @Override
