@@ -21,9 +21,9 @@ import util.OverflowException;
  * @author Colton Shovlin
  * @version sprint1 CS345
  */
-public class ButtonListener implements ActionListener, WindowListener {
+public class OldButtonListener implements ActionListener, WindowListener {
 
-  private static ButtonListener listener;
+  private static OldButtonListener listener;
   
   private ArrayList<Operator> ops = new ArrayList<Operator>();
   
@@ -34,7 +34,7 @@ public class ButtonListener implements ActionListener, WindowListener {
   /**
    * Singleton constructor.
    */
-  private ButtonListener() {
+  private OldButtonListener() {
   
   }
   
@@ -47,7 +47,7 @@ public class ButtonListener implements ActionListener, WindowListener {
   public void actionPerformed(ActionEvent e) {
     // TODO Auto-generated method stub
     JButton button = (JButton)e.getSource();
-    CalcPanel calc = CalcPanel.getInstance();
+    OldCalcPanel calc = OldCalcPanel.getInstance();
     String str = calc.getInput();
       TextFieldListener field = TextFieldListener.getInstance();
       
@@ -95,7 +95,7 @@ public class ButtonListener implements ActionListener, WindowListener {
 //      calc.disableOperators();
       break;
     case "R":
-      CalcPanel cal = CalcPanel.getInstance();
+      OldCalcPanel cal = OldCalcPanel.getInstance();
       cal.setDisplay( "" );
       ops.clear();
       calc.disableEquals();
@@ -227,7 +227,7 @@ public class ButtonListener implements ActionListener, WindowListener {
    */
   private void runOperation( Operator operator, String str ) {
     
-    CalcPanel calc = CalcPanel.getInstance();
+    OldCalcPanel calc = OldCalcPanel.getInstance();
     TextFieldListener field = TextFieldListener.getInstance();
     
     if ( field.verifyTarget( str ) ) {
@@ -245,7 +245,7 @@ public class ButtonListener implements ActionListener, WindowListener {
    */
   private void updatePanel() {
     
-    CalcPanel calc = CalcPanel.getInstance();
+    OldCalcPanel calc = OldCalcPanel.getInstance();
     calc.setDisplay( exp1.toString() + ops.get( ops.size() - 1 ).toString() );
     calc.enableEquals();
     calc.disableOperators();
@@ -259,7 +259,7 @@ public class ButtonListener implements ActionListener, WindowListener {
    */
   private void runEquals() throws OverflowException, InvalidExpressionException {
     
-    CalcPanel calc = CalcPanel.getInstance();
+    OldCalcPanel calc = OldCalcPanel.getInstance();
     ArrayList<Expression> expression = new ArrayList<Expression>();
     expression.add( exp1 );
     expression.add( exp2 );
@@ -288,7 +288,7 @@ public class ButtonListener implements ActionListener, WindowListener {
    */
   private void runCancelButton() {
     
-    CalcPanel calc = CalcPanel.getInstance();
+    OldCalcPanel calc = OldCalcPanel.getInstance();
     int response;
     String[] options = new String[] { "+", "-", "x", "/" };
     
@@ -422,10 +422,10 @@ public class ButtonListener implements ActionListener, WindowListener {
    * 
    * @return instance of ButtonListener
    */
-  public static ButtonListener getInstance() {
+  public static OldButtonListener getInstance() {
     // TODO Auto-generated method stub
         if ( listener == null ) {
-            listener = new ButtonListener();
+            listener = new OldButtonListener();
         }
 
         return listener;

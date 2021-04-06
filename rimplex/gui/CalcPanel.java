@@ -1,245 +1,238 @@
 package gui;
+
 import java.awt.BorderLayout;
-
-
-import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JWindow;
 import javax.swing.border.TitledBorder;
-
-//import tempWorkSpace.ButtonListener;
-//import tempWorkSpace.CalcPanel;
-//import tempWorkSpace.Panel;
-//import tempWorkSpace.TextFieldListener;
 
 public class CalcPanel extends Panel {
 
-	JButton answerButton;
-	JButton resetButton;
-	JButton cancelButton;
-	JButton addButton;
-	JButton multiButton;
-	JButton subButton;
-	JButton divButton;
-	JButton equalButton;
-	
-	JPanel buttonPanel;
-	JPanel centerPanel;
-	JPanel displayPanel;
-	JPanel inputPanel;
-	
-	JTextField display;
-	JTextField input;
-	
-	//JWindow window;
-	JFrame frame;
-	
-	private static CalcPanel panel;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	private JButton plus;
+	private JButton minus;
+	private JButton multiply;
+	private JButton division;
+	private JButton reset;
+	private JButton cancel;
+	private JButton one;
+	private JButton two;
+	private JButton three;
+	private JButton four;
+	private JButton five;
+	private JButton six;
+	private JButton seven;
+	private JButton eight;
+	private JButton nine;
+	private JButton zero;
+	private JButton iButton;
+	private JButton openPar;
+	private JButton closePar;
+	private JButton decimal;
+	private JButton equals;
+	private JButton backspace;
+	private JButton inverse;
+	private JButton log;
+	private JButton sign;
+	private JButton history;
+	private JButton squareRoot;
+	
+	private JPanel displayPanel;
+	private JPanel center;
+	private JPanel topRow;
+	private JPanel secRow;
+	private JPanel thirdRow;
+	private JPanel lastRow;
+	
+	private JTextField display;
+	
+	private static CalcPanel panel;
+	
 	private CalcPanel() {
 		
 		super();
+		
 	}
 	
+	@Override
 	public void createComponents() {
 		// TODO Auto-generated method stub
-		answerButton = new JButton();
-		addButton = new JButton();
-		divButton = new JButton();
-		equalButton = new JButton();
-		multiButton = new JButton();
-		subButton = new JButton();
-		resetButton = new JButton();
-		cancelButton = new JButton();
+		createButtons();
 		
-		buttonPanel = new JPanel();
-		centerPanel = new JPanel();
 		displayPanel = new JPanel();
-		inputPanel = new JPanel();
+		center = new JPanel();
+		topRow = new JPanel();
+		secRow = new JPanel();
+		thirdRow = new JPanel();
+		lastRow = new JPanel();
 		
 		display = new JTextField();
 		
-		input = new JTextField();
 		
-		frame = new JFrame();
-		//window = new JWindow();
 		
 	}
 
+	@Override
 	public void addComponents() {
 		// TODO Auto-generated method stub
-		buttonPanel.add( cancelButton );
-		buttonPanel.add( resetButton );
-		buttonPanel.add( addButton );
-		buttonPanel.add( subButton );
-		buttonPanel.add( answerButton );
-		buttonPanel.add( equalButton );
-		buttonPanel.add( multiButton );
-		buttonPanel.add( divButton );
-		
-//		displayPanel.add( new JPanel() );
 		displayPanel.add( display );
 		
-		inputPanel.add( new JPanel() );
-		inputPanel.add( input );
+		topRow.add( sign );
+		topRow.add( reset );
+		topRow.add( cancel );
+		topRow.add( plus );
+		topRow.add( backspace );	
+		topRow.add( one );
+		topRow.add( two );
+		topRow.add( three );
+		topRow.add( minus );
+		topRow.add( inverse );
 		
-		centerPanel.add( displayPanel );
-//		centerPanel.add( new JPanel() );
-		centerPanel.add( inputPanel );
-		centerPanel.add( buttonPanel );
-		centerPanel.add( new JPanel() );
+		secRow.add( four );
+		secRow.add( five );
+		secRow.add( six );
+		secRow.add( multiply );
+		secRow.add( openPar );
+		secRow.add( seven );
+		secRow.add( eight );
+		secRow.add( nine );
+		secRow.add( division );
+		secRow.add( closePar );
 		
-	    add( centerPanel, BorderLayout.CENTER );
-	    add( new JPanel(), BorderLayout.EAST );
-	    add( new JPanel(), BorderLayout.WEST );
-	    add( new JPanel(), BorderLayout.NORTH );
-	}
- 
-	public void disableCancel() {
+		thirdRow.add( decimal );
+		thirdRow.add( zero );
+		thirdRow.add( iButton );
+		thirdRow.add( equals );
+		thirdRow.add( log );
 		
-		cancelButton.setEnabled( false );
-	}
-	public void disableEquals() {
+		center.add( displayPanel );
+		center.add( new JPanel() );
+		center.add( topRow );
+		center.add( secRow );
+		center.add( thirdRow );
 		
-		equalButton.setEnabled( false );
-//		cancelButton.setEnabled( false );
-	}
-	
-	public void disableOperators() {
-		
-		addButton.setEnabled( false );
-		divButton.setEnabled( false );
-		subButton.setEnabled( false );
-		multiButton.setEnabled( false );
-	}
-	
-	public void enableAnswer() {
-		
-		answerButton.setEnabled( true );
-	}
-	
-	public void enableEquals() {
-		
-		equalButton.setEnabled( true );
-		cancelButton.setEnabled( true );
-	}
-	
-	public void enableOperators() {
-		
-		addButton.setEnabled( true );
-		divButton.setEnabled( true );
-		subButton.setEnabled( true );
-		multiButton.setEnabled( true );
-	}
-	
-	public String getInput() {
-		
-		return input.getText();
-	}
-	
-	public String getDisplay() {
-		
-		return display.getText();
+		add( center, BorderLayout.CENTER );
+		add( new JPanel(), BorderLayout.NORTH );
+//		JPanel historyPanel = new JPanel();
+//		historyPanel.setLayout( new GridLayout( 3, 0 ) ); 
+//		historyPanel.add( new JPanel() );
+//		historyPanel.add( history );
+//		historyPanel.add( new JPanel() );
+//		
+//		add( historyPanel , BorderLayout.EAST );
 		
 	}
-	
-	public void setDisplay( String str ) {
-         
-		display.setText( str );
-	}
-	
-	public void incrementDisplay( String str ) {
-		
-		display.setText( display.getText() + str );
-	}
-	
-	public void setInput( String str ) {
-		
-		input.setText( str );
-	}
-	
+
+	@Override
 	public void setParameters() {
 		// TODO Auto-generated method stub
-		answerButton.setText( "ans" );
-		addButton.setText( "+" );
-		divButton.setText( "/" );
-		equalButton.setText( "=" );
-		multiButton.setText( "x" );
-	    subButton.setText( "-" );
-	    resetButton.setText( "R" );
-	    cancelButton.setText( "C" ); 
-	    
-	    
-	    disableEquals();
-	    answerButton.setEnabled( false );
-	    cancelButton.setEnabled( false );
-	    
-		TitledBorder inputTitle;
-		inputTitle = BorderFactory.createTitledBorder( "Input" );
-		input.setBorder( inputTitle );
-		input.setEditable( true );
-//		input.setBackground( Color.magenta );
+		setButtonText();
+		
+		log.setEnabled( false );
+		sign.setEnabled( false );
+		history.setEnabled( false );
+		squareRoot.setEnabled( false );
 		
 		TitledBorder title;
 		title = BorderFactory.createTitledBorder( "Display" );
 		
-//		display.setBorder( BorderFactory.createLineBorder( Color.blue ) );
 		display.setBorder( title );
-		display.setEditable( false );
-//		display.setBackground( Color.blue );
-//		setBackground( Color.blue );
-		
-		buttonPanel.setBorder( BorderFactory.createLineBorder( Color.black ) );
+		display.setEditable( true );
 	}
 
+	@Override
 	public void setListeners() {
 		// TODO Auto-generated method stub
-		ActionListener button = ButtonListener.getInstance();
-
-		addButton.addActionListener( button );
-		subButton.addActionListener( button );
-		multiButton.addActionListener( button );
-		divButton.addActionListener( button );
-		answerButton.addActionListener( button );
-		cancelButton.addActionListener( button );
-		resetButton.addActionListener( button );
-		equalButton.addActionListener( button );
 		
-		input.addFocusListener( TextFieldListener.getInstance() );
-		
-		frame.addWindowListener( ButtonListener.getInstance() );
 	}
 
+	@Override
 	public void setPanel() {
 		// TODO Auto-generated method stub
 		setLayout( new BorderLayout() );
 		
-		buttonPanel.setLayout( new FlowLayout() );
-		centerPanel.setLayout( new GridLayout( 4, 0 ) );
-		displayPanel.setLayout( new GridLayout( 1, 0 ) );
-		inputPanel.setLayout( new GridLayout( 2, 0 ) );
-		 
-	} 
+		displayPanel.setLayout( new GridLayout( 1,0 ) );
+		center.setLayout( new GridLayout( 5,0 ) );
+	}
+
+	private void createButtons() {
+		
+		plus = new JButton();
+		minus = new JButton();
+		multiply = new JButton();
+		division = new JButton();
+		reset = new JButton();
+		cancel = new JButton();
+		one = new JButton();
+		two = new JButton();
+		three = new JButton();
+		four = new JButton();
+		five = new JButton();
+		six = new JButton();
+		seven = new JButton();
+		eight = new JButton();
+		nine = new JButton();
+		zero = new JButton();
+		iButton = new JButton();
+		openPar = new JButton();
+		closePar = new JButton();
+		decimal = new JButton();
+		equals = new JButton();
+		backspace = new JButton();
+		inverse = new JButton();
+		log = new JButton();
+		sign = new JButton();
+		history = new JButton();
+		squareRoot = new JButton();
+	}
+
+	private void setButtonText() {
+		plus.setText( "+" );
+		minus.setText( "-" );
+		division.setText( "/" );
+		multiply.setText( "x" );
+		reset.setText( "R" );
+		cancel.setText( "C" );
+		one.setText( "1" );
+		two.setText( "2" );
+		three.setText( "3" );
+		four.setText( "4" );
+		five.setText( "5" );
+		six.setText( "6" );
+		seven.setText( "7" );
+		eight.setText( "8" );
+		nine.setText( "9" );
+		zero.setText( "0" );
+		iButton.setText( "i" );
+		openPar.setText( "(" );
+		closePar.setText( ")" );
+		decimal.setText( "." );
+		equals.setText( "=" );
+		backspace.setText( "<-" );
+		inverse.setText( "inv" );
+		log.setText( "log" );
+		sign.setText( "+/-" );
+		history.setText( ">" );
+		squareRoot.setText( "sqr" );
+	}
 
 	public static CalcPanel getInstance() {
-		// TODO Auto-generated method stub
-        if ( panel == null ) {
-            panel = new CalcPanel();
-        }
-
-        return panel;
+		
+		if ( panel == null ) {
+			
+			panel = new CalcPanel();
+			
+		}
+		
+		return panel;
+		
 	}
 }
