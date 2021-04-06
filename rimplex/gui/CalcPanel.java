@@ -16,8 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.JWindow;
 import javax.swing.border.TitledBorder;
 
-import util.Panel;
-
 //import tempWorkSpace.ButtonListener;
 //import tempWorkSpace.CalcPanel;
 //import tempWorkSpace.Panel;
