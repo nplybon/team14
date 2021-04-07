@@ -87,7 +87,7 @@ public enum ImaginaryNumber {
    * @return the imaginary number factored to include a coefficient
    */
   public String toString(double coef) {
-
+    
     String str;
 
     switch (this) {
