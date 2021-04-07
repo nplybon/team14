@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.Test;
 
-import util.TextFieldListener;
+import gui.TextFieldListener;
 
 class TextFieldListenerTest {
 

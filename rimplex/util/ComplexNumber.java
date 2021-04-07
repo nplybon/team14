@@ -1,4 +1,7 @@
 package util;
+
+import gui.CalcFrame;
+
 /**
  * A class to represent a complex number in the form "a + bi".
  * 

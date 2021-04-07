@@ -1,4 +1,4 @@
-package util;
+package gui;
 import java.awt.BorderLayout;
 
 
@@ -34,11 +34,12 @@ public class CalcFrame extends JFrame {
 		createCompnents();
 		setLabels();
 		addMenus();
+		//changed to new Panel
 		setPanel( CalcPanel.getInstance() );
 		setListeners();
 		setJMenuBar( menuBar );
-		 
-		setSize( 350, 450 );
+		//Changed Dimensions 
+		setSize( 450, 450 );
 		setTitle( "Calculator" );
 		setVisible( true );
 		centerForm();
@@ -121,7 +122,7 @@ public class CalcFrame extends JFrame {
     
     private void setListeners() {
     	
-    	this.addWindowListener( ButtonListener.getInstance() );
-    	help.addActionListener( ButtonListener.getInstance() );
+    	this.addWindowListener( OldButtonListener.getInstance() );
+    	help.addActionListener( OldButtonListener.getInstance() );
     }
 }

@@ -1,4 +1,4 @@
-package util;
+package gui;
 import java.awt.BorderLayout;
 
 
@@ -21,7 +21,7 @@ import javax.swing.border.TitledBorder;
 //import tempWorkSpace.Panel;
 //import tempWorkSpace.TextFieldListener;
 
-public class CalcPanel extends Panel {
+public class OldCalcPanel extends Panel {
 
 	JButton answerButton;
 	JButton resetButton;
@@ -43,13 +43,13 @@ public class CalcPanel extends Panel {
 	//JWindow window;
 	JFrame frame;
 	
-	private static CalcPanel panel;
+	private static OldCalcPanel panel;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private CalcPanel() {
+	private OldCalcPanel() {
 		
 		super();
 	}
@@ -207,7 +207,7 @@ public class CalcPanel extends Panel {
 
 	public void setListeners() {
 		// TODO Auto-generated method stub
-		ActionListener button = ButtonListener.getInstance();
+		ActionListener button = OldButtonListener.getInstance();
 
 		addButton.addActionListener( button );
 		subButton.addActionListener( button );
@@ -220,7 +220,7 @@ public class CalcPanel extends Panel {
 		
 		input.addFocusListener( TextFieldListener.getInstance() );
 		
-		frame.addWindowListener( ButtonListener.getInstance() );
+		frame.addWindowListener( OldButtonListener.getInstance() );
 	}
 
 	public void setPanel() {
@@ -234,10 +234,10 @@ public class CalcPanel extends Panel {
 		 
 	} 
 
-	public static CalcPanel getInstance() {
+	public static OldCalcPanel getInstance() {
 		// TODO Auto-generated method stub
         if ( panel == null ) {
-            panel = new CalcPanel();
+            panel = new OldCalcPanel();
         }
 
         return panel;
