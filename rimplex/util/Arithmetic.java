@@ -19,11 +19,6 @@ public class Arithmetic {
 	 *  	is/are null
 	 * @throws OverflowException when positive overflow has occurred when performing the operation
 	 * @throws InvalidExpressionException if expression operands are invalid
-	 * @throws OverflowException when positive overflow has occurred when performing the operation
-	 * @throws InvalidExpressionException 
-	 * @return resultant expression; null if one, or both, expression/s is/are null
-	 * @throws OverflowException          when positive overflow has occurred when
-	 * @throws InvalidExpressionException if expression operands are invalid
 	 */
 	public static Expression addition(Expression exp1, Expression exp2)
 			throws OverflowException, InvalidExpressionException {
@@ -138,7 +133,6 @@ public class Arithmetic {
 	 * @param exp2 the second expression
 	 * @return the quotient
 	 * @throws InvalidExpressionException if denominator is 0
-<<<<<<< HEAD
 	 */
 	public static Expression division(Expression exp1, Expression exp2)throws OverflowException, InvalidExpressionException {
 	  //real part = ac + bd / c^2 + d^2
@@ -163,7 +157,9 @@ public class Arithmetic {
 	 * @throws OverflowException 
 	 */
 	public static Expression inverse(Expression e) throws InvalidExpressionException, OverflowException {
-	  
+	   if (e.getReal() == 0.0 && e.getImagCoef() == 0.0) {
+	     throw new InvalidExpressionException("ERROR: ZERO DOES NOT HAVE AN INVERSE");
+	   }
 	   Expression conjugate = conjugate(e);
      double denominator = Math.sqrt(Math.pow(e.getReal(), 2) + Math.pow(e.getImagCoef(), 2));
      denominator = Math.pow(denominator, 2);
