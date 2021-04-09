@@ -175,13 +175,20 @@ public class Arithmetic {
 		return toReturn;
 	}
 	
+	/**
+	 * Calculates the Natural Logarithm of a single Expression
+	 * @param exp1 The given expression
+	 * @return The Expression that is the result of the Natural Logarithm
+	 * @throws InvalidExpressionException if the real portion of the given 
+	 * 		expression is less than or equal to zero
+	 */
 	public static Expression naturalLog(Expression exp1) throws InvalidExpressionException {
 		
 		// error checking
 		if (exp1.getReal() == 0) {
 			throw new InvalidExpressionException("ERROR: CANNOT DIVIDE BY ZERO (in logarithm)");
 		} if (exp1.getReal() < 0) {
-			throw new InvalidExpressionException("ERROR: NATURAL LOG UNDIFINED FOR A < 0");
+			throw new InvalidExpressionException("ERROR: NATURAL LOG UNDEFINED FOR A < 0");
 		}
 		
 		Expression toReturn;
