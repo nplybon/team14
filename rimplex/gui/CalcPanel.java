@@ -136,6 +136,10 @@ public class CalcPanel extends Panel {
 		return display.getText();
 	}
 	
+	public void updateDisplay(String s) {
+	  display.setText(display.getText() + s);
+	}
+	
 	public void setDisplay( int i ) {
 		
 		String str = display.getText();
