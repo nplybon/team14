@@ -129,7 +129,7 @@ public class Expression {
   }
 
   /**
-   * Returns the expression in a String surrounded by parentheses.
+   * Returns the expression in a String.
    */
   public String toString() {
     
