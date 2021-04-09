@@ -86,6 +86,36 @@ public class Expression {
   }
   
   /**
+   * Checks if the expression is real number only.
+   * 
+   * @return true if only a real number
+   */
+  public boolean realOnly()
+  {
+    return realNumber && !imagNumber;
+  }
+  
+  /**
+   * Checks if the expression is imaginary number only.
+   * 
+   * @return true if only an imaginary number
+   */
+  public boolean imagOnly()
+  {
+    return !realNumber && imagNumber;
+  }
+  
+  /**
+   * Checks if the expression is a complex number.
+   * 
+   * @return true if the expression is a complex number
+   */
+  public boolean isComplex()
+  {
+    return realNumber && imagNumber;
+  }
+  
+  /**
    * Getter for The symbol between the real portion and the imaginary 
    * portion of a complex number.
    * @return the operation in the Expression
