@@ -16,16 +16,8 @@ public class Arithmetic {
 	 * @param exp1 "left" expression
 	 * @param exp2 "right" expression
 	 * @return resultant expression; null if one, or both, expression/s is/are null
-	 *         <<<<<<< HEAD
 	 * @throws OverflowException          when positive overflow has occurred when
-	 *                                    performing the operation
-	 * @throws InvalidExpressionException if expression operands are invalid =======
-	 * @throws OverflowException          when positive overflow has occurred when
-	 *                                    performing the operation
-	 * @throws InvalidExpressionException
-	 * @throws InvalidExpressionException if expression operands are invalid >>>>>>>
-	 *                                    branch 'master' of
-	 *                                    https://github.com/bernstdh/team14.git
+	 * @throws InvalidExpressionException if expression operands are invalid
 	 */
 	public static Expression addition(Expression exp1, Expression exp2)
 			throws OverflowException, InvalidExpressionException {
