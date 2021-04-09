@@ -149,6 +149,14 @@ public class Arithmetic {
     return new Expression(realpart, imagpart, 1, '+');
   }
 	
+	public static Expression exponent(Expression e, int power) throws InvalidExpressionException, OverflowException {
+	  
+	  
+	  
+	  return null;
+	}
+	
+	
 	/**
 	 * Returns the inverse of the given expression
 	 * @param e the expression to be inversed

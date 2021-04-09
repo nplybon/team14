@@ -8,7 +8,8 @@ package util;
 public enum Operator {
 
   ADDITION('+', "sum"), SUBTRACTION('-', "difference"),
-  MULTIPLICATION('x', "product"), DIVISION('/', "quoitent");
+  MULTIPLICATION('x', "product"), DIVISION('/', "quoitent"), 
+  EXPONENT('^', "exponent");
 
   private char symbol;
   private String type;
@@ -49,6 +50,9 @@ public enum Operator {
         break;
       case '/':
         op = Operator.DIVISION;
+        break;
+      case '^':
+        op = Operator.EXPONENT;
         break;
       default:
         op = null;
