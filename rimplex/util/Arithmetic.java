@@ -17,14 +17,11 @@ public class Arithmetic {
 	 * @param exp2 "right" expression
 	 * @return resultant expression; null if one, or both, expression/s 
 	 *  	is/are null
-<<<<<<< HEAD
 	 * @throws OverflowException when positive overflow has occurred when performing the operation
 	 * @throws InvalidExpressionException if expression operands are invalid
-=======
 	 * @throws OverflowException when positive overflow has occurred when performing the operation
 	 * @throws InvalidExpressionException 
 	 * @throws InvalidExpressionException if expression operands are invalid
->>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 	 */
 	public static Expression addition(Expression exp1, Expression exp2) throws OverflowException, InvalidExpressionException {
 
@@ -149,4 +146,31 @@ public class Arithmetic {
 	  }
     return new Expression(realpart, imagpart, 1, '+');
   }
+	
+	/**
+	 * Returns the inverse of the given expression
+	 * @param e the expression to be inversed
+	 * @return inverse of the given expression
+	 * @throws InvalidExpressionException 
+	 * @throws OverflowException 
+	 */
+	public static Expression inverse(Expression e) throws InvalidExpressionException, OverflowException {
+	   Expression conjugate = new Expression(e.getReal(), e.getImagCoef(), 1, '+');
+     double denominator = Math.sqrt(Math.pow(e.getReal(), 2) + Math.pow(e.getImagCoef(), 2));
+     denominator = Math.pow(denominator, 2);
+     if (e.getImagCoef() > 0) {
+       return new Expression(conjugate.getReal() / denominator, conjugate.getImagCoef() / denominator, 1, '-');
+     } else {
+       return new Expression(conjugate.getReal() / denominator, conjugate.getImagCoef() / denominator, 1, '+');
+
+     }
+	  
+	}
+	
+	public static void main(String[] args) throws InvalidExpressionException, OverflowException
+  {
+    Expression e = new Expression(0.0, 9.0, 1, '+');
+    System.out.println(inverse(e));
+  }
+	
 }
