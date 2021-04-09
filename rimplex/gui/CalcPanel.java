@@ -131,6 +131,26 @@ public class CalcPanel extends Panel {
 		
 	}
 
+	public String getDisplay() {
+	
+		return display.getText();
+	}
+	
+	public void setDisplay( int i ) {
+		
+		String str = display.getText();
+		
+		if ( str.length() > 1 ) {
+			
+			String sub = str.substring( 0, i );
+			display.setText( sub );
+			
+		} else {
+			
+			display.setText( "" );
+		}
+	}
+	
 	@Override
 	public void setParameters() {
 		// TODO Auto-generated method stub
@@ -151,7 +171,7 @@ public class CalcPanel extends Panel {
 	@Override
 	public void setListeners() {
 		// TODO Auto-generated method stub
-		
+		display.addKeyListener( KeyboardListener.getInstance() );
 	}
 
 	@Override
