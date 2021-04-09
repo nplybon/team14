@@ -12,7 +12,38 @@ public class Expression {
   private Double imagCoef = null;
   private ImaginaryNumber i = ImaginaryNumber.ONE;
   private Operator op = Operator.ADDITION;
+  private boolean realNumber = false;
+  private boolean imagNumber = false;
 
+  /**
+   * Constructor with only real number.
+   * 
+   * @param real Double the real number.
+   */
+  public Expression(Double real)
+  {
+    this.real = real;
+    imagCoef = 0.0;
+    i = i.fromPower(1);
+    op = op.fromSymbol('+');
+    realNumber = true;
+  }
+  
+  /**
+   * Constructor with only imaginary number.
+   * 
+   * @param imagCoef Double imaginary number coefficient
+   * @param imagPower int the power of the imaginary number
+   */
+  public Expression(Double imagCoef, int imagPower)
+  {
+    real = 0.0;
+    this.imagCoef = imagCoef;
+    i = i.fromPower(imagPower);
+    op = op.fromSymbol('+');
+    imagNumber = true;
+  }
+  
   /**
    * Constructor with Imaginary Number Coefficient.
    * 
@@ -28,6 +59,8 @@ public class Expression {
     this.imagCoef = imagCoef;
     i = i.fromPower(imagPower);
     op = op.fromSymbol(symbol);
+    realNumber = true;
+    imagNumber = true;
     //simplify();
   }
 
@@ -96,12 +129,29 @@ public class Expression {
   }
 
   /**
-   * Returns the expression in a String surrounded by parentheses.
+   * Returns the expression in a String.
    */
   public String toString() {
-    String str = "(" + real + " " + op.toString() + " " + i.toString(imagCoef);
+    
+    String str = "";
+    
+    if (realNumber && imagNumber)
+    {
+      str = "(" + real + " " + op.toString() + " " + i.toString(imagCoef) + ")";
+    }
+    else
+    {
+      if (realNumber && !imagNumber)
+      {
+        str = "" + real;
+      }
+      if (!realNumber && imagNumber)
+      {
+        str = i.toString(imagCoef);
+      }
+    }
 
-    return str + ")";
+    return str;
   }
 
 }
