@@ -158,15 +158,15 @@ public class Arithmetic {
 	 * @throws InvalidExpressionException if expression operands are invalid
 	 * @throws OverflowException
 	 */
-	public static Expression exponent(Expression exp, int power) throws InvalidExpressionException, OverflowException {
+	public static Expression exponent(Expression exp) throws InvalidExpressionException, OverflowException {
 	  
 	  Expression result = exp;
 
-	  for ( int i = 1; i < Math.abs(power); i++ ) {
+	  for ( int i = 1; i < Math.abs(exp.getSymbol().getExpPower()); i++ ) {
 	     result = multiplication(result, exp);
 	  }
 	  
-	  if (power < 0) {
+	  if (exp.getSymbol().getExpPower() < 0) {
 	    result = division(new Expression(1.0), result);
 	  }
 	  

@@ -52,6 +52,8 @@ public class Calculate {
       case DIVISION:
         result = Arithmetic.division(exp1, exp2);
         break;
+      case EXPONENT:
+        result = Arithmetic.exponent(exp1);
     }
 
     return result;
@@ -68,6 +70,14 @@ public class Calculate {
 
     Expression result = null;
 
+    //NEEDS MORE TESTING
+    for (int i = 0; i < expressions.length; i++) {
+      if (expressions[i].getSymbol().getExpPower() != 0) {
+        result = calculate(expressions[i], Operator.EXPONENT, null);
+        expressions[i] = result;
+      }
+    }
+    
     for (int i = 0; i < order.length; i++) {
       result = calculate(expressions[order[i]], operators[order[i]],
           expressions[order[i] + 1]);
@@ -89,13 +99,6 @@ public class Calculate {
 
     int index = 0;
     int[] order = new int[operators.length];
-
-    for (int i = 0; i < operators.length; i++) {
-      if (operators[i].equals(Operator.EXPONENT)) {
-        order[index] = i;
-        index++;
-      }
-    }
     
     for (int i = 0; i < operators.length; i++) {
       if (operators[i].equals(Operator.MULTIPLICATION)
