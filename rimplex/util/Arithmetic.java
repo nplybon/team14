@@ -149,11 +149,24 @@ public class Arithmetic {
     return new Expression(realpart, imagpart, 1, '+');
   }
 	
-	public static Expression exponent(Expression e, int power) throws InvalidExpressionException, OverflowException {
+	/**
+	 * Returns the result of an exponent operation.
+	 * 
+	 * @param exp the expression
+	 * @param power the power of the exponent
+	 * @return the updated expression
+	 * @throws InvalidExpressionException if expression operands are invalid
+	 * @throws OverflowException
+	 */
+	public static Expression exponent(Expression exp, int power) throws InvalidExpressionException, OverflowException {
 	  
+	  Expression result = exp;
+
+	  for ( int i = 1; i < power; i++ ) {
+	     result = multiplication(result, exp);
+	  }
 	  
-	  
-	  return null;
+	  return result;
 	}
 	
 	

@@ -9,7 +9,8 @@ public enum Operator {
 
   ADDITION('+', "sum"), SUBTRACTION('-', "difference"),
   MULTIPLICATION('x', "product"), DIVISION('/', "quoitent"), 
-  EXPONENT('^', "exponent");
+  EXPONENT('^', "exponent"), LOGARITHM('l', "logarithm"),
+  INVERSE('v', "inverse"), CONJUGATE('c', "conjugate");
 
   private char symbol;
   private String type;
@@ -53,6 +54,15 @@ public enum Operator {
         break;
       case '^':
         op = Operator.EXPONENT;
+        break;
+      case 'l':
+        op = Operator.LOGARITHM;
+        break;
+      case 'v':
+        op = Operator.INVERSE;
+        break;
+      case 'c':
+        op = Operator.CONJUGATE;
         break;
       default:
         op = null;
