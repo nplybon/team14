@@ -156,7 +156,7 @@ public class CalcPanel extends Panel {
 		// TODO Auto-generated method stub
 		setButtonText();
 		
-		log.setEnabled( false );
+//		log.setEnabled( false );
 		sign.setEnabled( false );
 		history.setEnabled( false );
 		squareRoot.setEnabled( false );

@@ -50,21 +50,32 @@ public class KeyboardListener implements KeyListener {
 		case '9':
 		case '0':
 		case 'i':
-		case '.':
 		case '\u0008':
 		case '\u007F':
 			break;
 		case '=':
 			break;
+		case '.':
+			break;
+		case '(':
+			break;
+		case ')':
+			break;
 		default:
 		
-			CalcPanel calc = CalcPanel.getInstance();
-			String bad = "Invalid Input";
-		
-			calc.setDisplay( ( calc.getDisplay().length() - 1 ) );
-	    	JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
-	    			JOptionPane.PLAIN_MESSAGE );
+			errorMessage();
+	    	break;
 		}
+	}
+
+	private void errorMessage() {
+		
+		CalcPanel calc = CalcPanel.getInstance();
+		String bad = "Invalid Input";
+
+		calc.setDisplay( ( calc.getDisplay().length() - 1 ) );
+		JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
+				JOptionPane.PLAIN_MESSAGE );
 	}
 	
    /**
