@@ -162,8 +162,12 @@ public class Arithmetic {
 	  
 	  Expression result = exp;
 
-	  for ( int i = 1; i < power; i++ ) {
+	  for ( int i = 1; i < Math.abs(power); i++ ) {
 	     result = multiplication(result, exp);
+	  }
+	  
+	  if (power < 0) {
+	    result = division(new Expression(1.0), result);
 	  }
 	  
 	  return result;
