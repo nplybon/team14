@@ -150,6 +150,31 @@ public class Arithmetic {
   }
 	
 	/**
+	 * Returns the result of an exponent operation.
+	 * 
+	 * @param exp the expression
+	 * @param power the power of the exponent
+	 * @return the updated expression
+	 * @throws InvalidExpressionException if expression operands are invalid
+	 * @throws OverflowException
+	 */
+	public static Expression exponent(Expression exp, int power) throws InvalidExpressionException, OverflowException {
+	  
+	  Expression result = exp;
+
+	  for ( int i = 1; i < Math.abs(power); i++ ) {
+	     result = multiplication(result, exp);
+	  }
+	  
+	  if (power < 0) {
+	    result = division(new Expression(1.0), result);
+	  }
+	  
+	  return result;
+	}
+	
+	
+	/**
 	 * Returns the inverse of the given expression
 	 * @param e the expression to be inversed
 	 * @return inverse of the given expression

@@ -3,6 +3,7 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -136,6 +137,10 @@ public class CalcPanel extends Panel {
 		return display.getText();
 	}
 	
+	public void updateDisplay(String s) {
+	  display.setText(display.getText() + s);
+	}
+	
 	public void setDisplay( int i ) {
 		
 		String str = display.getText();
@@ -149,6 +154,10 @@ public class CalcPanel extends Panel {
 			
 			display.setText( "" );
 		}
+	}
+	
+	public void resetDisplay() {
+	  display.setText("");
 	}
 	
 	@Override
@@ -172,6 +181,36 @@ public class CalcPanel extends Panel {
 	public void setListeners() {
 		// TODO Auto-generated method stub
 		display.addKeyListener( KeyboardListener.getInstance() );
+		
+		ActionListener button = ButtonListener.getInstance();
+		
+		plus.addActionListener(button);
+		minus.addActionListener(button);
+		multiply.addActionListener(button);
+		division.addActionListener(button);
+		reset.addActionListener(button);
+		cancel.addActionListener(button);
+		one.addActionListener(button);
+		two.addActionListener(button);
+		three.addActionListener(button);
+		four.addActionListener(button);
+		five.addActionListener(button);
+		six.addActionListener(button);
+		seven.addActionListener(button);
+		eight.addActionListener(button);
+		nine.addActionListener(button);
+		zero.addActionListener(button);
+		iButton.addActionListener(button);
+		openPar.addActionListener(button);
+		closePar.addActionListener(button);
+		decimal.addActionListener(button);
+		equals.addActionListener(button);
+		backspace.addActionListener(button);
+		inverse.addActionListener(button);
+		log.addActionListener(button);
+		sign.addActionListener(button);
+		history.addActionListener(button);
+		squareRoot.addActionListener(button);
 	}
 
 	@Override

@@ -91,6 +91,13 @@ public class Calculate {
     int[] order = new int[operators.length];
 
     for (int i = 0; i < operators.length; i++) {
+      if (operators[i].equals(Operator.EXPONENT)) {
+        order[index] = i;
+        index++;
+      }
+    }
+    
+    for (int i = 0; i < operators.length; i++) {
       if (operators[i].equals(Operator.MULTIPLICATION)
           || operators[i].equals(Operator.DIVISION)) {
         order[index] = i;
