@@ -1,11 +1,14 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class KeyboardListener implements KeyListener {
+public class KeyboardListener implements KeyListener, ActionListener {
 
 	private static KeyboardListener listener;
 	
@@ -50,21 +53,33 @@ public class KeyboardListener implements KeyListener {
 		case '9':
 		case '0':
 		case 'i':
-		case '.':
 		case '\u0008':
 		case '\u007F':
+		case ' ':
 			break;
 		case '=':
 			break;
+		case '.':
+			break;
+		case '(':
+			break;
+		case ')':
+			break;
 		default:
 		
-			CalcPanel calc = CalcPanel.getInstance();
-			String bad = "Invalid Input";
-		
-			calc.setDisplay( ( calc.getDisplay().length() - 1 ) );
-	    	JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
-	    			JOptionPane.PLAIN_MESSAGE );
+			errorMessage();
+	    	break;
 		}
+	}
+
+	private void errorMessage() {
+		
+		CalcPanel calc = CalcPanel.getInstance();
+		String bad = "Invalid Input";
+
+		calc.setDisplay( ( calc.getDisplay().length() - 1 ) );
+		JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
+				JOptionPane.PLAIN_MESSAGE );
 	}
 	
    /**
@@ -80,5 +95,26 @@ public class KeyboardListener implements KeyListener {
 	    }
 	        
 	    return listener;  
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+	
+		JButton button = (JButton)e.getSource();
+
+		switch ( button.getText() ) {
+		case "+":
+			break;
+		case "-":
+			break;
+		case "/":
+			break;
+		case "x":
+			break;
+		default:
+			break;
+		}
 	}
 }

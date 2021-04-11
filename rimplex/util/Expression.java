@@ -77,7 +77,7 @@ public class Expression {
   public Double getImagCoef() {
     return imagCoef;
   }
-
+  
   /**
    * Getter for imaginary number
    */

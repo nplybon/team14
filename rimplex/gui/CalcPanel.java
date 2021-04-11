@@ -137,6 +137,48 @@ public class CalcPanel extends Panel {
 		return display.getText();
 	}
 	
+	public boolean isNumEnabled() {
+		
+		return one.isEnabled();
+	}
+	
+	public boolean isPlusEnabled() {
+		
+		return plus.isEnabled();
+	
+	}
+	
+	public boolean isDivEnabled() {
+		
+		return division.isEnabled();
+		
+	}
+	
+	public boolean isIEnabled() {
+		
+		return iButton.isEnabled();
+	}
+	
+	public boolean isEqualsEnabled() {
+		
+		return equals.isEnabled();
+	}
+	
+	public boolean isOpenParEnabled() {
+		
+		return openPar.isEnabled();
+	}
+	
+	public boolean isCloseParEnabled() {
+		
+		return closePar.isEnabled();
+	}
+	
+	public boolean isDecimalEnabled() {
+		
+		return decimal.isEnabled();
+	}
+	
 	public void updateDisplay(String s) {
 	  display.setText(display.getText() + s);
 	}
@@ -165,7 +207,7 @@ public class CalcPanel extends Panel {
 		// TODO Auto-generated method stub
 		setButtonText();
 		
-		log.setEnabled( false );
+//		log.setEnabled( false );
 		sign.setEnabled( false );
 		history.setEnabled( false );
 		squareRoot.setEnabled( false );
@@ -180,10 +222,9 @@ public class CalcPanel extends Panel {
 	@Override
 	public void setListeners() {
 		// TODO Auto-generated method stub
-		display.addKeyListener( KeyboardListener.getInstance() );
+		ButtonListener button = ButtonListener.getInstance();
 		
-		ActionListener button = ButtonListener.getInstance();
-		
+		display.addKeyListener( button );
 		plus.addActionListener(button);
 		minus.addActionListener(button);
 		multiply.addActionListener(button);
