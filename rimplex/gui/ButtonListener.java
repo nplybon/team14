@@ -2,18 +2,21 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import util.Operator;
 
-public class ButtonListener implements ActionListener, WindowListener
+public class ButtonListener implements ActionListener, WindowListener, KeyListener
 {
 
   private static ButtonListener listener;
-
+  
   /**
    * handles button events.
    * 
@@ -180,4 +183,129 @@ public class ButtonListener implements ActionListener, WindowListener
 
   }
 
+  @Override
+  public void keyTyped(KeyEvent e) {
+	// TODO Auto-generated method stub
+	
+  }
+
+  @Override
+  public void keyPressed(KeyEvent e) {
+	// TODO Auto-generated method stub
+	
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e) {
+	// TODO Auto-generated method stub
+	char result = (char) e.getKeyChar();
+	CalcPanel panel = CalcPanel.getInstance();
+	
+	switch ( result ) {
+	case '+':
+	case '-':
+		if ( !panel.isPlusEnabled() ) {
+			
+			errorMessage();
+		}
+		break;
+	case '/':
+	case 'x':
+		if ( !panel.isDivEnabled() ) {
+			
+			errorMessage();
+		}
+		break;
+	case '1':
+	case '2':
+	case '3':
+	case '4':
+	case '5':
+	case '6':
+	case '7':
+	case '8':
+	case '9':
+	case '0':
+		if ( !panel.isNumEnabled() ) {
+			
+			errorMessage();
+		}
+		break;
+	case 'i':
+		if ( !panel.isIEnabled() ) {
+			
+			errorMessage();
+		}
+		break;
+	case '\u0008':
+	case '\u007F':
+		break;
+	case ' ':
+		break;
+	case '=':
+		if ( panel.isEqualsEnabled() ) {
+			
+//			int openPar;
+//			int closePar;
+//			int operator;
+//			
+//			String str = panel.getDisplay();
+//			str = str.substring( 0, str.length() - 1 );
+//			
+//			if ( str.indexOf( '(' ) != -1 ) {
+//				
+//				openPar = str.indexOf( '(' );
+//				//String 
+//			} else {
+//				if ( str.indexOf( '+' ) != -1 ) {
+//					
+//					
+//				} else if ( str.indexOf( '-' ) != -1 ) {
+//					
+//				} else if ( str.indexOf( '/' ) != -1 ) {
+//					
+//				} else if ( str.indexOf( 'x' ) != -1 ) {
+//					
+//				}
+//			}
+		} else {
+			
+			errorMessage();
+		}
+		break;
+	case '.':
+		if ( !panel.isDecimalEnabled() ) {
+			
+			errorMessage();
+		}
+		break;
+	case '(':
+		if ( !panel.isOpenParEnabled() ) {
+			
+			errorMessage();
+		}
+		break;
+	case ')':
+		if ( !panel.isCloseParEnabled() ) {
+			
+			errorMessage();
+		}
+		break;
+	default:
+	
+		errorMessage();
+    	break;
+	}
+  }
+  
+	private void errorMessage() {
+		
+		CalcPanel calc = CalcPanel.getInstance();
+		String bad = "Invalid Input";
+
+		calc.setDisplay( ( calc.getDisplay().length() - 1 ) );
+		JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
+				JOptionPane.PLAIN_MESSAGE );
+	}
+	
 }

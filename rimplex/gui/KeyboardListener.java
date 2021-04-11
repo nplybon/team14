@@ -55,6 +55,7 @@ public class KeyboardListener implements KeyListener, ActionListener {
 		case 'i':
 		case '\u0008':
 		case '\u007F':
+		case ' ':
 			break;
 		case '=':
 			break;
@@ -98,7 +99,6 @@ public class KeyboardListener implements KeyListener, ActionListener {
 
 
 	@Override
-
 	public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
 	
