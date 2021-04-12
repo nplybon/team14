@@ -55,6 +55,9 @@ public class Calculate {
       case EXPONENT:
         result = Arithmetic.exponent(exp1);
     }
+    
+    //System.out.println(exp1 + " " + op + " " + exp2);
+    //System.out.println(result);
 
     return result;
   }
