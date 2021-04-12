@@ -187,14 +187,19 @@ public class Arithmetic {
 	   if (e.getReal() == 0.0 && e.getImagCoef() == 0.0) {
 	     throw new InvalidExpressionException("ERROR: ZERO DOES NOT HAVE AN INVERSE");
 	   }
+     double imag = e.getImagCoef();
 	   Expression conjugate = conjugate(e);
-     double denominator = Math.sqrt(Math.pow(e.getReal(), 2) + Math.pow(e.getImagCoef(), 2));
+     double denominator = Math.sqrt(Math.pow(e.getReal(), 2) + Math.pow(imag, 2));
      denominator = Math.pow(denominator, 2);
+     
      if (e.getImagCoef() > 0) {
        return new Expression(conjugate.getReal() / denominator, conjugate.getImagCoef() / denominator, 1, '-');
      } else {
+       if (e.getSymbol() == Operator.SUBTRACTION) {
+         return new Expression(conjugate.getReal() / denominator, conjugate.getImagCoef() / denominator, 1, '-');
+       }
+       
        return new Expression(conjugate.getReal() / denominator, conjugate.getImagCoef() / denominator, 1, '+');
-
      }  
 	}
 
@@ -267,5 +272,4 @@ public class Arithmetic {
 		return toReturn;
 		
 	}
-
 }

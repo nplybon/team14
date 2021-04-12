@@ -105,5 +105,24 @@ class InverseTest
     });
 
   }
+  
+  @Test
+  void testInverseWithNegativeAndMinus() throws InvalidExpressionException, OverflowException {
+    Expression exp1 = new Expression(-1.0, -1.0, 1, '-');
+    Expression expected = new Expression(-0.5, 0.5, 1, '-');
+    Expression result = Arithmetic.inverse(exp1);
+
+    double expectedReal = expected.getReal();
+    double resultReal = result.getReal();
+    double expectedCoef = expected.getImagCoef();
+    double resultCoef = result.getImagCoef();
+    char expectedSymbol = expected.getSymbol().getSymbol();
+    char resultSymbol = result.getSymbol().getSymbol();
+    
+
+    assertEquals(expectedReal, resultReal, 0.0001);
+    assertEquals(expectedCoef, resultCoef, 0.0001);
+    assertEquals(expectedSymbol, resultSymbol);
+  }
 
 }
