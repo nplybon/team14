@@ -15,8 +15,9 @@ public class Arithmetic {
 	 * 
 	 * @param exp1 "left" expression
 	 * @param exp2 "right" expression
-	 * @return resultant expression; null if one, or both, expression/s is/are null
-	 * @throws OverflowException          when positive overflow has occurred when
+	 * @return resultant expression; null if one, or both, expression/s 
+	 *  	is/are null
+	 * @throws OverflowException when positive overflow has occurred when performing the operation
 	 * @throws InvalidExpressionException if expression operands are invalid
 	 */
 	public static Expression addition(Expression exp1, Expression exp2)
@@ -133,20 +134,73 @@ public class Arithmetic {
 	 * @return the quotient
 	 * @throws InvalidExpressionException if denominator is 0
 	 */
-	public static Expression division(Expression exp1, Expression exp2)
-			throws OverflowException, InvalidExpressionException {
-		// real part = ac + bd / c^2 + d^2
-		// imag part = bc - ad / c^2 + d^2
-		double firstPart = exp1.getReal() * exp2.getReal() + exp1.getImagCoef() * exp2.getImagCoef();
-		double secondPart = exp1.getImagCoef() * exp2.getReal() - exp1.getReal() * exp2.getImagCoef();
-		double squaredPart = Math.pow(exp2.getReal(), 2) + Math.pow(exp2.getImagCoef(), 2);
-		double realpart = firstPart / squaredPart;
-		double imagpart = secondPart / squaredPart;
+	public static Expression division(Expression exp1, Expression exp2)throws OverflowException, InvalidExpressionException {
+	  //real part = ac + bd / c^2 + d^2
+	  //imag part = bc - ad / c^2 + d^2
+	  double firstPart = exp1.getReal() * exp2.getReal() + exp1.getImagCoef() * exp2.getImagCoef();
+	  double secondPart = exp1.getImagCoef() * exp2.getReal() - exp1.getReal() * exp2.getImagCoef();
+	  double squaredPart = Math.pow(exp2.getReal(), 2) + Math.pow(exp2.getImagCoef(), 2);
+	  double realpart  = firstPart / squaredPart;
+	  double imagpart  = secondPart/ squaredPart;
+	  
+	  if (Double.isNaN(realpart) && Double.isNaN(imagpart)) {
+	    throw new InvalidExpressionException("ERROR: CANNOT DIVIDE BY ZERO");
+	  }
+    return new Expression(realpart, imagpart, 1, '+');
+  }
+	
+	/**
+	 * Returns the result of an exponent operation.
+	 * 
+	 * @param exp the expression
+	 * @param power the power of the exponent
+	 * @return the updated expression
+	 * @throws InvalidExpressionException if expression operands are invalid
+	 * @throws OverflowException
+	 */
+	public static Expression exponent(Expression exp) throws InvalidExpressionException, OverflowException {
+	  
+	  Expression result = exp;
+	  System.out.println(result);
 
-		if (Double.isNaN(realpart) && Double.isNaN(imagpart)) {
-			throw new InvalidExpressionException("ERROR: CANNOT DIVIDE BY ZERO");
-		}
-		return new Expression(realpart, imagpart, 1, '+');
+	  for ( int i = 1; i < Math.abs(exp.getSymbol().getExpPower()); i++ ) {
+	     result = multiplication(result, exp);
+	     System.out.println(result);
+	  }
+	  
+	  if (exp.getSymbol().getExpPower() < 0) {
+	    result = division(new Expression(1.0), result);
+	  }
+	  
+	  return result;
+	}
+	
+	
+	/**
+	 * Returns the inverse of the given expression
+	 * @param e the expression to be inversed
+	 * @return inverse of the given expression
+	 * @throws InvalidExpressionException 
+	 * @throws OverflowException 
+	 */
+	public static Expression inverse(Expression e) throws InvalidExpressionException, OverflowException {
+	   if (e.getReal() == 0.0 && e.getImagCoef() == 0.0) {
+	     throw new InvalidExpressionException("ERROR: ZERO DOES NOT HAVE AN INVERSE");
+	   }
+     double imag = e.getImagCoef();
+	   Expression conjugate = conjugate(e);
+     double denominator = Math.sqrt(Math.pow(e.getReal(), 2) + Math.pow(imag, 2));
+     denominator = Math.pow(denominator, 2);
+     
+     if (e.getImagCoef() > 0) {
+       return new Expression(conjugate.getReal() / denominator, conjugate.getImagCoef() / denominator, 1, '-');
+     } else {
+       if (e.getSymbol() == Operator.SUBTRACTION) {
+         return new Expression(conjugate.getReal() / denominator, conjugate.getImagCoef() / denominator, 1, '-');
+       }
+       
+       return new Expression(conjugate.getReal() / denominator, conjugate.getImagCoef() / denominator, 1, '+');
+     }  
 	}
 
 	/**
@@ -225,5 +279,4 @@ public class Arithmetic {
 		return toReturn;
 		
 	}
-
 }

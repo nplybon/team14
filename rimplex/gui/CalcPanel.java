@@ -3,11 +3,13 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.border.TitledBorder;
 
 public class CalcPanel extends Panel {
@@ -44,6 +46,7 @@ public class CalcPanel extends Panel {
 	private JButton sign;
 	private JButton history;
 	private JButton squareRoot;
+	private JToggleButton outputformat;
 	
 	private JPanel displayPanel;
 	private JPanel center;
@@ -95,6 +98,7 @@ public class CalcPanel extends Panel {
 		topRow.add( three );
 		topRow.add( minus );
 		topRow.add( inverse );
+		topRow.add(  outputformat  );
 		
 		secRow.add( four );
 		secRow.add( five );
@@ -136,6 +140,52 @@ public class CalcPanel extends Panel {
 		return display.getText();
 	}
 	
+	public boolean isNumEnabled() {
+		
+		return one.isEnabled();
+	}
+	
+	public boolean isPlusEnabled() {
+		
+		return plus.isEnabled();
+	
+	}
+	
+	public boolean isDivEnabled() {
+		
+		return division.isEnabled();
+		
+	}
+	
+	public boolean isIEnabled() {
+		
+		return iButton.isEnabled();
+	}
+	
+	public boolean isEqualsEnabled() {
+		
+		return equals.isEnabled();
+	}
+	
+	public boolean isOpenParEnabled() {
+		
+		return openPar.isEnabled();
+	}
+	
+	public boolean isCloseParEnabled() {
+		
+		return closePar.isEnabled();
+	}
+	
+	public boolean isDecimalEnabled() {
+		
+		return decimal.isEnabled();
+	}
+	
+	public void updateDisplay(String s) {
+	  display.setText(display.getText() + s);
+	}
+	
 	public void setDisplay( int i ) {
 		
 		String str = display.getText();
@@ -151,12 +201,16 @@ public class CalcPanel extends Panel {
 		}
 	}
 	
+	public void resetDisplay() {
+	  display.setText("");
+	}
+	
 	@Override
 	public void setParameters() {
 		// TODO Auto-generated method stub
 		setButtonText();
 		
-		log.setEnabled( false );
+//		log.setEnabled( false );
 		sign.setEnabled( false );
 		history.setEnabled( false );
 		squareRoot.setEnabled( false );
@@ -171,7 +225,37 @@ public class CalcPanel extends Panel {
 	@Override
 	public void setListeners() {
 		// TODO Auto-generated method stub
-		display.addKeyListener( KeyboardListener.getInstance() );
+		ButtonListener button = ButtonListener.getInstance();
+		
+		display.addKeyListener( button );
+		plus.addActionListener(button);
+		minus.addActionListener(button);
+		multiply.addActionListener(button);
+		division.addActionListener(button);
+		reset.addActionListener(button);
+		cancel.addActionListener(button);
+		one.addActionListener(button);
+		two.addActionListener(button);
+		three.addActionListener(button);
+		four.addActionListener(button);
+		five.addActionListener(button);
+		six.addActionListener(button);
+		seven.addActionListener(button);
+		eight.addActionListener(button);
+		nine.addActionListener(button);
+		zero.addActionListener(button);
+		iButton.addActionListener(button);
+		openPar.addActionListener(button);
+		closePar.addActionListener(button);
+		decimal.addActionListener(button);
+		equals.addActionListener(button);
+		backspace.addActionListener(button);
+		inverse.addActionListener(button);
+		log.addActionListener(button);
+		sign.addActionListener(button);
+		history.addActionListener(button);
+		squareRoot.addActionListener(button);
+		outputformat.addActionListener(button);
 	}
 
 	@Override
@@ -212,6 +296,7 @@ public class CalcPanel extends Panel {
 		sign = new JButton();
 		history = new JButton();
 		squareRoot = new JButton();
+		outputformat = new JToggleButton();
 	}
 
 	private void setButtonText() {
@@ -242,6 +327,8 @@ public class CalcPanel extends Panel {
 		sign.setText( "+/-" );
 		history.setText( ">" );
 		squareRoot.setText( "sqr" );
+		outputformat.setText("frac");
+
 	}
 
 	public static CalcPanel getInstance() {
