@@ -149,19 +149,20 @@ public class Arithmetic {
     return new Expression(realpart, imagpart, 1, '+');
   }
   
-  /**
-   * Returns the result of an exponent operation.
-   * 
-   * @param exp the expression
-   * @param power the power of the exponent
-   * @return the updated expression
-   * @throws InvalidExpressionException if expression operands are invalid
-   * @throws OverflowException
-   */
-  public static Expression exponent(Expression exp) throws InvalidExpressionException, OverflowException {
-    
-    Expression result = exp;
-    System.out.println(result);
+  
+	/**
+	 * Returns the result of an exponent operation.
+	 * 
+	 * @param exp the expression
+	 * @param power the power of the exponent
+	 * @return the updated expression
+	 * @throws InvalidExpressionException if expression operands are invalid
+	 * @throws OverflowException
+	 */
+	public static Expression exponent(Expression exp) throws InvalidExpressionException, OverflowException {
+	  
+	  Expression result = exp;
+	  System.out.println(result);
 
     for ( int i = 1; i < Math.abs(exp.getSymbol().getExpPower()); i++ ) {
        result = multiplication(result, exp);
@@ -174,21 +175,20 @@ public class Arithmetic {
     
     return result;
   }
-  
-  
-  /**
-   * Returns the inverse of the given expression
-   * @param e the expression to be inversed
-   * @return inverse of the given expression
-   * @throws InvalidExpressionException 
-   * @throws OverflowException 
-   */
-  public static Expression inverse(Expression e) throws InvalidExpressionException, OverflowException {
-     if (e.getReal() == 0.0 && e.getImagCoef() == 0.0) {
-       throw new InvalidExpressionException("ERROR: ZERO DOES NOT HAVE AN INVERSE");
-     }
+	
+	/**
+	 * Returns the inverse of the given expression
+	 * @param e the expression to be inversed
+	 * @return inverse of the given expression
+	 * @throws InvalidExpressionException 
+	 * @throws OverflowException 
+	 */
+	public static Expression inverse(Expression e) throws InvalidExpressionException, OverflowException {
+	   if (e.getReal() == 0.0 && e.getImagCoef() == 0.0) {
+	     throw new InvalidExpressionException("ERROR: ZERO DOES NOT HAVE AN INVERSE");
+	   }
      double imag = e.getImagCoef();
-     Expression conjugate = conjugate(e);
+	   Expression conjugate = conjugate(e);
      double denominator = Math.sqrt(Math.pow(e.getReal(), 2) + Math.pow(imag, 2));
      denominator = Math.pow(denominator, 2);
      
@@ -228,48 +228,48 @@ public class Arithmetic {
 
     return toReturn;
   }
-  
-  public static Expression naturalLog(Expression exp1) throws InvalidExpressionException {
-    
-    // error checking
-    if (exp1.getReal() == 0) {
-      throw new InvalidExpressionException("ERROR: CANNOT DIVIDE BY ZERO (in logarithm)");
-    } if (exp1.getReal() < 0) {
-      throw new InvalidExpressionException("ERROR: NATURAL LOG UNDIFINED FOR A < 0");
-    }
-    
-    Expression toReturn;
-    double a = exp1.getReal();
-    double b = exp1.getImagCoef();
-    double a2 = a * a;
-    double b2 = b * b;
-    boolean isMinus;
-    
-    // if operand is real
-    if (b == 0) {
-      return new Expression(Math.log(a), 0.0, 1, '+');
-    }
-    
-    
-    // change expression to a + bi format
-    if (exp1.getSymbol() == Operator.SUBTRACTION) {
-      isMinus = true;
-    } else {
-      isMinus = false;
-    }
-    
-    
-    double real = Math.log((a2) + (b2)) / 2;
-    double imag = Math.atan(b/a);
-    
-    // set right sign
-    if (!isMinus) {
-      toReturn = new Expression(real, imag, 1, '+');
-    } else {
-      toReturn = new Expression(real, imag, 1, '-');
-    }
-    
-    return toReturn;
-    
-  }
+	
+	public static Expression naturalLog(Expression exp1) throws InvalidExpressionException {
+		
+		// error checking
+		if (exp1.getReal() == 0) {
+			throw new InvalidExpressionException("ERROR: CANNOT DIVIDE BY ZERO (in logarithm)");
+		} if (exp1.getReal() < 0) {
+			throw new InvalidExpressionException("ERROR: NATURAL LOG UNDIFINED FOR A < 0");
+		}
+		
+		Expression toReturn;
+		double a = exp1.getReal();
+		double b = exp1.getImagCoef();
+		double a2 = a * a;
+		double b2 = b * b;
+		boolean isMinus;
+		
+		// if operand is real
+		if (b == 0) {
+			return new Expression(Math.log(a), 0.0, 1, '+');
+		}
+		
+		
+		// change expression to a + bi format
+		if (exp1.getSymbol() == Operator.SUBTRACTION) {
+			isMinus = true;
+		} else {
+			isMinus = false;
+		}
+		
+		
+		double real = Math.log((a2) + (b2)) / 2;
+		double imag = Math.atan(b/a);
+		
+		// set right sign
+		if (!isMinus) {
+			toReturn = new Expression(real, imag, 1, '+');
+		} else {
+			toReturn = new Expression(real, imag, 1, '-');
+		}
+		
+		return toReturn;
+		
+	}
 }

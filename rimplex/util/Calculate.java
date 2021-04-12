@@ -88,6 +88,8 @@ public class Calculate {
       expressions[order[i] + 1] = result;
     }
 
+    result.simplify();
+    
     return result;
 
   }

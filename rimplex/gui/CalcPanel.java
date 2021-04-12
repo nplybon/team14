@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.border.TitledBorder;
 
 public class CalcPanel extends Panel {
@@ -45,6 +46,7 @@ public class CalcPanel extends Panel {
 	private JButton sign;
 	private JButton history;
 	private JButton squareRoot;
+	private JToggleButton outputformat;
 	
 	private JPanel displayPanel;
 	private JPanel center;
@@ -96,6 +98,7 @@ public class CalcPanel extends Panel {
 		topRow.add( three );
 		topRow.add( minus );
 		topRow.add( inverse );
+		topRow.add(  outputformat  );
 		
 		secRow.add( four );
 		secRow.add( five );
@@ -252,6 +255,7 @@ public class CalcPanel extends Panel {
 		sign.addActionListener(button);
 		history.addActionListener(button);
 		squareRoot.addActionListener(button);
+		outputformat.addActionListener(button);
 	}
 
 	@Override
@@ -292,6 +296,7 @@ public class CalcPanel extends Panel {
 		sign = new JButton();
 		history = new JButton();
 		squareRoot = new JButton();
+		outputformat = new JToggleButton();
 	}
 
 	private void setButtonText() {
@@ -322,6 +327,8 @@ public class CalcPanel extends Panel {
 		sign.setText( "+/-" );
 		history.setText( ">" );
 		squareRoot.setText( "sqr" );
+		outputformat.setText("frac");
+
 	}
 
 	public static CalcPanel getInstance() {

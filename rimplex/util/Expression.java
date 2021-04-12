@@ -61,7 +61,7 @@ public class Expression {
     op = op.fromSymbol(symbol);
     realNumber = true;
     imagNumber = true;
-    //simplify();
+    setAdditionEquation();
   }
 
   /**
@@ -123,38 +123,27 @@ public class Expression {
   public Operator getSymbol() {
 	  return this.op;
   }
+  
+  public void setAdditionEquation() {
+    if (op.equals(Operator.SUBTRACTION)) {
+      op = op.fromSymbol('+');
+      imagCoef *= -1;
+    }
+  }
 
   /**
-   * Simplifies Addition, Subtraction, Multiplication Expressions, Division
-   * Expressions only check for divide by zero currently.
+   * Simplifies.
    * 
    * @throws InvalidExpressionException
    */
-  private void simplify() throws InvalidExpressionException {
-    switch (op) {
-      case ADDITION:
-        if (imagCoef < 0) {
-          op = op.fromSymbol('-');
-          imagCoef *= -1;
-        }
-        break;
-      case SUBTRACTION:
-        if (imagCoef < 0) {
-          op = op.fromSymbol('+');
-          imagCoef *= -1;
-        }
-        break;
-      case MULTIPLICATION:
-        imagCoef *= real;
-        real = 0.0;
-        op = op.fromSymbol('+');
-        simplify();
-        break;
-      case DIVISION:
-        if (imagCoef == 0.0) {
-          throw new InvalidExpressionException("Cannot Divide by Zero");
-        }
-        break;
+  public void simplify() throws InvalidExpressionException {
+    if (op.equals(Operator.ADDITION) && imagCoef < 0) {
+      op = op.fromSymbol('-');
+      imagCoef *= -1;
+    }
+    if (op.equals(Operator.SUBTRACTION) && imagCoef >= 0) {
+      op = op.fromSymbol('+');
+      imagCoef *= -1;
     }
   }
 
