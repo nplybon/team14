@@ -161,14 +161,12 @@ public class Arithmetic {
 	public static Expression exponent(Expression exp) throws InvalidExpressionException, OverflowException {
 	  
 	  Expression result = exp;
-	  System.out.println(result);
 
-	  for ( int i = 1; i < Math.abs(exp.getSymbol().getExpPower()); i++ ) {
+	  for ( int i = 1; i < Math.abs(exp.getExpPower()); i++ ) {
 	     result = multiplication(result, exp);
-	     System.out.println(result);
 	  }
 	  
-	  if (exp.getSymbol().getExpPower() < 0) {
+	  if (exp.getExpPower() < 0) {
 	    result = division(new Expression(1.0), result);
 	  }
 	  

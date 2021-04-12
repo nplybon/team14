@@ -10,10 +10,13 @@ public class Expression {
 
   private Double real = null;
   private Double imagCoef = null;
+  private int imagPower = 0;
   private ImaginaryNumber i = ImaginaryNumber.ONE;
   private Operator op = Operator.ADDITION;
+  private int expPower = 0;
   private boolean realNumber = false;
   private boolean imagNumber = false;
+  private boolean hasExponent = false;
 
   /**
    * Constructor with only real number.
@@ -24,6 +27,7 @@ public class Expression {
   {
     this.real = real;
     imagCoef = 0.0;
+    imagPower = 1;
     i = i.fromPower(1);
     op = op.fromSymbol('+');
     realNumber = true;
@@ -39,6 +43,7 @@ public class Expression {
   {
     real = 0.0;
     this.imagCoef = imagCoef;
+    this.imagPower = imagPower;
     i = i.fromPower(imagPower);
     op = op.fromSymbol('+');
     imagNumber = true;
@@ -57,6 +62,7 @@ public class Expression {
       throws InvalidExpressionException {
     this.real = real;
     this.imagCoef = imagCoef;
+    this.imagPower = imagPower;
     i = i.fromPower(imagPower);
     op = op.fromSymbol(symbol);
     realNumber = true;
@@ -124,6 +130,19 @@ public class Expression {
 	  return this.op;
   }
   
+  public void setExpPower(int power) {
+    expPower = power;
+    hasExponent = true;
+  }
+  
+  public int getExpPower() {
+    return expPower;
+  }
+  
+  public boolean hasExponent() {
+    return hasExponent;
+  }
+  
   public void setAdditionEquation() {
     if (op.equals(Operator.SUBTRACTION)) {
       op = op.fromSymbol('+');
@@ -141,7 +160,7 @@ public class Expression {
       op = op.fromSymbol('-');
       imagCoef *= -1;
     }
-    if (op.equals(Operator.SUBTRACTION) && imagCoef >= 0) {
+    if (op.equals(Operator.SUBTRACTION) && imagCoef < 0) {
       op = op.fromSymbol('+');
       imagCoef *= -1;
     }
