@@ -32,13 +32,13 @@ class CalculateTest
      Expression exp1 = new Expression(5.5, 9.0, 1, '-');
      exp1.getSymbol().setExpPower(2);
      Expression exp2 = new Expression(0.5, 1.2, 1, '+');
-     exp2.getSymbol().setExpPower(3);
+     exp2.getSymbol().setExpPower(2);
      Expression[] exps = {exp1, exp2};
-     Operator[] ops = {Operator.MULTIPLICATION};
+     Operator[] ops = {Operator.ADDITION};
      Calculate calc = new Calculate(exps, ops);
      Expression result = calc.calculateExpression();
-     assertEquals(result.getReal(), -249.33475, 0.001);
-     assertEquals(result.getImagCoef(), -486.387, 0.001);
+     assertEquals(result.getReal(), -47.86, 0.001);
+     assertEquals(result.getImagCoef(), 99.0, 0.001);
   }
   /*
   @Test

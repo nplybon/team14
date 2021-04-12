@@ -36,7 +36,7 @@ class ExponentTest {
     exp.getSymbol().setExpPower(2);
     Expression result = Arithmetic.exponent(exp);
     assertEquals(result.getReal(), -120.95, 0.1);
-    assertEquals(result.getImagCoef(), 192.72, 0.1);
+    assertEquals(result.getImagCoef(), -192.72, 0.1);
     assertEquals(result.getImaginary().getPower(), 1);
     
   }
@@ -45,20 +45,12 @@ class ExponentTest {
   void testExponent3() throws InvalidExpressionException, OverflowException {
     
     Expression exp1 = new Expression(5.5, 9.0, 1, '-');
-    Expression exp2 = new Expression(5.5, 9.0, 1, '-');
-    Expression result = Arithmetic.multiplication(exp1, exp2);
-    assertEquals(result.getReal(), -50.75, 0.1);
-    assertEquals(result.getImagCoef(), -99.0, 0.1);
-    assertEquals(result.getImaginary().getPower(), 1);
-    
-    /*
-    Expression exp1 = new Expression(5.5, 9.0, 1, '-');
     exp1.getSymbol().setExpPower(2);
     Expression result = Arithmetic.exponent(exp1);
     assertEquals(result.getReal(), -50.75, 0.1);
     assertEquals(result.getImagCoef(), -99.0, 0.1);
     assertEquals(result.getImaginary().getPower(), 1);
-    */
+    
   }
   
   @Test
@@ -79,7 +71,7 @@ class ExponentTest {
     exp.getSymbol().setExpPower(10);
     Expression result = Arithmetic.exponent(exp);
     assertEquals(result.getReal(), -202948434174.17, 0.1);
-    assertEquals(result.getImagCoef(), -575046172764.38, 0.1);
+    assertEquals(result.getImagCoef(), 575046172764.38, 0.1);
     assertEquals(result.getImaginary().getPower(), 1);
   }
   
@@ -112,7 +104,7 @@ class ExponentTest {
     exp.getSymbol().setExpPower(-1);
     Expression result = Arithmetic.exponent(exp);
     assertEquals(result.getReal(), 0.08, 0.001);
-    assertEquals(result.getImagCoef(), -0.04, 0.001);
+    assertEquals(result.getImagCoef(), 0.04, 0.001);
     assertEquals(result.getImaginary().getPower(), 1);
   }
 

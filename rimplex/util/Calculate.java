@@ -78,6 +78,7 @@ public class Calculate {
       if (expressions[i].getSymbol().getExpPower() != 0) {
         result = calculate(expressions[i], Operator.EXPONENT, null);
         expressions[i] = result;
+        expressions[i].getSymbol().setExpPower(0);
       }
     }
     
@@ -88,6 +89,8 @@ public class Calculate {
       expressions[order[i] + 1] = result;
     }
 
+    result.simplify();
+    
     return result;
 
   }
