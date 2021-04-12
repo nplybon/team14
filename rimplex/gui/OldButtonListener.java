@@ -15,270 +15,237 @@ import util.Expression;
 import util.InvalidExpressionException;
 import util.Operator;
 import util.OverflowException;
+
 /**
  * Handles button events and such.
  * 
  * @author Colton Shovlin
  * @version sprint1 CS345
  */
-public class OldButtonListener implements ActionListener, WindowListener {
+public class OldButtonListener implements ActionListener, WindowListener
+{
 
   private static OldButtonListener listener;
-  
+
   private ArrayList<Operator> ops = new ArrayList<Operator>();
-  
+
   private Expression answer;
   private Expression exp1;
   private Expression exp2;
-  
+
   /**
    * Singleton constructor.
    */
-  private OldButtonListener() {
-  
+  private OldButtonListener()
+  {
+
   }
-  
+
   /**
    * handles button events.
    * 
-   * @param e JButton
+   * @param e
+   *          JButton
    */
   @Override
-  public void actionPerformed(ActionEvent e) {
+  public void actionPerformed(ActionEvent e)
+  {
     // TODO Auto-generated method stub
-    JButton button = (JButton)e.getSource();
+    JButton button = (JButton) e.getSource();
     OldCalcPanel calc = OldCalcPanel.getInstance();
     String str = calc.getInput();
-      TextFieldListener field = TextFieldListener.getInstance();
-      
-    switch ( button.getText() ) {
-    case "+":
-      runOperation( Operator.ADDITION, str );
-      break;
-    case "-":
-      runOperation( Operator.SUBTRACTION, str );
-      break;
-    case "x":
-      runOperation( Operator.MULTIPLICATION, str );
-      break;
-    case "/":
-      runOperation( Operator.DIVISION, str );
-      break;
-    case "ans":
-      if ( calc.getDisplay().indexOf( '=' ) != -1 ) {
-        calc.setDisplay( "" );
-        String[] options = new String[] { "+", "-", "x", "/" };
-        int response;
-        exp1 = answer;
-        do {
-          response = JOptionPane.showOptionDialog( null, 
-              "Please select a new operator", "Answer Button", 
-              JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-              null, options, options[ 0 ] );
-          } while ( response == -1 );
-          
-//          ops.remove( ops.get( ops.size() - 1 ) );
+    TextFieldListener field = TextFieldListener.getInstance();
+
+    switch (button.getText())
+    {
+      case "+":
+        runOperation(Operator.ADDITION, str);
+        break;
+      case "-":
+        runOperation(Operator.SUBTRACTION, str);
+        break;
+      case "x":
+        runOperation(Operator.MULTIPLICATION, str);
+        break;
+      case "/":
+        runOperation(Operator.DIVISION, str);
+        break;
+      case "ans":
+        if (calc.getDisplay().indexOf('=') != -1)
+        {
+          calc.setDisplay("");
+          String[] options = new String[] {"+", "-", "x", "/"};
+          int response;
+          exp1 = answer;
+          do
+          {
+            response = JOptionPane.showOptionDialog(null, "Please select a new operator",
+                "Answer Button", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                options, options[0]);
+          }
+          while (response == -1);
+
+          // ops.remove( ops.get( ops.size() - 1 ) );
           updateOps(response);
-      } else {
-        exp2 = answer;
-        try {
-          runEquals();
-        } catch (OverflowException | InvalidExpressionException e1) {
-          // TODO Auto-generated catch block
-          System.out.println( "Equals Exception" );
         }
-      }
-      break;
-    case "C":
-      runCancelButton();
-//      calc.enableEquals();
-//      calc.disableOperators();
-      break;
-    case "R":
-      OldCalcPanel cal = OldCalcPanel.getInstance();
-      cal.setDisplay( "" );
-      ops.clear();
-      calc.disableEquals();
-      calc.enableOperators();
-      calc.disableCancel();
-      break;
-    case "=":
-      if ( field.verifyTarget( str ) ) {
-        
-        try {
-          trySetExpression2( str );
-          runEquals();
-        } catch (OverflowException | InvalidExpressionException e1) {
-          // TODO Auto-generated catch block
-          System.out.println( "Equals Exception" );
+        else
+        {
+          exp2 = answer;
+          try
+          {
+            runEquals();
+          }
+          catch (OverflowException | InvalidExpressionException e1)
+          {
+            // TODO Auto-generated catch block
+            System.out.println("Equals Exception");
+          }
         }
-      } else {
-        
-        errorMessage();
-      }
-      calc.setInput( "" );
-      break;
-    default:
-      break;
+        break;
+      case "C":
+        runCancelButton();
+        // calc.enableEquals();
+        // calc.disableOperators();
+        break;
+      case "R":
+        OldCalcPanel cal = OldCalcPanel.getInstance();
+        cal.setDisplay("");
+        ops.clear();
+        calc.disableEquals();
+        calc.enableOperators();
+        calc.disableCancel();
+        break;
+      case "=":
+        if (field.verifyTarget(str))
+        {
+
+          try
+          {
+            trySetExpression2(str);
+            runEquals();
+          }
+          catch (OverflowException | InvalidExpressionException e1)
+          {
+            // TODO Auto-generated catch block
+            System.out.println("Equals Exception");
+          }
+        }
+        else
+        {
+
+          errorMessage();
+        }
+        calc.setInput("");
+        break;
+      default:
+        break;
     }
   }
 
-//<<<<<<< HEAD
-//	/**
-//	 * handle about Panel.
-//	 * 
-//	 * @param e JMenuItem
-//	 */
-//	private void handleMenuItemEvents( ActionEvent e ) {
-//		
-//		JMenuItem item = (JMenuItem)e.getSource();
-//		switch ( item.getText() ) {
-//		case "Help":
-//			String bad = "Input must be in the form of a+bi, bi, or a";
-//			JOptionPane.showMessageDialog( null, bad, "Help", JOptionPane.PLAIN_MESSAGE );
-//			break;
-//		default:
-//			break;
-//		}
-//	}
-//	
-//	/**
-//	 * handle button events.
-//	 * 
-//	 * @param e JButton
-//	 */
-//	private void handleButtonEvents(ActionEvent e) {
-//		JButton button = (JButton)e.getSource();
-//		CalcPanel calc = CalcPanel.getInstance();
-//		String str = calc.getInput();
-//	    TextFieldListener field = TextFieldListener.getInstance();
-//	    
-//		switch ( button.getText() ) {
-//		case "+":
-//			runOperation( Operator.ADDITION, str );
-//			break;
-//		case "-":
-//			runOperation( Operator.SUBTRACTION, str );
-//			break;
-//		case "x":
-//			runOperation( Operator.MULTIPLICATION, str );
-//			break;
-//		case "÷":
-//			runOperation( Operator.DIVISION, str );
-//			break;
-//		case "ans":
-//			break;
-//		case "C":
-//			runCancelButton();
-//			break;
-//		case "R":
-//			CalcPanel cal = CalcPanel.getInstance();
-//			cal.setDisplay( "" );
-//			ops.clear();
-//			calc.disableEquals();
-//			calc.enableOperators();
-//			calc.disableCancel();
-//			break;
-//		case "=":
-//			if ( field.verifyTarget( str ) ) {
-//				
-//				runEquals();
-//			} else {
-//				
-//				errorMessage();
-//			}
-//			calc.setInput( "" );
-//			break;
-//		default:
-//			break;
-//		}
-//	}
-//=======
   /**
    * clear operator list, add new operator, and update panel.
    * 
-   * @param response new operator 
+   * @param response
+   *          new operator
    */
-  private void updateOps(int response) {
+  private void updateOps(int response)
+  {
     ops.clear();
-    if ( response == 0 ) {
-      
-      ops.add( Operator.ADDITION );
-    } else if ( response == 1 ) {
-      
-      ops.add( Operator.SUBTRACTION );
-    } else if ( response == 2 ) {
-      
-      ops.add( Operator.MULTIPLICATION );
-    } else if ( response == 3 ) {
-      
-      ops.add( Operator.DIVISION );
+    if (response == 0)
+    {
+
+      ops.add(Operator.ADDITION);
     }
-    
+    else if (response == 1)
+    {
+
+      ops.add(Operator.SUBTRACTION);
+    }
+    else if (response == 2)
+    {
+
+      ops.add(Operator.MULTIPLICATION);
+    }
+    else if (response == 3)
+    {
+
+      ops.add(Operator.DIVISION);
+    }
+
     updatePanel();
   }
-//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 
   /**
    * transfer input text to display and clear input.
    * 
-   * @param operator +, -, x, or /
-   * @param str input text
+   * @param operator
+   *          +, -, x, or /
+   * @param str
+   *          input text
    */
-  private void runOperation( Operator operator, String str ) {
-    
+  private void runOperation(Operator operator, String str)
+  {
+
     OldCalcPanel calc = OldCalcPanel.getInstance();
     TextFieldListener field = TextFieldListener.getInstance();
-    
-    if ( field.verifyTarget( str ) ) {
+
+    if (field.verifyTarget(str))
+    {
       trySetExpression1(str);
-      ops.add( operator );
+      ops.add(operator);
       updatePanel();
-    } else {
+    }
+    else
+    {
       errorMessage();
     }
-    calc.setInput( "" );
+    calc.setInput("");
   }
-  
+
   /**
    * update panel when first expression is added.
    */
-  private void updatePanel() {
-    
+  private void updatePanel()
+  {
+
     OldCalcPanel calc = OldCalcPanel.getInstance();
-    calc.setDisplay( exp1.toString() + ops.get( ops.size() - 1 ).toString() );
+    calc.setDisplay(exp1.toString() + ops.get(ops.size() - 1).toString());
     calc.enableEquals();
     calc.disableOperators();
   }
-  
+
   /**
    * evaluate expression.
    * 
-   * @throws OverflowException WAP
-   * @throws InvalidExpressionException 
+   * @throws OverflowException
+   *           WAP
+   * @throws InvalidExpressionException
    */
-  private void runEquals() throws OverflowException, InvalidExpressionException {
-    
+  private void runEquals() throws OverflowException, InvalidExpressionException
+  {
+
     OldCalcPanel calc = OldCalcPanel.getInstance();
     ArrayList<Expression> expression = new ArrayList<Expression>();
-    expression.add( exp1 );
-    expression.add( exp2 );
-    
+    expression.add(exp1);
+    expression.add(exp2);
+
     Expression[] e = new Expression[expression.size()];
     Operator[] o = new Operator[ops.size()];
-    
-    for (int i = 0; i < expression.size(); i++) {
+
+    for (int i = 0; i < expression.size(); i++)
+    {
       e[i] = expression.get(i);
     }
-    for (int i = 0; i < ops.size(); i++) {
+    for (int i = 0; i < ops.size(); i++)
+    {
       o[i] = ops.get(i);
     }
     Calculate calculate = new Calculate(e, o);
     answer = calculate.calculateExpression();
-    calc.incrementDisplay( exp2.toString() + "=" + answer );
+    calc.incrementDisplay(exp2.toString() + "=" + answer);
     ops.clear();
     calc.disableEquals();
-//    calc.disableCancel();
+    // calc.disableCancel();
     calc.enableOperators();
     calc.enableAnswer();
   }
@@ -286,28 +253,30 @@ public class OldButtonListener implements ActionListener, WindowListener {
   /**
    * display option panel for new operator.
    */
-  private void runCancelButton() {
-    
+  private void runCancelButton()
+  {
+
     OldCalcPanel calc = OldCalcPanel.getInstance();
     int response;
-    String[] options = new String[] { "+", "-", "x", "/" };
-    
-    do {
-    response = JOptionPane.showOptionDialog( null, 
-        "Please select a new operator", "Cancel Button", 
-        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-        null, options, options[ 0 ] );
-    } while ( response == -1 );
-    
-        updateOps(response);
+    String[] options = new String[] {"+", "-", "x", "/"};
+
+    do
+    {
+      response = JOptionPane.showOptionDialog(null, "Please select a new operator", "Cancel Button",
+          JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+    }
+    while (response == -1);
+
+    updateOps(response);
   }
 
   /**
    * if user enters in wrong format.
    */
-  private void errorMessage() {
+  private void errorMessage()
+  {
     String bad = "Input must be in the form of a+bi, bi, or a";
-    JOptionPane.showMessageDialog( null, bad, "Bad Input", JOptionPane.PLAIN_MESSAGE );
+    JOptionPane.showMessageDialog(null, bad, "Bad Input", JOptionPane.PLAIN_MESSAGE);
   }
 
   /**
@@ -315,161 +284,188 @@ public class OldButtonListener implements ActionListener, WindowListener {
    * 
    * @return list of operators
    */
-  public ArrayList<Operator> getOps() {
-    
+  public ArrayList<Operator> getOps()
+  {
+
     return ops;
   }
-  
-  /**
-   * attempt to parse input field
-   * 
-   * @param str input
-   */
-  private void trySetExpression1(String str) {
-    try {
-      exp1 = setExp( str, exp1 );
-    } catch (NumberFormatException | InvalidExpressionException e1 ) {
-      // TODO Auto-generated catch block
-      System.out.println( "Verification error" );
-    }
-  }
-  
-  /**
-   * attempt to parse input field
-   * 
-   * @param str input
-   */
-  private void trySetExpression2(String str) {
-    try {
-      exp2 = setExp( str, exp2 );
-    } catch (NumberFormatException | InvalidExpressionException e1) {
-      // TODO Auto-generated catch block
-      System.out.println( "Verification error" );
-    }
-  }
-//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 
-//<<<<<<< HEAD
-//	private Expression setExp( String str, Expression expression ) throws NumberFormatException, InvalidExpressionException {
-//		
-//=======
+  /**
+   * attempt to parse input field
+   * 
+   * @param str
+   *          input
+   */
+  private void trySetExpression1(String str)
+  {
+    try
+    {
+      exp1 = setExp(str, exp1);
+    }
+    catch (NumberFormatException | InvalidExpressionException e1)
+    {
+      // TODO Auto-generated catch block
+      System.out.println("Verification error");
+    }
+  }
+
+  /**
+   * attempt to parse input field
+   * 
+   * @param str
+   *          input
+   */
+  private void trySetExpression2(String str)
+  {
+    try
+    {
+      exp2 = setExp(str, exp2);
+    }
+    catch (NumberFormatException | InvalidExpressionException e1)
+    {
+      // TODO Auto-generated catch block
+      System.out.println("Verification error");
+    }
+  }
+
   /**
    * Set input field to expression object.
    * 
-   * @param str input
-   * @param exp expression
+   * @param str
+   *          input
+   * @param exp
+   *          expression
    * @return parsed expression
-   * @throws NumberFormatException WAP
-   * @throws InvalidExpressionException WAP
+   * @throws NumberFormatException
+   *           WAP
+   * @throws InvalidExpressionException
+   *           WAP
    */
-  private Expression setExp( String str, Expression exp ) throws NumberFormatException, 
-  InvalidExpressionException {
-    
-//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
-        int l = str.length();
+  private Expression setExp(String str, Expression exp)
+      throws NumberFormatException, InvalidExpressionException
+  {
+
+    int l = str.length();
 
     int i;
     Expression expression = exp;
-    
-    if ( str.indexOf( "+" ) != -1 ) {
-      
-      i = str.indexOf( '+' );
-      String real = str.substring( 0, i );
-      String img = str.substring( i + 1, l - 1 );
-      expression = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
-          1, str.charAt( i ) );
-      
-    } else if ( str.indexOf( "-" ) != -1 ) {
-      
-      i = str.indexOf( '-' );
-      String real = str.substring( 0, i );
-      String img = str.substring( i + 1, l - 1 );
-      expression = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
-          1, str.charAt( i ) );
-      
-    } else if ( str.charAt( str.length() - 1 ) == 'i' ) {
-      
-      String sub = str.substring( 0, str.length() - 1 );
-      expression = new Expression( 0.0, Double.parseDouble( sub ), 1, '+' );
-      
-    } else {
-      
-      expression = new Expression( Double.parseDouble( str ), 0.0, 1, '+' );
+
+    if (str.indexOf("+") != -1)
+    {
+
+      i = str.indexOf('+');
+      String real = str.substring(0, i);
+      String img = str.substring(i + 1, l - 1);
+      expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
+          str.charAt(i));
+
     }
-    
+    else if (str.indexOf("-") != -1)
+    {
+
+      i = str.indexOf('-');
+      String real = str.substring(0, i);
+      String img = str.substring(i + 1, l - 1);
+      expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
+          str.charAt(i));
+
+    }
+    else if (str.charAt(str.length() - 1) == 'i')
+    {
+
+      String sub = str.substring(0, str.length() - 1);
+      expression = new Expression(0.0, Double.parseDouble(sub), 1, '+');
+
+    }
+    else
+    {
+
+      expression = new Expression(Double.parseDouble(str), 0.0, 1, '+');
+    }
+
     return expression;
   }
-//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 
   /**
    * For Expression class.
    */
-  public Expression getExpression1() {
-    
+  public Expression getExpression1()
+  {
+
     return exp1;
   }
-  
+
   /**
    * For Expression class.
    */
-  public Expression getExpression2() {
-    
+  public Expression getExpression2()
+  {
+
     return exp2;
   }
-  
+
   /**
    * Singleton method.
    * 
    * @return instance of ButtonListener
    */
-  public static OldButtonListener getInstance() {
+  public static OldButtonListener getInstance()
+  {
     // TODO Auto-generated method stub
-        if ( listener == null ) {
-            listener = new OldButtonListener();
-        }
+    if (listener == null)
+    {
+      listener = new OldButtonListener();
+    }
 
-        return listener;
+    return listener;
   }
 
   @Override
-  public void windowOpened(WindowEvent e) {
+  public void windowOpened(WindowEvent e)
+  {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
-  public void windowClosing(WindowEvent e) {
+  public void windowClosing(WindowEvent e)
+  {
     // TODO Auto-generated method stub
-	  System.exit( 0 );
+    System.exit(0);
   }
 
   @Override
-  public void windowClosed(WindowEvent e) {
+  public void windowClosed(WindowEvent e)
+  {
     // TODO Auto-generated method stub
-    System.exit( 0 );
+    System.exit(0);
   }
 
   @Override
-  public void windowIconified(WindowEvent e) {
+  public void windowIconified(WindowEvent e)
+  {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
-  public void windowDeiconified(WindowEvent e) {
+  public void windowDeiconified(WindowEvent e)
+  {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
-  public void windowActivated(WindowEvent e) {
+  public void windowActivated(WindowEvent e)
+  {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
-  public void windowDeactivated(WindowEvent e) {
+  public void windowDeactivated(WindowEvent e)
+  {
     // TODO Auto-generated method stub
-    
+
   }
 }

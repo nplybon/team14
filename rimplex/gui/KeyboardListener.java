@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class KeyboardListener implements KeyListener, ActionListener {
@@ -54,6 +55,7 @@ public class KeyboardListener implements KeyListener, ActionListener {
 		case 'i':
 		case '\u0008':
 		case '\u007F':
+		case ' ':
 			break;
 		case '=':
 			break;
@@ -95,9 +97,24 @@ public class KeyboardListener implements KeyListener, ActionListener {
 	    return listener;  
 	}
 
-@Override
-public void actionPerformed(ActionEvent e) {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
 	
-}
+		JButton button = (JButton)e.getSource();
+
+		switch ( button.getText() ) {
+		case "+":
+			break;
+		case "-":
+			break;
+		case "/":
+			break;
+		case "x":
+			break;
+		default:
+			break;
+		}
+	}
 }
