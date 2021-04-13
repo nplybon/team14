@@ -182,7 +182,7 @@ public class CalcPanel extends Panel {
 		return decimal.isEnabled();
 	}
 	
-	public void updateDisplay(String s) {
+	public void addToDisplay(String s) {
 	  display.setText(display.getText() + s);
 	}
 	

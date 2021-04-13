@@ -37,71 +37,80 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     switch (button.getText())
     {
       case "+":
-        calc.updateDisplay(" + ");
+        calc.addToDisplay(" + ");
+        
         break;
       case "-":
-        calc.updateDisplay(" - ");
+        calc.addToDisplay(" - ");
         break;
       case "/":
-        calc.updateDisplay(" / ");
+        calc.addToDisplay(" / ");
         break;
       case "x":
-        calc.updateDisplay(" x ");
+        calc.addToDisplay(" x ");
         break;
       case "R":
         calc.resetDisplay();
         break;
       case "C":
+        if (display.contains("+")) {
+          if (display.lastIndexOf("+") == display.length()) {
+            calc.setDisplay(display.length() - 1);
+          }
+          calc.setDisplay(calc.getDisplay().lastIndexOf("+"));
+        } else {
+          calc.resetDisplay();
+        }
         // create test case to check if operand has been entered already. (erase to that operand,
         // the operand, or all of the expression).
         break;
       case "1":
-        calc.updateDisplay("1");
+        calc.addToDisplay("1");
         break;
       case "2":
-        calc.updateDisplay("2");
+        calc.addToDisplay("2");
         break;
       case "3":
-        calc.updateDisplay("3");
+        calc.addToDisplay("3");
         break;
       case "4":
-        calc.updateDisplay("4");
+        calc.addToDisplay("4");
         break;
       case "5":
-        calc.updateDisplay("5");
+        calc.addToDisplay("5");
         break;
       case "6":
-        calc.updateDisplay("6");
+        calc.addToDisplay("6");
         break;
       case "7":
-        calc.updateDisplay("7");
+        calc.addToDisplay("7");
         break;
       case "8":
-        calc.updateDisplay("8");
+        calc.addToDisplay("8");
         break;
       case "9":
-        calc.updateDisplay("9");
+        calc.addToDisplay("9");
         break;
       case "0":
-        calc.updateDisplay("0");
+        calc.addToDisplay("0");
         break;
       case "i":
-        calc.updateDisplay("i");
+        calc.addToDisplay("i");
         break;
       case "(":
-        calc.updateDisplay("(");
+        calc.addToDisplay("(");
         break;
       case ")":
-        calc.updateDisplay(")");
+        calc.addToDisplay(")");
         break;
       case ".":
-        calc.updateDisplay(".");
+        calc.addToDisplay(".");
         break;
       case "=":
 
         break;
       case "<-":
-
+        calc.setDisplay(calc.getDisplay().length() - 1);
         break;
       case "inv":
 
@@ -121,7 +130,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       case "dec":
         button.setText("frac");
         calc.resetDisplay();
-        calc.updateDisplay(display);
+        calc.addToDisplay(display);
 
         
         
@@ -131,7 +140,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         
       case "frac":
         calc.resetDisplay();
-        calc.updateDisplay(display);
+        calc.addToDisplay(display);
       
 
         button.setText("dec");
