@@ -273,6 +273,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		}
 		break;
+	case '^':
+		break;
 	case '.':
 		if ( !panel.isDecimalEnabled() ) {
 			
