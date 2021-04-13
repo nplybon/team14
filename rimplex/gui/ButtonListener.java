@@ -7,8 +7,10 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 import util.Operator;
 
@@ -27,9 +29,10 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   public void actionPerformed(ActionEvent e)
   {
     // TODO Auto-generated method stub
-    JButton button = (JButton) e.getSource();
+    AbstractButton button = (AbstractButton) e.getSource();
     CalcPanel calc = CalcPanel.getInstance();
     TextFieldListener field = TextFieldListener.getInstance();
+    String display = calc.getDisplay();
 
     switch (button.getText())
     {
@@ -113,8 +116,27 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 
         break;
       case "sqr":
-
         break;
+        
+      case "dec":
+        button.setText("frac");
+        calc.resetDisplay();
+        calc.updateDisplay(display);
+
+        
+        
+        
+        
+        break;
+        
+      case "frac":
+        calc.resetDisplay();
+        calc.updateDisplay(display);
+      
+
+        button.setText("dec");
+
+
 
     }
   }

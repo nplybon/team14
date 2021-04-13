@@ -10,10 +10,13 @@ public class Expression {
 
   private Double real = null;
   private Double imagCoef = null;
+  private int imagPower = 0;
   private ImaginaryNumber i = ImaginaryNumber.ONE;
   private Operator op = Operator.ADDITION;
+  private int expPower = 0;
   private boolean realNumber = false;
   private boolean imagNumber = false;
+  private boolean hasExponent = false;
 
   /**
    * Constructor with only real number.
@@ -24,6 +27,7 @@ public class Expression {
   {
     this.real = real;
     imagCoef = 0.0;
+    imagPower = 1;
     i = i.fromPower(1);
     op = op.fromSymbol('+');
     realNumber = true;
@@ -39,6 +43,7 @@ public class Expression {
   {
     real = 0.0;
     this.imagCoef = imagCoef;
+    this.imagPower = imagPower;
     i = i.fromPower(imagPower);
     op = op.fromSymbol('+');
     imagNumber = true;
@@ -57,11 +62,12 @@ public class Expression {
       throws InvalidExpressionException {
     this.real = real;
     this.imagCoef = imagCoef;
+    this.imagPower = imagPower;
     i = i.fromPower(imagPower);
     op = op.fromSymbol(symbol);
     realNumber = true;
     imagNumber = true;
-    //simplify();
+    setAdditionEquation();
   }
 
   /**
@@ -123,38 +129,40 @@ public class Expression {
   public Operator getSymbol() {
 	  return this.op;
   }
+  
+  public void setExpPower(int power) {
+    expPower = power;
+    hasExponent = true;
+  }
+  
+  public int getExpPower() {
+    return expPower;
+  }
+  
+  public boolean hasExponent() {
+    return hasExponent;
+  }
+  
+  public void setAdditionEquation() {
+    if (op.equals(Operator.SUBTRACTION)) {
+      op = op.fromSymbol('+');
+      imagCoef *= -1;
+    }
+  }
 
   /**
-   * Simplifies Addition, Subtraction, Multiplication Expressions, Division
-   * Expressions only check for divide by zero currently.
+   * Simplifies.
    * 
    * @throws InvalidExpressionException
    */
-  private void simplify() throws InvalidExpressionException {
-    switch (op) {
-      case ADDITION:
-        if (imagCoef < 0) {
-          op = op.fromSymbol('-');
-          imagCoef *= -1;
-        }
-        break;
-      case SUBTRACTION:
-        if (imagCoef < 0) {
-          op = op.fromSymbol('+');
-          imagCoef *= -1;
-        }
-        break;
-      case MULTIPLICATION:
-        imagCoef *= real;
-        real = 0.0;
-        op = op.fromSymbol('+');
-        simplify();
-        break;
-      case DIVISION:
-        if (imagCoef == 0.0) {
-          throw new InvalidExpressionException("Cannot Divide by Zero");
-        }
-        break;
+  public void simplify() throws InvalidExpressionException {
+    if (op.equals(Operator.ADDITION) && imagCoef < 0) {
+      op = op.fromSymbol('-');
+      imagCoef *= -1;
+    }
+    if (op.equals(Operator.SUBTRACTION) && imagCoef < 0) {
+      op = op.fromSymbol('+');
+      imagCoef *= -1;
     }
   }
 

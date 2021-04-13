@@ -55,9 +55,6 @@ public class Calculate {
       case EXPONENT:
         result = Arithmetic.exponent(exp1);
     }
-    
-    //System.out.println(exp1 + " " + op + " " + exp2);
-    //System.out.println(result);
 
     return result;
   }
@@ -75,7 +72,7 @@ public class Calculate {
 
     //NEEDS MORE TESTING
     for (int i = 0; i < expressions.length; i++) {
-      if (expressions[i].getSymbol().getExpPower() != 0) {
+      if (expressions[i].hasExponent()) {
         result = calculate(expressions[i], Operator.EXPONENT, null);
         expressions[i] = result;
       }
@@ -88,6 +85,8 @@ public class Calculate {
       expressions[order[i] + 1] = result;
     }
 
+    result.simplify();
+    
     return result;
 
   }
