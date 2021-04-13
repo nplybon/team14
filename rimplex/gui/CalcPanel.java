@@ -355,6 +355,10 @@ public class CalcPanel extends Panel {
 	  decimal.setEnabled(false);
 	}
 	
+	/**
+	 * disables numbers and decimal points after an i is added to the input field. 
+	 * this prevents confusing formatting
+	 */
 	public void disableAllNumsI() {
     one.setEnabled(false);
     two.setEnabled(false);
@@ -384,4 +388,17 @@ public class CalcPanel extends Panel {
     decimal.setEnabled(true);
     iButton.setEnabled(true);
   }
+	
+	public void disableOperators() {
+	  plus.setEnabled(false);
+	  minus.setEnabled(false);
+	  multiply.setEnabled(false);
+	  division.setEnabled(false);
+	  inverse.setEnabled(false);
+	  iButton.setEnabled(false);
+	}
+	
+	public void enableOperators() {
+	  
+	}
 }
