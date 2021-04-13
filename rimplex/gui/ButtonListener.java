@@ -38,20 +38,24 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     switch (button.getText())
     {
       case "+":
-        calc.addToDisplay(" + ");
-        
+        calc.addToDisplay("+");
+        calc.enableAllNums();
         break;
       case "-":
-        calc.addToDisplay(" - ");
+        calc.addToDisplay("-");
+        calc.enableAllNums();
         break;
       case "/":
-        calc.addToDisplay(" / ");
+        calc.addToDisplay("/");
+        calc.enableAllNums();
         break;
       case "x":
-        calc.addToDisplay(" x ");
+        calc.addToDisplay("x");
+        calc.enableAllNums();
         break;
       case "R":
         calc.resetDisplay();
+        calc.enableAllNums();
         break;
       case "C":
         if (display.contains("+")) {
@@ -62,6 +66,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         } else {
           calc.resetDisplay();
         }
+        calc.enableAllNums();
         // create test case to check if operand has been entered already. (erase to that operand,
         // the operand, or all of the expression).
         break;
@@ -97,6 +102,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
       case "i":
         calc.addToDisplay("i");
+        calc.disableAllNumsI();
         break;
       case "(":
         calc.addToDisplay("(");
@@ -106,6 +112,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
       case ".":
         calc.addToDisplay(".");
+        calc.disableDecimal();
         break;
       case "=":
 
