@@ -31,6 +31,7 @@ public class OutputFormat
     if (answer.contains(I))
     {
       answer = answer.replaceAll(I, "");
+      answer = answer.replaceAll("[()]", "");
       containsImag = true;
     }
     String[] values = answer.split(SPACE);
@@ -50,7 +51,7 @@ public class OutputFormat
     // for complex numbers
     try
     {
-      ret = fractions.get(0) + SPACE + values[1] + SPACE + fractions.get(1) + I;
+      ret = "(" + fractions.get(0) + SPACE + values[1] + SPACE + fractions.get(1) + I + ")";
     }
     catch (IndexOutOfBoundsException e)
     {
@@ -121,8 +122,9 @@ public class OutputFormat
       answer = answer.replaceAll(I, "");
       containsImag = true;
     }
-    String split = answer.replaceAll(FRAC, SPACE);
-    String[] values = split.split(SPACE);
+    answer = answer.replaceAll(FRAC, SPACE);
+    answer = answer.replaceAll("[()]", "");
+    String[] values = answer.split(SPACE);
     ArrayList<Double> decimals = new ArrayList<>();
     for (int i = 0; i < values.length; i++)
     {
@@ -137,12 +139,8 @@ public class OutputFormat
     try
     {
       // for complex numbers
-      ret = decimals.get(0) / decimals.get(1) + SPACE + values[2] + SPACE
-          + decimals.get(2) / decimals.get(3);
-      if (containsImag)
-      {
-        ret += I;
-      }
+      ret = "(" + decimals.get(0) / decimals.get(1) + SPACE + values[2] + SPACE
+          + decimals.get(2) / decimals.get(3) + I + ")";
     }
     catch (IndexOutOfBoundsException e)
     {
