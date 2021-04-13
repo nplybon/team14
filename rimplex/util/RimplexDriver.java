@@ -3,10 +3,9 @@ package util;
 import gui.CalcFrame;
 
 /**
- * A class to represent a complex number in the form "a + bi".
+ * Driver class for rimplex's complex number calculator.
  * 
  * @author team 14
- * @version rimplex v1
  */
 public class RimplexDriver
 {

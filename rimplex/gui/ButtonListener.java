@@ -11,11 +11,12 @@ import java.awt.event.WindowListener;
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+
 
 import util.Expression;
 import util.InvalidExpressionException;
 import util.Operator;
+import util.OutputFormat;
 
 public class ButtonListener implements ActionListener, WindowListener, KeyListener
 {
@@ -42,71 +43,87 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     switch (button.getText())
     {
       case "+":
-        calc.updateDisplay(" + ");
+        calc.addToDisplay("+");
+        calc.enableAllNums();
         break;
       case "-":
-        calc.updateDisplay(" - ");
+        calc.addToDisplay("-");
+        calc.enableAllNums();
         break;
       case "/":
-        calc.updateDisplay(" / ");
+        calc.addToDisplay("/");
+        calc.enableAllNums();
         break;
       case "x":
-        calc.updateDisplay(" x ");
+        calc.addToDisplay("x");
+        calc.enableAllNums();
         break;
       case "R":
         calc.resetDisplay();
+        calc.enableAllNums();
         break;
       case "C":
+        if (display.contains("+")) {
+          if (display.lastIndexOf("+") == display.length()) {
+            calc.setDisplay(display.length() - 1);
+          }
+          calc.setDisplay(calc.getDisplay().lastIndexOf("+"));
+        } else {
+          calc.resetDisplay();
+        }
+        calc.enableAllNums();
         // create test case to check if operand has been entered already. (erase to that operand,
         // the operand, or all of the expression).
         break;
       case "1":
-        calc.updateDisplay("1");
+        calc.addToDisplay("1");
         break;
       case "2":
-        calc.updateDisplay("2");
+        calc.addToDisplay("2");
         break;
       case "3":
-        calc.updateDisplay("3");
+        calc.addToDisplay("3");
         break;
       case "4":
-        calc.updateDisplay("4");
+        calc.addToDisplay("4");
         break;
       case "5":
-        calc.updateDisplay("5");
+        calc.addToDisplay("5");
         break;
       case "6":
-        calc.updateDisplay("6");
+        calc.addToDisplay("6");
         break;
       case "7":
-        calc.updateDisplay("7");
+        calc.addToDisplay("7");
         break;
       case "8":
-        calc.updateDisplay("8");
+        calc.addToDisplay("8");
         break;
       case "9":
-        calc.updateDisplay("9");
+        calc.addToDisplay("9");
         break;
       case "0":
-        calc.updateDisplay("0");
+        calc.addToDisplay("0");
         break;
       case "i":
-        calc.updateDisplay("i");
+        calc.addToDisplay("i");
+        calc.disableAllNumsI();
         break;
       case "(":
-        calc.updateDisplay("(");
+        calc.addToDisplay("(");
         break;
       case ")":
-        calc.updateDisplay(")");
+        calc.addToDisplay(")");
         break;
       case ".":
-        calc.updateDisplay(".");
+        calc.addToDisplay(".");
+        calc.disableDecimal();
         break;
       case "=":
 
         break;
       case "<-":
-
+        calc.setDisplay(calc.getDisplay().length() - 1);
         break;
       case "inv":
 
@@ -124,25 +141,14 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
         
       case "dec":
-        button.setText("frac");
+        button.setText("frac");       
         calc.resetDisplay();
-        calc.updateDisplay(display);
-
-        
-        
-        
-        
-        break;
-        
+        calc.addToDisplay(OutputFormat.toDecimal(display));
+        break;       
       case "frac":
-        calc.resetDisplay();
-        calc.updateDisplay(display);
-      
-
         button.setText("dec");
-
-
-
+        calc.resetDisplay();
+        calc.addToDisplay(OutputFormat.toFraction(display));        
     }
   }
 
@@ -212,18 +218,19 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 
   @Override
   public void keyTyped(KeyEvent e) {
-	// TODO Auto-generated method stub
-	
+  // TODO Auto-generated method stub
+  
   }
 
   @Override
   public void keyPressed(KeyEvent e) {
-	// TODO Auto-generated method stub
-	
+  // TODO Auto-generated method stub
+  
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
+//<<<<<<< HEAD
 	// TODO Auto-generated method stub
 
 	char result = (char) e.getKeyChar();
@@ -559,13 +566,21 @@ private int setExpOp( String sub ) {
 
   }
   
-	private void errorMessage() {
-		
-		CalcPanel calc = CalcPanel.getInstance();
-		String bad = "Invalid Input";
+  private void errorMessage() {
+    
+    CalcPanel calc = CalcPanel.getInstance();
+    String bad = "Invalid Input";
 
+//<<<<<<< HEAD
 		calc.setDisplay( ( calc.getDisplay().length() - 1 ) );
 		JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
 				JOptionPane.PLAIN_MESSAGE );
 	}	
+//=======
+//    calc.setDisplay( ( calc.getDisplay().length() - 1 ) );
+//    JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
+//        JOptionPane.PLAIN_MESSAGE );
+//  }
+//
+//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 }
