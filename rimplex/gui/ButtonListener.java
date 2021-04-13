@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 
 import util.Operator;
+import util.OutputFormat;
 
 public class ButtonListener implements ActionListener, WindowListener, KeyListener
 {
@@ -128,25 +129,14 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
         
       case "dec":
-        button.setText("frac");
+        button.setText("frac");       
         calc.resetDisplay();
-        calc.addToDisplay(display);
-
-        
-        
-        
-        
-        break;
-        
+        calc.addToDisplay(OutputFormat.toDecimal(display));
+        break;       
       case "frac":
-        calc.resetDisplay();
-        calc.addToDisplay(display);
-      
-
         button.setText("dec");
-
-
-
+        calc.resetDisplay();
+        calc.addToDisplay(OutputFormat.toFraction(display));        
     }
   }
 
