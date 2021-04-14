@@ -55,6 +55,8 @@ public class CalcPanel extends Panel {
 	private JPanel thirdRow;
 	private JPanel lastRow;
 	
+	private int parenC;
+	
 	private JTextField display;
 	
 	private static CalcPanel panel;
@@ -62,6 +64,7 @@ public class CalcPanel extends Panel {
 	private CalcPanel() {
 		
 		super();
+		this.parenC = 0;
 		
 	}
 	
@@ -214,6 +217,7 @@ public class CalcPanel extends Panel {
 		sign.setEnabled( false );
 		history.setEnabled( false );
 		squareRoot.setEnabled( false );
+		closePar.setEnabled(false);
 		
 		TitledBorder title;
 		title = BorderFactory.createTitledBorder( "Display" );
@@ -400,7 +404,21 @@ public class CalcPanel extends Panel {
 	  iButton.setEnabled(false);
 	}
 	
-	public void enableOperators() {
-	  
+	private void toggleCParen() {
+	  if (parenC > 0) {
+	    closePar.setEnabled(true);
+	  } else {
+	  closePar.setEnabled(false);
+	  }
 	}
+	
+	public int getParenC() {
+	  return parenC;
+	}
+	
+	public void changeParenC(int i) {
+	  parenC = parenC + i;
+	  toggleCParen();
+	}
+	
 }

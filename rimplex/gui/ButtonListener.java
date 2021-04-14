@@ -117,16 +117,20 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
       case "(":
         calc.addToDisplay("(");
+        calc.changeParenC(1);
+        //calc.toggleCParen();
         break;
       case ")":
         calc.addToDisplay(")");
+        calc.changeParenC(-1);
+        //calc.toggleCParen();
         break;
       case ".":
         calc.addToDisplay(".");
         calc.disableDecimal();
         break;
       case "=":
-        
+        runEquals();
         break;
       case "<-":
         calc.setDisplay(calc.getDisplay().length() - 1);
@@ -136,6 +140,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
       case "log":
         calc.addToDisplay("ln(");
+        calc.changeParenC(1);
         break;
       case "+/-":
 
@@ -154,7 +159,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       case "frac":
         button.setText("dec");
         calc.resetDisplay();
-        calc.addToDisplay(OutputFormat.toFraction(display));        
+        calc.addToDisplay(OutputFormat.toFraction(display));
     }
   }
 
