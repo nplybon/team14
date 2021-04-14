@@ -24,6 +24,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 {
 
   private static ButtonListener listener;
+
   
 //  private Operator op;
   private ArrayList<String> history = new ArrayList<String>();
