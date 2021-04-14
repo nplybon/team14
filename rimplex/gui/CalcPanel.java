@@ -532,8 +532,4 @@ public class CalcPanel extends Panel {
 	public void dPresentTrue() {
 	  dPresent = true;
 	}
-	
-	public void clearCond() {
-	  String s = display.getText();
-	}
 }
