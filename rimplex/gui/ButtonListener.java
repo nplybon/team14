@@ -581,8 +581,14 @@ private Expression parseImg(String img) {
 	    exp2 = new Expression( Double.parseDouble( img.substring( 0, power - 1 ) ),
 	    		Integer.parseInt( img.substring( power + 1, img.length() ) ) );
 	} else {
+		if ( img.length() > 1 ) {
 		
-		exp2 = new Expression( Double.parseDouble( img.substring( 0, img.length() - 1 ) ), 1 );
+			exp2 = new Expression( Double.parseDouble( 
+					img.substring( 0, img.length() - 1 ) ), 1 );
+		} else {
+			
+			exp2 = new Expression( 1.0, 1 );
+		}
 	}
 	
 	return exp2;
@@ -811,9 +817,7 @@ private int setExpOp( String sub ) {
 	      
 	      i = sub.indexOf( '-' );
 	      String real = sub.substring( 0, i );
-//	      System.out.println( real );
 	      String img = sub.substring( i + 1, l - 1 );
-//	      System.out.println( str.charAt( i ) );
 	      try {
 			expression = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
 			      1, sub.charAt( i ) );
@@ -822,10 +826,10 @@ private int setExpOp( String sub ) {
 			e1.printStackTrace();
 		}
 	      
-	    } else if ( sub.charAt( sub.length() - 1 ) == 'i' ) {
+    } else if ( sub.charAt( sub.length() - 1 ) == 'i' ) {
 	      
-	      String last = str.substring( 0, str.length() - 1 );
-	      try {
+	   String last = str.substring( 0, str.length() - 1 );
+	   try {
 			expression = new Expression( 0.0, Double.parseDouble( last ), 1, '+' );
 		} catch (NumberFormatException | InvalidExpressionException e1) {
 			// TODO Auto-generated catch block

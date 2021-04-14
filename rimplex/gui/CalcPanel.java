@@ -265,6 +265,7 @@ public class CalcPanel extends Panel {
 		closeHistory.setEnabled( false );
 		squareRoot.setEnabled( false );
 		closePar.setEnabled(false);
+		cancel.setEnabled( false );
 		
 		TitledBorder title;
 		title = BorderFactory.createTitledBorder( "Display" );
