@@ -624,7 +624,7 @@ private String updateOperator(String sub) {
 		
 	} else if ( sub.charAt( sub.length() - 1 ) == 'x' ) {
 		
-		operator.add( Operator.SUBTRACTION );
+		operator.add( Operator.MULTIPLICATION );
 	}
 	return sub;
 }
