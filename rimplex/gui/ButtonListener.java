@@ -50,6 +50,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     switch (button.getText())
     {
       case "+":
+    	calc.enableEquals();
         calc.addToDisplay("+");
         calc.toggleAllNumsDI(true);
         calc.enableAllNums();
@@ -57,6 +58,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.handleExponent( false );
         break;
       case "-":
+    	  calc.enableEquals();
         calc.addToDisplay("-");
         calc.toggleAllNumsDI(true);
         calc.toggleImag(true);
@@ -64,6 +66,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.handleExponent( false );
         break;
       case "/":
+    	  calc.enableEquals();
         calc.addToDisplay("/");
         calc.toggleAllNumsDI(true);
         calc.toggleImag(true);
@@ -71,6 +74,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.handleExponent( false );
         break;
       case "x":
+    	  calc.enableEquals();
         calc.addToDisplay("x");
         calc.toggleAllNumsDI(true);
         calc.toggleImag(true);
@@ -78,6 +82,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.handleExponent( false );
         break;
       case "R":
+    	  calc.enableEquals();
         calc.resetDisplay();
         calc.toggleAllNumsDI(true);
         calc.enableAllNums();
@@ -96,65 +101,76 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         // the operand, or all of the expression).
         break;
       case "1":
+    	  calc.enableEquals();
         calc.addToDisplay("1");
         calc.handleExponent( true );        
         calc.toggleOperators(true);
 
         break;
       case "2":
+    	  calc.enableEquals();
         calc.addToDisplay("2");
         calc.handleExponent( true );        
         calc.toggleOperators(true);
 
         break;
       case "3":
+    	  calc.enableEquals();
         calc.addToDisplay("3");
         calc.handleExponent( true );        
         calc.toggleOperators(true);
 
         break;
       case "4":
+    	  calc.enableEquals();
         calc.addToDisplay("4");
         calc.handleExponent( true );        
         calc.toggleOperators(true);
 
         break;
       case "5":
+    	  calc.enableEquals();
         calc.addToDisplay("5");
         calc.handleExponent( true );
         calc.toggleOperators(true);
 
         break;
       case "6":
+    	  calc.enableEquals();
         calc.addToDisplay("6");
         calc.handleExponent( true );
         calc.toggleOperators(true);
 
         break;
       case "7":
+    	  calc.enableEquals();
         calc.addToDisplay("7");
         calc.handleExponent( true );
         calc.toggleOperators(true);
 
         break;
       case "8":
+    	  calc.enableEquals();
         calc.addToDisplay("8");
         calc.handleExponent( true );
         calc.toggleOperators(true);
 
         break;
       case "9":
+    	  calc.enableEquals();
         calc.addToDisplay("9");
         calc.handleExponent( true );
         calc.toggleOperators(true);
 
         break;
       case "0":
+    	  calc.enableEquals();
         calc.addToDisplay("0");
         calc.handleExponent( true );
         calc.toggleOperators(true);
         break;
       case "i":
+    	  calc.enableEquals();
         calc.addToDisplay("i");
         calc.disableAllNumsI();
         calc.handleExponent( true );
@@ -167,12 +183,14 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.handleExponent( false );
         break;
       case ")":
+    	  calc.enableEquals();
         calc.addToDisplay(")");
         calc.changeParenC(-1);
         //calc.toggleCParen();
         calc.handleExponent( true );
         break;
       case ".":
+    	  calc.enableEquals();
         calc.addToDisplay(".");
         calc.toggleDecimal(false);
         calc.handleExponent( true );
@@ -326,6 +344,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 			
+			panel.enableEquals();
 	        panel.toggleAllNumsDI(true);
 	        panel.enableAllNums();
 			panel.handleExponent( false );
@@ -338,6 +357,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 			
+			panel.enableEquals();
 	        panel.toggleAllNumsDI(true);
 	        panel.enableAllNums();
 			panel.handleExponent( false );
@@ -358,6 +378,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 			
+			panel.enableEquals();
 			panel.toggleImag( true );
 			panel.handleExponent( true );
 		}
@@ -368,6 +389,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 		    
+			panel.enableEquals();
 			panel.disableAllNumsI();
 			panel.handleExponent( true );
 		}
@@ -407,6 +429,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 			
+			panel.enableEquals();
 	        panel.changeParenC(-1);
 	        panel.handleExponent( true );
 			panel.handleExponent( true );
@@ -430,6 +453,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 			
+			panel.enableEquals();
 	        panel.toggleDecimal(false);
 	        panel.handleExponent( true );
 			panel.handleExponent( true );
@@ -601,10 +625,13 @@ private Expression parseImg(String img) {
 	Expression exp2;
 	int power;
 	if ( img.indexOf( '^' ) != -1 ) {
-		
+	 
 	    power = img.indexOf( '^' );
+	    int thePower = Integer.parseInt( img.substring( power + 1, img.length() ) );
+	    
 	    exp2 = new Expression( Double.parseDouble( img.substring( 0, power - 1 ) ),
 	    		Integer.parseInt( img.substring( power + 1, img.length() ) ) );
+	    exp2.setExpPower( thePower );
 	} else {
 		if ( img.length() > 1 ) {
 		

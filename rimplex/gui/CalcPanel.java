@@ -259,7 +259,8 @@ public class CalcPanel extends Panel {
 		// TODO Auto-generated method stub
 		setButtonText();
 		
-//		log.setEnabled( false );
+		inverse.setEnabled( false );
+		log.setEnabled( false );
 		exponent.setEnabled( false );
 		sign.setEnabled( false );
 		closeHistory.setEnabled( false );
@@ -505,6 +506,11 @@ public class CalcPanel extends Panel {
   	  closePar.setEnabled(false);
   	  toggleEquals(true);
 	  }
+	}
+	
+	public void enableEquals() {
+	
+		equals.setEnabled( true );
 	}
 	
 	public int getParenC() {
