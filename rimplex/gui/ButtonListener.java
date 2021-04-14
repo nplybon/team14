@@ -53,23 +53,27 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.addToDisplay("+");
         calc.toggleAllNumsDI(true);
         calc.enableAllNums();
+        calc.toggleImag(true);
         calc.handleExponent( false );
         break;
       case "-":
         calc.addToDisplay("-");
         calc.toggleAllNumsDI(true);
+        calc.toggleImag(true);
         calc.enableAllNums();
         calc.handleExponent( false );
         break;
       case "/":
         calc.addToDisplay("/");
         calc.toggleAllNumsDI(true);
+        calc.toggleImag(true);
         calc.enableAllNums();
         calc.handleExponent( false );
         break;
       case "x":
         calc.addToDisplay("x");
         calc.toggleAllNumsDI(true);
+        calc.toggleImag(true);
         calc.enableAllNums();
         calc.handleExponent( false );
         break;
@@ -93,43 +97,62 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
       case "1":
         calc.addToDisplay("1");
-        calc.handleExponent( true );
+        calc.handleExponent( true );        
+        calc.toggleOperators(true);
+
         break;
       case "2":
         calc.addToDisplay("2");
-        calc.handleExponent( true );
+        calc.handleExponent( true );        
+        calc.toggleOperators(true);
+
         break;
       case "3":
         calc.addToDisplay("3");
-        calc.handleExponent( true );
+        calc.handleExponent( true );        
+        calc.toggleOperators(true);
+
         break;
       case "4":
         calc.addToDisplay("4");
-        calc.handleExponent( true );
+        calc.handleExponent( true );        
+        calc.toggleOperators(true);
+
         break;
       case "5":
         calc.addToDisplay("5");
         calc.handleExponent( true );
+        calc.toggleOperators(true);
+
         break;
       case "6":
         calc.addToDisplay("6");
         calc.handleExponent( true );
+        calc.toggleOperators(true);
+
         break;
       case "7":
         calc.addToDisplay("7");
         calc.handleExponent( true );
+        calc.toggleOperators(true);
+
         break;
       case "8":
         calc.addToDisplay("8");
         calc.handleExponent( true );
+        calc.toggleOperators(true);
+
         break;
       case "9":
         calc.addToDisplay("9");
         calc.handleExponent( true );
+        calc.toggleOperators(true);
+
         break;
       case "0":
         calc.addToDisplay("0");
         calc.handleExponent( true );
+        calc.toggleOperators(true);
         break;
       case "i":
         calc.addToDisplay("i");
@@ -139,6 +162,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       case "(":
         calc.addToDisplay("(");
         calc.changeParenC(1);
+        calc.toggleOperatorsI(false);
         //calc.toggleCParen();
         calc.handleExponent( false );
         break;

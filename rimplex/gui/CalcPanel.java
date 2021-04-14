@@ -481,6 +481,14 @@ public class CalcPanel extends Panel {
 	
 	public void toggleOperators(boolean v) {
 	  plus.setEnabled(v);
+    minus.setEnabled(v);
+    multiply.setEnabled(v);
+    division.setEnabled(v);
+    inverse.setEnabled(v);
+	}
+	
+	public void toggleOperatorsI(boolean v) {
+	  plus.setEnabled(v);
 	  minus.setEnabled(v);
 	  multiply.setEnabled(v);
 	  division.setEnabled(v);
@@ -525,11 +533,7 @@ public class CalcPanel extends Panel {
 	  dPresent = true;
 	}
 	
-	public void complexCond() {
-	  // when '(' is pressed must input number and 
-	  // operator before i can be activated
-	  toggleOperators(false);
-	  toggleDecimal(false);
-	  
+	public void clearCond() {
+	  String s = display.getText();
 	}
 }
