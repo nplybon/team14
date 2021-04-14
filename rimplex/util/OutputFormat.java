@@ -51,7 +51,7 @@ public class OutputFormat
     // for complex numbers
     try
     {
-      ret = "(" + fractions.get(0) + SPACE + values[1] + SPACE + fractions.get(1) + I + ")";
+      ret = fractions.get(0) + SPACE + values[1] + SPACE + fractions.get(1) + I + ")";
     }
     catch (IndexOutOfBoundsException e)
     {
@@ -82,7 +82,7 @@ public class OutputFormat
     int denominator = (int) Math.pow(10, length);
     int numerator = (int) (value * denominator);
     int gcd = getGCD(numerator, denominator);
-    String fraction = "" + numerator / gcd + FRAC + denominator / gcd;
+    String fraction = numerator / gcd + FRAC + denominator / gcd;
     return fraction;
   }
 
@@ -139,7 +139,7 @@ public class OutputFormat
     try
     {
       // for complex numbers
-      ret = "(" + decimals.get(0) / decimals.get(1) + SPACE + values[2] + SPACE
+      ret = decimals.get(0) / decimals.get(1) + SPACE + values[2] + SPACE
           + decimals.get(2) / decimals.get(3) + I + ")";
     }
     catch (IndexOutOfBoundsException e)
