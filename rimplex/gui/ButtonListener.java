@@ -146,7 +146,13 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 
         break;
       case ">":
-
+        HistoryFrame.getInstance().enableHistory();
+//    	  String str = null;
+//    	  for ( int i = 0; i < history.size(); i++ ) {
+//    		  
+//    		  str += "\n" + history.get( i );
+//    	  }
+//    	  JOptionPane.showMessageDialog( null, str );
         break;
       case "sqr":
         break;
@@ -159,7 +165,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       case "frac":
         button.setText("dec");
         calc.resetDisplay();
-        calc.addToDisplay(OutputFormat.toFraction(display));
+        calc.addToDisplay(OutputFormat.toFraction(display)); 
+        break;
     }
   }
 
@@ -291,9 +298,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			
 			runEquals();
 			
-			System.out.println( exp1.toString() + " " + exp2.toString() );
-			System.out.println( exp1.getExpPower() + " " + exp2.getExpPower() );
-			System.out.println( operator.get( 0 ) );
+//			System.out.println( exp1.toString() + " " + exp2.toString() );
+//			System.out.println( exp1.getExpPower() + " " + exp2.getExpPower() );
+//			System.out.println( operator.get( 0 ) );
 		} else {
 			
 			errorMessage();
@@ -369,6 +376,7 @@ private void runEquals() {
 	
 	Operator[] operators = { operator.get( 0 ) };
 	Expression[] expression = { exp1, exp2 };
+	operator.clear();
 //	expressions.add( exp1 );
 //	expressions.add( exp2 );
 	
@@ -384,6 +392,7 @@ private void runEquals() {
 	
 	panel.addToDisplay( answer.toString() );
 	history.add( panel.getDisplay() );
+	HistoryFrame.getInstance().incrementHistory( "\n" + history.get( history.size() - 1 ) ); 
 }
 
 private boolean parseExp1(boolean hasExponent, String str) {

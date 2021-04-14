@@ -54,6 +54,10 @@ public class Calculate {
         break;
       case EXPONENT:
         result = Arithmetic.exponent(exp1);
+        break;
+      case LOGARITHM:
+        result = Arithmetic.naturalLog(exp1);
+        break;
     }
 
     return result;
@@ -69,11 +73,14 @@ public class Calculate {
   public Expression calculateExpression() throws OverflowException, InvalidExpressionException {
 
     Expression result = null;
-
-    //NEEDS MORE TESTING
+    
     for (int i = 0; i < expressions.length; i++) {
       if (expressions[i].hasExponent()) {
         result = calculate(expressions[i], Operator.EXPONENT, null);
+        expressions[i] = result;
+      }
+      if (expressions[i].hasLog()) {
+        result = calculate(expressions[i], Operator.LOGARITHM, null);
         expressions[i] = result;
       }
     }

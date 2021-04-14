@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.JWindow;
 import javax.swing.border.TitledBorder;
 
 public class CalcPanel extends Panel {
@@ -44,7 +45,8 @@ public class CalcPanel extends Panel {
 	private JButton inverse;
 	private JButton log;
 	private JButton sign;
-	private JButton history;
+	private JButton openHistory;
+	private JButton closeHistory;
 	private JButton squareRoot;
 	private JToggleButton outputformat;
 	
@@ -58,6 +60,9 @@ public class CalcPanel extends Panel {
 	private int parenC;
 	
 	private JTextField display;
+//	private JTextField windowDisplay;
+//	
+//	private JWindow historyWindow;
 	
 	private static CalcPanel panel;
 	
@@ -81,8 +86,9 @@ public class CalcPanel extends Panel {
 		lastRow = new JPanel();
 		
 		display = new JTextField();
-		
-		
+//		windowDisplay = new JTextField();
+//		
+//		historyWindow = new JWindow();
 		
 	}
 
@@ -101,7 +107,6 @@ public class CalcPanel extends Panel {
 		topRow.add( three );
 		topRow.add( minus );
 		topRow.add( inverse );
-		topRow.add(  outputformat  );
 		
 		secRow.add( four );
 		secRow.add( five );
@@ -119,6 +124,9 @@ public class CalcPanel extends Panel {
 		thirdRow.add( iButton );
 		thirdRow.add( equals );
 		thirdRow.add( log );
+		thirdRow.add( openHistory );
+		thirdRow.add( closeHistory );
+		thirdRow.add(  outputformat  );
 		
 		center.add( displayPanel );
 		center.add( new JPanel() );
@@ -126,8 +134,11 @@ public class CalcPanel extends Panel {
 		center.add( secRow );
 		center.add( thirdRow );
 		
+//		historyWindow.add( windowDisplay );
+		
 		add( center, BorderLayout.CENTER );
 		add( new JPanel(), BorderLayout.NORTH );
+//		add( historyWindow );
 //		JPanel historyPanel = new JPanel();
 //		historyPanel.setLayout( new GridLayout( 3, 0 ) ); 
 //		historyPanel.add( new JPanel() );
@@ -138,6 +149,17 @@ public class CalcPanel extends Panel {
 		
 	}
 
+//	public void enableHistory() {
+//		
+//		historyWindow.setVisible( true );
+//	}
+//	
+//	public void incrementHistory( String str ) {
+//		
+//		windowDisplay.setText( windowDisplay.getText() 
+//				+ "\n" + str );
+//	}
+	
 	public String getDisplay() {
 	
 		return display.getText();
@@ -215,7 +237,7 @@ public class CalcPanel extends Panel {
 		
 //		log.setEnabled( false );
 		sign.setEnabled( false );
-		history.setEnabled( false );
+		openHistory.setEnabled( true );
 		squareRoot.setEnabled( false );
 		closePar.setEnabled(false);
 		
@@ -224,6 +246,9 @@ public class CalcPanel extends Panel {
 		
 		display.setBorder( title );
 		display.setEditable( true );
+//		windowDisplay.setEditable( false );
+//		
+//		historyWindow.setVisible( false );
 	}
 
 	@Override
@@ -259,7 +284,8 @@ public class CalcPanel extends Panel {
 		inverse.addActionListener(button);
 		log.addActionListener(button);
 		sign.addActionListener(button);
-		history.addActionListener(button);
+		closeHistory.addActionListener( button );
+		openHistory.addActionListener(button);
 		squareRoot.addActionListener(button);
 		outputformat.addActionListener(button);
 	}
@@ -271,6 +297,7 @@ public class CalcPanel extends Panel {
 		
 		displayPanel.setLayout( new GridLayout( 1,0 ) );
 		center.setLayout( new GridLayout( 5,0 ) );
+		
 	}
 
 	private void createButtons() {
@@ -300,12 +327,14 @@ public class CalcPanel extends Panel {
 		inverse = new JButton();
 		log = new JButton();
 		sign = new JButton();
-		history = new JButton();
+		closeHistory = new JButton();
+		openHistory = new JButton();
 		squareRoot = new JButton();
 		outputformat = new JToggleButton();
 	}
 
 	private void setButtonText() {
+		
 		plus.setText( "+" );
 		minus.setText( "-" );
 		division.setText( "/" );
@@ -331,7 +360,8 @@ public class CalcPanel extends Panel {
 		inverse.setText( "inv" );
 		log.setText( "log" );
 		sign.setText( "+/-" );
-		history.setText( ">" );
+		closeHistory.setText( "<" );
+		openHistory.setText( ">" );
 		squareRoot.setText( "sqr" );
 		outputformat.setText("frac");
 

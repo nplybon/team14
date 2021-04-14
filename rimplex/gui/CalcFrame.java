@@ -10,6 +10,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JWindow;
 
 public class CalcFrame extends JFrame {
 
@@ -28,6 +30,9 @@ public class CalcFrame extends JFrame {
 	private JMenuItem help;
 	
 	private JPanel current;
+	
+//	private JTextField windowDisplay;
+//	private JWindow historyWindow;
 	
 	private CalcFrame() {
 		
@@ -63,6 +68,17 @@ public class CalcFrame extends JFrame {
         current.setVisible( true );
 	}
 	
+//	public void enableHistory() {
+//		
+//		historyWindow.setVisible( true );
+//	}
+//	
+//	public void incrementHistory( String str ) {
+//		
+//		windowDisplay.setText( windowDisplay.getText() 
+//				+ "\n" + str );
+//	}
+	
 	public static CalcFrame getInstance() {
 		
 		if ( frame == null ) {
@@ -80,6 +96,10 @@ public class CalcFrame extends JFrame {
 		menuBar.add( file );
 		menuBar.add( about );
 		
+//		historyWindow.add( windowDisplay );
+//		
+//		add( historyWindow );
+		
 	}
 	private void createCompnents() {
 		
@@ -91,6 +111,10 @@ public class CalcFrame extends JFrame {
 		about = new JMenu();
 		
 		current = new JPanel();
+		
+//		windowDisplay = new JTextField();
+//		
+//		historyWindow = new JWindow();
 	}
 	
     /**
@@ -118,6 +142,10 @@ public class CalcFrame extends JFrame {
     	file.setText( "File" );
     	help.setText( "Help" );
     	about.setText( "About" );
+    	
+//		windowDisplay.setEditable( false );
+//		
+//		historyWindow.setVisible( false );
     }
     
     private void setListeners() {
