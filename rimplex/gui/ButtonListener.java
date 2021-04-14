@@ -35,7 +35,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
    * handles button events.
    * 
    * @param e
-   *          JButton
+   * JButton
    */
   @Override
   public void actionPerformed(ActionEvent e)
