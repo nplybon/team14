@@ -3,8 +3,11 @@ package gui;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
+import javax.swing.SwingConstants;
 
 public class HistoryFrame extends JFrame {
 
@@ -13,13 +16,14 @@ public class HistoryFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
+//	private JLabel history;
 	private static HistoryFrame frame;
-	
+	private JTextArea area;
 	private JTextField windowDisplay;
 	private JWindow historyWindow;
 	
 	private HistoryFrame() {
-		
+
 		createComponents();
 		setLabels();
 		addComponents();
@@ -32,11 +36,14 @@ public class HistoryFrame extends JFrame {
 	
 	private void addComponents() {
 		
-		add( windowDisplay );
+		add( area );
 	}
 	
 	private void createComponents() {
 		
+//	    history =  new JLabel();
+	    area = new JTextArea();
+	    
 		windowDisplay = new JTextField();
 		
 		historyWindow = new JWindow();
@@ -44,8 +51,9 @@ public class HistoryFrame extends JFrame {
 	
 	private void setLabels() {
 		
+		area.setFocusable( false );
 		windowDisplay.setFocusable( false );
-		
+//		windowDisplay.setAlignmentY(getAlignmentY());
 		historyWindow.setVisible( false );
 	}
 	
@@ -58,8 +66,13 @@ public class HistoryFrame extends JFrame {
 	public void incrementHistory( String str ) {
 		
 //		windowDisplay.add( str, null );
-		windowDisplay.setText( windowDisplay.getText() 
-				+ "\n" + str );
+//	    history =  new JLabel( history.getText() + "/n" + str );
+//		history.setVerticalAlignment(SwingConstants.TOP);
+//		windowDisplay.setText( windowDisplay.getText() 
+//				+ "\n" + str );
+//		windowDisplay.setCaret( history );
+		area.setText( area.getText() + "\n" + str );
+		area.setAlignmentY( TOP_ALIGNMENT );
 	}
 	
 	public static HistoryFrame getInstance() {
