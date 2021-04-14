@@ -48,6 +48,7 @@ public class CalcPanel extends Panel {
 	private JButton openHistory;
 	private JButton closeHistory;
 	private JButton squareRoot;
+	private JButton exponent;
 	private JToggleButton outputformat;
 	
 	private JPanel displayPanel;
@@ -127,6 +128,7 @@ public class CalcPanel extends Panel {
 		thirdRow.add( log );
 		thirdRow.add( openHistory );
 		thirdRow.add( closeHistory );
+		thirdRow.add( exponent );
 		thirdRow.add(  outputformat  );
 		
 		center.add( displayPanel );
@@ -183,6 +185,26 @@ public class CalcPanel extends Panel {
 		
 	}
 	
+	public void handleCloseHistory( boolean bool ) {
+		
+		closeHistory.setEnabled( bool );
+	}
+	
+	public void handleOpenHistory( boolean bool ) {
+		
+		openHistory.setEnabled( bool );
+	}
+	
+	public void handleExponent( boolean bool ) {
+		
+		exponent.setEnabled( bool );
+	}
+	
+	public boolean isExponentEnabled() {
+		
+		return exponent.isEnabled();
+	}
+	
 	public boolean isIEnabled() {
 		
 		return iButton.isEnabled();
@@ -237,8 +259,9 @@ public class CalcPanel extends Panel {
 		setButtonText();
 		
 //		log.setEnabled( false );
+		exponent.setEnabled( false );
 		sign.setEnabled( false );
-		openHistory.setEnabled( true );
+		closeHistory.setEnabled( false );
 		squareRoot.setEnabled( false );
 		closePar.setEnabled(false);
 		
@@ -260,6 +283,7 @@ public class CalcPanel extends Panel {
 		display.addKeyListener( button );
 		display.setFocusTraversalKeysEnabled(false);
 		
+		exponent.addActionListener( button );
 		plus.addActionListener(button);
 		minus.addActionListener(button);
 		multiply.addActionListener(button);
@@ -303,6 +327,7 @@ public class CalcPanel extends Panel {
 
 	private void createButtons() {
 		
+		exponent = new JButton();
 		plus = new JButton();
 		minus = new JButton();
 		multiply = new JButton();
@@ -336,6 +361,7 @@ public class CalcPanel extends Panel {
 
 	private void setButtonText() {
 		
+		exponent.setText( "^" );
 		plus.setText( "+" );
 		minus.setText( "-" );
 		division.setText( "/" );
@@ -411,10 +437,31 @@ public class CalcPanel extends Panel {
     toggleImag(false);
   }
 	
+
 	public void toggleAllNumsDI(boolean v) {
     toggleAllNums(v);
     toggleDecimal(v);
     toggleImag(v);
+	}
+
+	public void disableIButton() {
+		
+		iButton.setEnabled( false );
+	}
+	
+	public void enableAllNums() {
+    one.setEnabled(true);
+    two.setEnabled(true);
+    three.setEnabled(true);
+    four.setEnabled(true);
+    five.setEnabled(true);
+    six.setEnabled(true);
+    seven.setEnabled(true);
+    eight.setEnabled(true);
+    nine.setEnabled(true);
+    zero.setEnabled(true);
+    decimal.setEnabled(true);
+    iButton.setEnabled(true);
   }
 	
 	public void toggleAllNums(boolean v) {
