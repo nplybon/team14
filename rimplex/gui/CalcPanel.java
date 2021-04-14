@@ -228,6 +228,8 @@ public class CalcPanel extends Panel {
 		ButtonListener button = ButtonListener.getInstance();
 		
 		display.addKeyListener( button );
+		display.setFocusTraversalKeysEnabled(false);
+		
 		plus.addActionListener(button);
 		minus.addActionListener(button);
 		multiply.addActionListener(button);
