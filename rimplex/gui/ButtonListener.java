@@ -222,6 +222,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     	  calc.handleExponent( false );
     	  calc.enableAllNums();
     	  calc.disableIButton();
+    	  break;
       case "dec":
         button.setText("frac");       
         calc.resetDisplay();
