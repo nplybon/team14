@@ -58,6 +58,9 @@ public class CalcPanel extends Panel {
 	private JPanel thirdRow;
 	private JPanel lastRow;
 	
+	private int parenC;
+	private boolean dPresent;
+	
 	private JTextField display;
 //	private JTextField windowDisplay;
 //	
@@ -68,7 +71,8 @@ public class CalcPanel extends Panel {
 	private CalcPanel() {
 		
 		super();
-		
+		this.parenC = 0;
+		this.dPresent = false;
 	}
 	
 	@Override
@@ -260,6 +264,7 @@ public class CalcPanel extends Panel {
 		sign.setEnabled( false );
 		closeHistory.setEnabled( false );
 		squareRoot.setEnabled( false );
+		closePar.setEnabled(false);
 		
 		TitledBorder title;
 		title = BorderFactory.createTitledBorder( "Display" );
@@ -402,18 +407,22 @@ public class CalcPanel extends Panel {
 		
 	}
 	
-	public void enableImag() {
-	  iButton.setEnabled(true);
+	public void toggleImag(boolean v) {
+	  iButton.setEnabled(v);
 	}
 	
-	public void disableImag() {
-	  iButton.setEnabled(false);
+	public void toggleEquals(boolean v) {
+	  equals.setEnabled(v);
 	}
 	
-	public void disableDecimal() {
-	  decimal.setEnabled(false);
+		public void toggleDecimal(boolean v) {
+	    decimal.setEnabled(v);
 	}
-	
+		
+	/**
+	 * disables numbers and decimal points after an i is added to the input field. 
+	 * this prevents confusing formatting
+	 */
 	public void disableAllNumsI() {
     one.setEnabled(false);
     two.setEnabled(false);
@@ -425,10 +434,17 @@ public class CalcPanel extends Panel {
     eight.setEnabled(false);
     nine.setEnabled(false);
     zero.setEnabled(false);
-    decimal.setEnabled(false);
-    iButton.setEnabled(false);
+    toggleDecimal(false);
+    toggleImag(false);
   }
 	
+
+	public void toggleAllNumsDI(boolean v) {
+    toggleAllNums(v);
+    toggleDecimal(v);
+    toggleImag(v);
+	}
+
 	public void disableIButton() {
 		
 		iButton.setEnabled( false );
@@ -448,4 +464,68 @@ public class CalcPanel extends Panel {
     decimal.setEnabled(true);
     iButton.setEnabled(true);
   }
+	
+	public void toggleAllNums(boolean v) {
+	  one.setEnabled(v);
+    two.setEnabled(v);
+    three.setEnabled(v);
+    four.setEnabled(v);
+    five.setEnabled(v);
+    six.setEnabled(v);
+    seven.setEnabled(v);
+    eight.setEnabled(v);
+    nine.setEnabled(v);
+    zero.setEnabled(v);
+    
+	}
+	
+	public void disableOperators() {
+	  plus.setEnabled(false);
+	  minus.setEnabled(false);
+	  multiply.setEnabled(false);
+	  division.setEnabled(false);
+	  inverse.setEnabled(false);
+	  toggleImag(false);
+	}
+	
+	private void toggleCParen() {
+	  if (parenC > 0) {
+	    closePar.setEnabled(true);
+	    toggleEquals(false);
+	  } else {
+  	  closePar.setEnabled(false);
+  	  toggleEquals(true);
+	  }
+	}
+	
+	public int getParenC() {
+	  return parenC;
+	}
+	
+	public void changeParenC(int i) {
+	  parenC = parenC + i;
+	  toggleCParen();
+	}
+	
+	public void complexCondition() {
+	  if (parenC > 0) {
+	    
+	  }
+	}
+	
+	public boolean getdPresent() {
+	  return dPresent;
+	}
+	
+	public void dPresentFalse() {
+	  dPresent = false;
+	}
+	
+	public void dPresentTrue() {
+	  dPresent = true;
+	}
+	
+	public void complexCond() {
+	  
+	}
 }
