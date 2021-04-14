@@ -156,7 +156,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       case "=":
         calc.addToDisplay("=");
         runEquals();
-    	  calc.handleExponent( false );
+    	calc.handleExponent( false );
         break;
       case "<-":
         char last = display.charAt(display.length() - 1);
@@ -301,6 +301,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 			
+	        panel.toggleAllNumsDI(true);
+	        panel.enableAllNums();
 			panel.handleExponent( false );
 		}
 		break;
@@ -311,6 +313,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 			
+	        panel.toggleAllNumsDI(true);
+	        panel.enableAllNums();
 			panel.handleExponent( false );
 		}
 		break;
@@ -329,6 +333,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 			
+			panel.toggleImag( true );
 			panel.handleExponent( true );
 		}
 		break;
@@ -337,7 +342,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			
 			errorMessage();
 		} else {
-			
+		    
+			panel.disableAllNumsI();
 			panel.handleExponent( true );
 		}
 		break;
@@ -365,6 +371,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 			
+	        panel.changeParenC(1);
+	        panel.handleExponent( false );
 			panel.handleExponent( false );
 		}
 		break;
@@ -374,6 +382,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 			
+	        panel.changeParenC(-1);
+	        panel.handleExponent( true );
 			panel.handleExponent( true );
 		}
 		break;
@@ -382,7 +392,10 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			 
 			errorMessage();
 		} else {
-			
+		
+//			panel.disableOperators();
+	    	panel.enableAllNums();
+	    	panel.disableIButton();
 			panel.handleExponent( false );
 		}
 		break;
@@ -392,6 +405,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			errorMessage();
 		} else {
 			
+	        panel.toggleDecimal(false);
+	        panel.handleExponent( true );
 			panel.handleExponent( true );
 		}
 		break;

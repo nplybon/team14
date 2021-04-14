@@ -130,6 +130,7 @@ public class CalcPanel extends Panel {
 		thirdRow.add( closeHistory );
 		thirdRow.add( exponent );
 		thirdRow.add(  outputformat  );
+		thirdRow.add( squareRoot );
 		
 		center.add( displayPanel );
 		center.add( new JPanel() );
