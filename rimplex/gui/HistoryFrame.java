@@ -49,10 +49,10 @@ public class HistoryFrame extends JFrame {
 		historyWindow.setVisible( false );
 	}
 	
-	public void enableHistory() {
+	public void handleHistory( boolean bool ) {
 		
 //		historyWindow.setVisible( true );
-		setVisible( true );
+		setVisible( bool );
 	}
 	
 	public void incrementHistory( String str ) {

@@ -52,22 +52,27 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       case "+":
         calc.addToDisplay("+");
         calc.enableAllNums();
+        calc.handleExponent( false );
         break;
       case "-":
         calc.addToDisplay("-");
         calc.enableAllNums();
+        calc.handleExponent( false );
         break;
       case "/":
         calc.addToDisplay("/");
         calc.enableAllNums();
+        calc.handleExponent( false );
         break;
       case "x":
         calc.addToDisplay("x");
         calc.enableAllNums();
+        calc.handleExponent( false );
         break;
       case "R":
         calc.resetDisplay();
         calc.enableAllNums();
+        calc.handleExponent( false );
         break;
       case "C":
         if (display.contains("+")) {
@@ -84,50 +89,65 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
       case "1":
         calc.addToDisplay("1");
+        calc.handleExponent( true );
         break;
       case "2":
         calc.addToDisplay("2");
+        calc.handleExponent( true );
         break;
       case "3":
         calc.addToDisplay("3");
+        calc.handleExponent( true );
         break;
       case "4":
         calc.addToDisplay("4");
+        calc.handleExponent( true );
         break;
       case "5":
         calc.addToDisplay("5");
+        calc.handleExponent( true );
         break;
       case "6":
         calc.addToDisplay("6");
+        calc.handleExponent( true );
         break;
       case "7":
         calc.addToDisplay("7");
+        calc.handleExponent( true );
         break;
       case "8":
         calc.addToDisplay("8");
+        calc.handleExponent( true );
         break;
       case "9":
         calc.addToDisplay("9");
+        calc.handleExponent( true );
         break;
       case "0":
         calc.addToDisplay("0");
+        calc.handleExponent( true );
         break;
       case "i":
         calc.addToDisplay("i");
         calc.disableAllNumsI();
+        calc.handleExponent( true );
         break;
       case "(":
         calc.addToDisplay("(");
+        calc.handleExponent( false );
         break;
       case ")":
         calc.addToDisplay(")");
+        calc.handleExponent( true );
         break;
       case ".":
         calc.addToDisplay(".");
         calc.disableDecimal();
+        calc.handleExponent( true );
         break;
       case "=":
 
+    	  calc.handleExponent( false );
         break;
       case "<-":
         calc.setDisplay(calc.getDisplay().length() - 1);
@@ -142,7 +162,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 
         break;
       case ">":
-        HistoryFrame.getInstance().enableHistory();
+        HistoryFrame.getInstance().handleHistory( true );
+        calc.handleCloseHistory( true );
+        calc.handleOpenHistory( false );
 //    	  String str = null;
 //    	  for ( int i = 0; i < history.size(); i++ ) {
 //    		  
@@ -150,9 +172,18 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 //    	  }
 //    	  JOptionPane.showMessageDialog( null, str );
         break;
+      case "<":
+    	  HistoryFrame.getInstance().handleHistory( false );
+          calc.handleCloseHistory( false );
+          calc.handleOpenHistory( true );
       case "sqr":
         break;
-        
+      case "^":
+    	  calc.addToDisplay( "^" );
+    	  calc.handleExponent( false );
+    	  calc.disableDecimal();
+    	  calc.enableAllNums();
+    	  calc.disableIButton();
       case "dec":
         button.setText("frac");       
         calc.resetDisplay();
@@ -256,6 +287,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		if ( !panel.isPlusEnabled() ) {
 			
 			errorMessage();
+		} else {
+			
+			panel.handleExponent( false );
 		}
 		break;
 	case '/':
@@ -263,6 +297,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		if ( !panel.isDivEnabled() ) {
 			
 			errorMessage();
+		} else {
+			
+			panel.handleExponent( false );
 		}
 		break;
 	case '1':
@@ -278,12 +315,18 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		if ( !panel.isNumEnabled() ) {
 			
 			errorMessage();
+		} else {
+			
+			panel.handleExponent( true );
 		}
 		break;
 	case 'i':
 		if ( !panel.isIEnabled() ) {
 			
 			errorMessage();
+		} else {
+			
+			panel.handleExponent( true );
 		}
 		break;
 	case '\u0008':
@@ -295,7 +338,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		if ( panel.isEqualsEnabled() ) {
 			
 			runEquals();
-			
+			panel.handleExponent( false );
 //			System.out.println( exp1.toString() + " " + exp2.toString() );
 //			System.out.println( exp1.getExpPower() + " " + exp2.getExpPower() );
 //			System.out.println( operator.get( 0 ) );
@@ -308,24 +351,36 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		if ( !panel.isOpenParEnabled() ) {
 			
 			errorMessage();
+		} else {
+			
+			panel.handleExponent( false );
 		}
 		break;
 	case ')':
 		if ( !panel.isCloseParEnabled() ) {
 			
 			errorMessage();
+		} else {
+			
+			panel.handleExponent( true );
 		}
 		break;
 	case '^':
 		if ( !panel.isExponentEnabled() ) {
 			 
 			errorMessage();
+		} else {
+			
+			panel.handleExponent( false );
 		}
 		break;
 	case '.':
-		if ( !panel.isCloseParEnabled() ) {
+		if ( !panel.isDecimalEnabled() ) {
 			
 			errorMessage();
+		} else {
+			
+			panel.handleExponent( true );
 		}
 		break;
 

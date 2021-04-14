@@ -181,6 +181,21 @@ public class CalcPanel extends Panel {
 		
 	}
 	
+	public void handleCloseHistory( boolean bool ) {
+		
+		closeHistory.setEnabled( bool );
+	}
+	
+	public void handleOpenHistory( boolean bool ) {
+		
+		openHistory.setEnabled( bool );
+	}
+	
+	public void handleExponent( boolean bool ) {
+		
+		exponent.setEnabled( bool );
+	}
+	
 	public boolean isExponentEnabled() {
 		
 		return exponent.isEnabled();
@@ -240,8 +255,9 @@ public class CalcPanel extends Panel {
 		setButtonText();
 		
 //		log.setEnabled( false );
+		exponent.setEnabled( false );
 		sign.setEnabled( false );
-		openHistory.setEnabled( true );
+		closeHistory.setEnabled( false );
 		squareRoot.setEnabled( false );
 		
 		TitledBorder title;
@@ -411,6 +427,11 @@ public class CalcPanel extends Panel {
     decimal.setEnabled(false);
     iButton.setEnabled(false);
   }
+	
+	public void disableIButton() {
+		
+		iButton.setEnabled( false );
+	}
 	
 	public void enableAllNums() {
     one.setEnabled(true);
