@@ -316,6 +316,10 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		}
 		break;
 	case '^':
+		if ( !panel.isExponentEnabled() ) {
+			 
+			errorMessage();
+		}
 		break;
 	case '.':
 		if ( !panel.isCloseParEnabled() ) {

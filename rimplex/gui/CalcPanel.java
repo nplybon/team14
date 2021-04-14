@@ -48,6 +48,7 @@ public class CalcPanel extends Panel {
 	private JButton openHistory;
 	private JButton closeHistory;
 	private JButton squareRoot;
+	private JButton exponent;
 	private JToggleButton outputformat;
 	
 	private JPanel displayPanel;
@@ -123,6 +124,7 @@ public class CalcPanel extends Panel {
 		thirdRow.add( log );
 		thirdRow.add( openHistory );
 		thirdRow.add( closeHistory );
+		thirdRow.add( exponent );
 		thirdRow.add(  outputformat  );
 		
 		center.add( displayPanel );
@@ -177,6 +179,11 @@ public class CalcPanel extends Panel {
 		
 		return division.isEnabled();
 		
+	}
+	
+	public boolean isExponentEnabled() {
+		
+		return exponent.isEnabled();
 	}
 	
 	public boolean isIEnabled() {
@@ -255,6 +262,7 @@ public class CalcPanel extends Panel {
 		display.addKeyListener( button );
 		display.setFocusTraversalKeysEnabled(false);
 		
+		exponent.addActionListener( button );
 		plus.addActionListener(button);
 		minus.addActionListener(button);
 		multiply.addActionListener(button);
@@ -298,6 +306,7 @@ public class CalcPanel extends Panel {
 
 	private void createButtons() {
 		
+		exponent = new JButton();
 		plus = new JButton();
 		minus = new JButton();
 		multiply = new JButton();
@@ -331,6 +340,7 @@ public class CalcPanel extends Panel {
 
 	private void setButtonText() {
 		
+		exponent.setText( "^" );
 		plus.setText( "+" );
 		minus.setText( "-" );
 		division.setText( "/" );
