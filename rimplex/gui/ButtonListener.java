@@ -50,34 +50,33 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     {
       case "+":
         calc.addToDisplay("+");
-        calc.enableAllNums();
+        calc.toggleAllNumsDI(true);
         break;
       case "-":
         calc.addToDisplay("-");
-        calc.enableAllNums();
+        calc.toggleAllNumsDI(true);
         break;
       case "/":
         calc.addToDisplay("/");
-        calc.enableAllNums();
+        calc.toggleAllNumsDI(true);
         break;
       case "x":
         calc.addToDisplay("x");
-        calc.enableAllNums();
+        calc.toggleAllNumsDI(true);
         break;
       case "R":
         calc.resetDisplay();
-        calc.enableAllNums();
+        calc.toggleAllNumsDI(true);
         break;
       case "C":
         if (display.contains("+")) {
           if (display.lastIndexOf("+") == display.length()) {
             calc.setDisplay(display.length() - 1);
           }
-          calc.setDisplay(calc.getDisplay().lastIndexOf("+"));
+          calc.setDisplay(display.lastIndexOf("+"));
         } else {
           calc.resetDisplay();
         }
-        calc.enableAllNums();
         // create test case to check if operand has been entered already. (erase to that operand,
         // the operand, or all of the expression).
         break;
@@ -127,13 +126,19 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
       case ".":
         calc.addToDisplay(".");
-        calc.disableDecimal();
+        calc.toggleDecimal(false);
         break;
       case "=":
+        calc.addToDisplay("=");
         runEquals();
         break;
       case "<-":
-        calc.setDisplay(calc.getDisplay().length() - 1);
+        char last = display.charAt(display.length() - 1);
+//        if (last == 'i') {
+//          calc.toggleAllNums(true);
+//          calc.toggleImag(true);
+//        }
+        calc.setDisplay(display.length() - 1);
         break;
       case "inv":
         calc.addToDisplay("^-1");
