@@ -478,13 +478,13 @@ public class CalcPanel extends Panel {
     
 	}
 	
-	public void disableOperators() {
-	  plus.setEnabled(false);
-	  minus.setEnabled(false);
-	  multiply.setEnabled(false);
-	  division.setEnabled(false);
-	  inverse.setEnabled(false);
-	  toggleImag(false);
+	public void toggleOperators(boolean v) {
+	  plus.setEnabled(v);
+	  minus.setEnabled(v);
+	  multiply.setEnabled(v);
+	  division.setEnabled(v);
+	  inverse.setEnabled(v);
+	  toggleImag(v);
 	}
 	
 	private void toggleCParen() {
@@ -525,6 +525,10 @@ public class CalcPanel extends Panel {
 	}
 	
 	public void complexCond() {
+	  // when '(' is pressed must input number and 
+	  // operator before i can be activated
+	  toggleOperators(false);
+	  toggleDecimal(false);
 	  
 	}
 }
