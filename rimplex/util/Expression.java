@@ -17,6 +17,7 @@ public class Expression {
   private boolean realNumber = false;
   private boolean imagNumber = false;
   private boolean hasExponent = false;
+  private boolean hasLog = false;
 
   /**
    * Constructor with only real number.
@@ -130,24 +131,79 @@ public class Expression {
 	  return this.op;
   }
   
+  /**
+   * Sets the power of the exponent.
+   * 
+   * @param power int Exponent power
+   */
   public void setExpPower(int power) {
     expPower = power;
     hasExponent = true;
   }
   
+  /**
+   * Gets the power of the expression.
+   * 
+   * @return the exponent power
+   */
   public int getExpPower() {
     return expPower;
   }
   
+  /**
+   * Gets if the expression has an exponent or not.
+   * 
+   * @return true if the expression has an exponent, false if not
+   */
   public boolean hasExponent() {
     return hasExponent;
   }
   
+  /**
+   * Sets the hasLog boolean to true.
+   */
+  public void setLog() {
+    hasLog = true;
+  }
+  
+  /**
+   * Gets if the expression is a natural log expression.
+   * 
+   * @return true is the expression is a natural log expression, false if not
+   */
+  public boolean hasLog() {
+    return hasLog;
+  }
+  
+  /**
+   * Sets a Subtraction Complex Number equation to an Addition equation.
+   */
   public void setAdditionEquation() {
     if (op.equals(Operator.SUBTRACTION)) {
       op = op.fromSymbol('+');
       imagCoef *= -1;
     }
+  }
+  
+  /**
+   * Gets the conjugate of the expression.
+   * 
+   * @return the conjugate of the expression
+   * @throws InvalidExpressionException
+   */
+  public Expression getConjugate() throws InvalidExpressionException {
+    return Arithmetic.conjugate(this);
+  }
+  
+  /**
+   * Gets the inverse of the expression.
+   * 
+   * @return the inverse of the expression
+   * @throws InvalidExpressionException
+   * @throws OverflowException
+   */
+  public Expression getInverse() throws InvalidExpressionException, OverflowException {
+    return Arithmetic.inverse(this);
   }
 
   /**
