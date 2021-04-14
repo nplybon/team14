@@ -325,7 +325,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			
 			errorMessage();
 		} else {
-			
+		
 			panel.handleExponent( true );
 		}
 		break;
