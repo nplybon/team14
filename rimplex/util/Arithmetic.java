@@ -10,145 +10,146 @@ package util;
  */
 public class Arithmetic {
 
-	/**
-	 * Performs addition operation on two Expression objects.
-	 * 
-	 * @param exp1 "left" expression
-	 * @param exp2 "right" expression
-	 * @return resultant expression; null if one, or both, expression/s 
-	 *  	is/are null
-	 * @throws OverflowException when positive overflow has occurred when performing the operation
-	 * @throws InvalidExpressionException if expression operands are invalid
-	 */
-	public static Expression addition(Expression exp1, Expression exp2)
-			throws OverflowException, InvalidExpressionException {
+  /**
+   * Performs addition operation on two Expression objects.
+   * 
+   * @param exp1 "left" expression
+   * @param exp2 "right" expression
+   * @return resultant expression; null if one, or both, expression/s 
+   *    is/are null
+   * @throws OverflowException when positive overflow has occurred when performing the operation
+   * @throws InvalidExpressionException if expression operands are invalid
+   */
+  public static Expression addition(Expression exp1, Expression exp2)
+      throws OverflowException, InvalidExpressionException {
 
-		// null argument checking
-		if (exp1 == null || exp2 == null) {
-			return null;
-		}
+    // null argument checking
+    if (exp1 == null || exp2 == null) {
+      return null;
+    }
 
-		// overflow checking (positive)
-		if (exp1.getReal() + exp2.getReal() > Double.MAX_VALUE) {
-			throw new OverflowException("Overflow");
-		}
+    // overflow checking (positive)
+    if (exp1.getReal() + exp2.getReal() > Double.MAX_VALUE) {
+      throw new OverflowException("Overflow");
+    }
 
-		if (exp1.getImagCoef() + exp2.getImagCoef() > Double.MAX_VALUE) {
-			throw new OverflowException("Overflow");
-		}
+    if (exp1.getImagCoef() + exp2.getImagCoef() > Double.MAX_VALUE) {
+      throw new OverflowException("Overflow");
+    }
 
-		// local variables
-		double exp1NewCoef = 0;
-		double exp2NewCoef = 0;
-		double realResult = exp1.getReal() + exp2.getReal();
-		double coefResult;
+    // local variables
+    double exp1NewCoef = 0;
+    double exp2NewCoef = 0;
+    double realResult = exp1.getReal() + exp2.getReal();
+    double coefResult;
 
-		if (exp1.getSymbol() == Operator.SUBTRACTION && exp2.getSymbol() != Operator.SUBTRACTION) {
-			exp1NewCoef = exp1.getImagCoef() * -1;
-			exp2NewCoef = exp2.getImagCoef();
-		} else if (exp1.getSymbol() != Operator.SUBTRACTION && exp2.getSymbol() == Operator.SUBTRACTION) {
-			exp1NewCoef = exp1.getImagCoef() * -1;
-			exp2NewCoef = exp2.getImagCoef();
-		} else {
-			exp1NewCoef = exp1.getImagCoef();
-			exp2NewCoef = exp2.getImagCoef();
-		}
+    if (exp1.getSymbol() == Operator.SUBTRACTION && exp2.getSymbol() != Operator.SUBTRACTION) {
+      exp1NewCoef = exp1.getImagCoef() * -1;
+      exp2NewCoef = exp2.getImagCoef();
+    } else if (exp1.getSymbol() != Operator.SUBTRACTION && exp2.getSymbol() == Operator.SUBTRACTION) {
+      exp1NewCoef = exp1.getImagCoef() * -1;
+      exp2NewCoef = exp2.getImagCoef();
+    } else {
+      exp1NewCoef = exp1.getImagCoef();
+      exp2NewCoef = exp2.getImagCoef();
+    }
 
-		coefResult = exp1NewCoef + exp2NewCoef;
+    coefResult = exp1NewCoef + exp2NewCoef;
 
-		// return resultant expression
-		return new Expression(realResult, coefResult, 1, '+');
-	}
+    // return resultant expression
+    return new Expression(realResult, coefResult, 1, '+');
+  }
 
-	/**
-	 * Performs multiplication operation on two Expression objects.
-	 * 
-	 * @param exp1 "left" expression
-	 * @param exp2 "right" expression
-	 * @return resultant expression; null if one, or both, expression/s is/are null
-	 * @throws OverflowException          when positive overflow has occurred when
-	 *                                    performing the operation
-	 * @throws InvalidExpressionException if expression operands are invalid
-	 */
-	public static Expression multiplication(Expression exp1, Expression exp2)
-			throws OverflowException, InvalidExpressionException {
+  /**
+   * Performs multiplication operation on two Expression objects.
+   * 
+   * @param exp1 "left" expression
+   * @param exp2 "right" expression
+   * @return resultant expression; null if one, or both, expression/s is/are null
+   * @throws OverflowException          when positive overflow has occurred when
+   *                                    performing the operation
+   * @throws InvalidExpressionException if expression operands are invalid
+   */
+  public static Expression multiplication(Expression exp1, Expression exp2)
+      throws OverflowException, InvalidExpressionException {
 
-		// null argument checking
-		if (exp1 == null || exp2 == null) {
-			return null;
-		}
+    // null argument checking
+    if (exp1 == null || exp2 == null) {
+      return null;
+    }
 
-		// overflow checking (positive)
-		if (exp1.getReal() * exp2.getReal() > Double.MAX_VALUE) {
-			throw new OverflowException("Overflow");
-		}
+    // overflow checking (positive)
+    if (exp1.getReal() * exp2.getReal() > Double.MAX_VALUE) {
+      throw new OverflowException("Overflow");
+    }
 
-		if (exp1.getImagCoef() * exp2.getImagCoef() > Double.MAX_VALUE) {
-			throw new OverflowException("Overflow");
-		}
+    if (exp1.getImagCoef() * exp2.getImagCoef() > Double.MAX_VALUE) {
+      throw new OverflowException("Overflow");
+    }
 
-		Expression mid1;
-		Expression mid2;
+    Expression mid1;
+    Expression mid2;
 
-		double mid1Real = exp1.getReal() * exp2.getReal();
-		double mid1Coef = exp1.getReal() * exp2.getImagCoef();
-		mid1 = new Expression(mid1Real, mid1Coef, 1, '+');
+    double mid1Real = exp1.getReal() * exp2.getReal();
+    double mid1Coef = exp1.getReal() * exp2.getImagCoef();
+    mid1 = new Expression(mid1Real, mid1Coef, 1, '+');
 
-		double mid2Coef = exp2.getReal() * exp1.getImagCoef();
-		double mid2Real = -1 * (exp1.getImagCoef() * exp2.getImagCoef());
-		mid2 = new Expression(mid2Real, mid2Coef, 1, '+');
+    double mid2Coef = exp2.getReal() * exp1.getImagCoef();
+    double mid2Real = -1 * (exp1.getImagCoef() * exp2.getImagCoef());
+    mid2 = new Expression(mid2Real, mid2Coef, 1, '+');
 
-		return addition(mid1, mid2);
-	}
+    return addition(mid1, mid2);
+  }
 
-	/**
-	 * Returns the difference of two expressions.
-	 * 
-	 * @param exp1 the first expression
-	 * @param exp2 the second expression
-	 * @return the difference
-	 * @throws InvalidExpressionException if expression operands are invalid
-	 */
-	public static Expression subtraction(Expression exp1, Expression exp2)
-			throws OverflowException, InvalidExpressionException {
-		// (a - c) + (b - d)
-		if (exp1.getReal().equals(exp2.getReal()) && exp1.getImagCoef().equals(exp2.getImagCoef())
-				&& exp1.getSymbol().equals(exp2.getSymbol())) {
-			return new Expression(0.0, 0.0, 1, '+');
-		}
+  /**
+   * Returns the difference of two expressions.
+   * 
+   * @param exp1 the first expression
+   * @param exp2 the second expression
+   * @return the difference
+   * @throws InvalidExpressionException if expression operands are invalid
+   */
+  public static Expression subtraction(Expression exp1, Expression exp2)
+      throws OverflowException, InvalidExpressionException {
+    // (a - c) + (b - d)
+    if (exp1.getReal().equals(exp2.getReal()) && exp1.getImagCoef().equals(exp2.getImagCoef())
+        && exp1.getSymbol().equals(exp2.getSymbol())) {
+      return new Expression(0.0, 0.0, 1, '+');
+    }
 
-		if (exp2.getSymbol() == Operator.SUBTRACTION) {
-			exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef(), 1, '+');
-		} else {
-			exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef() * -1, 1, '+');
-		}
+    if (exp2.getSymbol() == Operator.SUBTRACTION) {
+      exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef(), 1, '+');
+    } else {
+      exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef() * -1, 1, '+');
+    }
 
-		return addition(exp1, exp2);
-	}
+    return addition(exp1, exp2);
+  }
 
-	/**
-	 * Returns the quotients of two expressions.
-	 * 
-	 * @param exp1 the first expression
-	 * @param exp2 the second expression
-	 * @return the quotient
-	 * @throws InvalidExpressionException if denominator is 0
-	 */
-	public static Expression division(Expression exp1, Expression exp2)throws OverflowException, InvalidExpressionException {
-	  //real part = ac + bd / c^2 + d^2
-	  //imag part = bc - ad / c^2 + d^2
-	  double firstPart = exp1.getReal() * exp2.getReal() + exp1.getImagCoef() * exp2.getImagCoef();
-	  double secondPart = exp1.getImagCoef() * exp2.getReal() - exp1.getReal() * exp2.getImagCoef();
-	  double squaredPart = Math.pow(exp2.getReal(), 2) + Math.pow(exp2.getImagCoef(), 2);
-	  double realpart  = firstPart / squaredPart;
-	  double imagpart  = secondPart/ squaredPart;
-	  
-	  if (Double.isNaN(realpart) && Double.isNaN(imagpart)) {
-	    throw new InvalidExpressionException("ERROR: CANNOT DIVIDE BY ZERO");
-	  }
+  /**
+   * Returns the quotients of two expressions.
+   * 
+   * @param exp1 the first expression
+   * @param exp2 the second expression
+   * @return the quotient
+   * @throws InvalidExpressionException if denominator is 0
+   */
+  public static Expression division(Expression exp1, Expression exp2)throws OverflowException, InvalidExpressionException {
+    //real part = ac + bd / c^2 + d^2
+    //imag part = bc - ad / c^2 + d^2
+    double firstPart = exp1.getReal() * exp2.getReal() + exp1.getImagCoef() * exp2.getImagCoef();
+    double secondPart = exp1.getImagCoef() * exp2.getReal() - exp1.getReal() * exp2.getImagCoef();
+    double squaredPart = Math.pow(exp2.getReal(), 2) + Math.pow(exp2.getImagCoef(), 2);
+    double realpart  = firstPart / squaredPart;
+    double imagpart  = secondPart/ squaredPart;
+    
+    if (Double.isNaN(realpart) && Double.isNaN(imagpart)) {
+      throw new InvalidExpressionException("ERROR: CANNOT DIVIDE BY ZERO");
+    }
     return new Expression(realpart, imagpart, 1, '+');
   }
-	
+  
+  
 	/**
 	 * Returns the result of an exponent operation.
 	 * 
@@ -161,21 +162,18 @@ public class Arithmetic {
 	public static Expression exponent(Expression exp) throws InvalidExpressionException, OverflowException {
 	  
 	  Expression result = exp;
-	  System.out.println(result);
 
-	  for ( int i = 1; i < Math.abs(exp.getSymbol().getExpPower()); i++ ) {
+	  for ( int i = 1; i < Math.abs(exp.getExpPower()); i++ ) {
 	     result = multiplication(result, exp);
-	     System.out.println(result);
 	  }
 	  
-	  if (exp.getSymbol().getExpPower() < 0) {
+	  if (exp.getExpPower() < 0) {
 	    result = division(new Expression(1.0), result);
 	  }
 	  
 	  return result;
 	}
-	
-	
+		
 	/**
 	 * Returns the inverse of the given expression
 	 * @param e the expression to be inversed
@@ -201,33 +199,33 @@ public class Arithmetic {
        
        return new Expression(conjugate.getReal() / denominator, conjugate.getImagCoef() / denominator, 1, '+');
      }  
-	}
+  }
 
-	/**
-	 * Returns the conjugate of the given Expression
-	 * 
-	 * @param exp1 the given Expression
-	 * @return the expressions conjugate
-	 * @throws InvalidExpressionException if expression operands are invalid
-	 */
-	public static Expression conjugate(Expression exp1) throws InvalidExpressionException {
+  /**
+   * Returns the conjugate of the given Expression
+   * 
+   * @param exp1 the given Expression
+   * @return the expressions conjugate
+   * @throws InvalidExpressionException if expression operands are invalid
+   */
+  public static Expression conjugate(Expression exp1) throws InvalidExpressionException {
 
-		Expression toReturn;
+    Expression toReturn;
 
-		if (exp1.getSymbol() == Operator.ADDITION && exp1.getImagCoef() < 0.0) {
-			toReturn = new Expression(exp1.getReal(), -1 * exp1.getImagCoef(), 1, '+');
-		} else if (exp1.getSymbol() == Operator.ADDITION && exp1.getImagCoef() >= 0.0) {
-			toReturn = new Expression(exp1.getReal(), exp1.getImagCoef(), 1, '-');
-		} else if (exp1.getSymbol() == Operator.SUBTRACTION && exp1.getImagCoef() < 0.0) {
-			toReturn = new Expression(exp1.getReal(), -1 * exp1.getImagCoef(), 1, '-');
-		} else if (exp1.getSymbol() == Operator.SUBTRACTION && exp1.getImagCoef() >= 0.0) {
-			toReturn = new Expression(exp1.getReal(), exp1.getImagCoef(), 1, '+');
-		} else {
-			toReturn = null;
-		}
+    if (exp1.getSymbol() == Operator.ADDITION && exp1.getImagCoef() < 0.0) {
+      toReturn = new Expression(exp1.getReal(), -1 * exp1.getImagCoef(), 1, '+');
+    } else if (exp1.getSymbol() == Operator.ADDITION && exp1.getImagCoef() >= 0.0) {
+      toReturn = new Expression(exp1.getReal(), exp1.getImagCoef(), 1, '-');
+    } else if (exp1.getSymbol() == Operator.SUBTRACTION && exp1.getImagCoef() < 0.0) {
+      toReturn = new Expression(exp1.getReal(), -1 * exp1.getImagCoef(), 1, '-');
+    } else if (exp1.getSymbol() == Operator.SUBTRACTION && exp1.getImagCoef() >= 0.0) {
+      toReturn = new Expression(exp1.getReal(), exp1.getImagCoef(), 1, '+');
+    } else {
+      toReturn = null;
+    }
 
-		return toReturn;
-	}
+    return toReturn;
+  }
 	
 	/**
 	 * Calculates the Natural Logarithm of a single Expression
@@ -277,6 +275,7 @@ public class Arithmetic {
 		}
 		
 		return toReturn;
+		
 		
 	}
 }

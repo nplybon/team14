@@ -7,14 +7,13 @@ package util;
  */
 public enum Operator {
 
-  ADDITION('+', "sum", 0), SUBTRACTION('-', "difference", 0),
-  MULTIPLICATION('x', "product", 0), DIVISION('/', "quoitent", 0), 
-  EXPONENT('^', "exponent", 0), LOGARITHM('l', "logarithm", 0),
-  INVERSE('v', "inverse", 0), CONJUGATE('c', "conjugate", 0);
+  ADDITION('+', "sum"), SUBTRACTION('-', "difference"),
+  MULTIPLICATION('x', "product"), DIVISION('/', "quoitent"), 
+  EXPONENT('^', "exponent"), LOGARITHM('l', "logarithm"),
+  INVERSE('v', "inverse"), CONJUGATE('c', "conjugate");
 
   private char symbol;
   private String type;
-  private int expPower;
 
   /**
    * Constructor.
@@ -22,10 +21,9 @@ public enum Operator {
    * @param symbol char Operator symbol
    * @param type String name of Operator result
    */
-  private Operator(char symbol, String type, int expPower) {
+  private Operator(char symbol, String type) {
     this.symbol = symbol;
     this.type = type;
-    this.expPower = expPower;
   }
 
   /**
@@ -90,24 +88,6 @@ public enum Operator {
    */
   public String getResultType() {
     return type;
-  }
-  
-  /**
-   * Sets the Exponent.
-   * 
-   * @param power the exponent
-   */
-  public void setExpPower(int power) {
-    expPower = power;
-  }
-  
-  /**
-   * Gets the exponent.
-   * 
-   * @return the exponent.
-   */
-  public int getExpPower() {
-    return expPower;
   }
 
   /**

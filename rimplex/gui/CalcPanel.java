@@ -182,7 +182,7 @@ public class CalcPanel extends Panel {
 		return decimal.isEnabled();
 	}
 	
-	public void updateDisplay(String s) {
+	public void addToDisplay(String s) {
 	  display.setText(display.getText() + s);
 	}
 	
@@ -228,6 +228,8 @@ public class CalcPanel extends Panel {
 		ButtonListener button = ButtonListener.getInstance();
 		
 		display.addKeyListener( button );
+		display.setFocusTraversalKeysEnabled(false);
+		
 		plus.addActionListener(button);
 		minus.addActionListener(button);
 		multiply.addActionListener(button);
@@ -342,4 +344,46 @@ public class CalcPanel extends Panel {
 		return panel;
 		
 	}
+	
+	public void enableImag() {
+	  iButton.setEnabled(true);
+	}
+	
+	public void disableImag() {
+	  iButton.setEnabled(false);
+	}
+	
+	public void disableDecimal() {
+	  decimal.setEnabled(false);
+	}
+	
+	public void disableAllNumsI() {
+    one.setEnabled(false);
+    two.setEnabled(false);
+    three.setEnabled(false);
+    four.setEnabled(false);
+    five.setEnabled(false);
+    six.setEnabled(false);
+    seven.setEnabled(false);
+    eight.setEnabled(false);
+    nine.setEnabled(false);
+    zero.setEnabled(false);
+    decimal.setEnabled(false);
+    iButton.setEnabled(false);
+  }
+	
+	public void enableAllNums() {
+    one.setEnabled(true);
+    two.setEnabled(true);
+    three.setEnabled(true);
+    four.setEnabled(true);
+    five.setEnabled(true);
+    six.setEnabled(true);
+    seven.setEnabled(true);
+    eight.setEnabled(true);
+    nine.setEnabled(true);
+    zero.setEnabled(true);
+    decimal.setEnabled(true);
+    iButton.setEnabled(true);
+  }
 }
