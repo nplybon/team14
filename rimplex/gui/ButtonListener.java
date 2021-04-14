@@ -577,7 +577,7 @@ private String setStr(boolean hasExponent, int exponent, String str) {
 	if ( hasExponent ) {
 		
 		builder.delete( str.indexOf( '(' ), ( str.indexOf( ')' ) 
-				+ String.valueOf( exponent ).length() + 3 ) );
+				+ String.valueOf( exponent ).length() + 2 ) );
 		
 	} else {
 	
@@ -610,19 +610,19 @@ private String updateOperator(String sub) {
 		
 		operator.add( Operator.DIVISION );
 		sub = sub.substring( 1 );
-	} else if ( sub.charAt( sub.length() - 1  ) == '+' ) {
+	} else if ( sub.charAt( sub.length() - 1 ) == '+' ) {
 		
 		operator.add( Operator.ADDITION );
 		
-	} else if ( sub.charAt( sub.length() - 1  ) == '-' ) {
+	} else if ( sub.charAt( sub.length() - 1 ) == '-' ) {
 		
 		operator.add( Operator.SUBTRACTION );
 		
-	} else if ( sub.charAt( sub.length() - 1  ) == '/' ) {
+	} else if ( sub.charAt( sub.length() - 1 ) == '/' ) {
 		
 		operator.add( Operator.DIVISION );
 		
-	} else if ( sub.charAt( sub.length() - 1  ) == 'x' ) {
+	} else if ( sub.charAt( sub.length() - 1 ) == 'x' ) {
 		
 		operator.add( Operator.SUBTRACTION );
 	}
