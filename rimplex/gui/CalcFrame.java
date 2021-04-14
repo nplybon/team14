@@ -31,8 +31,8 @@ public class CalcFrame extends JFrame {
 	
 	private JPanel current;
 	
-	private JTextField windowDisplay;
-	private JWindow historyWindow;
+//	private JTextField windowDisplay;
+//	private JWindow historyWindow;
 	
 	private CalcFrame() {
 		
@@ -68,16 +68,16 @@ public class CalcFrame extends JFrame {
         current.setVisible( true );
 	}
 	
-	public void enableHistory() {
-		
-		historyWindow.setVisible( true );
-	}
-	
-	public void incrementHistory( String str ) {
-		
-		windowDisplay.setText( windowDisplay.getText() 
-				+ "\n" + str );
-	}
+//	public void enableHistory() {
+//		
+//		historyWindow.setVisible( true );
+//	}
+//	
+//	public void incrementHistory( String str ) {
+//		
+//		windowDisplay.setText( windowDisplay.getText() 
+//				+ "\n" + str );
+//	}
 	
 	public static CalcFrame getInstance() {
 		
@@ -112,9 +112,9 @@ public class CalcFrame extends JFrame {
 		
 		current = new JPanel();
 		
-		windowDisplay = new JTextField();
-		
-		historyWindow = new JWindow();
+//		windowDisplay = new JTextField();
+//		
+//		historyWindow = new JWindow();
 	}
 	
     /**
@@ -143,9 +143,9 @@ public class CalcFrame extends JFrame {
     	help.setText( "Help" );
     	about.setText( "About" );
     	
-		windowDisplay.setEditable( false );
-		
-		historyWindow.setVisible( false );
+//		windowDisplay.setEditable( false );
+//		
+//		historyWindow.setVisible( false );
     }
     
     private void setListeners() {

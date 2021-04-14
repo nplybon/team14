@@ -141,7 +141,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 
         break;
       case ">":
-//        CalcFrame.getInstance().enableHistory();
+        HistoryFrame.getInstance().enableHistory();
 //    	  String str = null;
 //    	  for ( int i = 0; i < history.size(); i++ ) {
 //    		  
@@ -389,7 +389,7 @@ private void runEquals() {
 	
 	panel.addToDisplay( answer.toString() );
 	history.add( panel.getDisplay() );
-	CalcFrame.getInstance().incrementHistory( history.get( history.size() - 1 ) ); 
+	HistoryFrame.getInstance().incrementHistory( "\n" + history.get( history.size() - 1 ) ); 
 }
 
 private boolean parseExp1(boolean hasExponent, String str) {
