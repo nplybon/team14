@@ -9,7 +9,7 @@ import javax.swing.JWindow;
 public class HistoryFrame extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
