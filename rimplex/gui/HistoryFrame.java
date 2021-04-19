@@ -18,11 +18,10 @@ public class HistoryFrame extends JFrame {
 
 //	private JLabel history;
 	private static HistoryFrame frame;
-	private JTextArea area;
-	private JTextField windowDisplay;
+	private static JTextArea area;
+	private static JTextField windowDisplay;
 	private JWindow historyWindow;
-	
-	private HistoryFrame() {
+	public HistoryFrame() {
 
 		createComponents();
 		setLabels();
@@ -34,12 +33,12 @@ public class HistoryFrame extends JFrame {
 		setVisible( false );
 	}
 	
-	private void addComponents() {
+	public void addComponents() {
 		
 		add( area );
 	}
 	
-	private void createComponents() {
+	public void createComponents() {
 		
 //	    history =  new JLabel();
 	    area = new JTextArea();
@@ -49,7 +48,7 @@ public class HistoryFrame extends JFrame {
 		historyWindow = new JWindow();
 	}
 	
-	private void setLabels() {
+	public void setLabels() {
 		
 		area.setFocusable( false );
 		windowDisplay.setFocusable( false );
@@ -73,6 +72,11 @@ public class HistoryFrame extends JFrame {
 //		windowDisplay.setCaret( history );
 		area.setText( area.getText() + "\n" + str );
 		area.setAlignmentY( TOP_ALIGNMENT );
+	}
+	
+	public static String getDisplay() {
+	  return area.getText();	
+	  
 	}
 	
 	public static HistoryFrame getInstance() {

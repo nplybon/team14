@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -10,7 +9,6 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.AbstractButton;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import util.Calculate;
@@ -65,7 +63,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.enableAllNums();
         calc.handleExponent( false );
         break;
-      case "/":
+      case "\u00F7":
     	  calc.enableEquals();
         calc.addToDisplay("/");
         calc.toggleAllNumsDI(true);
@@ -170,8 +168,12 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.toggleOperators(true);
         break;
       case "i":
+        
     	  calc.enableEquals();
-        calc.addToDisplay("i");
+    	  calc.addToDisplay("i");
+    	  
+    	  
+    	  
         calc.disableAllNumsI();
         calc.handleExponent( true );
         break;
@@ -200,7 +202,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         runEquals();
     	calc.handleExponent( false );
         break;
-      case "<-":
+      case "\u2190":
         char last = display.charAt(display.length() - 1);
 //        if (last == 'i') {
 //          calc.toggleAllNums(true);
@@ -249,8 +251,19 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       case "frac":
         button.setText("dec");
         calc.resetDisplay();
-        calc.addToDisplay(OutputFormat.toFraction(display)); 
+        calc.addToDisplay(OutputFormat.toFraction(display));
         break;
+      case "Print":
+        try {
+          String history = HistoryFrame.getDisplay();
+          Printer.print(history);
+        } catch (NullPointerException e1) {
+          JOptionPane j = new JOptionPane("ERROR: Nothing to print!");
+          JOptionPane.showMessageDialog(j, j.getMessage());
+
+        }
+     
+        
     }
   }
 

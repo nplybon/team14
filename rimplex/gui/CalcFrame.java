@@ -3,7 +3,9 @@ import java.awt.BorderLayout;
 
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -26,6 +28,7 @@ public class CalcFrame extends JFrame {
 	
 	private JMenu file;
 	private JMenu about;
+	private JMenuItem print;
 	
 	private JMenuItem help;
 	
@@ -92,6 +95,7 @@ public class CalcFrame extends JFrame {
 	private void addMenus() {
 		
 		about.add( help );
+		file.add(print);
 		
 		menuBar.add( file );
 		menuBar.add( about );
@@ -107,6 +111,7 @@ public class CalcFrame extends JFrame {
 		
 		file = new JMenu();
 		help = new JMenuItem();
+		print = new JMenuItem();
 		
 		about = new JMenu();
 		
@@ -142,7 +147,7 @@ public class CalcFrame extends JFrame {
     	file.setText( "File" );
     	help.setText( "Help" );
     	about.setText( "About" );
-    	
+    	print.setText("Print");
 //		windowDisplay.setEditable( false );
 //		
 //		historyWindow.setVisible( false );
@@ -152,5 +157,7 @@ public class CalcFrame extends JFrame {
     	
     	this.addWindowListener( OldButtonListener.getInstance() );
     	help.addActionListener( OldButtonListener.getInstance() );
+    	print.addActionListener(ButtonListener.getInstance());
     }
+    
 }
