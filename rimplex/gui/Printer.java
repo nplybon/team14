@@ -32,17 +32,17 @@ public class Printer
     {
     }
 
-    PrinterJob pj = PrinterJob.getPrinterJob();
-    if (pj.printDialog())
-    {
-      try
-      {
-        pj.print();
-      }
-      catch (PrinterException e)
-      {
-      }
-    }
+    //PrinterJob pj = PrinterJob.getPrinterJob();
+    //if (pj.printDialog())
+    //{
+      //try
+      //{
+        //pj.print();
+      //}
+      //catch (PrinterException e)
+      //{
+      //}
+    //}
 
   }
 
