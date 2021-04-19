@@ -1,7 +1,9 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
@@ -11,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JWindow;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 public class CalcPanel extends Panel {
@@ -367,7 +371,7 @@ public class CalcPanel extends Panel {
 		exponent.setText( "^" );
 		plus.setText( "+" );
 		minus.setText( "-" );
-		division.setText( "/" );
+		division.setText( "\u00F7" );
 		multiply.setText( "x" );
 		reset.setText( "R" );
 		cancel.setText( "C" );
@@ -386,7 +390,7 @@ public class CalcPanel extends Panel {
 		closePar.setText( ")" );
 		decimal.setText( "." );
 		equals.setText( "=" );
-		backspace.setText( "<-" );
+		backspace.setText( "\u2190" );
 		inverse.setText( "inv" );
 		log.setText( "log" );
 		sign.setText( "+/-" );
@@ -394,8 +398,35 @@ public class CalcPanel extends Panel {
 		openHistory.setText( ">" );
 		squareRoot.setText( "sqr" );
 		outputformat.setText("frac");
+		setButtonTextColor();
+		setButtonFont();
 
 	}
+	
+	private void setButtonTextColor() {
+	  Color cyan = new Color(27, 133, 135);
+	  plus.setForeground(cyan);
+	  minus.setForeground(cyan);
+	  multiply.setForeground(cyan);
+	  division.setForeground(cyan);
+	  equals.setForeground(cyan);
+	  decimal.setForeground(cyan);
+	  closePar.setForeground(cyan);
+	  openPar.setForeground(cyan);
+	  inverse.setForeground(cyan);
+	  reset.setForeground(cyan);
+	  Color yellow = new Color(135,124,27);
+	  cancel.setForeground(yellow);
+	  backspace.setForeground(yellow);
+	  sign.setForeground(yellow);
+  
+	}
+	private void setButtonFont() {
+	  Font bolditalic = new Font("bolditalic", Font.BOLD + Font.ITALIC, 12);
+	  iButton.setFont(bolditalic);
+	}
+	
+
 
 	public static CalcPanel getInstance() {
 		
