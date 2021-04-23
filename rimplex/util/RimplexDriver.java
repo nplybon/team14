@@ -10,8 +10,13 @@ import gui.CalcFrame;
 public class RimplexDriver
 {
 
-  public static void main(String[] args)
+  /**
+   * Main method to run the calculator.
+   * @param args not used
+   */
+  public static void main(final String[] args)
   {
     CalcFrame.getInstance();
   }
+
 }
