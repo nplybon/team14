@@ -107,5 +107,18 @@ class ExponentTest {
     assertEquals(result.getImagCoef(), 0.04, 0.001);
     assertEquals(result.getImaginary().getPower(), 1);
   }
+  
+  @Test
+  void testImaginaryNumber() throws InvalidExpressionException, OverflowException {
+    Expression exp1 = new Expression(0.0, 1.0, 1, '+');
+    exp1.setExpPower(2);
+    Expression exp2 = new Expression(-4.0, 0.0, 1, '+');
+    Expression[] exps = {exp1, exp2};
+    Operator[] ops = {Operator.ADDITION};
+    Calculate calc = new Calculate( exps, ops);
+    Expression result = calc.calculateExpression();
+    assertEquals(result.getReal(), -5.0, 0.001);
+    assertEquals(result.getImagCoef(), 0.0, 0.001);
+  }
 
 }

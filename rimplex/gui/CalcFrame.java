@@ -3,13 +3,17 @@ import java.awt.BorderLayout;
 
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JWindow;
 
 public class CalcFrame extends JFrame {
 
@@ -24,10 +28,14 @@ public class CalcFrame extends JFrame {
 	
 	private JMenu file;
 	private JMenu about;
+	private JMenuItem print;
 	
 	private JMenuItem help;
 	
 	private JPanel current;
+	
+//	private JTextField windowDisplay;
+//	private JWindow historyWindow;
 	
 	private CalcFrame() {
 		
@@ -63,6 +71,17 @@ public class CalcFrame extends JFrame {
         current.setVisible( true );
 	}
 	
+//	public void enableHistory() {
+//		
+//		historyWindow.setVisible( true );
+//	}
+//	
+//	public void incrementHistory( String str ) {
+//		
+//		windowDisplay.setText( windowDisplay.getText() 
+//				+ "\n" + str );
+//	}
+	
 	public static CalcFrame getInstance() {
 		
 		if ( frame == null ) {
@@ -76,9 +95,14 @@ public class CalcFrame extends JFrame {
 	private void addMenus() {
 		
 		about.add( help );
+		file.add(print);
 		
 		menuBar.add( file );
 		menuBar.add( about );
+		
+//		historyWindow.add( windowDisplay );
+//		
+//		add( historyWindow );
 		
 	}
 	private void createCompnents() {
@@ -87,10 +111,15 @@ public class CalcFrame extends JFrame {
 		
 		file = new JMenu();
 		help = new JMenuItem();
+		print = new JMenuItem();
 		
 		about = new JMenu();
 		
 		current = new JPanel();
+		
+//		windowDisplay = new JTextField();
+//		
+//		historyWindow = new JWindow();
 	}
 	
     /**
@@ -118,11 +147,17 @@ public class CalcFrame extends JFrame {
     	file.setText( "File" );
     	help.setText( "Help" );
     	about.setText( "About" );
+    	print.setText("Print");
+//		windowDisplay.setEditable( false );
+//		
+//		historyWindow.setVisible( false );
     }
     
     private void setListeners() {
     	
     	this.addWindowListener( OldButtonListener.getInstance() );
     	help.addActionListener( OldButtonListener.getInstance() );
+    	print.addActionListener(ButtonListener.getInstance());
     }
+    
 }
