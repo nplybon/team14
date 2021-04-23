@@ -221,7 +221,11 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.changeParenC(1);
         break;
       case "+/-":
-
+        if (display.isEmpty()) {
+          break;
+        } else {
+          calc.changeSign();
+        }
         break;
       case ">":
         HistoryFrame.getInstance().handleHistory(true);
