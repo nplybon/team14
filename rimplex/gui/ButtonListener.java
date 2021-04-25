@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.AbstractButton;
 import javax.swing.JOptionPane;
 
+
 import util.Calculate;
 import util.Expression;
 import util.InvalidExpressionException;
@@ -23,8 +24,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 
   private static ButtonListener listener;
 
-  
-//  private Operator op;
+  // private Operator op;
   private ArrayList<String> history = new ArrayList<String>();
   private ArrayList<Operator> operator = new ArrayList<Operator>();
   private int exponent;
@@ -36,7 +36,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
    * handles button events.
    * 
    * @param e
-   * JButton
+   *          JButton
    */
   @Override
   public void actionPerformed(ActionEvent e)
@@ -50,163 +50,163 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     switch (button.getText())
     {
       case "+":
-    	calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("+");
         calc.toggleAllNumsDI(true);
         calc.enableAllNums();
         calc.toggleImag(true);
         calc.handleExponent( false );
-        
         break;
       case "-":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("-");
         calc.toggleAllNumsDI(true);
         calc.toggleImag(true);
         calc.enableAllNums();
-        calc.handleExponent( false );
+        calc.handleExponent(false);
         break;
       case "\u00F7":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("/");
         calc.toggleAllNumsDI(true);
         calc.toggleImag(true);
         calc.enableAllNums();
-        calc.handleExponent( false );
+        calc.handleExponent(false);
         break;
       case "x":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("x");
         calc.toggleAllNumsDI(true);
         calc.toggleImag(true);
         calc.enableAllNums();
-        calc.handleExponent( false );
+        calc.handleExponent(false);
         break;
       case "R":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.resetDisplay();
         calc.toggleAllNumsDI(true);
         calc.enableAllNums();
-        calc.handleExponent( false );
+        calc.handleExponent(false);
         break;
       case "C":
         if (display.contains("+")) {
           if (display.lastIndexOf("+") == display.length()) {
             calc.subDisplay(display.length() - 1);
+
           }
           calc.subDisplay(display.lastIndexOf("+"));
         } else {
+
           calc.resetDisplay();
         }
         // create test case to check if operand has been entered already. (erase to that operand,
         // the operand, or all of the expression).
         break;
       case "1":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("1");
-        calc.handleExponent( true );        
+        calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
       case "2":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("2");
-        calc.handleExponent( true );        
+        calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
       case "3":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("3");
-        calc.handleExponent( true );        
+        calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
       case "4":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("4");
-        calc.handleExponent( true );        
+        calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
       case "5":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("5");
-        calc.handleExponent( true );
+        calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
       case "6":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("6");
-        calc.handleExponent( true );
+        calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
       case "7":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("7");
-        calc.handleExponent( true );
+        calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
       case "8":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("8");
-        calc.handleExponent( true );
+        calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
       case "9":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("9");
-        calc.handleExponent( true );
+        calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
       case "0":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay("0");
-        calc.handleExponent( true );
+        calc.handleExponent(true);
         calc.toggleOperators(true);
         break;
       case "i":
-        
-    	  calc.enableEquals();
-    	  calc.addToDisplay("i");
-    	  
-    	  
-    	  
+
+        calc.enableEquals();
+        calc.addToDisplay("i");
+
         calc.disableAllNumsI();
-        calc.handleExponent( true );
+        calc.handleExponent(true);
         break;
       case "(":
         calc.addToDisplay("(");
         calc.changeParenC(1);
         calc.toggleOperatorsI(false);
-        //calc.toggleCParen();
-        calc.handleExponent( false );
+        // calc.toggleCParen();
+        calc.handleExponent(false);
         break;
       case ")":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay(")");
         calc.changeParenC(-1);
-        //calc.toggleCParen();
-        calc.handleExponent( true );
+        // calc.toggleCParen();
+        calc.handleExponent(true);
         break;
       case ".":
-    	  calc.enableEquals();
+        calc.enableEquals();
         calc.addToDisplay(".");
         calc.toggleDecimal(false);
-        calc.handleExponent( true );
+        calc.handleExponent(true);
         break;
       case "=":
         calc.addToDisplay("=");
         runEquals();
-    	calc.handleExponent( false );
+        calc.handleExponent(false);
         break;
       case "\u2190":
         char last = display.charAt(display.length() - 1);
+
 //        if (last == 'i') {
 //          calc.toggleAllNums(true);
 //          calc.toggleImag(true);
@@ -221,52 +221,58 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.changeParenC(1);
         break;
       case "+/-":
-
+        if (display.isEmpty()) {
+          break;
+        } else {
+          calc.changeSign();
+        }
         break;
       case ">":
-        HistoryFrame.getInstance().handleHistory( true );
-        calc.handleCloseHistory( true );
-        calc.handleOpenHistory( false );
-//    	  String str = null;
-//    	  for ( int i = 0; i < history.size(); i++ ) {
-//    		  
-//    		  str += "\n" + history.get( i );
-//    	  }
-//    	  JOptionPane.showMessageDialog( null, str );
+        HistoryFrame.getInstance().handleHistory(true);
+        calc.handleCloseHistory(true);
+        calc.handleOpenHistory(false);
+        // String str = null;
+        // for ( int i = 0; i < history.size(); i++ ) {
+        //
+        // str += "\n" + history.get( i );
+        // }
+        // JOptionPane.showMessageDialog( null, str );
         break;
       case "<":
-    	  HistoryFrame.getInstance().handleHistory( false );
-          calc.handleCloseHistory( false );
-          calc.handleOpenHistory( true );
+        HistoryFrame.getInstance().handleHistory(false);
+        calc.handleCloseHistory(false);
+        calc.handleOpenHistory(true);
       case "sqr":
         break;
       case "^":
-    	  calc.addToDisplay( "^" );
-    	  calc.handleExponent( false );
-    	  calc.enableAllNums();
-    	  calc.disableIButton();
-    	  break;
+        calc.addToDisplay("^");
+        calc.handleExponent(false);
+        calc.enableAllNums();
+        calc.disableIButton();
+        break;
       case "dec":
-        button.setText("frac");       
+        button.setText("frac");
         calc.resetDisplay();
         calc.addToDisplay(OutputFormat.toDecimal(display));
-        break;       
+        break;
       case "frac":
         button.setText("dec");
         calc.resetDisplay();
         calc.addToDisplay(OutputFormat.toFraction(display));
         break;
       case "Print":
-        try {
-          String history = HistoryFrame.getDisplay();
-          Printer.print(history);
-        } catch (NullPointerException e1) {
+        try
+        {          
+          PrinterController.print(new DelegatingPrintable(HistoryFrame.getDisplay()),
+              HistoryFrame.parent());
+        }
+        catch (NullPointerException e1)
+        {
           JOptionPane j = new JOptionPane("ERROR: Nothing to print!");
           JOptionPane.showMessageDialog(j, j.getMessage());
 
         }
-     
-        
+
     }
   }
 
@@ -335,15 +341,17 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   }
 
   @Override
-  public void keyTyped(KeyEvent e) {
-  // TODO Auto-generated method stub
-  
+  public void keyTyped(KeyEvent e)
+  {
+    // TODO Auto-generated method stub
+
   }
 
   @Override
-  public void keyPressed(KeyEvent e) {
-  // TODO Auto-generated method stub
-  
+  public void keyPressed(KeyEvent e)
+  {
+    // TODO Auto-generated method stub
+
   }
 
   @Override
@@ -395,49 +403,6 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			
 			runOperator( Operator.SUBTRACTION, exponent );
 	    }
-//		if ( !panel.isPlusEnabled() ) {
-//			
-//			errorMessage();
-//		} else if ( !panel.isCloseParEnabled() ){
-//
-////			str = panel.getDisplay();
-////			panel.setDisplay( 0 );
-////			panel.addToDisplay( str.strip() + "\n" );
-//			str = panel.getDisplay();
-//			int newLine = str.indexOf( '\n' );
-//			String other = str.substring( 0, newLine );
-//			str = str.substring( newLine ).strip();
-//			TextFieldListener text = TextFieldListener.getInstance();
-//		    if (text.verifyTarget(str))
-//		    {
-//		    	Expression exp = null;
-//				try {
-//					exp = new Expression( Double.parseDouble( 
-//							str.substring( 0 , str.length() - 1) ), 0.0, 0, 
-//							str.charAt( str.length() - 1 ) );
-//				} catch (NumberFormatException | InvalidExpressionException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//		    	panel.setDisplay( other + exp.toString() + exp.getSymbol().toString() + "\n" );
-//				panel.enableEquals();
-//		        panel.toggleAllNumsDI(true);
-//		        panel.enableAllNums();
-//				panel.handleExponent( false );
-//				
-//				expression.add( exp );
-//				operator.add( exp.getSymbol() );
-//				
-//		    } else {
-//		    	
-//		        errorMessage();
-//		    }
-			
-//			panel.enableEquals();
-//	        panel.toggleAllNumsDI(true);
-//	        panel.enableAllNums();
-//			panel.handleExponent( false );
-//		}
 		break;
 	case '/':
 		if ( !panel.isDivEnabled() ) {
@@ -562,11 +527,6 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			 
 			errorMessage();
 		} else {
-		
-//			panel.disableOperators();
-//			str = panel.getDisplay().substring( panel.getDisplay().indexOf( '\n' ) );
-//			String sub = str.substring( '^' + 1 );
-//			int exponent = Integer.parseInt( sub );
 			//currently have to assume user enters another number after hitting equals
 			panel.enableEquals();
 	    	panel.enableAllNums();
@@ -587,14 +547,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		}
 		break;
 
-	default:
-//		System.out.println( "other Boobs" );
-		if ( e.getKeyCode() != KeyEvent.VK_SHIFT ) {
-		
-			errorMessage();
-		}
-    	break;
-	}
+    }
   }
 
 private void runOperator( Operator op, int exponent ) {
@@ -715,446 +668,535 @@ private void runOperator( Operator op, int exponent ) {
     return expression;
   }
   
-private void runEquals() {
 
-//	ArrayList<Expression> expressions = new ArrayList<Expression>();
-	exp1 = null;
-	exp2 = null;
-	exponent = 1;
-	CalcPanel panel = CalcPanel.getInstance();
-	boolean hasExponent = false;
-	String str = panel.getDisplay();
-	str = str.substring( 0, str.length() - 1 );
-	
-	if ( str.indexOf( '(' ) != -1 ) {
+  private void runEquals()
+  {
+    // ArrayList<Expression> expressions = new ArrayList<Expression>();
+    exp1 = null;
+    exp2 = null;
+    exponent = 1;
+    CalcPanel panel = CalcPanel.getInstance();
+    boolean hasExponent = false;
+    String str = panel.getDisplay();
+    str = str.substring(0, str.length() - 1);
 
-		hasExponent = parseExp1(hasExponent, str);
-		
-		str = setStr(hasExponent, exponent, str);
-	    
-		if ( str.charAt( 0 ) == '(' ) {
-	        
-			exponent = setExponent2(str);
-			exp2 = parseComplex( str, exponent );
+    if (str.indexOf('(') != -1)
+    {
 
-		} else {
-			if ( str.indexOf( 'i' ) != -1 ) {
-				
-				exp2 = setImgExp2(str);
-				
-			} else {
-				
-				exp2 = setRealExp2(str);
-			}
-		}
-	} else {
-		
-	    ifNoComplex(str);  
-	}
-	
-	Operator[] operators = { operator.get( 0 ) };
-	Expression[] expression = { exp1, exp2 };
-	operator.clear();
-//	expressions.add( exp1 );
-//	expressions.add( exp2 );
-	
-	
-	Calculate calc = new Calculate( expression, operators );
-	Expression answer = null;
-	try {
-		answer = calc.calculateExpression();
-	} catch (OverflowException | InvalidExpressionException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	panel.addToDisplay( answer.toString() );
-	history.add( panel.getDisplay() );
-	HistoryFrame.getInstance().incrementHistory( "\n" + history.get( history.size() - 1 ) ); 
-}
+      hasExponent = parseExp1(hasExponent, str);
 
-private boolean parseExp1(boolean hasExponent, String str) {
-	
-	//add null test Maybe
-	if ( ( str.indexOf( ')' ) + 2 ) < str.length() 
-			&& str.charAt( str.indexOf( ')' ) + 1 ) == '^' ) {
-		
-		hasExponent = true;
-		String sub = str.substring( str.indexOf( ')' ) );
-		
-		if ( sub.indexOf( '(' ) != -1 ) {
-			
-			sub = sub.substring( sub.indexOf( '^' ) );
-	        if ( sub.indexOf( '(' ) != -1 ) {
-	        	
-	        	sub = sub.substring( 0, sub.indexOf( '(' ) );
-	        	exponent = setExpOp( sub );
-	        }
-		} else {
-			
-			exponent = setExpOp( sub );
-		}
-		
-		exp1 = parseComplex(str, exponent );
-	} else {
-	
-		exp1 = parseComplex(str, exponent );
-	}
-	return hasExponent;
-}
+      str = setStr(hasExponent, exponent, str);
 
-private void ifNoComplex(String str) {
-	int l = str.length();
-	int i;
-	
-	if ( str.indexOf( '+' ) != -1 ) {
-	
-		operator.add( Operator.ADDITION );
-	    i = str.indexOf('+');
-	    String real = str.substring(0, i);
-	    String img = str.substring(i + 1, l );
-	    
-	    exp1 = parseNoncomplexExp(real); 
-	    
-	    exp2 = parseNoncomplexExp(img);
-	    
-	} else if ( str.indexOf( 'x' ) != -1 ) {
-		
-		operator.add( Operator.MULTIPLICATION );
-	    i = str.indexOf('x');
-	    String real = str.substring(0, i);
-	    String img = str.substring(i + 1, l );
-	    
-	    exp1 = parseNoncomplexExp(real); 
-	    
-	    exp2 = parseNoncomplexExp(img);
-	    
-	} else if ( str.indexOf( '/' ) != -1 ) {
-		
-		operator.add( Operator.DIVISION );
-	    i = str.indexOf('/');
-	    String real = str.substring(0, i);
-	    String img = str.substring(i + 1, l );
-	    
-	    exp1 = parseNoncomplexExp(real); 
-	    
-	    exp2 = parseNoncomplexExp(img);
-	    
-	} else if ( str.indexOf( '-' ) != -1 ) {
-		
-		operator.add( Operator.SUBTRACTION );
-	    i = str.indexOf('-');
-	    String real = str.substring(0, i);
-	    String img = str.substring(i + 1, l );
-	    
-	    exp1 = parseNoncomplexExp(real); 
-	    
-	    exp2 = parseNoncomplexExp(img);
-	    
-	}
-}
+      if (str.charAt(0) == '(')
+      {
 
-private Expression parseNoncomplexExp(String real) {
-	Expression exp1;
-	if ( real.indexOf( 'i' ) != -1 ) {
-		
-		exp1 = parseImg(real);
-	} else {
-	
-		exp1 = parseReal(real);
-	}
-	return exp1;
-}
+        exponent = setExponent2(str);
+        exp2 = parseComplex(str, exponent);
 
-private Expression parseImg(String img) {
-	Expression exp2;
-	int power;
-	if ( img.indexOf( '^' ) != -1 ) {
-	 
-	    power = img.indexOf( '^' );
-	    int thePower = Integer.parseInt( img.substring( power + 1, img.length() ) );
-	    
-	    exp2 = new Expression( Double.parseDouble( img.substring( 0, power - 1 ) ),
-	    		Integer.parseInt( img.substring( power + 1, img.length() ) ) );
-	    exp2.setExpPower( thePower );
-	} else {
-		if ( img.length() > 1 ) {
-		
-			exp2 = new Expression( Double.parseDouble( 
-					img.substring( 0, img.length() - 1 ) ), 1 );
-		} else {
-			
-			exp2 = new Expression( 1.0, 1 );
-		}
-	}
-	
-	return exp2;
-}
+      }
+      else
+      {
+        if (str.indexOf('i') != -1)
+        {
 
-private Expression parseReal(String real) {
-	Expression exp1;
-	int power;
-	if ( real.indexOf( '^' ) != -1 ) {
-		
-		power = real.indexOf( '^' );
-		exp1 = new Expression( Double.parseDouble( real.substring( 0, power ) ) );
-		exp1.setExpPower( Integer.parseInt( real.substring( power + 1, 
-				real.length() ) ) );
-	} else {
-		
-		exp1 = new Expression( Double.parseDouble( real ) );
-		exp1.setExpPower( 1 );
-	}
-	return exp1;
-}
+          exp2 = setImgExp2(str);
 
-private Expression setRealExp2(String str) {
-	Expression exp2;
-	int exponent;
-	if ( str.charAt( 0 ) == '+' 
-			|| str.charAt( 0 ) == '-'
-			|| str.charAt( 0 ) == '/'
-			|| str.charAt( 0 ) == 'x') {
-		
-		str = str.substring( 1 );
-		
-	} else if ( str.charAt( str.strip().length() - 1 ) == '+' 
-			|| str.charAt( str.strip().length() - 1 ) == '-' 
-			|| str.charAt( str.strip().length() - 1 ) == 'x' 
-			|| str.charAt( str.strip().length() - 1 ) == '/' ) {
-		
-		str = str.substring( 0, str.strip().length() - 1 );
-	}
-	if ( str.indexOf( '^' ) != -1 ) {
-		
-		exponent = setExpOp( str );
-		str = str.substring( 0, str.indexOf( '^' ) );
-		
-	} else {
-		
-		exponent = 1;
-	}
-	exp2 = new Expression( Double.parseDouble( str ) );
-	exp2.setExpPower( exponent );
-	return exp2;
-}
+        }
+        else
+        {
 
-private Expression setImgExp2(String str) {
-	Expression exp2;
-	int exponent;
-	if ( ( str.indexOf( 'i' ) + 2 ) < str.length()
-			&& str.charAt( str.indexOf( 'i' ) + 1 ) == '^' ) {
-		//removed last index
-		String sub = str.substring( str.indexOf( 'i' ) + 1 );
-		exponent = setExpOp( sub );
-		
-	} else {
-		
-		exponent = 1;
-	}
-	if ( str.charAt( 0 ) == '+' 
-			|| str.charAt( 0 ) == '-'
-			|| str.charAt( 0 ) == '/'
-			|| str.charAt( 0 ) == 'x') {
-		
-		str = str.substring( 1, str.indexOf( 'i' ) );
-		
-	} else {
-	
-		str = str.substring( 0, str.indexOf( 'i' ) );
-	}
-	
-	exp2 = new Expression( Double.parseDouble( str ), exponent );
-	exp2.setExpPower( 1 );
-	return exp2;
-}
+          exp2 = setRealExp2(str);
+        }
+      }
+    }
+    else
+    {
 
-private String setStr(boolean hasExponent, int exponent, String str) {
-	StringBuilder builder = new StringBuilder( str );
-	
-	String sub;
-	if ( hasExponent ) {
-		
-		builder.delete( str.indexOf( '(' ), ( str.indexOf( ')' ) 
-				+ String.valueOf( exponent ).length() + 2 ) );
-		
-	} else {
-	
-		builder.delete( str.indexOf( '(' ), ( str.indexOf( ')' ) + 1 ) );
-	}
-	sub = builder.toString();
-	
-	sub = updateOperator(sub);
-	
-	return sub;
-}
+      ifNoComplex(str);
+    }
 
-private String updateOperator(String sub) {
-	if ( sub.charAt( 0 ) == '+' ) {
-		
-		operator.add( Operator.ADDITION );
-		sub = sub.substring( 1 );
-		
-	} else if ( sub.charAt( 0 ) == '-' ) {
-		
-		operator.add( Operator.SUBTRACTION );
-		sub = sub.substring( 1 );
-		
-	} else if ( sub.charAt( 0 ) == 'x' ) {
-		
-		operator.add( Operator.MULTIPLICATION );
-		sub = sub.substring( 1 );
-		
-	} else if ( sub.charAt( 0 ) == '/' ) {
-		
-		operator.add( Operator.DIVISION );
-		sub = sub.substring( 1 );
-	} else if ( sub.charAt( sub.length() - 1 ) == '+' ) {
-		
-		operator.add( Operator.ADDITION );
-		
-	} else if ( sub.charAt( sub.length() - 1 ) == '-' ) {
-		
-		operator.add( Operator.SUBTRACTION );
-		
-	} else if ( sub.charAt( sub.length() - 1 ) == '/' ) {
-		
-		operator.add( Operator.DIVISION );
-		
-	} else if ( sub.charAt( sub.length() - 1 ) == 'x' ) {
-		
-		operator.add( Operator.MULTIPLICATION );
-	}
-	return sub;
-}
+    Operator[] operators = {operator.get(0)};
+    Expression[] expression = {exp1, exp2};
+    operator.clear();
+    // expressions.add( exp1 );
+    // expressions.add( exp2 );
 
-private int setExponent2(String str) {
-	
-	int exponent;
-	if ( ( str.indexOf( ')' ) + 1 ) < str.length() &&
-			str.charAt( str.indexOf( ')' ) + 1 ) == '^' ) {
-		
-		String sub = str.substring( str.indexOf( ')' ) + 1 );
-		exponent = setExpOp( sub );
-		
-	} else {
-		
-		exponent = 1;
-	}
-	return exponent;
-}
+    Calculate calc = new Calculate(expression, operators);
+    Expression answer = null;
+    try
+    {
+      answer = calc.calculateExpression();
+    }
+    catch (OverflowException | InvalidExpressionException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
 
-private int setExpOp( String sub ) {
+    panel.addToDisplay(answer.toString());
+    history.add(panel.getDisplay());
+    HistoryFrame.getInstance().incrementHistory("\n" + history.get(history.size() - 1));
+  }
 
-	int operator;
-	int exponent = 1;
-	if ( sub.indexOf( '+' ) != -1 ) {
-		
-		operator = sub.indexOf( '+' );
-//		op = op.fromSymbol( sub.charAt( operator ) );
-		sub = sub.substring( sub.indexOf( '^' ) + 1, operator );
-		exponent = Integer.parseInt( sub );
-		
-	} else if ( sub.indexOf( '-' ) != -1 ) {
-		
-		operator = sub.indexOf( '-' );
-//		op = op.fromSymbol( sub.charAt( operator ) );
-		sub = sub.substring( sub.indexOf( '^' ) + 1, operator ); 
-		exponent = Integer.parseInt( sub );
-		
-	} else if ( sub.indexOf( '/' ) != -1 ) {
-		
-		operator = sub.indexOf( '/' );
-//		op = op.fromSymbol( sub.charAt( operator ) );
-		sub = sub.substring( sub.indexOf( '^' ) + 1, operator );
-		
-		exponent = Integer.parseInt( sub );
-		
-	} else if ( sub.indexOf( 'x' ) != -1 ) {
-		
-		operator = sub.indexOf( 'x' );
-//		op = op.fromSymbol( sub.charAt( operator ) );
-		sub = sub.substring( sub.indexOf( '^' ) + 1, operator );
-		exponent = Integer.parseInt( sub );
-		
-	} else {
-		
-//		operator = sub.indexOf( '=' );
-//		op = op.fromSymbol( sub.charAt( operator ) );
-		sub = sub.substring( sub.indexOf( '^' ) + 1 );
-		exponent = Integer.parseInt( sub );
-       
-	}
-	
-	return exponent;
-}
+  private boolean parseExp1(boolean hasExponent, String str)
+  {
 
-  private Expression parseComplex(String str, int exponent) {
-	
-	int openPar;
-	openPar = str.indexOf( '(' );
-	String sub = str.substring( openPar + 1, str.indexOf( ')' )  );
-	int l = sub.length();
-	int i;
-	Expression expression = null;
-	
-	if ( sub.indexOf( '+' ) != -1 ) {
-		
-	      i = sub.indexOf( '+' );
-	      String real = sub.substring( 0, i );
-	      String img = sub.substring( i + 1, l - 1 );
-	      try {
-			expression = new Expression( Double.parseDouble( real ), 
-					  Double.parseDouble( img ), 1, sub.charAt( i ) );
-		} catch (NumberFormatException | InvalidExpressionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	} else if ( sub.indexOf( "-" ) != -1 ) {
-	      
-	      i = sub.indexOf( '-' );
-	      String real = sub.substring( 0, i );
-	      String img = sub.substring( i + 1, l - 1 );
-	      try {
-			expression = new Expression( Double.parseDouble( real ), Double.parseDouble( img ),
-			      1, sub.charAt( i ) );
-		} catch (NumberFormatException | InvalidExpressionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	      
-    } else if ( sub.charAt( sub.length() - 1 ) == 'i' ) {
-	      
-	   String last = str.substring( 0, str.length() - 1 );
-	   try {
-			expression = new Expression( 0.0, Double.parseDouble( last ), 1, '+' );
-		} catch (NumberFormatException | InvalidExpressionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	      
-	    }
-	    expression.setExpPower( exponent );
-	    
-	return expression;
+    // add null test Maybe
+    if ((str.indexOf(')') + 2) < str.length() && str.charAt(str.indexOf(')') + 1) == '^')
+    {
+
+      hasExponent = true;
+      String sub = str.substring(str.indexOf(')'));
+
+      if (sub.indexOf('(') != -1)
+      {
+
+        sub = sub.substring(sub.indexOf('^'));
+        if (sub.indexOf('(') != -1)
+        {
+
+          sub = sub.substring(0, sub.indexOf('('));
+          exponent = setExpOp(sub);
+        }
+      }
+      else
+      {
+
+        exponent = setExpOp(sub);
+      }
+
+      exp1 = parseComplex(str, exponent);
+    }
+    else
+    {
+
+      exp1 = parseComplex(str, exponent);
+    }
+    return hasExponent;
+  }
+
+  private void ifNoComplex(String str)
+  {
+    int l = str.length();
+    int i;
+
+    if (str.indexOf('+') != -1)
+    {
+
+      operator.add(Operator.ADDITION);
+      i = str.indexOf('+');
+      String real = str.substring(0, i);
+      String img = str.substring(i + 1, l);
+
+      exp1 = parseNoncomplexExp(real);
+
+      exp2 = parseNoncomplexExp(img);
+
+    }
+    else if (str.indexOf('x') != -1)
+    {
+
+      operator.add(Operator.MULTIPLICATION);
+      i = str.indexOf('x');
+      String real = str.substring(0, i);
+      String img = str.substring(i + 1, l);
+
+      exp1 = parseNoncomplexExp(real);
+
+      exp2 = parseNoncomplexExp(img);
+
+    }
+    else if (str.indexOf('/') != -1)
+    {
+
+      operator.add(Operator.DIVISION);
+      i = str.indexOf('/');
+      String real = str.substring(0, i);
+      String img = str.substring(i + 1, l);
+
+      exp1 = parseNoncomplexExp(real);
+
+      exp2 = parseNoncomplexExp(img);
+
+    }
+    else if (str.indexOf('-') != -1)
+    {
+
+      operator.add(Operator.SUBTRACTION);
+      i = str.indexOf('-');
+      String real = str.substring(0, i);
+      String img = str.substring(i + 1, l);
+
+      exp1 = parseNoncomplexExp(real);
+
+      exp2 = parseNoncomplexExp(img);
+
+    }
+  }
+
+  private Expression parseNoncomplexExp(String real)
+  {
+    Expression exp1;
+    if (real.indexOf('i') != -1)
+    {
+
+      exp1 = parseImg(real);
+    }
+    else
+    {
+
+      exp1 = parseReal(real);
+    }
+    return exp1;
+  }
+
+  private Expression parseImg(String img)
+  {
+    Expression exp2;
+    int power;
+    if (img.indexOf('^') != -1)
+    {
+
+      power = img.indexOf('^');
+      int thePower = Integer.parseInt(img.substring(power + 1, img.length()));
+
+      exp2 = new Expression(Double.parseDouble(img.substring(0, power - 1)),
+          Integer.parseInt(img.substring(power + 1, img.length())));
+      exp2.setExpPower(thePower);
+    }
+    else
+    {
+      if (img.length() > 1)
+      {
+
+        exp2 = new Expression(Double.parseDouble(img.substring(0, img.length() - 1)), 1);
+      }
+      else
+      {
+
+        exp2 = new Expression(1.0, 1);
+      }
+    }
+
+    return exp2;
+  }
+
+  private Expression parseReal(String real)
+  {
+    Expression exp1;
+    int power;
+    if (real.indexOf('^') != -1)
+    {
+
+      power = real.indexOf('^');
+      exp1 = new Expression(Double.parseDouble(real.substring(0, power)));
+      exp1.setExpPower(Integer.parseInt(real.substring(power + 1, real.length())));
+    }
+    else
+    {
+
+      exp1 = new Expression(Double.parseDouble(real));
+      exp1.setExpPower(1);
+    }
+    return exp1;
+  }
+
+  private Expression setRealExp2(String str)
+  {
+    Expression exp2;
+    int exponent;
+    if (str.charAt(0) == '+' || str.charAt(0) == '-' || str.charAt(0) == '/'
+        || str.charAt(0) == 'x')
+    {
+
+      str = str.substring(1);
+
+    }
+    else if (str.charAt(str.strip().length() - 1) == '+'
+        || str.charAt(str.strip().length() - 1) == '-'
+        || str.charAt(str.strip().length() - 1) == 'x'
+        || str.charAt(str.strip().length() - 1) == '/')
+    {
+
+      str = str.substring(0, str.strip().length() - 1);
+    }
+    if (str.indexOf('^') != -1)
+    {
+
+      exponent = setExpOp(str);
+      str = str.substring(0, str.indexOf('^'));
+
+    }
+    else
+    {
+
+      exponent = 1;
+    }
+    exp2 = new Expression(Double.parseDouble(str));
+    exp2.setExpPower(exponent);
+    return exp2;
+  }
+
+  private Expression setImgExp2(String str)
+  {
+    Expression exp2;
+    int exponent;
+    if ((str.indexOf('i') + 2) < str.length() && str.charAt(str.indexOf('i') + 1) == '^')
+    {
+      // removed last index
+      String sub = str.substring(str.indexOf('i') + 1);
+      exponent = setExpOp(sub);
+
+    }
+    else
+    {
+
+      exponent = 1;
+    }
+    if (str.charAt(0) == '+' || str.charAt(0) == '-' || str.charAt(0) == '/'
+        || str.charAt(0) == 'x')
+    {
+
+      str = str.substring(1, str.indexOf('i'));
+
+    }
+    else
+    {
+
+      str = str.substring(0, str.indexOf('i'));
+    }
+
+    exp2 = new Expression(Double.parseDouble(str), exponent);
+    exp2.setExpPower(1);
+    return exp2;
+  }
+
+  private String setStr(boolean hasExponent, int exponent, String str)
+  {
+    StringBuilder builder = new StringBuilder(str);
+
+    String sub;
+    if (hasExponent)
+    {
+
+      builder.delete(str.indexOf('('), (str.indexOf(')') + String.valueOf(exponent).length() + 2));
+
+    }
+    else
+    {
+
+      builder.delete(str.indexOf('('), (str.indexOf(')') + 1));
+    }
+    sub = builder.toString();
+
+    sub = updateOperator(sub);
+
+    return sub;
+  }
+
+  private String updateOperator(String sub)
+  {
+    if (sub.charAt(0) == '+')
+    {
+
+      operator.add(Operator.ADDITION);
+      sub = sub.substring(1);
+
+    }
+    else if (sub.charAt(0) == '-')
+    {
+
+      operator.add(Operator.SUBTRACTION);
+      sub = sub.substring(1);
+
+    }
+    else if (sub.charAt(0) == 'x')
+    {
+
+      operator.add(Operator.MULTIPLICATION);
+      sub = sub.substring(1);
+
+    }
+    else if (sub.charAt(0) == '/')
+    {
+
+      operator.add(Operator.DIVISION);
+      sub = sub.substring(1);
+    }
+    else if (sub.charAt(sub.length() - 1) == '+')
+    {
+
+      operator.add(Operator.ADDITION);
+
+    }
+    else if (sub.charAt(sub.length() - 1) == '-')
+    {
+
+      operator.add(Operator.SUBTRACTION);
+
+    }
+    else if (sub.charAt(sub.length() - 1) == '/')
+    {
+
+      operator.add(Operator.DIVISION);
+
+    }
+    else if (sub.charAt(sub.length() - 1) == 'x')
+    {
+
+      operator.add(Operator.MULTIPLICATION);
+    }
+    return sub;
+  }
+
+  private int setExponent2(String str)
+  {
+
+    int exponent;
+    if ((str.indexOf(')') + 1) < str.length() && str.charAt(str.indexOf(')') + 1) == '^')
+    {
+
+      String sub = str.substring(str.indexOf(')') + 1);
+      exponent = setExpOp(sub);
+
+    }
+    else
+    {
+
+      exponent = 1;
+    }
+    return exponent;
+  }
+
+  private int setExpOp(String sub)
+  {
+
+    int operator;
+    int exponent = 1;
+    if (sub.indexOf('+') != -1)
+    {
+
+      operator = sub.indexOf('+');
+      // op = op.fromSymbol( sub.charAt( operator ) );
+      sub = sub.substring(sub.indexOf('^') + 1, operator);
+      exponent = Integer.parseInt(sub);
+
+    }
+    else if (sub.indexOf('-') != -1)
+    {
+
+      operator = sub.indexOf('-');
+      // op = op.fromSymbol( sub.charAt( operator ) );
+      sub = sub.substring(sub.indexOf('^') + 1, operator);
+      exponent = Integer.parseInt(sub);
+
+    }
+    else if (sub.indexOf('/') != -1)
+    {
+
+      operator = sub.indexOf('/');
+      // op = op.fromSymbol( sub.charAt( operator ) );
+      sub = sub.substring(sub.indexOf('^') + 1, operator);
+
+      exponent = Integer.parseInt(sub);
+
+    }
+    else if (sub.indexOf('x') != -1)
+    {
+
+      operator = sub.indexOf('x');
+      // op = op.fromSymbol( sub.charAt( operator ) );
+      sub = sub.substring(sub.indexOf('^') + 1, operator);
+      exponent = Integer.parseInt(sub);
+
+    }
+    else
+    {
+
+      // operator = sub.indexOf( '=' );
+      // op = op.fromSymbol( sub.charAt( operator ) );
+      sub = sub.substring(sub.indexOf('^') + 1);
+      exponent = Integer.parseInt(sub);
+
+    }
+
+    return exponent;
+  }
+
+  private Expression parseComplex(String str, int exponent)
+  {
+
+    int openPar;
+    openPar = str.indexOf('(');
+    String sub = str.substring(openPar + 1, str.indexOf(')'));
+    int l = sub.length();
+    int i;
+    Expression expression = null;
+
+    if (sub.indexOf('+') != -1)
+    {
+
+      i = sub.indexOf('+');
+      String real = sub.substring(0, i);
+      String img = sub.substring(i + 1, l - 1);
+      try
+      {
+        expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
+            sub.charAt(i));
+      }
+      catch (NumberFormatException | InvalidExpressionException e1)
+      {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }
+    else if (sub.indexOf("-") != -1)
+    {
+
+      i = sub.indexOf('-');
+      String real = sub.substring(0, i);
+      String img = sub.substring(i + 1, l - 1);
+      try
+      {
+        expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
+            sub.charAt(i));
+      }
+      catch (NumberFormatException | InvalidExpressionException e1)
+      {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+
+    }
+    else if (sub.charAt(sub.length() - 1) == 'i')
+    {
+
+      String last = str.substring(0, str.length() - 1);
+      try
+      {
+        expression = new Expression(0.0, Double.parseDouble(last), 1, '+');
+      }
+      catch (NumberFormatException | InvalidExpressionException e1)
+      {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+
+    }
+    expression.setExpPower(exponent);
+
+    return expression;
 
   }
-  
-  private void errorMessage() {
-    
+
+  private void errorMessage()
+  {
+
     CalcPanel calc = CalcPanel.getInstance();
     String bad = "Invalid Input";
 
-//<<<<<<< HEAD
-		calc.subDisplay( ( calc.getDisplay().length() - 1 ) );
-		JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
+	calc.subDisplay( ( calc.getDisplay().length() - 1 ) );
+    	JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
 				JOptionPane.PLAIN_MESSAGE );
 	}	
-//=======
-//    calc.setDisplay( ( calc.getDisplay().length() - 1 ) );
-//    JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
-//        JOptionPane.PLAIN_MESSAGE );
-//  }
-//
-//>>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
 }

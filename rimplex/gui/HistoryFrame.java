@@ -11,9 +11,6 @@ import javax.swing.SwingConstants;
 
 public class HistoryFrame extends JFrame {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 
 //	private JLabel history;
@@ -74,9 +71,12 @@ public class HistoryFrame extends JFrame {
 		area.setAlignmentY( TOP_ALIGNMENT );
 	}
 	
-	public static String getDisplay() {
-	  return area.getText();	
-	  
+	public static JTextArea getDisplay() {
+	  return area;	
+	}
+	
+	public static JFrame parent() {
+	  return frame;
 	}
 	
 	public static HistoryFrame getInstance() {

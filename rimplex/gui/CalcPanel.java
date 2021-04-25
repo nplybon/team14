@@ -304,7 +304,7 @@ public class CalcPanel extends Panel {
 		inverse.setEnabled( false );
 		log.setEnabled( false );
 		exponent.setEnabled( false );
-		sign.setEnabled( false );
+		//sign.setEnabled( false );
 		closeHistory.setEnabled( false );
 		squareRoot.setEnabled( false );
 		closePar.setEnabled(false);
@@ -611,5 +611,13 @@ public class CalcPanel extends Panel {
 	
 	public void dPresentTrue() {
 	  dPresent = true;
+	}
+	
+	public void changeSign() {
+	  if (display.getText().charAt(0) == '-') {
+	    display.setText(display.getText().substring(1));
+	  } else {
+	    display.setText("-" + display.getText()); 
+	  }
 	}
 }
