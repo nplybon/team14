@@ -613,7 +613,7 @@ private int setExponent( char operator ) {
 	    this.expression.clear();
 	}
 
-  }
+  } 
 
 private void runOperator( Operator op, int exponent ) {
 	
