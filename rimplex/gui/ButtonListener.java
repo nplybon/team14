@@ -515,7 +515,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		    history.add(panel.getDisplay());
 		    HistoryFrame.getInstance().incrementHistory("\n" + history.get(history.size() - 1));
 			panel.handleExponent( false );
-//			System.out.println( exp1.toString() + " " + exp2.toString() );
+//			System.out.println( exp1.toString() + " " + exp2.toString() )
 //			System.out.println( exp1.getExpPower() + " " + exp2.getExpPower() );
 //			System.out.println( operator.get( 0 ) );
 		} else {
