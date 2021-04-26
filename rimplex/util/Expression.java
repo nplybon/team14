@@ -205,6 +205,14 @@ public class Expression {
   public Expression getInverse() throws InvalidExpressionException, OverflowException {
     return Arithmetic.inverse(this);
   }
+  
+  public Expression getRealPart() throws InvalidExpressionException {
+	  return Arithmetic.realPart(this);
+  }
+  
+  public Expression getImagPart() throws InvalidExpressionException {
+	  return Arithmetic.imagPart(this);
+  }
 
   /**
    * Simplifies.

@@ -7,15 +7,22 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
+import javax.print.attribute.AttributeSet;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JWindow;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.DocumentFilter.FilterBypass;
 
 public class CalcPanel extends Panel {
 
@@ -23,6 +30,8 @@ public class CalcPanel extends Panel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private AbstractDocument document;
 	
 	private JButton plus;
 	private JButton minus;
@@ -53,6 +62,8 @@ public class CalcPanel extends Panel {
 	private JButton closeHistory;
 	private JButton squareRoot;
 	private JButton exponent;
+	private JButton realPart;
+	private JButton imagPart;
 	private JToggleButton outputformat;
 	
 	private JPanel displayPanel;
@@ -62,10 +73,12 @@ public class CalcPanel extends Panel {
 	private JPanel thirdRow;
 	private JPanel lastRow;
 	
+	private JScrollPane scrollPane;
+	
 	private int parenC;
 	private boolean dPresent;
 	
-	private JTextField display;
+	private JTextArea display;
 //	private JTextField windowDisplay;
 //	
 //	private JWindow historyWindow;
@@ -91,7 +104,19 @@ public class CalcPanel extends Panel {
 		thirdRow = new JPanel();
 		lastRow = new JPanel();
 		
-		display = new JTextField();
+//		display = new JTextArea();
+		display = new JTextArea(
+//			    "This is an editable JTextArea. " +
+//			    "A text area is a \"plain\" text component, " +
+//			    "which means that although it can display text " +
+//			    "in any font, all of the text is in the same font."
+			);
+//			display.setFont(new Font("Serif", Font.ITALIC, 16));
+		display.setLineWrap(true);
+		display.setWrapStyleWord(true);
+			
+//		document = ((AbstractDocument) display.getDocument());
+//		document.setDocumentFilter( new Filter() );
 //		windowDisplay = new JTextField();
 //		
 //		historyWindow = new JWindow();
@@ -101,7 +126,7 @@ public class CalcPanel extends Panel {
 	@Override
 	public void addComponents() {
 		// TODO Auto-generated method stub
-		displayPanel.add( display );
+//		displayPanel.add( display );
 		
 		topRow.add( sign );
 		topRow.add( reset );
@@ -136,8 +161,18 @@ public class CalcPanel extends Panel {
 		thirdRow.add(  outputformat  );
 		thirdRow.add( squareRoot );
 		
-		center.add( displayPanel );
-		center.add( new JPanel() );
+		// thirdRow.add( realPart );
+		// thirdRow.add( imagPart );
+		
+//		center.add( displayPanel );
+//		center.add( new JPanel() );
+
+		scrollPane = new JScrollPane( display, 
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED );
+//		scrollPane.a
+		center.add( scrollPane );
+//		center.add( new JPanel() );
 		center.add( topRow );
 		center.add( secRow );
 		center.add( thirdRow );
@@ -167,6 +202,11 @@ public class CalcPanel extends Panel {
 //		windowDisplay.setText( windowDisplay.getText() 
 //				+ "\n" + str );
 //	}
+    
+	public JTextArea getDisplayField() {
+		
+		return display;
+	}
 	
 	public String getDisplay() {
 	
@@ -239,7 +279,13 @@ public class CalcPanel extends Panel {
 	  display.setText(display.getText() + s);
 	}
 	
-	public void setDisplay( int i ) {
+	public void setDisplay( String str ) {
+		
+		resetDisplay();
+		display.append( str );
+	}
+	
+	public void subDisplay( int i ) {
 		
 		String str = display.getText();
 		
@@ -275,10 +321,14 @@ public class CalcPanel extends Panel {
 		TitledBorder title;
 		title = BorderFactory.createTitledBorder( "Display" );
 		
+//		display.setSize( 750, 450 );
 		display.setBorder( title );
-		display.setEditable( true );
+//		display.setEditable( true );
+		addToDisplay( "\n" );
 //		windowDisplay.setEditable( false );
-//		
+//        System.out.println( display.isEditable() );
+//        display.append( "24\n" );
+//        display.setEditable( true );
 //		historyWindow.setVisible( false );
 	}
 
@@ -288,7 +338,7 @@ public class CalcPanel extends Panel {
 		ButtonListener button = ButtonListener.getInstance();
 		
 		display.addKeyListener( button );
-		display.setFocusTraversalKeysEnabled(false);
+//		display.setFocusTraversalKeysEnabled(false);
 		
 		exponent.addActionListener( button );
 		plus.addActionListener(button);
@@ -320,6 +370,9 @@ public class CalcPanel extends Panel {
 		openHistory.addActionListener(button);
 		squareRoot.addActionListener(button);
 		outputformat.addActionListener(button);
+		
+		// realPart.addActionListener(button);
+		// imagPart.addActionListener(button);
 	}
 
 	@Override
@@ -327,8 +380,7 @@ public class CalcPanel extends Panel {
 		// TODO Auto-generated method stub
 		setLayout( new BorderLayout() );
 		
-		displayPanel.setLayout( new GridLayout( 1,0 ) );
-		center.setLayout( new GridLayout( 5,0 ) );
+		center.setLayout( new GridLayout( 4,0 ) );
 		
 	}
 
@@ -363,6 +415,10 @@ public class CalcPanel extends Panel {
 		closeHistory = new JButton();
 		openHistory = new JButton();
 		squareRoot = new JButton();
+		
+		 // realPart = new JButton();
+		 // imagPart = new JButton();
+		
 		outputformat = new JToggleButton();
 	}
 
@@ -398,6 +454,8 @@ public class CalcPanel extends Panel {
 		openHistory.setText( ">" );
 		squareRoot.setText( "sqr" );
 		outputformat.setText("frac");
+		// realPart.setText("real");
+		// imagPart.setText("imag");
 		setButtonTextColor();
 		setButtonFont();
 
@@ -415,6 +473,8 @@ public class CalcPanel extends Panel {
 	  openPar.setForeground(cyan);
 	  inverse.setForeground(cyan);
 	  reset.setForeground(cyan);
+	  // realPart.setForeground(cyan);
+	  // imagPart.setForeground(cyan);
 	  Color yellow = new Color(135,124,27);
 	  cancel.setForeground(yellow);
 	  backspace.setForeground(yellow);

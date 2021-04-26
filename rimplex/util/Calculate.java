@@ -62,6 +62,10 @@ public class Calculate {
       case LOGARITHM:
         result = Arithmetic.naturalLog(exp1);
         break;
+      case REAL:
+    	break;
+      case IMAGINARY:
+    	break;
     }
 
     return result;

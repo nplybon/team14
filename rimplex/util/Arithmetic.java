@@ -227,13 +227,20 @@ public class Arithmetic {
     return toReturn;
   }
 	
+	/**
+	 * Calculates the Natural Logarithm of a single Expression
+	 * @param exp1 The given expression
+	 * @return The Expression that is the result of the Natural Logarithm
+	 * @throws InvalidExpressionException if the real portion of the given 
+	 * 		expression is less than or equal to zero
+	 */
 	public static Expression naturalLog(Expression exp1) throws InvalidExpressionException {
 		
 		// error checking
 		if (exp1.getReal() == 0) {
 			throw new InvalidExpressionException("ERROR: CANNOT DIVIDE BY ZERO (in logarithm)");
 		} if (exp1.getReal() < 0) {
-			throw new InvalidExpressionException("ERROR: NATURAL LOG UNDIFINED FOR A < 0");
+			throw new InvalidExpressionException("ERROR: NATURAL LOG UNDEFINED FOR A < 0");
 		}
 		
 		Expression toReturn;
@@ -268,7 +275,51 @@ public class Arithmetic {
 		}
 		
 		return toReturn;
+	}
+	
+	/**
+	 * Returns the real part of the given expression in the form a+0i
+	 * @param exp1 the given expression in the form a+bi
+	 * @return the real part of the given expression
+	 * @throws InvalidExpressionException if the expression is not in the form a+bi
+	 */
+	public static Expression realPart(Expression exp1) throws InvalidExpressionException {
+		double real = exp1.getReal();
+		return new Expression(real, 0.0, 1, '+');
+	}
+	
+	/**
+	 * Returns the imaginary part of the given expression in the form 0+bi
+	 * @param exp1 the given expression in the form a+bi
+	 * @return the imaginary part of the given expression
+	 * @throws InvalidExpressionException if the expression is not in the form a+bi
+	 */
+	public static Expression imagPart(Expression exp1) throws InvalidExpressionException {
+		double imag = exp1.getImagCoef();
+		char sign;
+		Operator symbol = exp1.getSymbol();
 		
+		if (symbol == Operator.ADDITION) {
+			sign = '+';
+		} else {
+			sign = '-';
+		}
 		
+		return new Expression(0.0, imag, 1, sign);
+	}
+	
+	/**
+	 * Returns the square root of the given expression in the form a+bi
+	 * @param exp1 the given expression in the form a+bi
+	 * @return the square root of the expression
+	 * @throws InvalidExpressionException if the given expression is not in the form a+bi
+	 */
+	public static Expression squareRoot(Expression exp1) throws InvalidExpressionException {
+		double x = exp1.getReal();
+		double y = exp1.getImagCoef();
+		double r = Math.sqrt(Math.sqrt(x*x + y*y));
+		double theta = Math.atan2(y, x) / 2;
+		
+		return new Expression(r*Math.cos(theta), r*Math.sin(theta), 1, '+');
 	}
 }
