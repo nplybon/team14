@@ -489,7 +489,27 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 	case '=':
 		if ( panel.isEqualsEnabled() ) {
 			
-			runEquals();
+//			runEquals();
+		    Operator[] operators = (Operator[]) operator.toArray();
+		    Expression[] expression = (Expression[]) this.expression.toArray();
+		    operator.clear();
+            this.expression.clear();
+		    Calculate calc = new Calculate(expression, operators);
+		    Expression answer = null;
+		    try
+		    {
+		      answer = calc.calculateExpression();
+		    }
+		    catch (OverflowException | InvalidExpressionException q)
+		    {
+		      // TODO Auto-generated catch block
+		      q.printStackTrace();
+		    }
+
+		    panel.addToDisplay(answer.toString());
+		    //need to fix adding to display
+		    history.add(panel.getDisplay());
+		    HistoryFrame.getInstance().incrementHistory("\n" + history.get(history.size() - 1));
 			panel.handleExponent( false );
 //			System.out.println( exp1.toString() + " " + exp2.toString() );
 //			System.out.println( exp1.getExpPower() + " " + exp2.getExpPower() );
@@ -718,8 +738,6 @@ private void runOperator( Operator op, int exponent ) {
     Operator[] operators = {operator.get(0)};
     Expression[] expression = {exp1, exp2};
     operator.clear();
-    // expressions.add( exp1 );
-    // expressions.add( exp2 );
 
     Calculate calc = new Calculate(expression, operators);
     Expression answer = null;
