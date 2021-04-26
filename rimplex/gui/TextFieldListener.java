@@ -53,7 +53,7 @@ public class TextFieldListener implements FocusListener {
 				bool = testInput( sub );
 				
 			} else {
-//				System.out.println( "in not minus" );
+
 				bool = testInput( str );
 			} 
 		} else {
@@ -73,34 +73,45 @@ public class TextFieldListener implements FocusListener {
 		String str = input;
 		
 		int i;
-		int l = str.length();
 		
-		if ( str.indexOf( '+' ) != -1 ) {
-//            System.out.println( "In plus index of" );
-			i = str.indexOf( '+' );
-			String real = str.substring( 0, i );
-			String img = str.substring( i + 1, l );
-//			System.out.println( "real:" + real + "Img:" + img );
-			isReal = isReal( real );
-			isImg = isImag( img );
+		if ( str.indexOf( '(' ) != -1 ) {
 			
-		} else if ( str.indexOf( '-' ) != -1 ) {
+			str = str.substring( str.indexOf( '(' ) + 1, str.indexOf( ')' ) );
+			int l = str.length();
 			
-			i = str.indexOf( '-' );
-			String real = str.substring( 0, i );
-			String img = str.substring( i + 1, l );
-			isReal = isReal( real );
-			isImg = isImag( img );
-			
-		} else if ( str.charAt( str.length() - 1 ) == 'i' ) {
+			if ( str.indexOf( '+' ) != -1 ) {
+				
+				i = str.indexOf( '+' );
+				String real = str.substring( 0, i );
+				
+				String img = str.substring( i + 1, l );
+				isReal = isReal( real );
+				isImg = isImag( img );
+				
+			} else if ( str.indexOf( '-' ) != -1 ) {
+				
+				i = str.indexOf( '-' );
+				String real = str.substring( 0, i );
+				String img = str.substring( i + 1, l );
+				isReal = isReal( real );
+				isImg = isImag( img );
+				
+			}			
+		} else if ( str.indexOf( 'i' ) != -1 ) {
 			
 			bool = isImag( str );
 			isImg = bool;
 		} else {
-			bool = isReal( str );
+			if ( str.indexOf( '^' ) != -1 ) {
+				
+				bool = isReal( str.substring( 0, str.indexOf( '^' ) ) );
+			} else {
+			
+				bool = isReal( str.substring( 0, str.length() - 1 ) );
+			}
 			isReal = bool;
 		}
-		if ( !isReal || !isImg ) {
+		if ( !isReal && !isImg ) {
 			
 			bool = false;
 		}
@@ -111,36 +122,35 @@ public class TextFieldListener implements FocusListener {
 		
 		boolean bool;
 		String str = input;
-		
-		if ( str.charAt( str.length() - 1 ) == 'i' ) {
+		//changed if
+		if ( str != null && !str.isEmpty()
+				&& str.indexOf( 'i' ) != -1 ) {
+			//changed sub
+			String sub = str.substring( 0, str.indexOf( 'i' ) );
 			
-			String sub = str.substring( 0, str.length() - 1 );
-//			System.out.println( "In isIMaG if :" + sub );
 			bool = isReal( sub );
 			
 		} else {
 			
 			bool = false;
 		}
-//		System.out.println( "isImag:" + bool );
+
 		return bool;
 	}
 
 	private boolean isReal( String input ) {
 		
 		boolean bool;
-		
+		//changed instantiation
 		String str = input;
 		
 		try {
-//			System.out.println( "In real try:" + str );
 			Double.parseDouble( str );
 		    bool = true;
 		} catch ( NumberFormatException e ) {
-//			System.out.println( "In real catch" );
 			bool = false;
 		}
-//		System.out.println( "Is real:" + bool );
+		
 		return bool;
 	}
 	
@@ -149,24 +159,8 @@ public class TextFieldListener implements FocusListener {
 		return str != null && str.length() > 0;
 	}
 	
-//	private boolean isNumOri( String str, int i ) {
-//		
-//		
-//		return str.charAt( i ) == '1';
-//	}
-	
 	private boolean isMinus( String str, int i ) {
 		
 		return str.charAt( i ) == '-';
 	}
-	
-//	private boolean isNum( String str, int i ) {
-//		
-//		return str.charAt( i ) == '1' ||  str.charAt( i ) == '2'
-//				|| str.charAt( i ) == '3' || str.charAt( i ) == '4'
-//				|| str.charAt( i ) == '5' || str.charAt( i ) == '6'
-//				|| str.charAt( i ) == '7' || str.charAt( i ) == '8'
-//				|| str.charAt( i ) == '9' || str.charAt( i ) == '0';
-//	}
-	//add get expressions method
 }

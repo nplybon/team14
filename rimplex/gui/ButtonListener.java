@@ -9,7 +9,6 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.AbstractButton;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 
@@ -31,7 +30,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   private int exponent;
   private Expression exp1;
   private Expression exp2;
-
+  private String display;
+  private ArrayList<Expression> expression = new ArrayList<Expression>();
   /**
    * handles button events.
    * 
@@ -55,7 +55,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.toggleAllNumsDI(true);
         calc.enableAllNums();
         calc.toggleImag(true);
-        calc.handleExponent(false);
+        calc.handleExponent( false );
         break;
       case "-":
         calc.enableEquals();
@@ -89,16 +89,14 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.handleExponent(false);
         break;
       case "C":
-        if (display.contains("+"))
-        {
-          if (display.lastIndexOf("+") == display.length())
-          {
-            calc.setDisplay(display.length() - 1);
+        if (display.contains("+")) {
+          if (display.lastIndexOf("+") == display.length()) {
+            calc.subDisplay(display.length() - 1);
+
           }
-          calc.setDisplay(display.lastIndexOf("+"));
-        }
-        else
-        {
+          calc.subDisplay(display.lastIndexOf("+"));
+        } else {
+
           calc.resetDisplay();
         }
         // create test case to check if operand has been entered already. (erase to that operand,
@@ -208,11 +206,12 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
       case "\u2190":
         char last = display.charAt(display.length() - 1);
-        // if (last == 'i') {
-        // calc.toggleAllNums(true);
-        // calc.toggleImag(true);
-        // }
-        calc.setDisplay(display.length() - 1);
+
+//        if (last == 'i') {
+//          calc.toggleAllNums(true);
+//          calc.toggleImag(true);
+//        }
+        calc.subDisplay(display.length() - 1);
         break;
       case "inv":
         calc.addToDisplay("^-1");
@@ -222,7 +221,11 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.changeParenC(1);
         break;
       case "+/-":
-
+        if (display.isEmpty()) {
+          break;
+        } else {
+          calc.changeSign();
+        }
         break;
       case ">":
         HistoryFrame.getInstance().handleHistory(true);
@@ -356,178 +359,322 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   }
 
   @Override
-  public void keyReleased(KeyEvent e)
-  {
-    // TODO Auto-generated method stub
-    char result = (char) e.getKeyChar();
-    CalcPanel panel = CalcPanel.getInstance();
+  public void keyReleased(KeyEvent e) {
+  // TODO Auto-generated method stub
+	char result = (char) e.getKeyChar();
+	CalcPanel panel = CalcPanel.getInstance();
+	String str;
+	
+	switch ( result ) {
+	case '+':
+		if ( panel.isCloseParEnabled() ) {
+			if ( panel.isPlusEnabled() ) {
+				
+				errorMessage();
+			}
+		} else {
+			//if ( panel.isPlusEnabled() )
+			str = panel.getDisplay().substring( panel.getDisplay().indexOf( '\n' ) );
+			int exponent = 1;
+			
+			if ( str.indexOf( '^' ) != -1 ) {
+			
+				String sub = str.substring( str.indexOf( '^' ) + 1, str.indexOf( '+' ) );
+			    exponent = Integer.parseInt( sub );
+			    
+			}
+			
+			runOperator( Operator.ADDITION, exponent );
+		}
+		break;
+	case '-':
+		if ( panel.isCloseParEnabled() ) {
+			if ( panel.isPlusEnabled() ) {
+				
+				errorMessage();
+			}
+		} else {
+		//if ( panel.isPlusEnabled() )
+			str = panel.getDisplay().substring( panel.getDisplay().indexOf( '\n' ) );
+			int exponent = 1;
+			
+			if ( str.indexOf( '^' ) != -1 ) {
+			
+				String sub = str.substring( str.indexOf( '^' ) + 1, str.indexOf( '-' ) );
+			    exponent = Integer.parseInt( sub );
+			    
+			}
+			
+			runOperator( Operator.SUBTRACTION, exponent );
+	    }
+		break;
+	case '/':
+		if ( !panel.isDivEnabled() ) {
+			
+			errorMessage();
+		} else {
+			
+			str = panel.getDisplay().substring( panel.getDisplay().indexOf( '\n' ) );
+			int exponent = 1;
+			
+			if ( str.indexOf( '^' ) != -1 ) {
+			
+				String sub = str.substring( str.indexOf( '^' ) + 1, str.indexOf( '/' ) );
+			    exponent = Integer.parseInt( sub );
+			    
+			}
+			runOperator( Operator.DIVISION, exponent );
+			panel.enableEquals();
+	        panel.toggleAllNumsDI(true);
+	        panel.enableAllNums();
+			panel.handleExponent( false );
+		}
+		break;
+	case 'x':
+		if ( !panel.isDivEnabled() ) {
+			
+			errorMessage();
+		} else {
+			
+			str = panel.getDisplay().substring( panel.getDisplay().indexOf( '\n' ) );
+			int exponent = 1;
+			
+			if ( str.indexOf( '^' ) != -1 ) {
+			
+				String sub = str.substring( str.indexOf( '^' ) + 1, str.indexOf( 'x' ) );
+			    exponent = Integer.parseInt( sub );
+			    
+			}
+			runOperator( Operator.MULTIPLICATION, exponent );
+			panel.enableEquals();
+	        panel.toggleAllNumsDI(true);
+	        panel.enableAllNums();
+			panel.handleExponent( false );
+		}
+		break;
+	case '\n':
+		break;
+	case '1':
+	case '2':
+	case '3':
+	case '4':
+	case '5':
+	case '6':
+	case '7':
+	case '8':
+	case '9':
+	case '0':
+		if ( !panel.isNumEnabled() ) {
+			
+			errorMessage();
+		} else {
+			
+			panel.enableEquals();
+			panel.toggleImag( true );
+			panel.handleExponent( true );
+		}
+		break;
+	case 'i':
+		if ( !panel.isIEnabled() ) {
+			
+			errorMessage();
+		} else {
+		    
+			panel.enableEquals();
+			panel.disableAllNumsI();
+			panel.handleExponent( true );
+		}
+		break;
+	case '\u0008':
+	case '\u007F':
+		break;
+	case ' ':
+		break;
+	case '=':
+		if ( panel.isEqualsEnabled() ) {
+			
+			runEquals();
+			panel.handleExponent( false );
+//			System.out.println( exp1.toString() + " " + exp2.toString() );
+//			System.out.println( exp1.getExpPower() + " " + exp2.getExpPower() );
+//			System.out.println( operator.get( 0 ) );
+		} else {
+			
+			errorMessage();
+		}
+		break;
+	case '(':
+		if ( !panel.isOpenParEnabled() ) {
+			
+			errorMessage();
+		} else {
+			
+	        panel.changeParenC(1);
+	        panel.handleExponent( false );
+			panel.handleExponent( false );
+		}
+		break;
+	case ')':
+		if ( !panel.isCloseParEnabled() ) {
+			
+			errorMessage();
+		} else {
+			
+			panel.enableEquals();
+	        panel.changeParenC(-1);
+	        panel.handleExponent( true );
+			panel.handleExponent( true );
+		}
+		break;
+	case '^':
+		if ( !panel.isExponentEnabled() ) {
+			 
+			errorMessage();
+		} else {
+			//currently have to assume user enters another number after hitting equals
+			panel.enableEquals();
+	    	panel.enableAllNums();
+	    	panel.disableIButton();
+			panel.handleExponent( false );
+		}
+		break;
+	case '.':
+		if ( !panel.isDecimalEnabled() ) {
+			
+			errorMessage();
+		} else {
+			
+			panel.enableEquals();
+	        panel.toggleDecimal(false);
+	        panel.handleExponent( true );
+			panel.handleExponent( true );
+		}
+		break;
 
-    switch (result)
-    {
-      case '+':
-      case '-':
-        if (!panel.isPlusEnabled())
-        {
-
-          errorMessage();
-        }
-        else
-        {
-
-          panel.enableEquals();
-          panel.toggleAllNumsDI(true);
-          panel.enableAllNums();
-          panel.handleExponent(false);
-        }
-        break;
-      case '/':
-      case 'x':
-        if (!panel.isDivEnabled())
-        {
-
-          errorMessage();
-        }
-        else
-        {
-
-          panel.enableEquals();
-          panel.toggleAllNumsDI(true);
-          panel.enableAllNums();
-          panel.handleExponent(false);
-        }
-        break;
-      case '1':
-      case '2':
-      case '3':
-      case '4':
-      case '5':
-      case '6':
-      case '7':
-      case '8':
-      case '9':
-      case '0':
-        if (!panel.isNumEnabled())
-        {
-
-          errorMessage();
-        }
-        else
-        {
-
-          panel.enableEquals();
-          panel.toggleImag(true);
-          panel.handleExponent(true);
-        }
-        break;
-      case 'i':
-        if (!panel.isIEnabled())
-        {
-
-          errorMessage();
-        }
-        else
-        {
-
-          panel.enableEquals();
-          panel.disableAllNumsI();
-          panel.handleExponent(true);
-        }
-        break;
-      case '\u0008':
-      case '\u007F':
-        break;
-      case ' ':
-        break;
-      case '=':
-        if (panel.isEqualsEnabled())
-        {
-
-          runEquals();
-          panel.handleExponent(false);
-          // System.out.println( exp1.toString() + " " + exp2.toString() );
-          // System.out.println( exp1.getExpPower() + " " + exp2.getExpPower() );
-          // System.out.println( operator.get( 0 ) );
-        }
-        else
-        {
-
-          errorMessage();
-        }
-        break;
-      case '(':
-        if (!panel.isOpenParEnabled())
-        {
-
-          errorMessage();
-        }
-        else
-        {
-
-          panel.changeParenC(1);
-          panel.handleExponent(false);
-          panel.handleExponent(false);
-        }
-        break;
-      case ')':
-        if (!panel.isCloseParEnabled())
-        {
-
-          errorMessage();
-        }
-        else
-        {
-
-          panel.enableEquals();
-          panel.changeParenC(-1);
-          panel.handleExponent(true);
-          panel.handleExponent(true);
-        }
-        break;
-      case '^':
-        if (!panel.isExponentEnabled())
-        {
-
-          errorMessage();
-        }
-        else
-        {
-
-          // panel.disableOperators();
-          panel.enableAllNums();
-          panel.disableIButton();
-          panel.handleExponent(false);
-        }
-        break;
-      case '.':
-        if (!panel.isDecimalEnabled())
-        {
-
-          errorMessage();
-        }
-        else
-        {
-
-          panel.enableEquals();
-          panel.toggleDecimal(false);
-          panel.handleExponent(true);
-          panel.handleExponent(true);
-        }
-        break;
-
-      default:
-        // System.out.println( "other Boobs" );
-        if (e.getKeyCode() != KeyEvent.VK_SHIFT)
-        {
-
-          errorMessage();
-        }
-        break;
     }
   }
 
-  private void runEquals()
+private void runOperator( Operator op, int exponent ) {
+	
+	CalcPanel panel = CalcPanel.getInstance();
+	String str;
+	if ( !panel.isPlusEnabled() ) {
+		
+		errorMessage();
+	} else if ( !panel.isCloseParEnabled() ){
+		
+		str = panel.getDisplay();
+		int newLine = str.indexOf( '\n' );
+		String other = str.substring( 0, newLine );
+		str = str.substring( newLine ).strip();
+		
+		try {
+			runOperation( op, str, exponent );
+	        
+		} catch (NumberFormatException | InvalidExpressionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		panel.setDisplay( other + expression.get( expression.size() - 1 ).toString() 
+				+ operator.get( operator.size() - 1 ).toString() + "\n" );
+		panel.enableEquals();
+	    panel.toggleAllNumsDI(true);
+	    panel.enableAllNums();
+		panel.handleExponent( false );
+	}
+}
+
+  private void runOperation(Operator operator, String str, int exponent ) 
+		  throws NumberFormatException, InvalidExpressionException {
+	  
+		TextFieldListener text = TextFieldListener.getInstance();
+	    if (text.verifyTarget(str))
+	    {
+	    	
+	    	Expression exp = setExp( str, exponent );
+	    	expression.add( exp );
+	    	System.out.println( exp.getExpPower() );
+	    	this.operator.add( operator );
+	    	
+	    } else {
+	    	
+	    	System.out.println( "error" );
+	    }
+  }
+  
+  /**
+   * Set input field to expression object.
+   * 
+   * @param str
+   *          input
+   * @param exp
+   *          expression
+   * @return parsed expression
+   * @throws NumberFormatException
+   *           WAP
+   * @throws InvalidExpressionException
+   *           WAP
+   */
+  private Expression setExp(String str, int exponent )
+      throws NumberFormatException, InvalidExpressionException
   {
 
+    int l = str.length();
+
+    int i;
+    Expression expression = null;
+
+    if ( str.indexOf( '(' ) != -1 ) {
+    	
+        String sub = str.substring( str.indexOf( '(' ), str.indexOf( ')' ) );
+    	
+        if (sub.indexOf("+") != -1)
+        {
+  
+          i = sub.indexOf('+');
+          String real = str.substring(1, i);
+          String img = str.substring(i + 1, l - 3);
+          expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
+            sub.charAt(i));
+          expression.setExpPower( exponent );
+        }
+        else if (sub.indexOf("-") != -1)
+        {
+  
+          i = sub.indexOf('-');
+          String real = str.substring(1, i);
+          String img = str.substring(i + 1, l - 3);
+          expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
+            sub.charAt(i));
+          expression.setExpPower( exponent );
+        }
+    } else if ( str.indexOf( 'i' ) != -1 ) {
+
+      String sub = str.substring(0, str.indexOf( 'i' ) );
+      expression = new Expression( Double.parseDouble(sub), exponent
+//    		  , 1, str.charAt( str.length() - 1 ) 
+    		  );  
+    } else {
+		if ( str.indexOf( '^' ) != -1 ) {
+			
+			expression = new Expression(Double.parseDouble(str.substring( 0, str.indexOf( '^' ) )) 
+//	    			,0.0, 1, str.charAt( str.length() - 1 ) 
+	    			);
+		} else {
+    	
+			expression = new Expression(Double.parseDouble(str.substring( 0, str.length() - 1 )) 
+//    			,0.0, 1, str.charAt( str.length() - 1 ) 
+    			);
+		}
+    	expression.setExpPower( exponent );
+    }
+    
+    return expression;
+  }
+  
+
+  private void runEquals()
+  {
     // ArrayList<Expression> expressions = new ArrayList<Expression>();
     exp1 = null;
     exp2 = null;
@@ -1052,15 +1199,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     CalcPanel calc = CalcPanel.getInstance();
     String bad = "Invalid Input";
 
-    // <<<<<<< HEAD
-    calc.setDisplay((calc.getDisplay().length() - 1));
-    JOptionPane.showMessageDialog(null, bad, "Invalid Input", JOptionPane.PLAIN_MESSAGE);
-  }
-  // =======
-  // calc.setDisplay( ( calc.getDisplay().length() - 1 ) );
-  // JOptionPane.showMessageDialog( null, bad, "Invalid Input",
-  // JOptionPane.PLAIN_MESSAGE );
-  // }
-  //
-  // >>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
+	calc.subDisplay( ( calc.getDisplay().length() - 1 ) );
+    	JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
+				JOptionPane.PLAIN_MESSAGE );
+	}	
 }
