@@ -10,7 +10,8 @@ public enum Operator {
   ADDITION('+', "sum"), SUBTRACTION('-', "difference"),
   MULTIPLICATION('x', "product"), DIVISION('/', "quoitent"), 
   EXPONENT('^', "exponent"), LOGARITHM('l', "logarithm"),
-  INVERSE('v', "inverse"), CONJUGATE('c', "conjugate");
+  INVERSE('v', "inverse"), CONJUGATE('c', "conjugate"), 
+  REAL('r', "real"), IMAGINARY('m', "imaginary");
 
   private char symbol;
   private String type;
@@ -64,6 +65,12 @@ public enum Operator {
       case 'c':
         op = Operator.CONJUGATE;
         break;
+      case 'r':
+    	  op = Operator.REAL;
+    	  break;
+      case 'm':
+    	  op = Operator.IMAGINARY;
+    	  break;
       default:
         op = null;
         break;

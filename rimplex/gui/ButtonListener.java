@@ -269,7 +269,11 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
           JOptionPane.showMessageDialog(j, j.getMessage());
 
         }
-
+        
+      case "real":
+    	  // calc.enableEquals();
+          calc.addToDisplay("real(");
+          calc.changeParenC(1);
     }
   }
 

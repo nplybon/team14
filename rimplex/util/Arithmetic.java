@@ -275,7 +275,51 @@ public class Arithmetic {
 		}
 		
 		return toReturn;
+	}
+	
+	/**
+	 * Returns the real part of the given expression in the form a+0i
+	 * @param exp1 the given expression in the form a+bi
+	 * @return the real part of the given expression
+	 * @throws InvalidExpressionException if the expression is not in the form a+bi
+	 */
+	public static Expression realPart(Expression exp1) throws InvalidExpressionException {
+		double real = exp1.getReal();
+		return new Expression(real, 0.0, 1, '+');
+	}
+	
+	/**
+	 * Returns the imaginary part of the given expression in the form 0+bi
+	 * @param exp1 the given expression in the form a+bi
+	 * @return the imaginary part of the given expression
+	 * @throws InvalidExpressionException if the expression is not in the form a+bi
+	 */
+	public static Expression imagPart(Expression exp1) throws InvalidExpressionException {
+		double imag = exp1.getImagCoef();
+		char sign;
+		Operator symbol = exp1.getSymbol();
 		
+		if (symbol == Operator.ADDITION) {
+			sign = '+';
+		} else {
+			sign = '-';
+		}
 		
+		return new Expression(0.0, imag, 1, sign);
+	}
+	
+	/**
+	 * Returns the square root of the given expression in the form a+bi
+	 * @param exp1 the given expression in the form a+bi
+	 * @return the square root of the expression
+	 * @throws InvalidExpressionException if the given expression is not in the form a+bi
+	 */
+	public static Expression squareRoot(Expression exp1) throws InvalidExpressionException {
+		double x = exp1.getReal();
+		double y = exp1.getImagCoef();
+		double r = x*x + y*y;
+		double theta = Math.atan2(y, x) / 2;
+		
+		return new Expression(r*Math.cos(theta), r*Math.sin(theta), 1, '+');
 	}
 }
