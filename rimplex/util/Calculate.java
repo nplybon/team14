@@ -1,5 +1,7 @@
 package util;
 
+import java.util.ArrayList;
+
 /**
  * **UNFINISHED AND UNTESTED** Calculates every expression using order of
  * operations.
@@ -11,6 +13,7 @@ public class Calculate {
   private Expression[] expressions;
   private Operator[] operators;
   private int[] order;
+  private ArrayList<String> steps;
 
   /**
    * Constructor.
@@ -22,6 +25,7 @@ public class Calculate {
     this.expressions = expressions;
     this.operators = operators;
     order = orderOfOperations(operators);
+    steps = new ArrayList<>();
   }
 
   /**
@@ -74,6 +78,8 @@ public class Calculate {
 
     Expression result = null;
     
+    steps.add(takeStep());
+    
     for (int i = 0; i < expressions.length; i++) {
       if (expressions[i].hasExponent()) {
         result = calculate(expressions[i], Operator.EXPONENT, null);
@@ -90,6 +96,7 @@ public class Calculate {
           expressions[order[i] + 1]);
       expressions[order[i]] = result;
       expressions[order[i] + 1] = result;
+      //steps.add(takeStep());
     }
 
     result.simplify();
@@ -98,6 +105,19 @@ public class Calculate {
 
   }
 
+  private String takeStep() {
+    
+    String str = "";
+    
+    for ( int i = 0; i < operators.length; i++ ) {
+      str += expressions[i].toString() + " " + operators[i].toString() + " "; 
+    }
+    str += expressions[expressions.length-1].toString();
+    System.out.println(str);
+    
+    return str;
+  }
+  
   /**
    * Determines the order of operations.
    * 
