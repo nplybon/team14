@@ -252,6 +252,10 @@ public class Expression {
         str = i.toString(imagCoef);
       }
     }
+    
+    if (hasExponent) {
+      str += "^" + expPower;
+    }
 
     return str;
   }
