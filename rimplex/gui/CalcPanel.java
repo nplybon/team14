@@ -380,7 +380,6 @@ public class CalcPanel extends Panel {
 		// TODO Auto-generated method stub
 		setLayout( new BorderLayout() );
 		
-//		displayPanel.setLayout( new GridLayout( 1,0 ) );
 		center.setLayout( new GridLayout( 4,0 ) );
 		
 	}
