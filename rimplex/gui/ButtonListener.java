@@ -368,7 +368,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 	switch ( result ) {
 	case '+':
 		if ( panel.isCloseParEnabled() ) {
-			if ( panel.isPlusEnabled() ) {
+			if ( !panel.isPlusEnabled() ) {
 				
 				errorMessage();
 			}
@@ -389,7 +389,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		break;
 	case '-':
 		if ( panel.isCloseParEnabled() ) {
-			if ( panel.isPlusEnabled() ) {
+			if ( !panel.isPlusEnabled() ) {
 				
 				errorMessage();
 			}
@@ -493,31 +493,56 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 	case '=':
 		if ( panel.isEqualsEnabled() ) {
 			
-//			runEquals();
-		    Operator[] operators = (Operator[]) operator.toArray();
-		    Expression[] expression = (Expression[]) this.expression.toArray();
-		    operator.clear();
-            this.expression.clear();
-		    Calculate calc = new Calculate(expression, operators);
-		    Expression answer = null;
-		    try
-		    {
-		      answer = calc.calculateExpression();
-		    }
-		    catch (OverflowException | InvalidExpressionException q)
-		    {
-		      // TODO Auto-generated catch block
-		      q.printStackTrace();
-		    }
+			str = panel.getDisplay();
+			int newLine = str.indexOf( '\n' );
+//			String other = str.substring( 0, newLine );
+			str = str.substring( newLine ).strip();
+			if ( !TextFieldListener.getInstance().verifyTarget( str ) ) {
+				
+				errorMessage();
+			} else {
+				try {
+					int exponent = 1;
+					
+					if ( str.indexOf( '^' ) != -1 ) {
+					
+						String sub = str.substring( str.indexOf( '^' ) + 1, str.indexOf( '=' ) );
+					    exponent = Integer.parseInt( sub );
+					    
+					}
+					this.expression.add( setExp( str, exponent ) );
+				} catch (NumberFormatException | InvalidExpressionException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		    
+				Operator[] operators = new Operator[ operator.size() ];
+		        operators = operator.toArray( operators );
+		        Expression[] expression = new Expression[ this.expression.size() ];
+		        expression = this.expression.toArray( expression );
 
-		    panel.addToDisplay(answer.toString());
-		    //need to fix adding to display
-		    history.add(panel.getDisplay());
-		    HistoryFrame.getInstance().incrementHistory("\n" + history.get(history.size() - 1));
-			panel.handleExponent( false );
-//			System.out.println( exp1.toString() + " " + exp2.toString() )
-//			System.out.println( exp1.getExpPower() + " " + exp2.getExpPower() );
-//			System.out.println( operator.get( 0 ) );
+		        Calculate calc = new Calculate(expression, operators);
+		        Expression answer = null;
+		        try
+		        {
+		        	answer = calc.calculateExpression();
+		        }
+		        catch (OverflowException | InvalidExpressionException q)
+		        {
+		        	// TODO Auto-generated catch block
+		        	q.printStackTrace();
+		        }
+
+		        panel.subDisplay( newLine );
+		        panel.addToDisplay( this.expression.get( this.expression.size() - 1 ) 
+		        		+ "=" + answer.toString() );
+		        history.add(panel.getDisplay());
+		        HistoryFrame.getInstance().incrementHistory( "\n" 
+		        		+ history.get(history.size() - 1));
+		        panel.handleExponent( false );
+		        operator.clear();
+		        this.expression.clear();
+			}
 		} else {
 			
 			errorMessage();
@@ -647,7 +672,7 @@ private void runOperator( Operator op, int exponent ) {
     if ( str.indexOf( '(' ) != -1 ) {
     	
         String sub = str.substring( str.indexOf( '(' ), str.indexOf( ')' ) );
-    	
+    	//need to add exponent
         if (sub.indexOf("+") != -1)
         {
   

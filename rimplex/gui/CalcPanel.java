@@ -165,7 +165,7 @@ public class CalcPanel extends Panel {
 		// thirdRow.add( imagPart );
 		
 		center.add( displayPanel );
-		center.add( new JPanel() );
+//		center.add( new JPanel() );
 
 		scrollPane = new JScrollPane( display, 
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
