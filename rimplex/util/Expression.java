@@ -18,6 +18,8 @@ public class Expression {
   private boolean imagNumber = false;
   private boolean hasExponent = false;
   private boolean hasLog = false;
+  private boolean realExp = false;
+  private boolean imagExp = false;
 
   /**
    * Constructor with only real number.
@@ -214,6 +216,17 @@ public class Expression {
 	  return Arithmetic.imagPart(this);
   }
 
+  public void setRealExpression() {
+    realExp = true;
+    imagCoef = 0.0;
+    imagPower = 0;
+  }
+  
+  public void setImaginaryExpression() {
+    imagExp = true;
+    real = 0.0;
+  }
+  
   /**
    * Simplifies.
    * 
