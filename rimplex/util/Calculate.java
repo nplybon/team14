@@ -62,6 +62,15 @@ public class Calculate {
       case LOGARITHM:
         result = Arithmetic.naturalLog(exp1);
         break;
+      case SQUAREROOT:
+        result = Arithmetic.squareRoot(exp1);
+        break;
+      case INVERSE:
+        result = Arithmetic.inverse(exp1);
+        break;
+      case CONJUGATE:
+        result = Arithmetic.conjugate(exp1);
+        break;
       case REAL:
     	break;
       case IMAGINARY:
@@ -91,6 +100,18 @@ public class Calculate {
       }
       if (expressions[i].hasLog()) {
         result = calculate(expressions[i], Operator.LOGARITHM, null);
+        expressions[i] = result;
+      }
+      if (expressions[i].hasSqrt()) {
+        result = calculate(expressions[i], Operator.SQUAREROOT, null);
+        expressions[i] = result;
+      }
+      if (expressions[i].hasLog()) {
+        result = calculate(expressions[i], Operator.INVERSE, null);
+        expressions[i] = result;
+      }
+      if (expressions[i].hasLog()) {
+        result = calculate(expressions[i], Operator.CONJUGATE, null);
         expressions[i] = result;
       }
     }

@@ -11,7 +11,8 @@ public enum Operator {
   MULTIPLICATION('x', "product"), DIVISION('/', "quoitent"), 
   EXPONENT('^', "exponent"), LOGARITHM('l', "logarithm"),
   INVERSE('v', "inverse"), CONJUGATE('c', "conjugate"), 
-  REAL('r', "real"), IMAGINARY('m', "imaginary");
+  SQUAREROOT('2', "square root"), REAL('r', "real"), 
+  IMAGINARY('m', "imaginary");
 
   private char symbol;
   private String type;
@@ -64,6 +65,9 @@ public enum Operator {
         break;
       case 'c':
         op = Operator.CONJUGATE;
+        break;
+      case '2':
+        op = Operator.SQUAREROOT;
         break;
       case 'r':
     	  op = Operator.REAL;

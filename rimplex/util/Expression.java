@@ -18,6 +18,9 @@ public class Expression {
   private boolean imagNumber = false;
   private boolean hasExponent = false;
   private boolean hasLog = false;
+  private boolean hasSqrt = false;
+  private boolean hasInv = false;
+  private boolean hasConj = false;
   private boolean realExp = false;
   private boolean imagExp = false;
 
@@ -175,6 +178,30 @@ public class Expression {
    */
   public boolean hasLog() {
     return hasLog;
+  }
+  
+  public void setSqrt() {
+    hasSqrt = true;
+  }
+  
+  public boolean hasSqrt() {
+    return hasSqrt;
+  }
+  
+  public void setInverse() {
+    hasInv = true;
+  }
+  
+  public boolean hasInverse() {
+    return hasInv;
+  }
+  
+  public void setConjugate() {
+    hasConj = true;
+  }
+  
+  public boolean hasConjugate() {
+    return hasConj;
   }
   
   /**
