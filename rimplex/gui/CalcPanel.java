@@ -164,7 +164,7 @@ public class CalcPanel extends Panel {
 		// thirdRow.add( realPart );
 		// thirdRow.add( imagPart );
 		
-		center.add( displayPanel );
+//		center.add( displayPanel );
 //		center.add( new JPanel() );
 
 		scrollPane = new JScrollPane( display, 
