@@ -106,11 +106,11 @@ public class Calculate {
         result = calculate(expressions[i], Operator.SQUAREROOT, null);
         expressions[i] = result;
       }
-      if (expressions[i].hasLog()) {
+      if (expressions[i].hasInverse()) {
         result = calculate(expressions[i], Operator.INVERSE, null);
         expressions[i] = result;
       }
-      if (expressions[i].hasLog()) {
+      if (expressions[i].hasConjugate()) {
         result = calculate(expressions[i], Operator.CONJUGATE, null);
         expressions[i] = result;
       }
