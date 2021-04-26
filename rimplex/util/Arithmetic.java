@@ -317,7 +317,7 @@ public class Arithmetic {
 	public static Expression squareRoot(Expression exp1) throws InvalidExpressionException {
 		double x = exp1.getReal();
 		double y = exp1.getImagCoef();
-		double r = x*x + y*y;
+		double r = Math.sqrt(Math.sqrt(x*x + y*y));
 		double theta = Math.atan2(y, x) / 2;
 		
 		return new Expression(r*Math.cos(theta), r*Math.sin(theta), 1, '+');
