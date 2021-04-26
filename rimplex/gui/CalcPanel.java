@@ -62,6 +62,8 @@ public class CalcPanel extends Panel {
 	private JButton closeHistory;
 	private JButton squareRoot;
 	private JButton exponent;
+	private JButton realPart;
+	private JButton imagPart;
 	private JToggleButton outputformat;
 	
 	private JPanel displayPanel;
@@ -158,6 +160,12 @@ public class CalcPanel extends Panel {
 		thirdRow.add( exponent );
 		thirdRow.add(  outputformat  );
 		thirdRow.add( squareRoot );
+		
+		// thirdRow.add( realPart );
+		// thirdRow.add( imagPart );
+		
+		center.add( displayPanel );
+		center.add( new JPanel() );
 
 		scrollPane = new JScrollPane( display, 
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
@@ -362,6 +370,9 @@ public class CalcPanel extends Panel {
 		openHistory.addActionListener(button);
 		squareRoot.addActionListener(button);
 		outputformat.addActionListener(button);
+		
+		// realPart.addActionListener(button);
+		// imagPart.addActionListener(button);
 	}
 
 	@Override
@@ -405,6 +416,10 @@ public class CalcPanel extends Panel {
 		closeHistory = new JButton();
 		openHistory = new JButton();
 		squareRoot = new JButton();
+		
+		 // realPart = new JButton();
+		 // imagPart = new JButton();
+		
 		outputformat = new JToggleButton();
 	}
 
@@ -440,6 +455,8 @@ public class CalcPanel extends Panel {
 		openHistory.setText( ">" );
 		squareRoot.setText( "sqr" );
 		outputformat.setText("frac");
+		// realPart.setText("real");
+		// imagPart.setText("imag");
 		setButtonTextColor();
 		setButtonFont();
 
@@ -457,6 +474,8 @@ public class CalcPanel extends Panel {
 	  openPar.setForeground(cyan);
 	  inverse.setForeground(cyan);
 	  reset.setForeground(cyan);
+	  // realPart.setForeground(cyan);
+	  // imagPart.setForeground(cyan);
 	  Color yellow = new Color(135,124,27);
 	  cancel.setForeground(yellow);
 	  backspace.setForeground(yellow);
