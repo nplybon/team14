@@ -78,8 +78,8 @@ public class TextFieldListener implements FocusListener {
 			
 			str = str.substring( str.indexOf( '(' ) + 1, str.indexOf( ')' ) );
 			int l = str.length();
-			
-			if ( str.indexOf( '+' ) != -1 ) {
+			if ( str.indexOf( '+' ) != -1 
+					&& str.indexOf( '+' ) + 3 < str.length() - 1 ) {
 				
 				i = str.indexOf( '+' );
 				String real = str.substring( 0, i );
@@ -88,7 +88,8 @@ public class TextFieldListener implements FocusListener {
 				isReal = isReal( real );
 				isImg = isImag( img );
 				
-			} else if ( str.indexOf( '-' ) != -1 ) {
+			} else if ( str.indexOf( '-' ) != -1 
+					&&  ( str.indexOf( '-' ) + 1 ) < ( str.length() - 1 ) ) {
 				
 				i = str.indexOf( '-' );
 				String real = str.substring( 0, i );
@@ -96,7 +97,10 @@ public class TextFieldListener implements FocusListener {
 				isReal = isReal( real );
 				isImg = isImag( img );
 				
-			}			
+			} else {
+				
+				bool = false;
+			}
 		} else if ( str.indexOf( 'i' ) != -1 ) {
 			
 			bool = isImag( str );
