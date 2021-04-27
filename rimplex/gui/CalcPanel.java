@@ -633,12 +633,12 @@ public class CalcPanel extends Panel {
 	
 	public void changeSign() {
 	  String str = panel.getDisplay();
-    int newLine = str.indexOf( '\n' );
+    int newLine = str.indexOf( '\n' ) + 1;
     String top = str.substring(0, newLine);
     String bottom = str.substring(newLine);
     str = str.substring( newLine ).strip();
     
-	  if (str.charAt(0) == '-') {
+	  if (bottom.charAt(0) == '-') {
 	    display.setText(top + bottom.substring(1));
 	  } else {
 	    display.setText(top + "-" + bottom); 
