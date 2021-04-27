@@ -189,6 +189,11 @@ public class Calculate {
     return str;
   }
 
+  /**
+   * Gets the Intermediate Steps of the Calculated Equation.
+   * 
+   * @return the steps
+   */
   public ArrayList<String> getSteps() {
     return steps;
   }
