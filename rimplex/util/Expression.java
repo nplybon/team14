@@ -18,6 +18,11 @@ public class Expression {
   private boolean imagNumber = false;
   private boolean hasExponent = false;
   private boolean hasLog = false;
+  private boolean hasSqrt = false;
+  private boolean hasInv = false;
+  private boolean hasConj = false;
+  private boolean realExp = false;
+  private boolean imagExp = false;
 
   /**
    * Constructor with only real number.
@@ -175,6 +180,30 @@ public class Expression {
     return hasLog;
   }
   
+  public void setSqrt() {
+    hasSqrt = true;
+  }
+  
+  public boolean hasSqrt() {
+    return hasSqrt;
+  }
+  
+  public void setInverse() {
+    hasInv = true;
+  }
+  
+  public boolean hasInverse() {
+    return hasInv;
+  }
+  
+  public void setConjugate() {
+    hasConj = true;
+  }
+  
+  public boolean hasConjugate() {
+    return hasConj;
+  }
+  
   /**
    * Sets a Subtraction Complex Number equation to an Addition equation.
    */
@@ -214,6 +243,17 @@ public class Expression {
 	  return Arithmetic.imagPart(this);
   }
 
+  public void setRealExpression() {
+    realExp = true;
+    imagCoef = 0.0;
+    imagPower = 0;
+  }
+  
+  public void setImaginaryExpression() {
+    imagExp = true;
+    real = 0.0;
+  }
+  
   /**
    * Simplifies.
    * 
@@ -251,6 +291,10 @@ public class Expression {
       {
         str = i.toString(imagCoef);
       }
+    }
+    
+    if (hasExponent) {
+      str += "^" + expPower;
     }
 
     return str;
