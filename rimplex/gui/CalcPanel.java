@@ -168,21 +168,17 @@ public class CalcPanel extends Panel {
 		secRow.add( closePar );
 //		secRow.add( openHistory );
 		
-//		secRow.add( new JPanel() );
 		secRow.add( decimal );
 		secRow.add( zero );
 		secRow.add( iButton );
 		secRow.add( equals );
 		secRow.add( exponent );
-//		secRow.add( new JPanel() );
 		
-//		thirdRow.add( new JPanel() );
 		thirdRow.add( realPart );
 		thirdRow.add( imagPart );
 		thirdRow.add( log );
 		thirdRow.add( conjugate );
 		thirdRow.add( squareRoot );
-//		thirdRow.add( new JPanel() );
 		
 		thirdRow.add( new JPanel() );
 		thirdRow.add( openHistory );
@@ -195,34 +191,15 @@ public class CalcPanel extends Panel {
 		thirdRow.add( new JPanel() );
 		thirdRow.add( new JPanel() );
 		thirdRow.add( new JPanel() );
-		
-//		thirdRow.add( new JPanel() );
-//		thirdRow.add( new JPanel() );
-//		thirdRow.add( new JPanel() );
-//		thirdRow.add( new JPanel() );
-		
-//		center.add( displayPanel );
-//		center.add( new JPanel() );
 
 		scrollPane = new JScrollPane( display, 
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED );
-//		scrollPane.a
-//		center.add( new JPanel() );
-		center.add( scrollPane );
-//		center.add( new JPanel() );
-//		center.add( new JPanel() );
-		center.add( topRow );
-//		center.add( new JPanel() );
-//		center.add( new JPanel() );
-		center.add( secRow );
-//		center.add( new JPanel() );
-//		center.add( new JPanel() );
-		center.add( thirdRow );
-//		center.add( new JPanel() );
-		
-//		historyWindow.add( windowDisplay );
 
+		center.add( scrollPane );
+		center.add( topRow );
+		center.add( secRow );
+		center.add( thirdRow );
 		
 		add( center, BorderLayout.CENTER );
 		add( new JPanel(), BorderLayout.NORTH );
