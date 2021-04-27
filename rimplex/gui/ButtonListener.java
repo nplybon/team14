@@ -312,7 +312,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
           break;
       case "Help":
     	  try {
-		       System.out.println( "in try" );  
+
 			  String url = "http://www.google.com"; 
 	            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
 //		        Desktop.getDesktop().browse(new URI("http://www.codejava.net"));
@@ -320,7 +320,16 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		    } catch (IOException e1) {
 		        e1.printStackTrace();
 		    }
-          break;  
+          break;
+      case "About":
+    	
+    	  String message = "Rimplex is a complex number calculator. This is \n"
+    	  		+ "a CS345 final project designed by John Curley, Hunter Mann,\n"
+    	  		+ "Nic Plybon, Colton Shovlin and Alexander Walker (team14).\n"
+    	  		+ "This is the 3rd edition of Rimplex.";
+      	JOptionPane.showMessageDialog( null, message, "About Rimplex", 
+  				JOptionPane.PLAIN_MESSAGE );
+    	  break;
     }
 //	  } else if ( e.getSource() instanceof JMenu ) {
 //		  
