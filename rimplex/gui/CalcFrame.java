@@ -156,6 +156,7 @@ public class CalcFrame extends JFrame {
     private void setListeners() {
     	
     	this.addWindowListener( ButtonListener.getInstance() );
+    	about.addActionListener( ButtonListener.getInstance() );
     	help.addActionListener( ButtonListener.getInstance() );
     	print.addActionListener(ButtonListener.getInstance());
     }
