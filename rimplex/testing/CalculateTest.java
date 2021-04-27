@@ -30,7 +30,6 @@ class CalculateTest
      assertEquals(result.getImagCoef(), 4242, 0.001);
   }
   
-  /*
   @Test
   void testCalculateConstructor2() throws InvalidExpressionException, OverflowException {
      Expression exp1 = new Expression(5.5, 9.0, 1, '-');
@@ -57,6 +56,5 @@ class CalculateTest
      assertEquals(result.getReal(), 27.816513761468, 0.001);
      assertEquals(result.getImagCoef(), 45.94495412844, 0.001);
   }
-  */
   
 }
