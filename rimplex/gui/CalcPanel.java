@@ -161,8 +161,8 @@ public class CalcPanel extends Panel {
 		thirdRow.add(  outputformat  );
 		thirdRow.add( squareRoot );
 		
-		// thirdRow.add( realPart );
-		// thirdRow.add( imagPart );
+		 thirdRow.add( realPart );
+		 thirdRow.add( imagPart );
 		
 //		center.add( displayPanel );
 //		center.add( new JPanel() );
@@ -310,11 +310,11 @@ public class CalcPanel extends Panel {
 		setButtonText();
 		
 		inverse.setEnabled( false );
-		log.setEnabled( false );
+		//log.setEnabled( false );
 		exponent.setEnabled( false );
 		//sign.setEnabled( false );
 		closeHistory.setEnabled( false );
-		squareRoot.setEnabled( false );
+		//squareRoot.setEnabled( false );
 		closePar.setEnabled(false);
 		cancel.setEnabled( false );
 		
@@ -371,8 +371,8 @@ public class CalcPanel extends Panel {
 		squareRoot.addActionListener(button);
 		outputformat.addActionListener(button);
 		
-		// realPart.addActionListener(button);
-		// imagPart.addActionListener(button);
+		 realPart.addActionListener(button);
+		 imagPart.addActionListener(button);
 	}
 
 	@Override
@@ -416,8 +416,8 @@ public class CalcPanel extends Panel {
 		openHistory = new JButton();
 		squareRoot = new JButton();
 		
-		 // realPart = new JButton();
-		 // imagPart = new JButton();
+		  realPart = new JButton();
+		  imagPart = new JButton();
 		
 		outputformat = new JToggleButton();
 	}
@@ -454,8 +454,8 @@ public class CalcPanel extends Panel {
 		openHistory.setText( ">" );
 		squareRoot.setText( "sqr" );
 		outputformat.setText("frac");
-		// realPart.setText("real");
-		// imagPart.setText("imag");
+		 realPart.setText("real");
+		 imagPart.setText("imag");
 		setButtonTextColor();
 		setButtonFont();
 
@@ -473,8 +473,8 @@ public class CalcPanel extends Panel {
 	  openPar.setForeground(cyan);
 	  inverse.setForeground(cyan);
 	  reset.setForeground(cyan);
-	  // realPart.setForeground(cyan);
-	  // imagPart.setForeground(cyan);
+	   realPart.setForeground(cyan);
+	   imagPart.setForeground(cyan);
 	  Color yellow = new Color(135,124,27);
 	  cancel.setForeground(yellow);
 	  backspace.setForeground(yellow);
