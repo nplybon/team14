@@ -167,20 +167,20 @@ public class Calculate {
 
     switch (type) {
       case NOTHING:
-        str += "Intial Equation";
+        str += "   Intitial Equation";
         break;
       case ADDITION:
       case SUBTRACTION:
       case MULTIPLICATION:
       case DIVISION:
-        str += "Preformed " + type.getType();
+        str += "   Preformed " + type.getType();
         break;
       case EXPONENT:
       case LOGARITHM:
       case SQUAREROOT:
       case INVERSE:
       case CONJUGATE:
-        str += "Took " + type.getType();
+        str += "   Took " + type.getType();
         break;
     }
 
