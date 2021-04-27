@@ -58,24 +58,45 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     switch (button.getText())
     {
       case "+":
-        calc.enableEquals();
-        calc.addToDisplay("+");
-        calc.toggleAllNumsDI(true);
-        calc.enableAllNums();
-        calc.toggleImag(true);
-        calc.handleExponent( false );
+  		if ( calc.isCloseParEnabled() ) {
+
+  			calc.addToDisplay("+");
+  			calc.enableEquals();
+  	        calc.toggleAllNumsDI(true);
+  	        calc.enableAllNums();
+  	        calc.toggleImag(true);
+  	        calc.handleExponent( false );
+
+		} else {
+
+			calc.addToDisplay("+");
+			int exponent = setExponent( '+' );
+			runOperator( Operator.ADDITION, exponent );
+		}
+       
         break;
       case "-":
-        calc.enableEquals();
-        calc.addToDisplay("-");
-        calc.toggleAllNumsDI(true);
-        calc.toggleImag(true);
-        calc.enableAllNums();
-        calc.handleExponent(false);
+    		if ( calc.isCloseParEnabled() ) {
+
+      			calc.addToDisplay("-");
+      			calc.enableEquals();
+      	        calc.toggleAllNumsDI(true);
+      	        calc.enableAllNums();
+      	        calc.toggleImag(true);
+      	        calc.handleExponent( false );
+
+    		} else {
+
+    			calc.addToDisplay("-");
+    			int exponent = setExponent( '-' );
+    			runOperator( Operator.SUBTRACTION, exponent );
+    		}
         break;
       case "\u00F7":
         calc.enableEquals();
         calc.addToDisplay("/");
+        int exponent = setExponent( '/' );
+		runOperator( Operator.DIVISION, exponent );
         calc.toggleAllNumsDI(true);
         calc.toggleImag(true);
         calc.enableAllNums();
@@ -84,6 +105,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       case "x":
         calc.enableEquals();
         calc.addToDisplay("x");
+        int exponent2 = setExponent( 'x' );
+		runOperator( Operator.MULTIPLICATION, exponent2 );
         calc.toggleAllNumsDI(true);
         calc.toggleImag(true);
         calc.enableAllNums();
@@ -696,6 +719,23 @@ private void runOperator( Operator op, int exponent ) {
 			
 			panel.enableAllNums();
 		}
+	} else {
+		
+        CalcPanel calc = CalcPanel.getInstance();
+        String bad = "Invalid Input";
+    	calc.setDisplay( calc.getDisplay().substring( 0, 
+    			( calc.getDisplay().indexOf( '\n' ) ) )
+    			+ "\n" );
+        	JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
+    				JOptionPane.PLAIN_MESSAGE );
+        calc.enableEquals();
+        calc.resetDisplay();
+        calc.addToDisplay( "\n" );
+        calc.toggleAllNumsDI(true);
+        calc.enableAllNums();
+        calc.handleExponent(false);
+        calc.changeParenC( -1 );
+        
 	}
 }
 
