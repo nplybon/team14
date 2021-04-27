@@ -223,7 +223,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.subDisplay(display.length() - 1);
         break;
       case "inv":
-        calc.addToDisplay("^-1");
+        calc.addToDisplay("inv(");
+        calc.changeParenC(1);
         break;
       case "log":
         calc.addToDisplay("log(");
@@ -240,6 +241,17 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
           calc.changeSign();
         }
         break;
+      case "steps":
+    	  
+    	  StepsFrame steps = StepsFrame.getInstance();
+    	  if ( steps.isVisible() ) {
+    		  
+    		  steps.handleSteps( false );
+    	  } else {
+    		  
+    		  steps.handleSteps( true );
+    	  }
+    	  break;
       case ">":
         HistoryFrame.getInstance().handleHistory(true);
         calc.handleCloseHistory(true);
@@ -622,7 +634,8 @@ private int setExponent( char operator ) {
 	    	// TODO Auto-generated catch block
 	    	q.printStackTrace();
 	    }
-
+        
+	    StepsFrame.getInstance().incrementSteps( calc.getSteps() );
 	    panel.subDisplay( newLine );
 	    panel.addToDisplay( this.expression.get( this.expression.size() - 1 ) 
 	    		+ "=" + answer.toString() );
