@@ -151,9 +151,7 @@ public class CalcPanel extends Panel {
 		topRow.add( three );
 		topRow.add( minus );
 		topRow.add( inverse );
-//		topRow.add( new JPanel() );
-		
-//		secRow.add( new JPanel() );
+
 		secRow.add( four );
 		secRow.add( five );
 		secRow.add( six );
