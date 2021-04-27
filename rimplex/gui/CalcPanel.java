@@ -65,6 +65,7 @@ public class CalcPanel extends Panel {
 	private JButton realPart;
 	private JButton imagPart;
 	private JButton conjugate;
+	private JButton steps;
 	private JToggleButton outputformat;
 	
 	private JPanel displayPanel;
@@ -180,7 +181,7 @@ public class CalcPanel extends Panel {
 		thirdRow.add( conjugate );
 		thirdRow.add( squareRoot );
 		
-		thirdRow.add( new JPanel() );
+		thirdRow.add( steps );
 		thirdRow.add( openHistory );
 		thirdRow.add( closeHistory );
 		thirdRow.add(  outputformat  );
@@ -333,7 +334,7 @@ public class CalcPanel extends Panel {
 		// TODO Auto-generated method stub
 		setButtonText();
 		
-		inverse.setEnabled( false );
+//		inverse.setEnabled( false );
 		//log.setEnabled( false );
 		exponent.setEnabled( false );
 		//sign.setEnabled( false );
@@ -395,7 +396,7 @@ public class CalcPanel extends Panel {
 		squareRoot.addActionListener(button);
 		conjugate.addActionListener( button );
 		outputformat.addActionListener(button);
-		
+		steps.addActionListener( button );
 		 realPart.addActionListener(button);
 		 imagPart.addActionListener(button);
 	}
@@ -413,6 +414,7 @@ public class CalcPanel extends Panel {
 
 	private void createButtons() {
 		
+		steps = new JButton();
 		exponent = new JButton();
 		plus = new JButton();
 		minus = new JButton();
@@ -452,6 +454,7 @@ public class CalcPanel extends Panel {
 
 	private void setButtonText() {
 		
+		steps.setText( "steps" );
 		exponent.setText( "^" );
 		plus.setText( "+" );
 		minus.setText( "-" );
