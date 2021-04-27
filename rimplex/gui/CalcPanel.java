@@ -687,10 +687,16 @@ public class CalcPanel extends Panel {
 	}
 	
 	public void changeSign() {
-	  if (display.getText().charAt(0) == '-') {
-	    display.setText(display.getText().substring(1));
+	  String str = panel.getDisplay();
+    int newLine = str.indexOf( '\n' ) + 1;
+    String top = str.substring(0, newLine);
+    String bottom = str.substring(newLine);
+    str = str.substring( newLine ).strip();
+    
+	  if (bottom.charAt(0) == '-') {
+	    display.setText(top + bottom.substring(1));
 	  } else {
-	    display.setText("-" + display.getText()); 
+	    display.setText(top + "-" + bottom); 
 	  }
 	}
 }
