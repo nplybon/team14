@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import javax.swing.AbstractButton;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
@@ -48,6 +49,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   {
     // TODO Auto-generated method stub
 //	  if ( e.getSource() instanceof AbstractButton ) {
+//		  System.out.println( "Inside if " );
     AbstractButton button = (AbstractButton) e.getSource();
     CalcPanel calc = CalcPanel.getInstance();
     TextFieldListener field = TextFieldListener.getInstance();
@@ -221,10 +223,11 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.subDisplay(display.length() - 1);
         break;
       case "inv":
-        calc.addToDisplay("^-1");
+        calc.addToDisplay("inv(");
+        calc.changeParenC(1);
         break;
       case "log":
-        calc.addToDisplay("ln(");
+        calc.addToDisplay("log(");
         calc.changeParenC(1);
         break;
       case "imag":
@@ -238,6 +241,17 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
           calc.changeSign();
         }
         break;
+      case "steps":
+    	  
+    	  StepsFrame steps = StepsFrame.getInstance();
+    	  if ( steps.isVisible() ) {
+    		  
+    		  steps.handleSteps( false );
+    	  } else {
+    		  
+    		  steps.handleSteps( true );
+    	  }
+    	  break;
       case ">":
         HistoryFrame.getInstance().handleHistory(true);
         calc.handleCloseHistory(true);
@@ -253,10 +267,15 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         HistoryFrame.getInstance().handleHistory(false);
         calc.handleCloseHistory(false);
         calc.handleOpenHistory(true);
+        break;
       case "sqr":
           calc.addToDisplay("sqr(");
           calc.changeParenC(1);
         break;
+      case "conj":
+    	  calc.addToDisplay( "conj(" );
+    	  calc.changeParenC(1);
+    	  break;
       case "^":
         calc.addToDisplay("^");
         calc.handleExponent(false);
@@ -290,18 +309,32 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     	 // calc.enableEquals();
           calc.addToDisplay("real(");
           calc.changeParenC(1);
+          break;
+      case "Help":
+    	  try {
+		       System.out.println( "in try" );  
+			  String url = "http://www.google.com"; 
+	            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+//		        Desktop.getDesktop().browse(new URI("http://www.codejava.net"));
+			  //Desktop.browse("http://www.google.de/");
+		    } catch (IOException e1) {
+		        e1.printStackTrace();
+		    }
+          break;  
     }
-//	  } else if ( e.getSource() instanceof JMenuItem ) {
+//	  } else if ( e.getSource() instanceof JMenu ) {
 //		  
-//		  JMenuItem menu = (JMenuItem) e.getSource();
+//		  JMenu menu = (JMenu) e.getSource();
 //		  
 //		  switch ( menu.getText() ) {
 //		  case "about":
 //			  try {
-//			         
-//			        Desktop.getDesktop().browse(new URI("http://www.codejava.net"));
-//			         
-//			    } catch (IOException | URISyntaxException e1) {
+//			       System.out.println( "in try" );  
+//				  String url = "http://www.google.com"; 
+//		            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+////			        Desktop.getDesktop().browse(new URI("http://www.codejava.net"));
+//				  //Desktop.browse("http://www.google.de/");
+//			    } catch (IOException e1) {
 //			        e1.printStackTrace();
 //			    }
 //	           break;
@@ -601,7 +634,8 @@ private int setExponent( char operator ) {
 	    	// TODO Auto-generated catch block
 	    	q.printStackTrace();
 	    }
-
+        
+	    StepsFrame.getInstance().incrementSteps( calc.getSteps() );
 	    panel.subDisplay( newLine );
 	    panel.addToDisplay( this.expression.get( this.expression.size() - 1 ) 
 	    		+ "=" + answer.toString() );
@@ -833,5 +867,5 @@ private Expression setFunctionExpression(String str) throws InvalidExpressionExc
 	calc.subDisplay( ( calc.getDisplay().length() - 1 ) );
     	JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
 				JOptionPane.PLAIN_MESSAGE );
-	}	
+  }	
 }

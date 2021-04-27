@@ -184,7 +184,7 @@ public class Calculate {
         break;
     }
 
-    System.out.println(str);
+//    System.out.println(str);
 
     return str;
   }

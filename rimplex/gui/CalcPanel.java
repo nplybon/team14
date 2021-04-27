@@ -64,6 +64,8 @@ public class CalcPanel extends Panel {
 	private JButton exponent;
 	private JButton realPart;
 	private JButton imagPart;
+	private JButton conjugate;
+	private JButton steps;
 	private JToggleButton outputformat;
 	
 	private JPanel displayPanel;
@@ -127,60 +129,81 @@ public class CalcPanel extends Panel {
 	public void addComponents() {
 		// TODO Auto-generated method stub
 //		displayPanel.add( display );
+//		topRow.add( new JPanel() );
+		topRow.add( new JPanel() );
+		topRow.add( new JPanel() );
+		topRow.add( new JPanel() );
+		topRow.add( new JPanel() );
+		topRow.add( new JPanel() );
+//		topRow.add( new JPanel() );
 		
+//		topRow.add( new JPanel() );
 		topRow.add( sign );
 		topRow.add( reset );
 		topRow.add( cancel );
 		topRow.add( plus );
-		topRow.add( backspace );	
+		topRow.add( backspace );
+//		topRow.add( new JPanel() );
+		
+//		topRow.add( new JPanel() );
 		topRow.add( one );
 		topRow.add( two );
 		topRow.add( three );
 		topRow.add( minus );
 		topRow.add( inverse );
-		
+
 		secRow.add( four );
 		secRow.add( five );
 		secRow.add( six );
 		secRow.add( multiply );
 		secRow.add( openPar );
+//		secRow.add( new JPanel() );
+		
+//		secRow.add( new JPanel() );
 		secRow.add( seven );
 		secRow.add( eight );
 		secRow.add( nine );
 		secRow.add( division );
 		secRow.add( closePar );
+//		secRow.add( openHistory );
 		
-		thirdRow.add( decimal );
-		thirdRow.add( zero );
-		thirdRow.add( iButton );
-		thirdRow.add( equals );
+		secRow.add( decimal );
+		secRow.add( zero );
+		secRow.add( iButton );
+		secRow.add( equals );
+		secRow.add( exponent );
+		
+		thirdRow.add( realPart );
+		thirdRow.add( imagPart );
 		thirdRow.add( log );
-		thirdRow.add( openHistory );
-		thirdRow.add( closeHistory );
-		thirdRow.add( exponent );
-		thirdRow.add(  outputformat  );
+		thirdRow.add( conjugate );
 		thirdRow.add( squareRoot );
 		
-		 thirdRow.add( realPart );
-		 thirdRow.add( imagPart );
+		thirdRow.add( steps );
+		thirdRow.add( openHistory );
+		thirdRow.add( closeHistory );
+		thirdRow.add(  outputformat  );
+		thirdRow.add( new JPanel() );
 		
-//		center.add( displayPanel );
-//		center.add( new JPanel() );
+		thirdRow.add( new JPanel() );
+		thirdRow.add( new JPanel() );
+		thirdRow.add( new JPanel() );
+		thirdRow.add( new JPanel() );
+		thirdRow.add( new JPanel() );
 
 		scrollPane = new JScrollPane( display, 
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED );
-//		scrollPane.a
+
 		center.add( scrollPane );
-//		center.add( new JPanel() );
 		center.add( topRow );
 		center.add( secRow );
 		center.add( thirdRow );
 		
-//		historyWindow.add( windowDisplay );
-		
 		add( center, BorderLayout.CENTER );
 		add( new JPanel(), BorderLayout.NORTH );
+//		add( panel, BorderLayout.EAST );
+
 //		add( historyWindow );
 //		JPanel historyPanel = new JPanel();
 //		historyPanel.setLayout( new GridLayout( 3, 0 ) ); 
@@ -309,7 +332,7 @@ public class CalcPanel extends Panel {
 		// TODO Auto-generated method stub
 		setButtonText();
 		
-		inverse.setEnabled( false );
+//		inverse.setEnabled( false );
 		//log.setEnabled( false );
 		exponent.setEnabled( false );
 		//sign.setEnabled( false );
@@ -369,8 +392,9 @@ public class CalcPanel extends Panel {
 		closeHistory.addActionListener( button );
 		openHistory.addActionListener(button);
 		squareRoot.addActionListener(button);
+		conjugate.addActionListener( button );
 		outputformat.addActionListener(button);
-		
+		steps.addActionListener( button );
 		 realPart.addActionListener(button);
 		 imagPart.addActionListener(button);
 	}
@@ -380,12 +404,15 @@ public class CalcPanel extends Panel {
 		// TODO Auto-generated method stub
 		setLayout( new BorderLayout() );
 		
-		center.setLayout( new GridLayout( 4,0 ) );
-		
+		center.setLayout( new GridLayout( 4, 0 ) );
+		topRow.setLayout(new GridLayout( 3, 6 ) );
+		secRow.setLayout( new GridLayout( 3,6 ) );
+		thirdRow.setLayout( new GridLayout( 3, 6 ) );
 	}
 
 	private void createButtons() {
 		
+		steps = new JButton();
 		exponent = new JButton();
 		plus = new JButton();
 		minus = new JButton();
@@ -413,6 +440,7 @@ public class CalcPanel extends Panel {
 		log = new JButton();
 		sign = new JButton();
 		closeHistory = new JButton();
+		conjugate = new JButton();
 		openHistory = new JButton();
 		squareRoot = new JButton();
 		
@@ -424,6 +452,7 @@ public class CalcPanel extends Panel {
 
 	private void setButtonText() {
 		
+		steps.setText( "steps" );
 		exponent.setText( "^" );
 		plus.setText( "+" );
 		minus.setText( "-" );
@@ -454,6 +483,7 @@ public class CalcPanel extends Panel {
 		openHistory.setText( ">" );
 		squareRoot.setText( "sqr" );
 		outputformat.setText("frac");
+		conjugate.setText( "conj" );
 		 realPart.setText("real");
 		 imagPart.setText("imag");
 		setButtonTextColor();
@@ -475,6 +505,9 @@ public class CalcPanel extends Panel {
 	  reset.setForeground(cyan);
 	   realPart.setForeground(cyan);
 	   imagPart.setForeground(cyan);
+	  log.setForeground( cyan );
+	  squareRoot.setForeground( cyan );
+	  conjugate.setForeground( cyan );
 	  Color yellow = new Color(135,124,27);
 	  cancel.setForeground(yellow);
 	  backspace.setForeground(yellow);
@@ -632,10 +665,16 @@ public class CalcPanel extends Panel {
 	}
 	
 	public void changeSign() {
-	  if (display.getText().charAt(0) == '-') {
-	    display.setText(display.getText().substring(1));
+	  String str = panel.getDisplay();
+    int newLine = str.indexOf( '\n' ) + 1;
+    String top = str.substring(0, newLine);
+    String bottom = str.substring(newLine);
+    str = str.substring( newLine ).strip();
+    
+	  if (bottom.charAt(0) == '-') {
+	    display.setText(top + bottom.substring(1));
 	  } else {
-	    display.setText("-" + display.getText()); 
+	    display.setText(top + "-" + bottom); 
 	  }
 	}
 }
