@@ -14,6 +14,7 @@ public class Calculate {
   private Operator[] operators;
   private int[] order;
   private ArrayList<String> steps;
+  private ArrayList<Integer> skips;
 
   /**
    * Constructor.
@@ -26,6 +27,7 @@ public class Calculate {
     this.operators = operators;
     order = orderOfOperations(operators);
     steps = new ArrayList<>();
+    skips = new ArrayList<>();
   }
 
   /**
@@ -36,7 +38,7 @@ public class Calculate {
    * @param exp2 Expression the left expression
    * @return the result expression
    * @throws OverflowException
-   * @throws InvalidExpressionException 
+   * @throws InvalidExpressionException
    */
   private Expression calculate(Expression exp1, Operator op, Expression exp2)
       throws OverflowException, InvalidExpressionException {
@@ -72,9 +74,9 @@ public class Calculate {
         result = Arithmetic.conjugate(exp1);
         break;
       case REAL:
-    	break;
+        break;
       case IMAGINARY:
-    	break;
+        break;
     }
 
     return result;
@@ -85,64 +87,112 @@ public class Calculate {
    * 
    * @return the final calculated expression.
    * @throws OverflowException
-   * @throws InvalidExpressionException 
+   * @throws InvalidExpressionException
    */
-  public Expression calculateExpression() throws OverflowException, InvalidExpressionException {
+  public Expression calculateExpression()
+      throws OverflowException, InvalidExpressionException {
 
     Expression result = null;
-    
-    steps.add(takeStep());
-    
+    int count = 1;
+
+    steps.add(takeStep(count, Operator.NOTHING));
+
     for (int i = 0; i < expressions.length; i++) {
       if (expressions[i].hasExponent()) {
         result = calculate(expressions[i], Operator.EXPONENT, null);
         expressions[i] = result;
+        count++;
+        steps.add(takeStep(count, Operator.EXPONENT));
       }
       if (expressions[i].hasLog()) {
         result = calculate(expressions[i], Operator.LOGARITHM, null);
         expressions[i] = result;
+        count++;
+        steps.add(takeStep(count, Operator.LOGARITHM));
       }
       if (expressions[i].hasSqrt()) {
         result = calculate(expressions[i], Operator.SQUAREROOT, null);
         expressions[i] = result;
+        count++;
+        steps.add(takeStep(count, Operator.SQUAREROOT));
       }
       if (expressions[i].hasInverse()) {
         result = calculate(expressions[i], Operator.INVERSE, null);
         expressions[i] = result;
+        count++;
+        steps.add(takeStep(count, Operator.INVERSE));
       }
       if (expressions[i].hasConjugate()) {
         result = calculate(expressions[i], Operator.CONJUGATE, null);
         expressions[i] = result;
+        count++;
+        steps.add(takeStep(count, Operator.CONJUGATE));
       }
     }
-    
+
     for (int i = 0; i < order.length; i++) {
       result = calculate(expressions[order[i]], operators[order[i]],
           expressions[order[i] + 1]);
       expressions[order[i]] = result;
       expressions[order[i] + 1] = result;
-      //steps.add(takeStep());
+      skips.add(order[i]);
+      count++;
+      steps.add(takeStep(count, operators[order[i]]));
     }
 
     result.simplify();
-    
+
     return result;
 
   }
 
-  private String takeStep() {
-    
-    String str = "";
-    
-    for ( int i = 0; i < operators.length; i++ ) {
-      str += expressions[i].toString() + " " + operators[i].toString() + " "; 
+  private String takeStep(int count, Operator type) {
+
+    String str = "(" + count + ")   ";
+
+    if (skips.size() < operators.length) {
+      for (int i = 0; i < expressions.length; i++) {
+        if (!skips.contains(i)) {
+          str += expressions[i].toString() + " ";
+        }
+        if (i < operators.length) {
+          if (!skips.contains(i)) {
+            str += operators[i].toString() + " ";
+          }
+        }
+      }
+    } else {
+      str += expressions[skips.get(skips.size() - 1)].toString() + " ";
     }
-    str += expressions[expressions.length-1].toString();
+
+    switch (type) {
+      case NOTHING:
+        str += "Intial Equation";
+        break;
+      case ADDITION:
+      case SUBTRACTION:
+      case MULTIPLICATION:
+      case DIVISION:
+        str += "Preformed " + type.getType();
+        break;
+      case EXPONENT:
+      case LOGARITHM:
+      case SQUAREROOT:
+      case INVERSE:
+      case CONJUGATE:
+        str += "Took " + type.getType();
+        break;
+    }
+
     System.out.println(str);
-    
+
     return str;
   }
-  
+
+  public ArrayList<String> getSteps() {
+    return steps;
+  }
+
   /**
    * Determines the order of operations.
    * 
@@ -153,7 +203,7 @@ public class Calculate {
 
     int index = 0;
     int[] order = new int[operators.length];
-    
+
     for (int i = 0; i < operators.length; i++) {
       if (operators[i].equals(Operator.MULTIPLICATION)
           || operators[i].equals(Operator.DIVISION)) {

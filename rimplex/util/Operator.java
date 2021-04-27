@@ -7,12 +7,12 @@ package util;
  */
 public enum Operator {
 
-  ADDITION('+', "sum"), SUBTRACTION('-', "difference"),
-  MULTIPLICATION('x', "product"), DIVISION('/', "quoitent"), 
-  EXPONENT('^', "exponent"), LOGARITHM('l', "logarithm"),
-  INVERSE('v', "inverse"), CONJUGATE('c', "conjugate"), 
-  SQUAREROOT('2', "square root"), REAL('r', "real"), 
-  IMAGINARY('m', "imaginary");
+  ADDITION('+', "Addition"), SUBTRACTION('-', "Subtraction"),
+  MULTIPLICATION('x', "Multiplication"), DIVISION('/', "Division"), 
+  EXPONENT('^', "Exponent"), LOGARITHM('l', "Logarithm"),
+  INVERSE('v', "Inverse"), CONJUGATE('c', "conjugate"), 
+  SQUAREROOT('2', "Square Root"), REAL('r', "Real"), 
+  IMAGINARY('m', "Imaginary"), NOTHING('0', "Nothing");
 
   private char symbol;
   private String type;
@@ -97,7 +97,7 @@ public enum Operator {
    * 
    * @return result name
    */
-  public String getResultType() {
+  public String getType() {
     return type;
   }
 
