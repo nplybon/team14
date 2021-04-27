@@ -254,8 +254,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     	  break;
       case ">":
         HistoryFrame.getInstance().handleHistory(true);
-        calc.handleCloseHistory(true);
-        calc.handleOpenHistory(false);
+        button.setText( "<" );
+//        calc.handleCloseHistory(true);
+//        calc.handleOpenHistory(false);
         // String str = null;
         // for ( int i = 0; i < history.size(); i++ ) {
         //
@@ -265,8 +266,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
       case "<":
         HistoryFrame.getInstance().handleHistory(false);
-        calc.handleCloseHistory(false);
-        calc.handleOpenHistory(true);
+        button.setText( ">" );
+//        calc.handleCloseHistory(false);
+ //       calc.handleOpenHistory(true);
         break;
       case "sqr":
           calc.addToDisplay("sqr(");
