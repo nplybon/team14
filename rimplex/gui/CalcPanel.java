@@ -487,7 +487,11 @@ public class CalcPanel extends Panel {
 		 imagPart.setText("imag");
 		setButtonTextColor();
 		setButtonFont();
-
+		setDisplayBackground();
+	}
+	
+	private void setDisplayBackground() {
+	  display.setBackground(new Color(202,238,255));
 	}
 	
 	private void setButtonTextColor() {
@@ -513,6 +517,7 @@ public class CalcPanel extends Panel {
 	  sign.setForeground(yellow);
   
 	}
+	
 	private void setButtonFont() {
 	  Font bolditalic = new Font("bolditalic", Font.BOLD + Font.ITALIC, 12);
 	  iButton.setFont(bolditalic);
