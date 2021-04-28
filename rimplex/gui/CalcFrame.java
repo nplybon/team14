@@ -59,15 +59,6 @@ public class CalcFrame extends JFrame {
 		
 	}
 	
-//	/**
-//	 * get current calcul
-//	 * @return
-//	 */
-//	public JPanel getPanel() {
-//		
-//		return current;
-//	}
-	
 	public void setPanel( JPanel panel ) { 
 		
         if ( current != null ) {
