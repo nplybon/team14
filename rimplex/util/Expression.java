@@ -310,17 +310,17 @@ public class Expression {
     
     if (realNumber && imagNumber)
     {
-      str = "(" + displayReal + " " + op.toString() + " " + i.toString(displayImagCoef) + ")";
+      str += "(" + displayReal + " " + op.toString() + " " + i.toString(displayImagCoef) + ")";
     }
     else
     {
       if (realNumber && !imagNumber)
       {
-        str = "" + displayReal;
+        str += "" + displayReal;
       }
       if (!realNumber && imagNumber)
       {
-        str = i.toString(displayImagCoef);
+        str += i.toString(displayImagCoef);
       }
     }
     
