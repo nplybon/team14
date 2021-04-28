@@ -906,7 +906,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
    * 
    * @param str
    *          input
-   * @param exponent
+   * @param exponent int
    * @return parsed expression
    * @throws NumberFormatException
    *           WAP
@@ -1019,7 +1019,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
    * @param complexOperator
    *          char
    * @return parsed expression
-   * @throws InvalidExpressionException
+   * @throws InvalidExpressionException WAP
    */
   private Expression setComplex(final String str, final int exponent, final int l, final String sub,
       final char complexOperator) throws InvalidExpressionException

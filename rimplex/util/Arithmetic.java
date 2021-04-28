@@ -129,8 +129,7 @@ public class Arithmetic
    * @param exp2
    *          the second expression
    * @return the difference
-   * @throws InvalidExpressionException
-   *           if expression operands are invalid
+   * @throws InvalidExpressionException if expression operands are invalid
    */
   public static Expression subtraction(final Expression exp1, final Expression exp2)
       throws OverflowException, InvalidExpressionException
@@ -163,8 +162,7 @@ public class Arithmetic
    * @param exp2
    *          the second expression
    * @return the quotient
-   * @throws InvalidExpressionException
-   *           if denominator is 0
+   * @throws InvalidExpressionException if denominator is 0
    */
   public static Expression division(final Expression exp1, final Expression exp2)
       throws OverflowException, InvalidExpressionException
@@ -190,9 +188,9 @@ public class Arithmetic
    * @param exp
    *          the expression
    * @return the updated expression
-   * @throws InvalidExpressionException
+   * @throws InvalidExpressionException WAP
    *           if expression operands are invalid
-   * @throws OverflowException
+   * @throws OverflowException WAP
    */
   public static Expression exponent(final Expression exp)
       throws InvalidExpressionException, OverflowException
@@ -224,8 +222,8 @@ public class Arithmetic
    * @param e
    *          the expression to be inversed
    * @return inverse of the given expression
-   * @throws InvalidExpressionException
-   * @throws OverflowException
+   * @throws InvalidExpressionException WAP
+   * @throws OverflowException WAP
    */
   public static Expression inverse(final Expression e)
       throws InvalidExpressionException, OverflowException

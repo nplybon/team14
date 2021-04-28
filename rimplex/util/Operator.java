@@ -33,16 +33,16 @@ public enum Operator
   /**
    * Creates an Operator from the operation symbol.
    * 
-   * @param symbol
+   * @param operatorSymbol
    *          char Operator symbol
-   * @return Operator
+   * @return Operator 
    */
-  public Operator fromSymbol(final char symbol)
+  public Operator fromSymbol(final char operatorSymbol)
   {
 
     Operator op;
 
-    switch (symbol)
+    switch (operatorSymbol)
     {
       case '+':
         op = Operator.ADDITION;

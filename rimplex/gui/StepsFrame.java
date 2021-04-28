@@ -91,8 +91,9 @@ public class StepsFrame extends JFrame
   }
 
   /**
+   * Resets steps Text Area.
    * 
-   * @param str
+   * @param str text to be added
    */
   public void incrementSteps(final ArrayList<String> str)
   {

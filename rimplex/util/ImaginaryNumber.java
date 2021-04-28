@@ -7,9 +7,10 @@ package util;
  */
 public enum ImaginaryNumber
 {
-
+  
   ONE(1, "i"), TWO(2, "-1"), THREE(3, "-i"), FOUR(4, "1");
 
+  private static String IValue = ImaginaryNumber.ONE.getType();
   private int power;
   private String type;
 
@@ -30,16 +31,16 @@ public enum ImaginaryNumber
   /**
    * Creates an ImaginaryNumber from the power.
    * 
-   * @param power
+   * @param imgPower
    *          int power of the imaginary number
    * @return Imaginary Number
    */
-  public ImaginaryNumber fromPower(final int power)
+  public ImaginaryNumber fromPower(final int imgPower)
   {
 
     ImaginaryNumber i;
 
-    switch (power % 4)
+    switch (imgPower % 4)
     {
       case 0:
         i = ImaginaryNumber.FOUR;
@@ -111,7 +112,7 @@ public enum ImaginaryNumber
         str = "" + (coef * Integer.parseInt(type));
         break;
       case THREE:
-        str = "" + (-coef) + "i";
+        str = "" + (-coef) + IValue;
         break;
       case FOUR:
         str = "" + (coef * Integer.parseInt(type));

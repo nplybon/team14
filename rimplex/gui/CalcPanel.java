@@ -11,7 +11,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.AbstractDocument;
 
 /**
  * Class for creating the Calculator window and utilities.
@@ -536,6 +535,9 @@ public class CalcPanel extends Panel
     thirdRow.setLayout(new GridLayout(3, 6));
   }
 
+  /**
+   * create JButtons.
+   */
   private void createButtons()
   {
 
@@ -844,6 +846,9 @@ public class CalcPanel extends Panel
     toggleImag(v);
   }
 
+  /**
+   * Make close CParen enabled or disabled.
+   */
   private void toggleCParen()
   {
     if (parenC > 0)

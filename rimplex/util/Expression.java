@@ -77,7 +77,7 @@ public class Expression
    *          int Imaginary Number's power
    * @param symbol
    *          String type of Operation in the expression
-   * @throws InvalidExpressionException
+   * @throws InvalidExpressionException WAP
    */
   public Expression(final Double real, final Double imagCoef, final int imagPower,
       final char symbol) throws InvalidExpressionException
@@ -284,7 +284,7 @@ public class Expression
    * Gets the conjugate of the expression.
    * 
    * @return the conjugate of the expression
-   * @throws InvalidExpressionException
+   * @throws InvalidExpressionException WAP
    */
   public Expression getConjugate() throws InvalidExpressionException
   {
@@ -295,8 +295,8 @@ public class Expression
    * Gets the inverse of the expression.
    * 
    * @return the inverse of the expression
-   * @throws InvalidExpressionException
-   * @throws OverflowException
+   * @throws InvalidExpressionException WAP
+   * @throws OverflowException WAP
    */
   public Expression getInverse() throws InvalidExpressionException, OverflowException
   {
@@ -307,7 +307,7 @@ public class Expression
    * Gets the real part of the expression.
    * 
    * @return the real part expression
-   * @throws InvalidExpressionException
+   * @throws InvalidExpressionException WAP
    */
   public Expression getRealPart() throws InvalidExpressionException
   {
@@ -318,7 +318,7 @@ public class Expression
    * Gets the imaginary part of the expression.
    * 
    * @return the imaginary part of the expression
-   * @throws InvalidExpressionException
+   * @throws InvalidExpressionException WAP
    */
   public Expression getImagPart() throws InvalidExpressionException
   {
@@ -347,7 +347,7 @@ public class Expression
   /**
    * Simplifies.
    * 
-   * @throws InvalidExpressionException
+   * @throws InvalidExpressionException WAP
    */
   public void simplify() throws InvalidExpressionException
   {
