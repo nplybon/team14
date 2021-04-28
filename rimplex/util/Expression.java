@@ -79,9 +79,9 @@ public class Expression {
     op = op.fromSymbol(symbol);
     realNumber = true;
     imagNumber = true;
-    displayReal = real;
-    displayImagCoef = imagCoef;
     setAdditionEquation();
+    displayReal = this.real;
+    displayImagCoef = this.imagCoef;
   }
 
   /**
