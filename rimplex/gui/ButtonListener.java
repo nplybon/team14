@@ -34,14 +34,37 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   // private Operator op;
   private ArrayList<String> history = new ArrayList<String>();
   private ArrayList<Operator> operator = new ArrayList<Operator>();
-//  private int exponent;
-//  private Expression exp1;
-//  private Expression exp2;
-//  private String display;
+  // private int exponent;
+  // private Expression exp1;
+  // private Expression exp2;
+  // private String display;
   private ArrayList<Expression> expression = new ArrayList<Expression>();
 
-  private String plus = "+";
-  
+  private final String nL = "\n";
+  private final String plus = "+";
+  private final String minus = "-";
+  private final String times = "x";
+  private final String one = "1";
+  private final String two = "2";
+  private final String three = "3";
+  private final String four = "4";
+  private final String five = "5";
+  private final String six = "6";
+  private final String seven = "7";
+  private final String eight = "8";
+  private final String nine = "9";
+  private final String zero = "0";
+  private final String im = "i";
+  private final String oP = "(";
+  private final String cP = ")";
+  private final String dec = ".";
+  private final String eq = "=";
+  private final String oH = ">";
+  private final String cH = "<";
+  private final String ex = "^";
+  private final String dF = "dec";
+  private final String fF = "frac";
+
   private final String bad = "Invalid Input";
 
   /**
@@ -56,16 +79,15 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     // TODO Auto-generated method stub
     AbstractButton button = (AbstractButton) e.getSource();
     CalcPanel calc = CalcPanel.getInstance();
-    TextAreaTester field = TextAreaTester.getInstance();
     String display = calc.getDisplay();
 
     switch (button.getText())
     {
-      case "+":
+      case plus:
         if (calc.isCloseParEnabled())
         {
 
-          calc.addToDisplay("+");
+          calc.addToDisplay(plus);
           calc.enableEquals();
           calc.toggleAllNumsDI(true);
           calc.enableAllNums();
@@ -76,17 +98,17 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         else
         {
 
-          calc.addToDisplay("+");
+          calc.addToDisplay(plus);
           int exponent = setExponent('+');
           runOperator(Operator.ADDITION, exponent);
         }
 
         break;
-      case "-":
+      case minus:
         if (calc.isCloseParEnabled())
         {
 
-          calc.addToDisplay("-");
+          calc.addToDisplay(minus);
           calc.enableEquals();
           calc.toggleAllNumsDI(true);
           calc.enableAllNums();
@@ -97,7 +119,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         else
         {
 
-          calc.addToDisplay("-");
+          calc.addToDisplay(minus);
           int exponent = setExponent('-');
           runOperator(Operator.SUBTRACTION, exponent);
         }
@@ -112,9 +134,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.enableAllNums();
         calc.handleExponent(false);
         break;
-      case "x":
+      case times:
         calc.enableEquals();
-        calc.addToDisplay("x");
+        calc.addToDisplay(times);
         int exponent2 = setExponent('x');
         runOperator(Operator.MULTIPLICATION, exponent2);
         calc.toggleAllNumsDI(true);
@@ -125,20 +147,20 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       case "R":
         calc.enableEquals();
         calc.resetDisplay();
-        calc.addToDisplay("\n");
+        calc.addToDisplay(nL);
         calc.toggleAllNumsDI(true);
         calc.enableAllNums();
         calc.handleExponent(false);
         break;
       case "C":
-        if (display.contains("+"))
+        if (display.contains(plus))
         {
-          if (display.lastIndexOf("+") == display.length())
+          if (display.lastIndexOf(plus) == display.length())
           {
             calc.subDisplay(display.length() - 1);
 
           }
-          calc.subDisplay(display.lastIndexOf("+"));
+          calc.subDisplay(display.lastIndexOf(plus));
         }
         else
         {
@@ -148,110 +170,110 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         // create test case to check if operand has been entered already. (erase to that operand,
         // the operand, or all of the expression).
         break;
-      case "1":
+      case one:
         calc.enableEquals();
-        calc.addToDisplay("1");
+        calc.addToDisplay(one);
         calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
-      case "2":
+      case two:
         calc.enableEquals();
-        calc.addToDisplay("2");
+        calc.addToDisplay(two);
         calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
-      case "3":
+      case three:
         calc.enableEquals();
-        calc.addToDisplay("3");
+        calc.addToDisplay(three);
         calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
-      case "4":
+      case four:
         calc.enableEquals();
-        calc.addToDisplay("4");
+        calc.addToDisplay(four);
         calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
-      case "5":
+      case five:
         calc.enableEquals();
-        calc.addToDisplay("5");
+        calc.addToDisplay(five);
         calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
-      case "6":
+      case six:
         calc.enableEquals();
-        calc.addToDisplay("6");
+        calc.addToDisplay(six);
         calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
-      case "7":
+      case seven:
         calc.enableEquals();
-        calc.addToDisplay("7");
+        calc.addToDisplay(seven);
         calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
-      case "8":
+      case eight:
         calc.enableEquals();
-        calc.addToDisplay("8");
+        calc.addToDisplay(eight);
         calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
-      case "9":
+      case nine:
         calc.enableEquals();
-        calc.addToDisplay("9");
+        calc.addToDisplay(nine);
         calc.handleExponent(true);
         calc.toggleOperators(true);
 
         break;
-      case "0":
+      case zero:
         calc.enableEquals();
-        calc.addToDisplay("0");
+        calc.addToDisplay(zero);
         calc.handleExponent(true);
         calc.toggleOperators(true);
         break;
-      case "i":
+      case im:
 
         calc.enableEquals();
-        calc.addToDisplay("i");
+        calc.addToDisplay(im);
 
         calc.disableAllNumsI();
         calc.handleExponent(true);
         break;
-      case "(":
-        calc.addToDisplay("(");
+      case oP:
+        calc.addToDisplay(oP);
         calc.changeParenC(1);
         calc.toggleOperatorsI(false);
         // calc.toggleCParen();
         calc.handleExponent(false);
         break;
-      case ")":
+      case cP:
         calc.enableEquals();
-        calc.addToDisplay(")");
+        calc.addToDisplay(cP);
         calc.changeParenC(-1);
         // calc.toggleCParen();
         calc.handleExponent(true);
         break;
-      case ".":
+      case dec:
         calc.enableEquals();
-        calc.addToDisplay(".");
+        calc.addToDisplay(dec);
         calc.toggleDecimal(false);
         calc.handleExponent(true);
         break;
-      case "=":
-        calc.addToDisplay("=");
+      case eq:
+        calc.addToDisplay(eq);
         runEquals();
         calc.handleExponent(false);
         break;
       case "\u2190":
-        char last = display.charAt(display.length() - 1);
+//        char last = display.charAt(display.length() - 1);
 
         // if (last == 'i') {
         // calc.toggleAllNums(true);
@@ -295,9 +317,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
           steps.handleSteps(true);
         }
         break;
-      case ">":
+      case oH:
         HistoryFrame.getInstance().handleHistory(true);
-        button.setText("<");
+        button.setText(cH);
         // calc.handleCloseHistory(true);
         // calc.handleOpenHistory(false);
         // String str = null;
@@ -307,9 +329,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         // }
         // JOptionPane.showMessageDialog( null, str );
         break;
-      case "<":
+      case cH:
         HistoryFrame.getInstance().handleHistory(false);
-        button.setText(">");
+        button.setText(oH);
         // calc.handleCloseHistory(false);
         // calc.handleOpenHistory(true);
         break;
@@ -321,19 +343,19 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.addToDisplay("conj(");
         calc.changeParenC(1);
         break;
-      case "^":
-        calc.addToDisplay("^");
+      case ex:
+        calc.addToDisplay(ex);
         calc.handleExponent(false);
         calc.enableAllNums();
         calc.disableIButton();
         break;
-      case "dec":
-        button.setText("frac");
+      case dF:
+        button.setText(fF);
         calc.resetDisplay();
         calc.addToDisplay(OutputFormat.toDecimal(display));
         break;
-      case "frac":
-        button.setText("dec");
+      case fF:
+        button.setText(dF);
         calc.resetDisplay();
         calc.addToDisplay(OutputFormat.toFraction(display));
         break;
@@ -417,27 +439,27 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   }
 
   @Override
-  public void windowOpened( final WindowEvent e)
+  public void windowOpened(final WindowEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void windowClosing( final WindowEvent e)
+  public void windowClosing(final WindowEvent e)
   {
     System.exit((0));
 
   }
 
   @Override
-  public void windowClosed( final WindowEvent e)
+  public void windowClosed(final WindowEvent e)
   {
     System.exit(0);
   }
 
   @Override
-  public void windowIconified( final WindowEvent e)
+  public void windowIconified(final WindowEvent e)
   {
     // TODO Auto-generated method stub
 
@@ -465,7 +487,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   }
 
   @Override
-  public void keyTyped( final KeyEvent e)
+  public void keyTyped(final KeyEvent e)
   {
     // TODO Auto-generated method stub
 
@@ -479,7 +501,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   }
 
   @Override
-  public void keyReleased( final KeyEvent e)
+  public void keyReleased(final KeyEvent e)
   {
     // TODO Auto-generated method stub
     char result = (char) e.getKeyChar();
@@ -751,9 +773,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 
       StepsFrame.getInstance().incrementSteps(calc.getSteps());
       panel.subDisplay(newLine);
-      panel.addToDisplay(this.expression.get(this.expression.size() - 1) + "=" + answer.toString());
+      panel.addToDisplay(this.expression.get(this.expression.size() - 1) + eq + answer.toString());
       history.add(panel.getDisplay());
-      HistoryFrame.getInstance().incrementHistory("\n" + history.get(history.size() - 1));
+      HistoryFrame.getInstance().incrementHistory(nL + history.get(history.size() - 1));
       panel.handleExponent(false);
       operator.clear();
       this.expression.clear();
@@ -803,7 +825,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       {
 
         panel.setDisplay(other + expression.get(expression.size() - 1).toString()
-            + operator.get(operator.size() - 1).toString() + "\n");
+            + operator.get(operator.size() - 1).toString() + nL);
         panel.enableEquals();
         panel.toggleAllNumsDI(true);
         panel.enableAllNums();
@@ -820,11 +842,12 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     {
 
       CalcPanel calc = CalcPanel.getInstance();
-      calc.setDisplay(calc.getDisplay().substring(0, (calc.getDisplay().indexOf('\n'))) + "\n");
+
+      calc.setDisplay(calc.getDisplay().substring(0, (calc.getDisplay().indexOf('\n'))) + nL);
       JOptionPane.showMessageDialog(null, bad, bad, JOptionPane.PLAIN_MESSAGE);
       calc.enableEquals();
       calc.resetDisplay();
-      calc.addToDisplay("\n");
+      calc.addToDisplay(nL);
       calc.toggleAllNumsDI(true);
       calc.enableAllNums();
       calc.handleExponent(false);
@@ -836,9 +859,12 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   /**
    * set and add expression to arrayList.
    * 
-   * @param sign enum
-   * @param strExpression String
-   * @param known int
+   * @param sign
+   *          enum
+   * @param strExpression
+   *          String
+   * @param known
+   *          int >>>>>>> branch 'master' of https://github.com/bernstdh/team14.git
    * @return true if valid entry
    * @throws NumberFormatException
    *           WAP
@@ -867,7 +893,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 
       CalcPanel calc = CalcPanel.getInstance();
 
-      calc.setDisplay(calc.getDisplay().substring(0, (calc.getDisplay().indexOf('\n'))) + "\n");
+      calc.setDisplay(calc.getDisplay().substring(0, (calc.getDisplay().indexOf('\n'))) + nL);
       JOptionPane.showMessageDialog(null, bad, bad, JOptionPane.PLAIN_MESSAGE);
 
     }
@@ -880,7 +906,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
    * 
    * @param str
    *          input
-   * @param exponent
+   * @param exponent int
    * @return parsed expression
    * @throws NumberFormatException
    *           WAP
@@ -940,12 +966,12 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     {
 
       String sub = str.substring(str.indexOf('('), str.indexOf(')'));
-      if (sub.indexOf("+") != -1)
+      if (sub.indexOf(plus) != -1)
       {
 
         originalExpression = setComplex(str, exponent, l, sub, '+');
       }
-      else if (sub.indexOf("-") != -1)
+      else if (sub.indexOf(minus) != -1)
       {
 
         originalExpression = setComplex(str, exponent, l, sub, '-');
@@ -993,7 +1019,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
    * @param complexOperator
    *          char
    * @return parsed expression
-   * @throws InvalidExpressionException
+   * @throws InvalidExpressionException WAP
    */
   private Expression setComplex(final String str, final int exponent, final int l, final String sub,
       final char complexOperator) throws InvalidExpressionException
@@ -1030,7 +1056,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     String sub = str.substring(str.indexOf('('), str.indexOf(')'));
     int l = sub.length();
 
-    if (sub.indexOf("+") != -1)
+    if (sub.indexOf(plus) != -1)
     {
 
       i = sub.indexOf('+');
@@ -1039,7 +1065,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       functionExpression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
           sub.charAt(i));
     }
-    else if (sub.indexOf("-") != -1)
+    else if (sub.indexOf(minus) != -1)
     {
 
       i = sub.indexOf('-');

@@ -62,7 +62,7 @@ public class CalcFrame extends JFrame
   /**
    * Sets Panel object.
    * 
-   * @param panel
+   * @param panel to be set as contentPane
    */
   public void setPanel(final JPanel panel)
   {

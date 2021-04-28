@@ -45,8 +45,8 @@ public class Calculate
    * @param exp2
    *          Expression the left expression
    * @return the result expression
-   * @throws OverflowException
-   * @throws InvalidExpressionException
+   * @throws OverflowException WAP
+   * @throws InvalidExpressionException WAP
    */
   private Expression calculate(final Expression exp1, final Operator op, final Expression exp2)
       throws OverflowException, InvalidExpressionException
@@ -86,7 +86,7 @@ public class Calculate
       default:
         break;
     }
-    result.simplify();
+    
     return result;
   }
 
@@ -94,8 +94,8 @@ public class Calculate
    * Calculates the entire set of expressions.
    * 
    * @return the final calculated expression.
-   * @throws OverflowException
-   * @throws InvalidExpressionException
+   * @throws OverflowException WAP
+   * @throws InvalidExpressionException WAP
    */
   public Expression calculateExpression() throws OverflowException, InvalidExpressionException
   {
@@ -154,7 +154,7 @@ public class Calculate
       steps.add(takeStep(count, operators[order[i]]));
     }
 
-    //result.simplify();
+    result.simplify();
 
     return result;
 
@@ -224,7 +224,7 @@ public class Calculate
       default:
         break;
     }
-
+    
     return str;
   }
 
@@ -235,41 +235,40 @@ public class Calculate
    */
   public ArrayList<String> getSteps()
   {
-
     return steps;
   }
 
   /**
    * Determines the order of operations.
    * 
-   * @param operators
+   * @param orderOperators
    *          Operator[] all the operators used
    * @return array of the indexes for the correct order of operations
    */
-  private int[] orderOfOperations(final Operator[] operators)
+  private int[] orderOfOperations(final Operator[] orderOperators)
   {
 
     int index = 0;
-    int[] order = new int[operators.length];
+    int[] orderOfOps = new int[orderOperators.length];
 
-    for (int i = 0; i < operators.length; i++)
+    for (int i = 0; i < orderOperators.length; i++)
     {
-      if (operators[i].equals(Operator.MULTIPLICATION) || operators[i].equals(Operator.DIVISION))
+      if (orderOperators[i].equals(Operator.MULTIPLICATION) || orderOperators[i].equals(Operator.DIVISION))
       {
-        order[index] = i;
+        orderOfOps[index] = i;
         index++;
       }
     }
 
-    for (int i = 0; i < operators.length; i++)
+    for (int i = 0; i < orderOperators.length; i++)
     {
-      if (operators[i].equals(Operator.ADDITION) || operators[i].equals(Operator.SUBTRACTION))
+      if (orderOperators[i].equals(Operator.ADDITION) || orderOperators[i].equals(Operator.SUBTRACTION))
       {
-        order[index] = i;
+        orderOfOps[index] = i;
         index++;
       }
     }
 
-    return order;
+    return orderOfOps;
   }
 }

@@ -232,6 +232,12 @@ public class TextAreaTester
     return str != null;
   }
 
+  /**
+   * Determines if parameter is empty.
+   * 
+   * @param str user entry
+   * @return true if not empty
+   */
   private boolean notEmpty(final String str)
   {
 

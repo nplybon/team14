@@ -2,27 +2,15 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-
-import javax.print.attribute.AttributeSet;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-import javax.swing.JWindow;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.AbstractDocument;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DocumentFilter;
-import javax.swing.text.DocumentFilter.FilterBypass;
 
 /**
  * Class for creating the Calculator window and utilities.
@@ -40,7 +28,6 @@ public class CalcPanel extends Panel
   private static final long serialVersionUID = 1L;
   private static CalcPanel panel;
 
-  private AbstractDocument document;
   private JButton plus;
   private JButton minus;
   private JButton multiply;
@@ -76,12 +63,10 @@ public class CalcPanel extends Panel
   private JButton steps;
   private JToggleButton outputformat;
 
-  private JPanel displayPanel;
   private JPanel center;
   private JPanel topRow;
   private JPanel secRow;
   private JPanel thirdRow;
-  private JPanel lastRow;
 
   private JScrollPane scrollPane;
 
@@ -114,12 +99,10 @@ public class CalcPanel extends Panel
     // TODO Auto-generated method stub
     createButtons();
 
-    displayPanel = new JPanel();
     center = new JPanel();
     topRow = new JPanel();
     secRow = new JPanel();
     thirdRow = new JPanel();
-    lastRow = new JPanel();
 
     // display = new JTextArea();
     display = new JTextArea(
@@ -158,7 +141,7 @@ public class CalcPanel extends Panel
 
     // topRow.add( new JPanel() );
     topRow.add(sign);
-    topRow.add(backspace);
+    topRow.add(steps);
     topRow.add( outputformat );
     topRow.add(plus);
     topRow.add(reset);
@@ -191,8 +174,8 @@ public class CalcPanel extends Panel
     secRow.add(closePar);
     // secRow.add( openHistory );
 
-    JPanel panel = new JPanel();
-    panel.add(history);
+//    JPanel panel = new JPanel();
+//    panel.add(history);
 
     secRow.add(decimal);
     secRow.add(zero);
@@ -213,9 +196,9 @@ public class CalcPanel extends Panel
     thirdRow.add(squareRoot);
 
     thirdRow.add(new JPanel());
-    thirdRow.add(steps);
     thirdRow.add( new JPanel() );
     thirdRow.add(history);
+    thirdRow.add( new JPanel() );
     // thirdRow.add( closeHistory );
  //   thirdRow.add(outputformat);
     thirdRow.add(new JPanel());
@@ -552,6 +535,9 @@ public class CalcPanel extends Panel
     thirdRow.setLayout(new GridLayout(3, 6));
   }
 
+  /**
+   * create JButtons.
+   */
   private void createButtons()
   {
 
@@ -671,10 +657,17 @@ public class CalcPanel extends Panel
     log.setForeground(cyan);
     squareRoot.setForeground(cyan);
     conjugate.setForeground(cyan);
+    exponent.setForeground(cyan);
     Color yellow = new Color(135, 124, 27);
     cancel.setForeground(yellow);
     backspace.setForeground(yellow);
     sign.setForeground(yellow);
+    outputformat.setForeground(yellow);
+    realPart.setForeground(yellow);
+    imagPart.setForeground(yellow);
+    log.setForeground(yellow);
+    steps.setForeground(yellow);
+    
 
   }
 
@@ -853,6 +846,9 @@ public class CalcPanel extends Panel
     toggleImag(v);
   }
 
+  /**
+   * Make close CParen enabled or disabled.
+   */
   private void toggleCParen()
   {
     if (parenC > 0)
