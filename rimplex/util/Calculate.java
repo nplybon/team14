@@ -150,7 +150,7 @@ public class Calculate {
 
     String str = "(" + count + ")   ";
 
-    if (skips.size() < operators.length) {
+    if (skips.size() < operators.length && expressions.length > 1) {
       for (int i = 0; i < expressions.length; i++) {
         if (!skips.contains(i)) {
           str += expressions[i].toString() + " ";
@@ -195,6 +195,7 @@ public class Calculate {
    * @return the steps
    */
   public ArrayList<String> getSteps() {
+    
     return steps;
   }
 
