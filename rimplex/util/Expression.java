@@ -23,9 +23,6 @@ public class Expression {
   private boolean hasConj = false;
   private boolean realExp = false;
   private boolean imagExp = false;
-  private Double displayReal = 0.0;
-  private Double displayImagCoef = 0.0;
-  private int displayImagPower = 0;
 
   /**
    * Constructor with only real number.
@@ -40,9 +37,6 @@ public class Expression {
     i = i.fromPower(1);
     op = op.fromSymbol('+');
     realNumber = true;
-    displayReal = real;
-    displayImagCoef = imagCoef;
-    displayImagPower = imagPower;
   }
   
   /**
@@ -59,9 +53,6 @@ public class Expression {
     i = i.fromPower(imagPower);
     op = op.fromSymbol('+');
     imagNumber = true;
-    displayReal = real;
-    displayImagCoef = imagCoef;
-    displayImagPower = imagPower;
   }
   
   /**
@@ -82,9 +73,6 @@ public class Expression {
     op = op.fromSymbol(symbol);
     realNumber = true;
     imagNumber = true;
-    displayReal = real;
-    displayImagCoef = imagCoef;
-    displayImagPower = imagPower;
     setAdditionEquation();
   }
 
@@ -287,48 +275,36 @@ public class Expression {
    */
   public String toString() {
     
-    String str = "";
-    
-    if (hasLog) {
-      str += "log";
-    }
-    if (hasSqrt) {
-      str += "sqrt";
-    }
-    if (hasConj) {
-      str += "conj";
-    }
-    if (hasInv) {
-      str += "inv";
-    }
-    if (realExp) {
-      str += "real";
-    }
-    if (imagExp) {
-      str += "imag";
-    }
-    
-    if (realNumber && imagNumber)
-    {
-      str += "(" + displayReal + " " + op.toString() + " " + i.toString(displayImagCoef) + ")";
-    }
-    else
-    {
-      if (realNumber && !imagNumber)
-      {
-        str += "" + displayReal;
-      }
-      if (!realNumber && imagNumber)
-      {
-        str += i.toString(displayImagCoef);
-      }
-    }
-    
-    if (hasExponent) {
-      str += "^" + expPower;
-    }
-
-    return str;
+//    String str = "";
+//    
+//    if (realNumber && imagNumber)
+//    {
+//
+//      str += "(" + displayReal + " " + op.toString() + " " + i.toString(displayImagCoef) + ")";
+//
+//    }
+//    else
+//    {
+//      if (realNumber && !imagNumber)
+//      {
+//
+//        str += "" + displayReal;
+//      }
+//      if (!realNumber && imagNumber)
+//      {
+//
+//        str += i.toString(displayImagCoef);
+//
+//        str = i.toString(imagCoef);
+//
+//      }
+//    }
+//    
+//    if (hasExponent) {
+//      str += "^" + expPower;
+//    }
+//
+    return null;
   }
 
 }

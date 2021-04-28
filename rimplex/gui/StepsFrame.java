@@ -1,8 +1,6 @@
 package gui;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -32,8 +30,6 @@ public class StepsFrame extends JFrame {
 		setSize( 450, 450 );
 		setTitle( "Steps" );
 		setVisible( false );
-		setUndecorated(true);
-		setLocation( 1000, 0 );
 	}
 	
 	public void addComponents() {
