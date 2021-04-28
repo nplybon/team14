@@ -29,7 +29,6 @@ public class CalcPanel extends Panel
   private static final long serialVersionUID = 1L;
   private static CalcPanel panel;
 
-  private AbstractDocument document;
   private JButton plus;
   private JButton minus;
   private JButton multiply;
@@ -65,12 +64,10 @@ public class CalcPanel extends Panel
   private JButton steps;
   private JToggleButton outputformat;
 
-  private JPanel displayPanel;
   private JPanel center;
   private JPanel topRow;
   private JPanel secRow;
   private JPanel thirdRow;
-  private JPanel lastRow;
 
   private JScrollPane scrollPane;
 
@@ -103,12 +100,10 @@ public class CalcPanel extends Panel
     // TODO Auto-generated method stub
     createButtons();
 
-    displayPanel = new JPanel();
     center = new JPanel();
     topRow = new JPanel();
     secRow = new JPanel();
     thirdRow = new JPanel();
-    lastRow = new JPanel();
 
     // display = new JTextArea();
     display = new JTextArea(
