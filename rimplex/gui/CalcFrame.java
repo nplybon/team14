@@ -27,7 +27,7 @@ public class CalcFrame extends JFrame {
 	private JMenuBar menuBar;
 	
 	private JMenu file;
-	private JMenuItem about;
+	private JMenu about;
 	private JMenuItem print;
 	
 	private JMenuItem help;
@@ -94,12 +94,11 @@ public class CalcFrame extends JFrame {
 	
 	private void addMenus() {
 		
-		file.add( about );
-		file.add( help );
+		about.add( help );
 		file.add(print);
 		
 		menuBar.add( file );
-//		menuBar.add( about );
+		menuBar.add( about );
 		
 //		historyWindow.add( windowDisplay );
 //		
@@ -114,7 +113,7 @@ public class CalcFrame extends JFrame {
 		help = new JMenuItem();
 		print = new JMenuItem();
 		
-		about = new JMenuItem();
+		about = new JMenu();
 		
 		current = new JPanel();
 		
@@ -157,7 +156,6 @@ public class CalcFrame extends JFrame {
     private void setListeners() {
     	
     	this.addWindowListener( ButtonListener.getInstance() );
-//    	file.addActionListener( ButtonListener.getInstance() );
     	about.addActionListener( ButtonListener.getInstance() );
     	help.addActionListener( ButtonListener.getInstance() );
     	print.addActionListener(ButtonListener.getInstance());
