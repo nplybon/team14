@@ -253,7 +253,8 @@ public class Calculate
 
     for (int i = 0; i < orderOperators.length; i++)
     {
-      if (orderOperators[i].equals(Operator.MULTIPLICATION) || orderOperators[i].equals(Operator.DIVISION))
+      if (orderOperators[i].equals(Operator.MULTIPLICATION) 
+    		  || orderOperators[i].equals(Operator.DIVISION))
       {
         orderOfOps[index] = i;
         index++;
@@ -262,7 +263,8 @@ public class Calculate
 
     for (int i = 0; i < orderOperators.length; i++)
     {
-      if (orderOperators[i].equals(Operator.ADDITION) || orderOperators[i].equals(Operator.SUBTRACTION))
+      if (orderOperators[i].equals(Operator.ADDITION) 
+    		  || orderOperators[i].equals(Operator.SUBTRACTION))
       {
         orderOfOps[index] = i;
         index++;
