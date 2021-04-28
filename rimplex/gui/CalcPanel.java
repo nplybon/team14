@@ -660,10 +660,16 @@ public class CalcPanel extends Panel
     log.setForeground(cyan);
     squareRoot.setForeground(cyan);
     conjugate.setForeground(cyan);
+    exponent.setForeground(cyan);
     Color yellow = new Color(135, 124, 27);
     cancel.setForeground(yellow);
     backspace.setForeground(yellow);
     sign.setForeground(yellow);
+    outputformat.setForeground(yellow);
+    realPart.setForeground(yellow);
+    imagPart.setForeground(yellow);
+    log.setForeground(yellow);
+    
 
   }
 
