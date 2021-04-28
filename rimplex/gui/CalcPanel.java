@@ -128,49 +128,35 @@ public class CalcPanel extends Panel {
 	@Override
 	public void addComponents() {
 		// TODO Auto-generated method stub
-//		displayPanel.add( display );
-//		topRow.add( new JPanel() );
 		topRow.add( new JPanel() );
 		topRow.add( new JPanel() );
 		topRow.add( new JPanel() );
 		topRow.add( new JPanel() );
 		topRow.add( new JPanel() );
-//		topRow.add( new JPanel() );
-		
-//		topRow.add( new JPanel() );
+
 		topRow.add( sign );
 		topRow.add( reset );
-		topRow.add( cancel );
+		topRow.add( outputformat );
 		topRow.add( plus );
 		topRow.add( backspace );
-//		topRow.add( new JPanel() );
-		
-//		topRow.add( new JPanel() );
+
 		topRow.add( one );
 		topRow.add( two );
 		topRow.add( three );
 		topRow.add( minus );
 		topRow.add( inverse );
-
-//		JPanel topBorder = new JPanel();
-//		topBorder.setLayout( new BorderLayout() );
-//		topBorder.add( secRow, BorderLayout.EAST );
-//		topBorder.add( new JPanel(), BorderLayout.CENTER );
 		
 		secRow.add( four );
 		secRow.add( five );
 		secRow.add( six );
 		secRow.add( multiply );
 		secRow.add( openPar );
-//		secRow.add( new JPanel() );
-		
-//		secRow.add( new JPanel() );
+
 		secRow.add( seven );
 		secRow.add( eight );
 		secRow.add( nine );
 		secRow.add( division );
 		secRow.add( closePar );
-//		secRow.add( openHistory );
 
 		JPanel panel = new JPanel();
 		panel.add( history );
@@ -181,12 +167,6 @@ public class CalcPanel extends Panel {
 		secRow.add( equals );
 		secRow.add( exponent );
 		
-//		JPanel secBorder = new JPanel();
-//		secBorder.setLayout( new BorderLayout() );
-//		secBorder.add( panel, BorderLayout.EAST );
-//		secBorder.add( secRow, BorderLayout.CENTER );
-//		secBorder.add( new JPanel(), BorderLayout.WEST );
-		
 		thirdRow.add( realPart );
 		thirdRow.add( imagPart );
 		thirdRow.add( log );
@@ -195,9 +175,8 @@ public class CalcPanel extends Panel {
 		
 		thirdRow.add( new JPanel() );
 		thirdRow.add( steps );
+		thirdRow.add(  new JPanel()  );
 		thirdRow.add( history );
-//		thirdRow.add( closeHistory );
-		thirdRow.add(  outputformat  );
 		thirdRow.add( new JPanel() );
 		
 		thirdRow.add( new JPanel() );
@@ -214,43 +193,11 @@ public class CalcPanel extends Panel {
 		center.add( topRow );
 		center.add( secRow );
 		center.add( thirdRow );
-//		JPanel centerBorder = new JPanel();
-//		centerBorder.setLayout( new BorderLayout() );
-//		centerBorder.add( center, BorderLayout.CENTER );
 
-//		centerBorder.add( panel, BorderLayout.EAST );
-//		JPanel bigCenter = new JPanel();
-//		bigCenter.setLayout( new GridLayout( 3, 0 ) );
-//		bigCenter.add( scrollPane );
-//        bigCenter.add( new JPanel() );
-//		bigCenter.add( centerBorder );
 		add( center, BorderLayout.CENTER );
-//		add( centerBorder, BorderLayout.CENTER );
 		add( new JPanel(), BorderLayout.NORTH );
-//		add( new JPanel(), BorderLayout.WEST );
-//		add( panel, BorderLayout.EAST );
-
-//		add( historyWindow );
-//		JPanel historyPanel = new JPanel();
-//		historyPanel.setLayout( new GridLayout( 3, 0 ) ); 
-//		historyPanel.add( new JPanel() );
-//		historyPanel.add( history );
-//		historyPanel.add( new JPanel() );
-//		
-//		add( historyPanel , BorderLayout.EAST );
 		
 	}
-
-//	public void enableHistory() {
-//		
-//		historyWindow.setVisible( true );
-//	}
-//	
-//	public void incrementHistory( String str ) {
-//		
-//		windowDisplay.setText( windowDisplay.getText() 
-//				+ "\n" + str );
-//	}
     
 	public JTextArea getDisplayField() {
 		
