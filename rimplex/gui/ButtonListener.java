@@ -910,44 +910,47 @@ private Expression setComplex( final String str, final int exponent, final int l
  * @return parsed expression
  * @throws InvalidExpressionException WAP
  */
-private Expression setFunctionExpression( final String str ) throws InvalidExpressionException {
-	int i;
-	Expression expression;
-	String sub = str.substring( str.indexOf( '(' ), str.indexOf( ')' ) );
-	int l = sub.length();
+  private Expression setFunctionExpression( final String str ) throws InvalidExpressionException 
+  {
+    int i;
+    Expression expression;
+    String sub = str.substring( str.indexOf( '(' ), str.indexOf( ')' ) );
+    int l = sub.length();
 	
-	if (sub.indexOf("+") != -1)
-	{
+    if (sub.indexOf("+") != -1)
+    {
   
-	  i = sub.indexOf('+');
-	  String real = sub.substring(1, i);
-	  String img = sub.substring(i + 1, l - 1);
-	  expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
+      i = sub.indexOf('+');
+      String real = sub.substring(1, i);
+      String img = sub.substring(i + 1, l - 1);
+      expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
 	    sub.charAt(i));
-	}
-	else if (sub.indexOf("-") != -1)
-	{
+    }
+    else if (sub.indexOf("-") != -1)
+    {
   
-	  i = sub.indexOf('-');
-	  String real = sub.substring(1, i);
-	  String img = sub.substring(i + 1, l - 1 );
-	  expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
+      i = sub.indexOf('-');
+      String real = sub.substring(1, i);
+      String img = sub.substring(i + 1, l - 1 );
+      expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
 	    sub.charAt(i));
 	  
-	}
-	else if ( sub.indexOf( 'i' ) != -1 ) {
+    }
+    else if ( sub.indexOf( 'i' ) != -1 ) 
+    {
 		
-	    sub = sub.substring(0, sub.indexOf( 'i' ) );
+      sub = sub.substring(0, sub.indexOf( 'i' ) );
 	    
-	    expression = new Expression( Double.parseDouble(sub), 1 );
+      expression = new Expression( Double.parseDouble(sub), 1 );
 	    
-	}
-	else {
+    }
+    else 
+    {
 		
-		expression = new Expression(Double.parseDouble(sub.substring( 0, sub.length() - 1 )));
-	}
-	return expression;
-}
+      expression = new Expression(Double.parseDouble(sub.substring( 0, sub.length() - 1 )));
+    }
+    return expression;
+  }
 
   /**
    * display error message and delete last character.
@@ -958,8 +961,8 @@ private Expression setFunctionExpression( final String str ) throws InvalidExpre
     CalcPanel calc = CalcPanel.getInstance();
     String bad = "Invalid Input";
 
-	calc.subDisplay( ( calc.getDisplay().length() - 1 ) );
-    	JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
+    calc.subDisplay( ( calc.getDisplay().length() - 1 ) );
+    JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
 				JOptionPane.PLAIN_MESSAGE );
   }	
 }
