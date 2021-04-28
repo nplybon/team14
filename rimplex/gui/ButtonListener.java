@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
@@ -9,13 +8,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import javax.swing.AbstractButton;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import util.Calculate;
@@ -39,10 +34,10 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   // private Operator op;
   private ArrayList<String> history = new ArrayList<String>();
   private ArrayList<Operator> operator = new ArrayList<Operator>();
-  private int exponent;
-  private Expression exp1;
-  private Expression exp2;
-  private String display;
+//  private int exponent;
+//  private Expression exp1;
+//  private Expression exp2;
+//  private String display;
   private ArrayList<Expression> expression = new ArrayList<Expression>();
 
   private String plus = "+";
@@ -420,69 +415,69 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   }
 
   @Override
-  public void windowOpened(WindowEvent e)
+  public void windowOpened( final WindowEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void windowClosing(WindowEvent e)
+  public void windowClosing( final WindowEvent e)
   {
     System.exit((0));
 
   }
 
   @Override
-  public void windowClosed(WindowEvent e)
+  public void windowClosed( final WindowEvent e)
   {
     System.exit(0);
   }
 
   @Override
-  public void windowIconified(WindowEvent e)
+  public void windowIconified( final WindowEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void windowDeiconified(WindowEvent e)
+  public void windowDeiconified(final WindowEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void windowActivated(WindowEvent e)
+  public void windowActivated(final WindowEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void windowDeactivated(WindowEvent e)
+  public void windowDeactivated(final WindowEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void keyTyped(KeyEvent e)
+  public void keyTyped( final KeyEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void keyPressed(KeyEvent e)
+  public void keyPressed(final KeyEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void keyReleased(KeyEvent e)
+  public void keyReleased( final KeyEvent e)
   {
     // TODO Auto-generated method stub
     char result = (char) e.getKeyChar();
@@ -841,12 +836,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   /**
    * set and add expression to arrayList.
    * 
-   * @param operator
-   *          enum
-   * @param str
-   *          String
-   * @param exponent
-   *          int
+   * @param operator enum
+   * @param str String
+   * @param exponent int
    * @return true if valid entry
    * @throws NumberFormatException
    *           WAP
@@ -888,8 +880,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
    * 
    * @param str
    *          input
-   * @param exp
-   *          expression
+   * @param exponent
    * @return parsed expression
    * @throws NumberFormatException
    *           WAP
