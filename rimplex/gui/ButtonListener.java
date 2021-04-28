@@ -41,6 +41,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   private ArrayList<Expression> expression = new ArrayList<Expression>();
 
   private String plus = "+";
+  
+  private final String bad = "Invalid Input";
 
   /**
    * handles button events.
@@ -482,7 +484,6 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     // TODO Auto-generated method stub
     char result = (char) e.getKeyChar();
     CalcPanel panel = CalcPanel.getInstance();
-    String str;
 
     switch (result)
     {
@@ -674,11 +675,11 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   /**
    * set exponent.
    * 
-   * @param operator
+   * @param exponentOperator
    *          char
    * @return value of exponent
    */
-  private int setExponent(final char operator)
+  private int setExponent(final char exponentOperator)
   {
     CalcPanel panel = CalcPanel.getInstance();
     String str = panel.getDisplay().substring(panel.getDisplay().indexOf('\n'));
@@ -687,7 +688,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     if (str.indexOf('^') != -1)
     {
 
-      String sub = str.substring(str.indexOf('^') + 1, str.indexOf(operator));
+      String sub = str.substring(str.indexOf('^') + 1, str.indexOf(exponentOperator));
       exponent = Integer.parseInt(sub);
 
     }
@@ -733,10 +734,10 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 
       Operator[] operators = new Operator[operator.size()];
       operators = operator.toArray(operators);
-      Expression[] expression = new Expression[this.expression.size()];
-      expression = this.expression.toArray(expression);
+      Expression[] theExpression = new Expression[this.expression.size()];
+      theExpression = this.expression.toArray(theExpression);
 
-      Calculate calc = new Calculate(expression, operators);
+      Calculate calc = new Calculate(theExpression, operators);
       Expression answer = null;
       try
       {
@@ -819,9 +820,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     {
 
       CalcPanel calc = CalcPanel.getInstance();
-      String bad = "Invalid Input";
       calc.setDisplay(calc.getDisplay().substring(0, (calc.getDisplay().indexOf('\n'))) + "\n");
-      JOptionPane.showMessageDialog(null, bad, "Invalid Input", JOptionPane.PLAIN_MESSAGE);
+      JOptionPane.showMessageDialog(null, bad, bad, JOptionPane.PLAIN_MESSAGE);
       calc.enableEquals();
       calc.resetDisplay();
       calc.addToDisplay("\n");
@@ -836,16 +836,16 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   /**
    * set and add expression to arrayList.
    * 
-   * @param operator enum
-   * @param str String
-   * @param exponent int
+   * @param sign enum
+   * @param strExpression String
+   * @param known int
    * @return true if valid entry
    * @throws NumberFormatException
    *           WAP
    * @throws InvalidExpressionException
    *           WAP
    */
-  private boolean runOperation(final Operator operator, final String str, final int exponent)
+  private boolean runOperation(final Operator sign, final String strExpression, final int known)
       throws NumberFormatException, InvalidExpressionException
   {
 
@@ -853,22 +853,22 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 
     boolean bool = false;
 
-    if (text.verifyTarget(str))
+    if (text.verifyTarget(strExpression))
     {
 
       bool = true;
-      Expression exp = setExp(str, exponent);
+      Expression exp = setExp(strExpression, known);
       expression.add(exp);
-      this.operator.add(operator);
+      this.operator.add(sign);
 
     }
     else
     {
 
       CalcPanel calc = CalcPanel.getInstance();
-      String bad = "Invalid Input";
+
       calc.setDisplay(calc.getDisplay().substring(0, (calc.getDisplay().indexOf('\n'))) + "\n");
-      JOptionPane.showMessageDialog(null, bad, "Invalid Input", JOptionPane.PLAIN_MESSAGE);
+      JOptionPane.showMessageDialog(null, bad, bad, JOptionPane.PLAIN_MESSAGE);
 
     }
 
@@ -891,49 +891,49 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       throws NumberFormatException, InvalidExpressionException
   {
 
-    Expression expression = null;
+    Expression originalExpression = null;
     int l = str.length();
 
     if (str.indexOf('m') != -1)
     {
 
-      expression = setFunctionExpression(str);
-      expression.setImaginaryExpression();
+      originalExpression = setFunctionExpression(str);
+      originalExpression.setImaginaryExpression();
 
     }
     else if (str.indexOf('e') != -1)
     {
 
-      expression = setFunctionExpression(str);
-      expression.setRealExpression();
+      originalExpression = setFunctionExpression(str);
+      originalExpression.setRealExpression();
 
     }
     else if (str.indexOf('j') != -1)
     {
 
-      expression = setFunctionExpression(str);
-      expression.setConjugate();
+      originalExpression = setFunctionExpression(str);
+      originalExpression.setConjugate();
 
     }
     else if (str.indexOf('v') != -1)
     {
 
-      expression = setFunctionExpression(str);
-      expression.setInverse();
+      originalExpression = setFunctionExpression(str);
+      originalExpression.setInverse();
 
     }
     else if (str.indexOf('o') != -1)
     {
 
-      expression = setFunctionExpression(str);
-      expression.setLog();
+      originalExpression = setFunctionExpression(str);
+      originalExpression.setLog();
 
     }
     else if (str.indexOf('q') != -1)
     {
 
-      expression = setFunctionExpression(str);
-      expression.setSqrt();
+      originalExpression = setFunctionExpression(str);
+      originalExpression.setSqrt();
 
     }
     else if (str.indexOf('(') != -1)
@@ -943,40 +943,40 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       if (sub.indexOf("+") != -1)
       {
 
-        expression = setComplex(str, exponent, l, sub, '+');
+        originalExpression = setComplex(str, exponent, l, sub, '+');
       }
       else if (sub.indexOf("-") != -1)
       {
 
-        expression = setComplex(str, exponent, l, sub, '-');
+        originalExpression = setComplex(str, exponent, l, sub, '-');
       }
     }
     else if (str.indexOf('i') != -1)
     {
 
       String sub = str.substring(0, str.indexOf('i'));
-      expression = new Expression(Double.parseDouble(sub), exponent);
+      originalExpression = new Expression(Double.parseDouble(sub), exponent);
     }
     else
     {
       if (str.indexOf('^') != -1)
       {
 
-        expression = new Expression(Double.parseDouble(str.substring(0, str.indexOf('^'))));
+        originalExpression = new Expression(Double.parseDouble(str.substring(0, str.indexOf('^'))));
       }
       else
       {
 
-        expression = new Expression(Double.parseDouble(str.substring(0, str.length() - 1)));
+        originalExpression = new Expression(Double.parseDouble(str.substring(0, str.length() - 1)));
       }
       if (exponent != 1)
       {
 
-        expression.setExpPower(exponent);
+        originalExpression.setExpPower(exponent);
       }
     }
 
-    return expression;
+    return originalExpression;
   }
 
   /**
@@ -990,28 +990,28 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
    *          int
    * @param sub
    *          string
-   * @param operator
+   * @param complexOperator
    *          char
    * @return parsed expression
    * @throws InvalidExpressionException
    */
   private Expression setComplex(final String str, final int exponent, final int l, final String sub,
-      final char operator) throws InvalidExpressionException
+      final char complexOperator) throws InvalidExpressionException
   {
 
     int i;
-    Expression expression;
-    i = sub.indexOf(operator);
+    Expression complexExpression;
+    i = sub.indexOf(complexOperator);
     String real = str.substring(1, i);
     String img = str.substring(i + 1, l - 3);
-    expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
+    complexExpression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
         sub.charAt(i));
     if (exponent != 1)
     {
 
-      expression.setExpPower(exponent);
+      complexExpression.setExpPower(exponent);
     }
-    return expression;
+    return complexExpression;
   }
 
   /**
@@ -1026,7 +1026,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   private Expression setFunctionExpression(final String str) throws InvalidExpressionException
   {
     int i;
-    Expression expression;
+    Expression functionExpression;
     String sub = str.substring(str.indexOf('('), str.indexOf(')'));
     int l = sub.length();
 
@@ -1036,7 +1036,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       i = sub.indexOf('+');
       String real = sub.substring(1, i);
       String img = sub.substring(i + 1, l - 1);
-      expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
+      functionExpression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
           sub.charAt(i));
     }
     else if (sub.indexOf("-") != -1)
@@ -1045,7 +1045,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       i = sub.indexOf('-');
       String real = sub.substring(1, i);
       String img = sub.substring(i + 1, l - 1);
-      expression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
+      functionExpression = new Expression(Double.parseDouble(real), Double.parseDouble(img), 1,
           sub.charAt(i));
 
     }
@@ -1054,15 +1054,15 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 
       sub = sub.substring(0, sub.indexOf('i'));
 
-      expression = new Expression(Double.parseDouble(sub), 1);
+      functionExpression = new Expression(Double.parseDouble(sub), 1);
 
     }
     else
     {
 
-      expression = new Expression(Double.parseDouble(sub.substring(0, sub.length() - 1)));
+      functionExpression = new Expression(Double.parseDouble(sub.substring(0, sub.length() - 1)));
     }
-    return expression;
+    return functionExpression;
   }
 
   /**
@@ -1072,9 +1072,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   {
 
     CalcPanel calc = CalcPanel.getInstance();
-    String bad = "Invalid Input";
 
     calc.subDisplay((calc.getDisplay().length() - 1));
-    JOptionPane.showMessageDialog(null, bad, "Invalid Input", JOptionPane.PLAIN_MESSAGE);
+    JOptionPane.showMessageDialog(null, bad, bad, JOptionPane.PLAIN_MESSAGE);
   }
 }
