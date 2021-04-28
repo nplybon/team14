@@ -14,7 +14,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
-
+/**
+ * top level container for calculator.
+ * 
+ * @author Colton Shovlin
+ * @version Rimplex Sprint 3
+ */
 public class CalcFrame extends JFrame {
 
 	/**
@@ -34,9 +39,9 @@ public class CalcFrame extends JFrame {
 	
 	private JPanel current;
 	
-//	private JTextField windowDisplay;
-//	private JWindow historyWindow;
-	
+	/**
+	 * Singleton constructor.
+	 */
 	private CalcFrame() {
 		
 		createCompnents();
@@ -54,10 +59,14 @@ public class CalcFrame extends JFrame {
 		
 	}
 	
-	public JPanel getPanel() {
-		
-		return current;
-	}
+//	/**
+//	 * get current calcul
+//	 * @return
+//	 */
+//	public JPanel getPanel() {
+//		
+//		return current;
+//	}
 	
 	public void setPanel( JPanel panel ) { 
 		
@@ -71,17 +80,11 @@ public class CalcFrame extends JFrame {
         current.setVisible( true );
 	}
 	
-//	public void enableHistory() {
-//		
-//		historyWindow.setVisible( true );
-//	}
-//	
-//	public void incrementHistory( String str ) {
-//		
-//		windowDisplay.setText( windowDisplay.getText() 
-//				+ "\n" + str );
-//	}
-	
+	/**
+	 * singleton method
+	 * 
+	 * @return calcFrame instance
+	 */
 	public static CalcFrame getInstance() {
 		
 		if ( frame == null ) {
@@ -92,6 +95,9 @@ public class CalcFrame extends JFrame {
 		return frame;
 	}
 	
+	/**
+	 * add Menu items
+	 */
 	private void addMenus() {
 		
 		file.add( about );
@@ -99,13 +105,12 @@ public class CalcFrame extends JFrame {
 		file.add(print);
 		
 		menuBar.add( file );
-//		menuBar.add( about );
-		
-//		historyWindow.add( windowDisplay );
-//		
-//		add( historyWindow );
 		
 	}
+	
+	/**
+	 * create components. 
+	 */
 	private void createCompnents() {
 		
 		menuBar = new JMenuBar();
@@ -118,9 +123,6 @@ public class CalcFrame extends JFrame {
 		
 		current = new JPanel();
 		
-//		windowDisplay = new JTextField();
-//		
-//		historyWindow = new JWindow();
 	}
 	
     /**
@@ -143,21 +145,24 @@ public class CalcFrame extends JFrame {
 
     } // method centerForm
     
+    /**
+     * set menu labels.
+     */
     private void setLabels() {
     	
     	file.setText( "File" );
     	help.setText( "Help" );
     	about.setText( "About" );
     	print.setText("Print");
-//		windowDisplay.setEditable( false );
-//		
-//		historyWindow.setVisible( false );
+
     }
     
+    /**
+     * set menu listeners.
+     */
     private void setListeners() {
     	
     	this.addWindowListener( ButtonListener.getInstance() );
-//    	file.addActionListener( ButtonListener.getInstance() );
     	about.addActionListener( ButtonListener.getInstance() );
     	help.addActionListener( ButtonListener.getInstance() );
     	print.addActionListener(ButtonListener.getInstance());
