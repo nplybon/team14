@@ -173,14 +173,14 @@ public class Calculate {
       case SUBTRACTION:
       case MULTIPLICATION:
       case DIVISION:
-        str += "Preformed " + type.getType();
+        str += "   Preformed " + type.getType();
         break;
       case EXPONENT:
       case LOGARITHM:
       case SQUAREROOT:
       case INVERSE:
       case CONJUGATE:
-        str += "Took " + type.getType();
+        str += "   Took " + type.getType();
         break;
     }
 
