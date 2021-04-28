@@ -122,7 +122,7 @@ class InverseTest
     char resultSymbol = result.getSymbol().getSymbol();
 
     assertEquals(expectedReal, resultReal, 0.0001);
-    assertEquals(expectedCoef, -0.5, 0.1);
+    assertEquals(expectedCoef, resultCoef);
     assertEquals(expectedSymbol, resultSymbol);
   }
 
