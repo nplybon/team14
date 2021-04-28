@@ -2,27 +2,16 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-
-import javax.print.attribute.AttributeSet;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-import javax.swing.JWindow;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.AbstractDocument;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DocumentFilter;
-import javax.swing.text.DocumentFilter.FilterBypass;
 
 /**
  * Class for creating the Calculator window and utilities.
@@ -191,8 +180,8 @@ public class CalcPanel extends Panel
     secRow.add(closePar);
     // secRow.add( openHistory );
 
-    JPanel panel = new JPanel();
-    panel.add(history);
+//    JPanel panel = new JPanel();
+//    panel.add(history);
 
     secRow.add(decimal);
     secRow.add(zero);
