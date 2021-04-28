@@ -548,7 +548,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		break;
 	case '=':
 		if ( panel.isEqualsEnabled() ) {
-			
+			System.out.println( "IN EQUALS" );
 			runEquals();
 		} else {
 			
@@ -563,7 +563,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			
 	        panel.changeParenC(1);
 	        panel.handleExponent( false );
-			panel.handleExponent( false );
+
 		}
 		break;
 	case ')':
@@ -575,7 +575,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			panel.enableEquals();
 	        panel.changeParenC(-1);
 	        panel.handleExponent( true );
-			panel.handleExponent( true );
+
 		}
 		break;
 	case '^':
@@ -599,7 +599,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			panel.enableEquals();
 	        panel.toggleDecimal(false);
 	        panel.handleExponent( true );
-			panel.handleExponent( true );
+
 		}
 		break;
     default:	
@@ -632,9 +632,9 @@ private int setExponent( char operator ) {
 	String str = panel.getDisplay();
 	int newLine = str.indexOf( '\n' );
 	str = str.substring( newLine ).strip();
-	
+
 	if ( !TextFieldListener.getInstance().verifyTarget( str ) ) {
-		
+
 		errorMessage();
 	} else {
 		try {

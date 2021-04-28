@@ -315,7 +315,7 @@ public class CalcPanel extends Panel {
 	}
 	
 	public boolean isCloseParEnabled() {
-		
+
 		return closePar.isEnabled();
 	}
 	
@@ -519,6 +519,10 @@ public class CalcPanel extends Panel {
 	
 	private void setButtonTextColor() {
 	  Color cyan = new Color(27, 133, 135);
+	  
+	  Color grey = new Color( 204, 204, 204 );
+	  
+	  setForeground( grey );
 	  plus.setForeground(cyan);
 	  minus.setForeground(cyan);
 	  multiply.setForeground(cyan);
