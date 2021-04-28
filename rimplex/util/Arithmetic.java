@@ -20,7 +20,7 @@ public class Arithmetic {
    * @throws OverflowException when positive overflow has occurred when performing the operation
    * @throws InvalidExpressionException if expression operands are invalid
    */
-  public static Expression addition(Expression exp1, Expression exp2)
+  public static Expression addition(final Expression exp1, final Expression exp2)
       throws OverflowException, InvalidExpressionException {
 
     // null argument checking
@@ -70,7 +70,7 @@ public class Arithmetic {
    *                                    performing the operation
    * @throws InvalidExpressionException if expression operands are invalid
    */
-  public static Expression multiplication(Expression exp1, Expression exp2)
+  public static Expression multiplication(final Expression exp1, final Expression exp2)
       throws OverflowException, InvalidExpressionException {
 
     // null argument checking
@@ -109,18 +109,20 @@ public class Arithmetic {
    * @return the difference
    * @throws InvalidExpressionException if expression operands are invalid
    */
-  public static Expression subtraction(Expression exp1, Expression exp2)
+  public static Expression subtraction(final Expression exp1, final Expression exp2)
       throws OverflowException, InvalidExpressionException {
     // (a - c) + (b - d)
     if (exp1.getReal().equals(exp2.getReal()) && exp1.getImagCoef().equals(exp2.getImagCoef())
         && exp1.getSymbol().equals(exp2.getSymbol())) {
       return new Expression(0.0, 0.0, 1, '+');
     }
+    
+    Expression new2;
 
     if (exp2.getSymbol() == Operator.SUBTRACTION) {
-      exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef(), 1, '+');
+      new2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef(), 1, '+');
     } else {
-      exp2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef() * -1, 1, '+');
+      new2 = new Expression(exp2.getReal() * -1, exp2.getImagCoef() * -1, 1, '+');
     }
 
     return addition(exp1, exp2);
@@ -134,7 +136,7 @@ public class Arithmetic {
    * @return the quotient
    * @throws InvalidExpressionException if denominator is 0
    */
-  public static Expression division(Expression exp1, Expression exp2)throws OverflowException, InvalidExpressionException {
+  public static Expression division(final Expression exp1, final Expression exp2)throws OverflowException, InvalidExpressionException {
     //real part = ac + bd / c^2 + d^2
     //imag part = bc - ad / c^2 + d^2
     double firstPart = exp1.getReal() * exp2.getReal() + exp1.getImagCoef() * exp2.getImagCoef();
@@ -159,7 +161,7 @@ public class Arithmetic {
 	 * @throws InvalidExpressionException if expression operands are invalid
 	 * @throws OverflowException
 	 */
-	public static Expression exponent(Expression exp) throws InvalidExpressionException, OverflowException {
+	public static Expression exponent(final Expression exp) throws InvalidExpressionException, OverflowException {
 	  
 	  Expression result = exp;
 
@@ -181,7 +183,7 @@ public class Arithmetic {
 	 * @throws InvalidExpressionException 
 	 * @throws OverflowException 
 	 */
-	public static Expression inverse(Expression e) throws InvalidExpressionException, OverflowException {
+	public static Expression inverse(final Expression e) throws InvalidExpressionException, OverflowException {
 	   if (e.getReal() == 0.0 && e.getImagCoef() == 0.0) {
 	     throw new InvalidExpressionException("ERROR: ZERO DOES NOT HAVE AN INVERSE");
 	   }
@@ -208,7 +210,7 @@ public class Arithmetic {
    * @return the expressions conjugate
    * @throws InvalidExpressionException if expression operands are invalid
    */
-  public static Expression conjugate(Expression exp1) throws InvalidExpressionException {
+  public static Expression conjugate(final Expression exp1) throws InvalidExpressionException {
 
     Expression toReturn;
 
@@ -234,7 +236,7 @@ public class Arithmetic {
 	 * @throws InvalidExpressionException if the real portion of the given 
 	 * 		expression is less than or equal to zero
 	 */
-	public static Expression naturalLog(Expression exp1) throws InvalidExpressionException {
+	public static Expression naturalLog(final Expression exp1) throws InvalidExpressionException {
 		
 		// error checking
 		if (exp1.getReal() == 0) {
@@ -283,7 +285,7 @@ public class Arithmetic {
 	 * @return the real part of the given expression
 	 * @throws InvalidExpressionException if the expression is not in the form a+bi
 	 */
-	public static Expression realPart(Expression exp1) throws InvalidExpressionException {
+	public static Expression realPart(final Expression exp1) throws InvalidExpressionException {
 		double real = exp1.getReal();
 		return new Expression(real, 0.0, 1, '+');
 	}
@@ -294,7 +296,7 @@ public class Arithmetic {
 	 * @return the imaginary part of the given expression
 	 * @throws InvalidExpressionException if the expression is not in the form a+bi
 	 */
-	public static Expression imagPart(Expression exp1) throws InvalidExpressionException {
+	public static Expression imagPart(final Expression exp1) throws InvalidExpressionException {
 		double imag = exp1.getImagCoef();
 		char sign;
 		Operator symbol = exp1.getSymbol();
@@ -314,7 +316,7 @@ public class Arithmetic {
 	 * @return the square root of the expression
 	 * @throws InvalidExpressionException if the given expression is not in the form a+bi
 	 */
-	public static Expression squareRoot(Expression exp1) throws InvalidExpressionException {
+	public static Expression squareRoot(final Expression exp1) throws InvalidExpressionException {
 		double x = exp1.getReal();
 		double y = exp1.getImagCoef();
 		double r = Math.sqrt(Math.sqrt(x*x + y*y));
