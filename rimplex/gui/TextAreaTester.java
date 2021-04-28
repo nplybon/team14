@@ -40,18 +40,25 @@ public class TextAreaTester {
 	public boolean verifyTarget( final String string) {
 		// TODO Auto-generated method stub
 		boolean bool = true;
-		String str = string.strip();
+		String str = string;
 	
 		if ( notNull( str ) ) {
-			if ( isMinus( str, 0 ) ) {
+			str.strip();
+		    if ( notEmpty( str )) {
+			
+		    	if ( isMinus( str, 0 ) ) {
 				
-				String sub = str.substring( 1 );
-				bool = testInput( sub );
+		    		String sub = str.substring( 1 );
+		    		bool = testInput( sub );
 				
-			} else {
+		    	} else {
 
-				bool = testInput( str );
-			} 
+		    		bool = testInput( str );
+		    	} 
+		    } else {
+		    	
+		    	bool = false;
+		    }
 		} else {
 			
 			bool = false;
@@ -180,8 +187,13 @@ public class TextAreaTester {
 	 * @return true if not null
 	 */
 	private boolean notNull( final String str ) {
+
+		return str != null;
+	}
+	
+	private boolean notEmpty( final String str ) {
 		
-		return str != null && str.length() > 0;
+		return str.length() > 0;
 	}
 	
 	/**
