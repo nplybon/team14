@@ -548,7 +548,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		break;
 	case '=':
 		if ( panel.isEqualsEnabled() ) {
-			System.out.println( "IN EQUALS" );
+			
 			runEquals();
 		} else {
 			
