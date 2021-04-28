@@ -231,27 +231,10 @@ public class Arithmetic
     {
       throw new InvalidExpressionException("ERROR: ZERO DOES NOT HAVE AN INVERSE");
     }
-    double imag = e.getImagCoef();
-    Expression conjugate = conjugate(e);
-    double denominator = Math.sqrt(Math.pow(e.getReal(), 2) + Math.pow(imag, 2));
-    denominator = Math.pow(denominator, 2);
-
-    if (e.getImagCoef() > 0)
-    {
-      return new Expression(conjugate.getReal() / denominator,
-          conjugate.getImagCoef() / denominator, 1, '-');
-    }
-    else
-    {
-      if (e.getSymbol() == Operator.SUBTRACTION)
-      {
-        return new Expression(conjugate.getReal() / denominator,
-            conjugate.getImagCoef() / denominator, 1, '-');
-      }
-
-      return new Expression(conjugate.getReal() / denominator,
-          conjugate.getImagCoef() / denominator, 1, '+');
-    }
+    double length = Math.pow(e.getReal(), 2) + Math.pow(e.getImagCoef(), 2);
+    return new Expression(e.getReal() / length, -e.getImagCoef() / length, e.getExpPower(),
+        e.getSymbol().getSymbol());
+  
   }
 
   /**
