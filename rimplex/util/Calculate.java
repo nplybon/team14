@@ -73,7 +73,7 @@ public class Calculate {
         result = Arithmetic.conjugate(exp1);
         break;
     }
-    //result.simplify();
+    result.simplify();
     return result;
   }
 
@@ -135,7 +135,7 @@ public class Calculate {
       steps.add(takeStep(count, operators[order[i]]));
     }
 
-    result.simplify();
+    //result.simplify();
 
     return result;
 
