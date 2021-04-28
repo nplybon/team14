@@ -52,7 +52,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 //		  System.out.println( "Inside if " );
     AbstractButton button = (AbstractButton) e.getSource();
     CalcPanel calc = CalcPanel.getInstance();
-    TextFieldListener field = TextFieldListener.getInstance();
+    TextAreaTester field = TextAreaTester.getInstance();
     String display = calc.getDisplay();
 
     switch (button.getText())
@@ -633,7 +633,7 @@ private int setExponent( char operator ) {
 	int newLine = str.indexOf( '\n' );
 	str = str.substring( newLine ).strip();
 
-	if ( !TextFieldListener.getInstance().verifyTarget( str ) ) {
+	if ( !TextAreaTester.getInstance().verifyTarget( str ) ) {
 
 		errorMessage();
 	} else {
@@ -742,7 +742,7 @@ private void runOperator( Operator op, int exponent ) {
   private boolean runOperation(Operator operator, String str, int exponent ) 
 		  throws NumberFormatException, InvalidExpressionException {
 	  
-		TextFieldListener text = TextFieldListener.getInstance();
+		TextAreaTester text = TextAreaTester.getInstance();
 		
 		boolean bool = false;
 		
