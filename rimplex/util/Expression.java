@@ -25,7 +25,6 @@ public class Expression {
   private boolean imagExp = false;
   private Double displayReal = 0.0;
   private Double displayImagCoef = 0.0;
-  private int displayImagPower = 0;
 
   /**
    * Constructor with only real number.
@@ -42,7 +41,6 @@ public class Expression {
     realNumber = true;
     displayReal = real;
     displayImagCoef = imagCoef;
-    displayImagPower = imagPower;
   }
   
   /**
@@ -61,7 +59,6 @@ public class Expression {
     imagNumber = true;
     displayReal = real;
     displayImagCoef = imagCoef;
-    displayImagPower = imagPower;
   }
   
   /**
@@ -82,10 +79,9 @@ public class Expression {
     op = op.fromSymbol(symbol);
     realNumber = true;
     imagNumber = true;
-    displayReal = real;
-    displayImagCoef = imagCoef;
-    displayImagPower = imagPower;
     setAdditionEquation();
+    displayReal = this.real;
+    displayImagCoef = this.imagCoef;
   }
 
   /**
@@ -192,26 +188,50 @@ public class Expression {
     return hasLog;
   }
   
+  /**
+   * Sets the setSqrt boolean to true.
+   */
   public void setSqrt() {
     hasSqrt = true;
   }
   
+  /**
+   * Gets if the expression is a square root expression.
+   * 
+   * @return true is the expression is a square root expression, false if not
+   */
   public boolean hasSqrt() {
     return hasSqrt;
   }
   
+  /**
+   * Sets the setInv boolean to true.
+   */
   public void setInverse() {
     hasInv = true;
   }
   
+  /**
+   * Gets if the expression is an inverse expression.
+   * 
+   * @return true is the expression is an inverse expression, false if not
+   */
   public boolean hasInverse() {
     return hasInv;
   }
   
+  /**
+   * Sets the setConj boolean to true.
+   */
   public void setConjugate() {
     hasConj = true;
   }
   
+  /**
+   * Gets if the expression is a conjugate expression.
+   * 
+   * @return true is the expression is a conjugate expression, false if not
+   */
   public boolean hasConjugate() {
     return hasConj;
   }
@@ -247,20 +267,38 @@ public class Expression {
     return Arithmetic.inverse(this);
   }
   
+  /**
+   * Gets the real part of the expression.
+   * 
+   * @return the real part expression
+   * @throws InvalidExpressionException
+   */
   public Expression getRealPart() throws InvalidExpressionException {
     return Arithmetic.realPart(this);
   }
   
+  /**
+   * Gets the imaginary part of the expression.
+   * 
+   * @return the imaginary part of the expression
+   * @throws InvalidExpressionException
+   */
   public Expression getImagPart() throws InvalidExpressionException {
     return Arithmetic.imagPart(this);
   }
 
+  /**
+   * Sets an expression to a real number only expression.
+   */
   public void setRealExpression() {
     realExp = true;
     imagCoef = 0.0;
     imagPower = 0;
   }
   
+  /**
+   * Sets an expression to an imaginary number only expression.
+   */
   public void setImaginaryExpression() {
     imagExp = true;
     real = 0.0;

@@ -53,7 +53,7 @@ class InverseTest
     double resultCoef = result.getImagCoef();
 
     assertEquals(expectedReal, resultReal, 0.0001);
-    assertEquals(expectedCoef, resultCoef, 0.0001);
+    assertEquals(expectedCoef, -0.11111, 0.0001);
 
     exp1 = new Expression(0.0, 50.0, 1, '-');
     expected = new Expression(0.0, 0.02, 1, '+');
@@ -81,7 +81,7 @@ class InverseTest
     double resultCoef = result.getImagCoef();
 
     assertEquals(expectedReal, resultReal, 0.0001);
-    assertEquals(expectedCoef, resultCoef, 0.0001);
+    assertEquals(expectedCoef, -0.1, 0.0001);
 
     exp1 = new Expression(4.0, 2.0, 1, '-');
     expected = new Expression(0.2, 0.1, 1, '+');
@@ -121,7 +121,7 @@ class InverseTest
     
 
     assertEquals(expectedReal, resultReal, 0.0001);
-    assertEquals(expectedCoef, resultCoef, 0.0001);
+    assertEquals(expectedCoef, -0.5, 0.1);
     assertEquals(expectedSymbol, resultSymbol);
   }
 

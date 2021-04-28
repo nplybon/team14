@@ -3,8 +3,7 @@ package util;
 import java.util.ArrayList;
 
 /**
- * **UNFINISHED AND UNTESTED** Calculates every expression using order of
- * operations.
+ * Calculates every expression using order of operations.
  * 
  * @author John Curley
  */
@@ -73,12 +72,8 @@ public class Calculate {
       case CONJUGATE:
         result = Arithmetic.conjugate(exp1);
         break;
-      case REAL:
-        break;
-      case IMAGINARY:
-        break;
     }
-
+    //result.simplify();
     return result;
   }
 
@@ -140,12 +135,19 @@ public class Calculate {
       steps.add(takeStep(count, operators[order[i]]));
     }
 
-    //result.simplify();
+    result.simplify();
 
     return result;
 
   }
 
+  /**
+   * Takes step of the equation after each order of operation is executed.
+   * 
+   * @param count int the number of the step
+   * @param type Operator the Operation type
+   * @return String of the step with its count and instruction performed
+   */
   private String takeStep(int count, Operator type) {
 
     String str = "(" + count + ")   ";
@@ -187,8 +189,6 @@ public class Calculate {
         str += "   Took " + type.getType();
         break;
     }
-
-//    System.out.println(str);
 
     return str;
   }
