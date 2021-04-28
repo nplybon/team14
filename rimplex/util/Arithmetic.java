@@ -130,6 +130,7 @@ public class Arithmetic
    *          the second expression
    * @return the difference
    * @throws InvalidExpressionException if expression operands are invalid
+   * @throws OverflowException if expression exceeds max or min value of double
    */
   public static Expression subtraction(final Expression exp1, final Expression exp2)
       throws OverflowException, InvalidExpressionException
@@ -163,6 +164,7 @@ public class Arithmetic
    *          the second expression
    * @return the quotient
    * @throws InvalidExpressionException if denominator is 0
+   * @throws OverflowException if expression exceeds max or min value of double
    */
   public static Expression division(final Expression exp1, final Expression exp2)
       throws OverflowException, InvalidExpressionException
