@@ -6,42 +6,44 @@ import java.awt.event.FocusListener;
 
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
+/**
+ * Handles testing of user input 
+ * 
+ * @author coltonshovlin
+ *
+ */
+public class TextAreaTester {
 
-public class TextFieldListener implements FocusListener {
-
-	private static TextFieldListener listener;
+	private static TextAreaTester listener;
 	
-	private TextFieldListener() {
+	/**
+	 * singleton constructor.
+	 */
+	private TextAreaTester() {
 		
 	}
 	
-	public static TextFieldListener getInstance() {
+	/**
+	 * Get Instance method.
+	 * 
+	 * @return singleton
+	 */
+	public static TextAreaTester getInstance() {
         if ( listener == null ) {
-            listener = new TextFieldListener();
+            listener = new TextAreaTester();
         }
 
         return listener;
 	}
 
-	@Override
-	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-//		// TODO Auto-generated method stub
-//		JTextField input = (JTextField)e.getSource();
-//		String str = input.getText();
-////		int i;
-//		if ( !verifyTarget( str ) ) {
-//           
-////			CalcPanel.getInstance().setInput( "" );
-//		}
-	}
-
-	public boolean verifyTarget(String string) {
+	/**
+	 * very input isn't null.
+	 * 
+	 * @param string user input
+	 * 
+	 * @return bool true if not null
+	 */
+	public boolean verifyTarget( final String string) {
 		// TODO Auto-generated method stub
 		boolean bool = true;
 		String str = string.strip();
@@ -64,7 +66,13 @@ public class TextFieldListener implements FocusListener {
 		return bool;
 	}
 
-	private boolean testInput( String input ) {
+	/**
+	 * actually verifies user input.
+	 * 
+	 * @param input user input
+	 * @return bool true if valid
+	 */
+	private boolean testInput( final String input ) {
 		
 		boolean bool = true;
 		boolean isImg = true;
@@ -123,7 +131,13 @@ public class TextFieldListener implements FocusListener {
 		return bool;
 	}
 
-	private boolean isImag( String input ) {
+	/**
+	 * tests to see if valid imaginary method.
+	 * 
+	 * @param input user input
+	 * @return true if valid input
+	 */
+	private boolean isImag( final String input ) {
 		
 		boolean bool;
 		String str = input;
@@ -143,7 +157,13 @@ public class TextFieldListener implements FocusListener {
 		return bool;
 	}
 
-	private boolean isReal( String input ) {
+	/**
+	 * tests real input.
+	 * 
+	 * @param input user input
+	 * @return bool true if valid
+	 */
+	private boolean isReal( final String input ) {
 		
 		boolean bool;
 		//changed instantiation
@@ -159,12 +179,25 @@ public class TextFieldListener implements FocusListener {
 		return bool;
 	}
 	
-	private boolean notNull( String str ) {
+	/**
+	 * tests to see if input isn't null.
+	 * 
+	 * @param str user input
+	 * @return true if not null
+	 */
+	private boolean notNull( final String str ) {
 		
 		return str != null && str.length() > 0;
 	}
 	
-	private boolean isMinus( String str, int i ) {
+	/**
+	 * tests to see if input is minus.
+	 * 
+	 * @param str user input
+	 * @param i index of minus button
+	 * @return true if minus
+	 */
+	private boolean isMinus( final String str, final int i ) {
 		
 		return str.charAt( i ) == '-';
 	}
