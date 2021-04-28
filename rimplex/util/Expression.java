@@ -145,7 +145,7 @@ public class Expression {
    * @return the operation in the Expression
    */
   public Operator getSymbol() {
-	  return this.op;
+    return this.op;
   }
   
   /**
@@ -248,11 +248,11 @@ public class Expression {
   }
   
   public Expression getRealPart() throws InvalidExpressionException {
-	  return Arithmetic.realPart(this);
+    return Arithmetic.realPart(this);
   }
   
   public Expression getImagPart() throws InvalidExpressionException {
-	  return Arithmetic.imagPart(this);
+    return Arithmetic.imagPart(this);
   }
 
   public void setRealExpression() {
@@ -310,17 +310,17 @@ public class Expression {
     
     if (realNumber && imagNumber)
     {
-      str = "(" + displayReal + " " + op.toString() + " " + i.toString(displayImagCoef) + ")";
+      str += "(" + displayReal + " " + op.toString() + " " + i.toString(displayImagCoef) + ")";
     }
     else
     {
       if (realNumber && !imagNumber)
       {
-        str = "" + displayReal;
+        str += "" + displayReal;
       }
       if (!realNumber && imagNumber)
       {
-        str = i.toString(displayImagCoef);
+        str += i.toString(displayImagCoef);
       }
     }
     
@@ -329,6 +329,7 @@ public class Expression {
     }
 
     return str;
+
   }
 
 }
