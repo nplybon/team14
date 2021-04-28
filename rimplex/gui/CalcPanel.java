@@ -664,6 +664,7 @@ public class CalcPanel extends Panel
     realPart.setForeground(yellow);
     imagPart.setForeground(yellow);
     log.setForeground(yellow);
+    steps.setForeground(yellow);
     
 
   }
