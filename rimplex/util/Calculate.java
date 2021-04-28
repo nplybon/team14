@@ -113,7 +113,6 @@ public class Calculate
         expressions[i] = result;
         count++;
         steps.add(takeStep(count, Operator.EXPONENT));
-        System.out.println(result);
       }
       if (expressions[i].hasLog())
       {

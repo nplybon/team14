@@ -4,8 +4,7 @@ package util;
  * OverflowException class.
  *
  * @author team 14
- * @version 
- * This work complies with the JMU Honor Code.
+ * @version This work complies with the JMU Honor Code.
  */
 public class OverflowException extends Exception
 {

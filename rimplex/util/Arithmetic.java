@@ -237,7 +237,7 @@ public class Arithmetic
     double length = Math.pow(e.getReal(), 2) + Math.pow(e.getImagCoef(), 2);
     return new Expression(e.getReal() / length, -1 * e.getImagCoef() / length, 1,
         e.getSymbol().getSymbol());
-  
+
   }
 
   /**
