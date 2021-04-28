@@ -789,32 +789,32 @@ private void runOperator( Operator op, int exponent ) {
 	  Expression expression = null;
     int l = str.length();
 
-    if ( str.indexOf( 'g' ) != -1 ) {
+    if ( str.indexOf( 'm' ) != -1 ) {
     	
-    	expression = setFunctionExpression(str);
-    	expression.setLog();
+       	expression = setFunctionExpression(str);
+    	expression.setImaginaryExpression();
     	
-    } else if ( str.indexOf( 'r' ) != -1 ) {
+    } else if ( str.indexOf( 'e' ) != -1 ) {
     	
         expression = setFunctionExpression(str);
         expression.setRealExpression();
         
-    } else if ( str.indexOf( 'c' ) != -1 ) {
+    } else if ( str.indexOf( 'j' ) != -1 ) {
     	
     	expression = setFunctionExpression(str);
     	expression.setConjugate();
     	
-    } else if ( str.indexOf( 'n' ) != -1 ) {
+    } else if ( str.indexOf( 'v' ) != -1 ) {
     	
     	expression = setFunctionExpression(str);
     	expression.setInverse();
     	
-    } else if ( str.indexOf( 'm' ) != -1 ) {
+    } else if ( str.indexOf( 'o' ) != -1 ) {
     	
     	expression = setFunctionExpression(str);
-    	expression.setImaginaryExpression();
+    	expression.setLog();
     	
-    } else if ( str.indexOf( 's' ) != -1 ) {
+    } else if ( str.indexOf( 'q' ) != -1 ) {
     	
     	expression = setFunctionExpression(str);
     	expression.setSqrt();
