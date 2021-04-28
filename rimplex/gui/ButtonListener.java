@@ -48,8 +48,6 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   public void actionPerformed(ActionEvent e)
   {
     // TODO Auto-generated method stub
-//	  if ( e.getSource() instanceof AbstractButton ) {
-//		  System.out.println( "Inside if " );
     AbstractButton button = (AbstractButton) e.getSource();
     CalcPanel calc = CalcPanel.getInstance();
     TextAreaTester field = TextAreaTester.getInstance();
@@ -548,7 +546,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		break;
 	case '=':
 		if ( panel.isEqualsEnabled() ) {
-			System.out.println( "IN EQUALS" );
+			
 			runEquals();
 		} else {
 			
@@ -611,7 +609,13 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     }
   }
 
-private int setExponent( char operator ) {
+  /**
+   * set exponent.
+   * 
+   * @param operator char
+   * @return value of exponent
+   */
+private int setExponent( final char operator ) {
 	CalcPanel panel = CalcPanel.getInstance();
 	String str = panel.getDisplay().substring( panel.getDisplay().indexOf( '\n' ) );
 	int exponent = 1;
@@ -625,7 +629,9 @@ private int setExponent( char operator ) {
 	return exponent;
 }
 
-
+  /**
+   * perform equals function.
+   */
   private void runEquals() {
 	
 	CalcPanel panel = CalcPanel.getInstance();
@@ -683,7 +689,13 @@ private int setExponent( char operator ) {
 
   } 
 
-private void runOperator( Operator op, int exponent ) {
+  /**
+   * run Operation.
+   * 
+   * @param op enum
+   * @param exponent int
+   */
+private void runOperator( final Operator op, final int exponent ) {
 	
 	CalcPanel panel = CalcPanel.getInstance();
 	String str;
@@ -739,7 +751,17 @@ private void runOperator( Operator op, int exponent ) {
 	}
 }
 
-  private boolean runOperation(Operator operator, String str, int exponent ) 
+  /**
+   * set and add expression to arrayList.
+   * 
+   * @param operator enum
+   * @param str String
+   * @param exponent int
+   * @return true if valid entry
+   * @throws NumberFormatException WAP
+   * @throws InvalidExpressionException WAP
+   */
+  private boolean runOperation( final Operator operator, final String str, final int exponent ) 
 		  throws NumberFormatException, InvalidExpressionException {
 	  
 		TextAreaTester text = TextAreaTester.getInstance();
@@ -782,7 +804,7 @@ private void runOperator( Operator op, int exponent ) {
    * @throws InvalidExpressionException
    *           WAP
    */
-  private Expression setExp(String str, int exponent )
+  private Expression setExp( final String str, final int exponent )
       throws NumberFormatException, InvalidExpressionException
   {
 
@@ -853,8 +875,19 @@ private void runOperator( Operator op, int exponent ) {
     return expression;
   }
 
-private Expression setComplex(String str, int exponent, int l, String sub,
-		char operator ) throws InvalidExpressionException {
+  /**
+   * set complex expression.
+   * 
+   * @param str String
+   * @param exponent int
+   * @param l int
+   * @param sub string
+   * @param operator char
+   * @return parsed expression
+   * @throws InvalidExpressionException
+   */
+private Expression setComplex( final String str, final int exponent, final int l, final String sub,
+		final char operator ) throws InvalidExpressionException {
 	
 	int i;
 	Expression expression;
@@ -870,7 +903,14 @@ private Expression setComplex(String str, int exponent, int l, String sub,
 	return expression;
 }
 
-private Expression setFunctionExpression(String str) throws InvalidExpressionException {
+/**
+ * set expression when function is set.
+ * 
+ * @param str String
+ * @return parsed expression
+ * @throws InvalidExpressionException WAP
+ */
+private Expression setFunctionExpression( final String str ) throws InvalidExpressionException {
 	int i;
 	Expression expression;
 	String sub = str.substring( str.indexOf( '(' ), str.indexOf( ')' ) );
@@ -909,6 +949,9 @@ private Expression setFunctionExpression(String str) throws InvalidExpressionExc
 	return expression;
 }
 
+  /**
+   * display error message and delete last character.
+   */
   private void errorMessage()
   {
 
