@@ -147,7 +147,7 @@ public class CalcPanel extends Panel
 
     // topRow.add( new JPanel() );
     topRow.add(sign);
-    topRow.add(backspace);
+    topRow.add(steps);
     topRow.add( outputformat );
     topRow.add(plus);
     topRow.add(reset);
@@ -202,9 +202,9 @@ public class CalcPanel extends Panel
     thirdRow.add(squareRoot);
 
     thirdRow.add(new JPanel());
-    thirdRow.add(steps);
     thirdRow.add( new JPanel() );
     thirdRow.add(history);
+    thirdRow.add( new JPanel() );
     // thirdRow.add( closeHistory );
  //   thirdRow.add(outputformat);
     thirdRow.add(new JPanel());

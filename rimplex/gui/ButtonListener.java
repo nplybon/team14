@@ -79,7 +79,6 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     // TODO Auto-generated method stub
     AbstractButton button = (AbstractButton) e.getSource();
     CalcPanel calc = CalcPanel.getInstance();
-    TextAreaTester field = TextAreaTester.getInstance();
     String display = calc.getDisplay();
 
     switch (button.getText())
@@ -274,7 +273,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         calc.handleExponent(false);
         break;
       case "\u2190":
-        char last = display.charAt(display.length() - 1);
+//        char last = display.charAt(display.length() - 1);
 
         // if (last == 'i') {
         // calc.toggleAllNums(true);
