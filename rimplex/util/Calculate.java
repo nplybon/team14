@@ -73,7 +73,7 @@ public class Calculate {
         result = Arithmetic.conjugate(exp1);
         break;
     }
-
+    //result.simplify();
     return result;
   }
 
