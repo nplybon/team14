@@ -1,16 +1,10 @@
 package gui;
 
-import java.awt.event.FocusEvent;
-
-import java.awt.event.FocusListener;
-
-import javax.swing.InputVerifier;
-import javax.swing.JComponent;
 /**
  * Handles testing of user input 
  * 
  * @author coltonshovlin
- *
+ * @version rimplex sprint 3
  */
 public class TextAreaTester {
 
