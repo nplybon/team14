@@ -150,19 +150,23 @@ public class Calculate {
 
     String str = "(" + count + ")   ";
 
-    if (skips.size() < operators.length && expressions.length > 1) {
-      for (int i = 0; i < expressions.length; i++) {
-        if (!skips.contains(i)) {
-          str += expressions[i].toString() + " ";
-        }
-        if (i < operators.length) {
+    if (expressions.length > 1) {
+      if (skips.size() < operators.length) {
+        for (int i = 0; i < expressions.length; i++) {
           if (!skips.contains(i)) {
-            str += operators[i].toString() + " ";
+            str += expressions[i].toString() + " ";
+          }
+          if (i < operators.length) {
+            if (!skips.contains(i)) {
+              str += operators[i].toString() + " ";
+            }
           }
         }
+      } else {
+        str += expressions[skips.get(skips.size() - 1)].toString() + " ";
       }
     } else {
-      str += expressions[skips.get(skips.size() - 1)].toString() + " ";
+      str += expressions[0].toString() + " ";
     }
 
     switch (type) {
@@ -195,7 +199,7 @@ public class Calculate {
    * @return the steps
    */
   public ArrayList<String> getSteps() {
-    
+
     return steps;
   }
 
