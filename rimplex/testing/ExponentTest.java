@@ -13,8 +13,8 @@ class ExponentTest {
     Expression exp = new Expression(8.0, 2.0, 1, '+');
     exp.setExpPower(0);
     Expression result = Arithmetic.exponent(exp);
-    assertEquals(result.getReal(), 8.0, 0.001);
-    assertEquals(result.getImagCoef(), 2.0, 0.001);
+    assertEquals(result.getReal(), 1.0, 0.001);
+    assertEquals(result.getImagCoef(), 0.0, 0.001);
     assertEquals(result.getImaginary().getPower(), 1);
   }
   

@@ -29,7 +29,6 @@ public class Arithmetic
   public static Expression addition(final Expression exp1, final Expression exp2)
       throws OverflowException, InvalidExpressionException
   {
-
     // null argument checking
     if (exp1 == null || exp2 == null)
     {
@@ -91,7 +90,6 @@ public class Arithmetic
   public static Expression multiplication(final Expression exp1, final Expression exp2)
       throws OverflowException, InvalidExpressionException
   {
-
     // null argument checking
     if (exp1 == null || exp2 == null)
     {
@@ -184,8 +182,8 @@ public class Arithmetic
       throw new InvalidExpressionException("ERROR: CANNOT DIVIDE BY ZERO");
     }
     return new Expression(realpart, imagpart, 1, '+');
-  }
-
+  } 
+     
   /**
    * Returns the result of an exponent operation.
    * 
@@ -210,6 +208,11 @@ public class Arithmetic
     if (exp.getExpPower() < 0)
     {
       result = division(new Expression(1.0), result);
+    }
+    
+    if (exp.getExpPower() == 0)
+    {
+    	result = new Expression(1.0, 0.0, 1, '+');
     }
 
     return result;

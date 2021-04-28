@@ -102,7 +102,7 @@ public class CalcFrame extends JFrame
   {
 
     file.add(about);
-    file.add(help);
+//    file.add(help);
     file.add(print);
 
     menuBar.add(file);
