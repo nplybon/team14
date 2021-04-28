@@ -5,14 +5,13 @@ package util;
  * 
  * @author John Curley
  */
-public enum Operator {
+public enum Operator
+{
 
-  ADDITION('+', "Addition"), SUBTRACTION('-', "Subtraction"),
-  MULTIPLICATION('x', "Multiplication"), DIVISION('/', "Division"), 
-  EXPONENT('^', "Exponent"), LOGARITHM('l', "Logarithm"),
-  INVERSE('v', "Inverse"), CONJUGATE('c', "conjugate"), 
-  SQUAREROOT('2', "Square Root"), REAL('r', "Real"), 
-  IMAGINARY('m', "Imaginary"), NOTHING('0', "Nothing");
+  ADDITION('+', "Addition"), SUBTRACTION('-', "Subtraction"), MULTIPLICATION('x',
+      "Multiplication"), DIVISION('/', "Division"), EXPONENT('^', "Exponent"), LOGARITHM('l',
+          "Logarithm"), INVERSE('v', "Inverse"), CONJUGATE('c',
+              "conjugate"), SQUAREROOT('2', "Square Root"), NOTHING('0', "Nothing");
 
   private char symbol;
   private String type;
@@ -20,10 +19,13 @@ public enum Operator {
   /**
    * Constructor.
    * 
-   * @param symbol char Operator symbol
-   * @param type String name of Operator result
+   * @param symbol
+   *          char Operator symbol
+   * @param type
+   *          String name of Operator result
    */
-  private Operator(char symbol, String type) {
+  private Operator(final char symbol, final String type)
+  {
     this.symbol = symbol;
     this.type = type;
   }
@@ -31,14 +33,17 @@ public enum Operator {
   /**
    * Creates an Operator from the operation symbol.
    * 
-   * @param symbol char Operator symbol
+   * @param symbol
+   *          char Operator symbol
    * @return Operator
    */
-  public Operator fromSymbol(char symbol) {
+  public Operator fromSymbol(final char symbol)
+  {
 
     Operator op;
 
-    switch (symbol) {
+    switch (symbol)
+    {
       case '+':
         op = Operator.ADDITION;
         break;
@@ -69,12 +74,6 @@ public enum Operator {
       case '2':
         op = Operator.SQUAREROOT;
         break;
-      case 'r':
-    	  op = Operator.REAL;
-    	  break;
-      case 'm':
-    	  op = Operator.IMAGINARY;
-    	  break;
       default:
         op = null;
         break;
@@ -88,7 +87,8 @@ public enum Operator {
    * 
    * @return symbol
    */
-  public char getSymbol() {
+  public char getSymbol()
+  {
     return symbol;
   }
 
@@ -97,14 +97,18 @@ public enum Operator {
    * 
    * @return result name
    */
-  public String getType() {
+  public String getType()
+  {
     return type;
   }
 
   /**
    * Returns just the Operator symbol.
+   * 
+   * @return String - formated string
    */
-  public String toString() {
+  public String toString()
+  {
     return "" + symbol;
   }
 }

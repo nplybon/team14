@@ -5,7 +5,8 @@ package util;
  * 
  * @author John Curley
  */
-public enum ImaginaryNumber {
+public enum ImaginaryNumber
+{
 
   ONE(1, "i"), TWO(2, "-1"), THREE(3, "-i"), FOUR(4, "1");
 
@@ -15,10 +16,13 @@ public enum ImaginaryNumber {
   /**
    * Constructor.
    * 
-   * @param power int power of the imaginary number
-   * @param type String result of the imaginary number
+   * @param power
+   *          int power of the imaginary number
+   * @param type
+   *          String result of the imaginary number
    */
-  private ImaginaryNumber(int power, String type) {
+  private ImaginaryNumber(final int power, final String type)
+  {
     this.power = power;
     this.type = type;
   }
@@ -26,14 +30,17 @@ public enum ImaginaryNumber {
   /**
    * Creates an ImaginaryNumber from the power.
    * 
-   * @param power int power of the imaginary number
+   * @param power
+   *          int power of the imaginary number
    * @return Imaginary Number
    */
-  public ImaginaryNumber fromPower(int power) {
+  public ImaginaryNumber fromPower(final int power)
+  {
 
     ImaginaryNumber i;
 
-    switch (power % 4) {
+    switch (power % 4)
+    {
       case 0:
         i = ImaginaryNumber.FOUR;
         break;
@@ -58,16 +65,18 @@ public enum ImaginaryNumber {
    * 
    * @return power of imaginary number
    */
-  public int getPower() {
+  public int getPower()
+  {
     return power;
   }
-  
+
   /**
    * Gets the result type of the imaginary number.
    * 
    * @return result type of the imaginary number
    */
-  public String getType() {
+  public String getType()
+  {
     return type;
   }
 
@@ -76,21 +85,25 @@ public enum ImaginaryNumber {
    * 
    * @return the result of the imaginary number
    */
-  public String toString() {
+  public String toString()
+  {
     return type;
   }
 
   /**
    * Returns the imaginary number with a coefficient.
    * 
-   * @param coef int coefficient of the imaginary number
+   * @param coef
+   *          int coefficient of the imaginary number
    * @return the imaginary number factored to include a coefficient
    */
-  public String toString(double coef) {
-    
+  public String toString(final double coef)
+  {
+
     String str;
 
-    switch (this) {
+    switch (this)
+    {
       case ONE:
         str = coef + type;
         break;

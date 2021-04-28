@@ -14,6 +14,9 @@ public class OutputFormat
   private static final String I = "i";
   private static final String SPACE = " ";
   private static final String FRAC = "/";
+  private static final String PARENS = "[()]";
+  private static final String LPARENS = "(";
+  private static final String RPARENS = ")";
 
   /**
    * Converts the solution into a fraction.
@@ -31,7 +34,7 @@ public class OutputFormat
     if (answer.contains(I))
     {
       answer = answer.replaceAll(I, "");
-      answer = answer.replaceAll("[()]", "");
+      answer = answer.replaceAll(PARENS, "");
       containsImag = true;
     }
     String[] values = answer.split(SPACE);
@@ -51,7 +54,7 @@ public class OutputFormat
     // for complex numbers
     try
     {
-      ret = fractions.get(0) + SPACE + values[1] + SPACE + fractions.get(1) + I + ")";
+      ret = LPARENS + fractions.get(0) + SPACE + values[1] + SPACE + fractions.get(1) + I + RPARENS;
     }
     catch (IndexOutOfBoundsException e)
     {
@@ -123,7 +126,7 @@ public class OutputFormat
       containsImag = true;
     }
     answer = answer.replaceAll(FRAC, SPACE);
-    answer = answer.replaceAll("[()]", "");
+    answer = answer.replaceAll(PARENS, "");
     String[] values = answer.split(SPACE);
     ArrayList<Double> decimals = new ArrayList<>();
     for (int i = 0; i < values.length; i++)
@@ -139,8 +142,8 @@ public class OutputFormat
     try
     {
       // for complex numbers
-      ret = decimals.get(0) / decimals.get(1) + SPACE + values[2] + SPACE
-          + decimals.get(2) / decimals.get(3) + I + ")";
+      ret = LPARENS + decimals.get(0) / decimals.get(1) + SPACE + values[2] + SPACE
+          + decimals.get(2) / decimals.get(3) + I + RPARENS;
     }
     catch (IndexOutOfBoundsException e)
     {
