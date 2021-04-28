@@ -99,10 +99,10 @@ public class CalcPanel extends Panel
    */
   private CalcPanel()
   {
-
     super();
     this.parenC = 0;
     this.dPresent = false;
+
   }
 
   /**
