@@ -46,7 +46,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
   private ArrayList<Expression> expression = new ArrayList<Expression>();
 
   private String plus = "+";
-  
+
   /**
    * handles button events.
    * 

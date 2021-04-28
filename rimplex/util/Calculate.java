@@ -15,7 +15,7 @@ public class Calculate
   private int[] order;
   private ArrayList<String> steps;
   private ArrayList<Integer> skips;
-  
+
   private String space = " ";
 
   /**
