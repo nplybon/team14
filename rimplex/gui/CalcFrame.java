@@ -3,17 +3,13 @@ package gui;
 import java.awt.BorderLayout;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JWindow;
 
 /**
  * top level container for calculator.
@@ -21,6 +17,7 @@ import javax.swing.JWindow;
  * @author Colton Shovlin
  * @version Rimplex Sprint 3
  */
+
 public class CalcFrame extends JFrame
 {
 
@@ -177,5 +174,4 @@ public class CalcFrame extends JFrame
     help.addActionListener(ButtonListener.getInstance());
     print.addActionListener(ButtonListener.getInstance());
   }
-
 }

@@ -83,8 +83,10 @@ public class Calculate
       case CONJUGATE:
         result = Arithmetic.conjugate(exp1);
         break;
+      default:
+        break;
     }
-    // result.simplify();
+    result.simplify();
     return result;
   }
 
@@ -152,7 +154,7 @@ public class Calculate
       steps.add(takeStep(count, operators[order[i]]));
     }
 
-    result.simplify();
+    //result.simplify();
 
     return result;
 
