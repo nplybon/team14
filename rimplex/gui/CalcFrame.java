@@ -2,161 +2,176 @@ package gui;
 import java.awt.BorderLayout;
 
 
+
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JWindow;
 /**
  * top level container for calculator.
  * 
  * @author Colton Shovlin
  * @version Rimplex Sprint 3
  */
-public class CalcFrame extends JFrame {
+public class CalcFrame extends JFrame 
+{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	private static CalcFrame frame;
+  private static CalcFrame frame;
 	
-	private JMenuBar menuBar;
+  private JMenuBar menuBar;
 	
-	private JMenu file;
-	private JMenuItem about;
-	private JMenuItem print;
+  private JMenu file;
+  private JMenuItem about;
+  private JMenuItem print;
 	
-	private JMenuItem help;
+  private JMenuItem help;
 	
-	private JPanel current;
+  private JPanel current;
 	
 	/**
 	 * Singleton constructor.
 	 */
-	private CalcFrame() {
+  private CalcFrame() 
+  {
 		
-		createCompnents();
-		setLabels();
-		addMenus();
+    createCompnents();
+    setLabels();
+    addMenus();
 		//changed to new Panel
-		setPanel( CalcPanel.getInstance() );
-		setListeners();
-		setJMenuBar( menuBar );
-		//Changed Dimensions 
-		setSize( 450, 450 );
-		setTitle( "Calculator" );
-		setVisible( true );
-		centerForm();
+    setPanel( CalcPanel.getInstance() );
+    setListeners();
+    setJMenuBar( menuBar );
+    //Changed Dimensions 
+    setSize( 450, 450 );
+    setTitle( "Calculator" );
+    setVisible( true );
+    centerForm();
 		
-	}
+  }
 	
-	public void setPanel( JPanel panel ) { 
+   /**
+    * set contentPane to incoming panel.
+    * 
+    * @param panel to be set to content Pane
+    */
+  public void setPanel( final JPanel panel ) 
+  { 
 		
-        if ( current != null ) {
-            current.setVisible( false );
-            getContentPane().remove( current );
-        }
+    if ( current != null ) 
+    {
+      current.setVisible( false );
+      getContentPane().remove( current );
+    }
         
-        getContentPane().add( panel, BorderLayout.CENTER );
-        current = panel;
-        current.setVisible( true );
-	}
+    getContentPane().add( panel, BorderLayout.CENTER );
+    current = panel;
+    current.setVisible( true );
+  }
 	
 	/**
-	 * singleton method
+	 * singleton method.
 	 * 
 	 * @return calcFrame instance
 	 */
-	public static CalcFrame getInstance() {
+  public static CalcFrame getInstance() 
+  {
 		
-		if ( frame == null ) {
+    if ( frame == null ) 
+    {
 			
-			frame = new CalcFrame();
-		}
+      frame = new CalcFrame();
+    }
 		
-		return frame;
-	}
+    return frame;
+  }
 	
 	/**
-	 * add Menu items
+	 * add Menu items.
 	 */
-	private void addMenus() {
+  private void addMenus() 
+  {
 		
-		file.add( about );
-		file.add( help );
-		file.add(print);
+    file.add( about );
+    //file.add( help );
+    file.add(print);
 		
-		menuBar.add( file );
+    menuBar.add( file );
 		
-	}
+  }
 	
 	/**
 	 * create components. 
-	 */
-	private void createCompnents() {
+	 */ 
+  private void createCompnents() 
+  {
 		
-		menuBar = new JMenuBar();
+    menuBar = new JMenuBar();
 		
-		file = new JMenu();
-		help = new JMenuItem();
-		print = new JMenuItem();
+    file = new JMenu();
+    help = new JMenuItem();
+    print = new JMenuItem();
 		
-		about = new JMenuItem();
+    about = new JMenuItem();
 		
-		current = new JPanel();
+    current = new JPanel();
 		
-	}
+  }
 	
     /**
      * center form on screen.
      */
-    private void centerForm() {
+  private void centerForm() 
+  {
 
-        Dimension dimScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension dimFrameSize = getSize();
+    Dimension dimScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    Dimension dimFrameSize = getSize();
 
-        if ( dimFrameSize.height > dimScreenSize.height ) {
-            dimFrameSize.height = dimScreenSize.height;
-        }
-        if ( dimFrameSize.width > dimScreenSize.width ) {
-            dimFrameSize.width = dimScreenSize.width;
-        }
+    if ( dimFrameSize.height > dimScreenSize.height ) 
+    {
+      dimFrameSize.height = dimScreenSize.height;
+    }
+    if ( dimFrameSize.width > dimScreenSize.width ) 
+    {
+      dimFrameSize.width = dimScreenSize.width;
+    }
 
-        setLocation( ( dimScreenSize.width - dimFrameSize.width ) / 2,
-                        ( dimScreenSize.height - dimFrameSize.height ) / 2 );
+    setLocation( ( dimScreenSize.width - dimFrameSize.width ) / 2,
+        ( dimScreenSize.height - dimFrameSize.height ) / 2 );
 
-    } // method centerForm
+  } // method centerForm
     
     /**
      * set menu labels.
      */
-    private void setLabels() {
+  private void setLabels() 
+  {
     	
-    	file.setText( "File" );
-    	help.setText( "Help" );
-    	about.setText( "About" );
-    	print.setText("Print");
+    file.setText( "File" );
+    help.setText( "Help" );
+    about.setText( "About" );
+    print.setText("Print");
 
-    }
+  }
     
     /**
      * set menu listeners.
      */
-    private void setListeners() {
+  private void setListeners() 
+  {
     	
-    	this.addWindowListener( ButtonListener.getInstance() );
-    	about.addActionListener( ButtonListener.getInstance() );
-    	help.addActionListener( ButtonListener.getInstance() );
-    	print.addActionListener(ButtonListener.getInstance());
-    }
+    this.addWindowListener( ButtonListener.getInstance() );
+    about.addActionListener( ButtonListener.getInstance() );
+    help.addActionListener( ButtonListener.getInstance() );
+    print.addActionListener(ButtonListener.getInstance());
+  }
     
 }
