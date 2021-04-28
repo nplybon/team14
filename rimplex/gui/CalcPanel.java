@@ -58,7 +58,7 @@ public class CalcPanel extends Panel {
 	private JButton inverse;
 	private JButton log;
 	private JButton sign;
-	private JButton openHistory;
+	private JToggleButton history;
 	private JButton closeHistory;
 	private JButton squareRoot;
 	private JButton exponent;
@@ -152,6 +152,11 @@ public class CalcPanel extends Panel {
 		topRow.add( minus );
 		topRow.add( inverse );
 
+//		JPanel topBorder = new JPanel();
+//		topBorder.setLayout( new BorderLayout() );
+//		topBorder.add( secRow, BorderLayout.EAST );
+//		topBorder.add( new JPanel(), BorderLayout.CENTER );
+		
 		secRow.add( four );
 		secRow.add( five );
 		secRow.add( six );
@@ -166,6 +171,9 @@ public class CalcPanel extends Panel {
 		secRow.add( division );
 		secRow.add( closePar );
 //		secRow.add( openHistory );
+
+		JPanel panel = new JPanel();
+		panel.add( history );
 		
 		secRow.add( decimal );
 		secRow.add( zero );
@@ -173,15 +181,22 @@ public class CalcPanel extends Panel {
 		secRow.add( equals );
 		secRow.add( exponent );
 		
+//		JPanel secBorder = new JPanel();
+//		secBorder.setLayout( new BorderLayout() );
+//		secBorder.add( panel, BorderLayout.EAST );
+//		secBorder.add( secRow, BorderLayout.CENTER );
+//		secBorder.add( new JPanel(), BorderLayout.WEST );
+		
 		thirdRow.add( realPart );
 		thirdRow.add( imagPart );
 		thirdRow.add( log );
 		thirdRow.add( conjugate );
 		thirdRow.add( squareRoot );
 		
+		thirdRow.add( new JPanel() );
 		thirdRow.add( steps );
-		thirdRow.add( openHistory );
-		thirdRow.add( closeHistory );
+		thirdRow.add( history );
+//		thirdRow.add( closeHistory );
 		thirdRow.add(  outputformat  );
 		thirdRow.add( new JPanel() );
 		
@@ -199,9 +214,20 @@ public class CalcPanel extends Panel {
 		center.add( topRow );
 		center.add( secRow );
 		center.add( thirdRow );
-		
+//		JPanel centerBorder = new JPanel();
+//		centerBorder.setLayout( new BorderLayout() );
+//		centerBorder.add( center, BorderLayout.CENTER );
+
+//		centerBorder.add( panel, BorderLayout.EAST );
+//		JPanel bigCenter = new JPanel();
+//		bigCenter.setLayout( new GridLayout( 3, 0 ) );
+//		bigCenter.add( scrollPane );
+//        bigCenter.add( new JPanel() );
+//		bigCenter.add( centerBorder );
 		add( center, BorderLayout.CENTER );
+//		add( centerBorder, BorderLayout.CENTER );
 		add( new JPanel(), BorderLayout.NORTH );
+//		add( new JPanel(), BorderLayout.WEST );
 //		add( panel, BorderLayout.EAST );
 
 //		add( historyWindow );
@@ -260,7 +286,7 @@ public class CalcPanel extends Panel {
 	
 	public void handleOpenHistory( boolean bool ) {
 		
-		openHistory.setEnabled( bool );
+		history.setEnabled( bool );
 	}
 	
 	public void handleExponent( boolean bool ) {
@@ -336,7 +362,7 @@ public class CalcPanel extends Panel {
 		//log.setEnabled( false );
 		exponent.setEnabled( false );
 		//sign.setEnabled( false );
-		closeHistory.setEnabled( false );
+//		closeHistory.setEnabled( false );
 		//squareRoot.setEnabled( false );
 		closePar.setEnabled(false);
 		cancel.setEnabled( false );
@@ -390,7 +416,7 @@ public class CalcPanel extends Panel {
 		log.addActionListener(button);
 		sign.addActionListener(button);
 		closeHistory.addActionListener( button );
-		openHistory.addActionListener(button);
+		history.addActionListener(button);
 		squareRoot.addActionListener(button);
 		conjugate.addActionListener( button );
 		outputformat.addActionListener(button);
@@ -441,7 +467,7 @@ public class CalcPanel extends Panel {
 		sign = new JButton();
 		closeHistory = new JButton();
 		conjugate = new JButton();
-		openHistory = new JButton();
+		history = new JToggleButton();
 		squareRoot = new JButton();
 		
 		  realPart = new JButton();
@@ -480,7 +506,7 @@ public class CalcPanel extends Panel {
 		log.setText( "log" );
 		sign.setText( "+/-" );
 		closeHistory.setText( "<" );
-		openHistory.setText( ">" );
+		history.setText( ">" );
 		squareRoot.setText( "sqr" );
 		outputformat.setText("frac");
 		conjugate.setText( "conj" );

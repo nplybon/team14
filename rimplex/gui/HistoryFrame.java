@@ -28,6 +28,7 @@ public class HistoryFrame extends JFrame {
 		setSize( 450, 450 );
 		setTitle( "History" );
 		setVisible( false );
+		setUndecorated(true);
 	}
 	
 	public void addComponents() {
