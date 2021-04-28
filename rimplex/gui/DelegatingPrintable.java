@@ -44,10 +44,8 @@ public class DelegatingPrintable implements Printable
     double cH, cW, h, scale, w, x, y;
     Graphics2D g2;
     int status;
-    
 
     g2 = (Graphics2D) g;
-    
 
     // Turn off double buffering
     delegate.setDoubleBuffered(false);

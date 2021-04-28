@@ -12,6 +12,12 @@ import javax.swing.JTextField;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
 
+/**
+ * StepsFrame class for Rimplex project.
+ *
+ * @author Colton Shovlin
+ * @version This work complies with the JMU Honor Code.
+ */
 public class StepsFrame extends JFrame
 {
 
@@ -23,6 +29,9 @@ public class StepsFrame extends JFrame
   private static JTextField windowDisplay;
   private JWindow stepsWindow;
 
+  /**
+   * Constructor method.
+   */
   public StepsFrame()
   {
 
@@ -38,12 +47,18 @@ public class StepsFrame extends JFrame
     setLocation(1000, 0);
   }
 
+  /**
+   * Adds components to StepsFrame object.
+   */
   public void addComponents()
   {
 
     add(area);
   }
 
+  /**
+   * Creats components for StepsFrame object.
+   */
   public void createComponents()
   {
 
@@ -55,6 +70,9 @@ public class StepsFrame extends JFrame
     stepsWindow = new JWindow();
   }
 
+  /**
+   * Sets labels for StepFrame objects.
+   */
   public void setLabels()
   {
 
@@ -64,14 +82,23 @@ public class StepsFrame extends JFrame
     stepsWindow.setVisible(false);
   }
 
-  public void handleSteps(boolean bool)
+  /**
+   * Sets the StepFrame to visible.
+   * 
+   * @param bool - true or false
+   */
+  public void handleSteps(final boolean bool)
   {
 
     // historyWindow.setVisible( true );
     setVisible(bool);
   }
 
-  public void incrementSteps(ArrayList<String> str)
+  /**
+   * 
+   * @param str
+   */
+  public void incrementSteps(final ArrayList<String> str)
   {
 
     // windowDisplay.add( str, null );
@@ -90,16 +117,31 @@ public class StepsFrame extends JFrame
     }
   }
 
+  /**
+   * Gets the display.
+   * 
+   * @return JTextArea - the display
+   */
   public static JTextArea getDisplay()
   {
     return area;
   }
 
+  /**
+   * Gets the parent frame.
+   * 
+   * @return JFrame - parent frame
+   */
   public static JFrame parent()
   {
     return frame;
   }
 
+  /**
+   * gets the StepsFrame instance.
+   * 
+   * @return StepsFrame - current instance
+   */
   public static StepsFrame getInstance()
   {
 

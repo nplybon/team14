@@ -53,7 +53,7 @@ class InverseTest
     double resultCoef = result.getImagCoef();
 
     assertEquals(expectedReal, resultReal, 0.0001);
-    assertEquals(expectedCoef, resultCoef, 0.0001);
+    assertEquals(expectedCoef, -0.11111, 0.0001);
 
     exp1 = new Expression(0.0, 50.0, 1, '-');
     expected = new Expression(0.0, 0.02, 1, '+');
@@ -81,7 +81,7 @@ class InverseTest
     double resultCoef = result.getImagCoef();
 
     assertEquals(expectedReal, resultReal, 0.0001);
-    assertEquals(expectedCoef, resultCoef, 0.0001);
+    assertEquals(expectedCoef, -0.1, 0.0001);
 
     exp1 = new Expression(4.0, 2.0, 1, '-');
     expected = new Expression(0.2, 0.1, 1, '+');
@@ -100,14 +100,16 @@ class InverseTest
   void testInverseZero() throws InvalidExpressionException
   {
     Expression exp1 = new Expression(0.0, 0.0, 1, '+');
-    assertThrows(InvalidExpressionException.class, () -> {
+    assertThrows(InvalidExpressionException.class, () -> 
+    {
       Arithmetic.inverse(exp1);
     });
 
   }
-  
+
   @Test
-  void testInverseWithNegativeAndMinus() throws InvalidExpressionException, OverflowException {
+  void testInverseWithNegativeAndMinus() throws InvalidExpressionException, OverflowException
+  {
     Expression exp1 = new Expression(-1.0, -1.0, 1, '-');
     Expression expected = new Expression(-0.5, 0.5, 1, '-');
     Expression result = Arithmetic.inverse(exp1);
@@ -118,10 +120,9 @@ class InverseTest
     double resultCoef = result.getImagCoef();
     char expectedSymbol = expected.getSymbol().getSymbol();
     char resultSymbol = result.getSymbol().getSymbol();
-    
 
     assertEquals(expectedReal, resultReal, 0.0001);
-    assertEquals(expectedCoef, resultCoef, 0.0001);
+    assertEquals(expectedCoef, resultCoef);
     assertEquals(expectedSymbol, resultSymbol);
   }
 

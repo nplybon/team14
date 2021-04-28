@@ -12,7 +12,9 @@ public class RimplexDriver
 
   /**
    * Main method to run the calculator.
-   * @param args not used
+   * 
+   * @param args
+   *          not used
    */
   public static void main(final String[] args)
   {
