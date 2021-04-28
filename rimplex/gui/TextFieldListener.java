@@ -78,13 +78,14 @@ public class TextFieldListener implements FocusListener {
 			
 			str = str.substring( str.indexOf( '(' ) + 1, str.indexOf( ')' ) );
 			int l = str.length();
+
 			if ( str.indexOf( '+' ) != -1 
-					&& str.indexOf( '+' ) + 3 < str.length() - 1 ) {
+					&& str.indexOf( '+' ) + 1 < str.length() - 1 ) {
 				
 				i = str.indexOf( '+' );
 				String real = str.substring( 0, i );
-				
 				String img = str.substring( i + 1, l );
+
 				isReal = isReal( real );
 				isImg = isImag( img );
 				

@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -51,7 +52,7 @@ public class OldButtonListener implements ActionListener, WindowListener
   public void actionPerformed(ActionEvent e)
   {
     // TODO Auto-generated method stub
-    JButton button = (JButton) e.getSource();
+    AbstractButton button = (AbstractButton) e.getSource();
     OldCalcPanel calc = OldCalcPanel.getInstance();
     String str = calc.getInput();
     TextFieldListener field = TextFieldListener.getInstance();

@@ -58,24 +58,45 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     switch (button.getText())
     {
       case "+":
-        calc.enableEquals();
-        calc.addToDisplay("+");
-        calc.toggleAllNumsDI(true);
-        calc.enableAllNums();
-        calc.toggleImag(true);
-        calc.handleExponent( false );
+  		if ( calc.isCloseParEnabled() ) {
+
+  			calc.addToDisplay("+");
+  			calc.enableEquals();
+  	        calc.toggleAllNumsDI(true);
+  	        calc.enableAllNums();
+  	        calc.toggleImag(true);
+  	        calc.handleExponent( false );
+
+		} else {
+
+			calc.addToDisplay("+");
+			int exponent = setExponent( '+' );
+			runOperator( Operator.ADDITION, exponent );
+		}
+       
         break;
       case "-":
-        calc.enableEquals();
-        calc.addToDisplay("-");
-        calc.toggleAllNumsDI(true);
-        calc.toggleImag(true);
-        calc.enableAllNums();
-        calc.handleExponent(false);
+    		if ( calc.isCloseParEnabled() ) {
+
+      			calc.addToDisplay("-");
+      			calc.enableEquals();
+      	        calc.toggleAllNumsDI(true);
+      	        calc.enableAllNums();
+      	        calc.toggleImag(true);
+      	        calc.handleExponent( false );
+
+    		} else {
+
+    			calc.addToDisplay("-");
+    			int exponent = setExponent( '-' );
+    			runOperator( Operator.SUBTRACTION, exponent );
+    		}
         break;
       case "\u00F7":
         calc.enableEquals();
         calc.addToDisplay("/");
+        int exponent = setExponent( '/' );
+		runOperator( Operator.DIVISION, exponent );
         calc.toggleAllNumsDI(true);
         calc.toggleImag(true);
         calc.enableAllNums();
@@ -84,6 +105,8 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
       case "x":
         calc.enableEquals();
         calc.addToDisplay("x");
+        int exponent2 = setExponent( 'x' );
+		runOperator( Operator.MULTIPLICATION, exponent2 );
         calc.toggleAllNumsDI(true);
         calc.toggleImag(true);
         calc.enableAllNums();
@@ -254,8 +277,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
     	  break;
       case ">":
         HistoryFrame.getInstance().handleHistory(true);
-        calc.handleCloseHistory(true);
-        calc.handleOpenHistory(false);
+        button.setText( "<" );
+//        calc.handleCloseHistory(true);
+//        calc.handleOpenHistory(false);
         // String str = null;
         // for ( int i = 0; i < history.size(); i++ ) {
         //
@@ -265,8 +289,9 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
         break;
       case "<":
         HistoryFrame.getInstance().handleHistory(false);
-        calc.handleCloseHistory(false);
-        calc.handleOpenHistory(true);
+        button.setText( ">" );
+//        calc.handleCloseHistory(false);
+ //       calc.handleOpenHistory(true);
         break;
       case "sqr":
           calc.addToDisplay("sqr(");
@@ -312,7 +337,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
           break;
       case "Help":
     	  try {
-		       System.out.println( "in try" );  
+
 			  String url = "http://www.google.com"; 
 	            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
 //		        Desktop.getDesktop().browse(new URI("http://www.codejava.net"));
@@ -320,7 +345,16 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		    } catch (IOException e1) {
 		        e1.printStackTrace();
 		    }
-          break;  
+          break;
+      case "About":
+    	
+    	  String message = "Rimplex is a complex number calculator. This is \n"
+    	  		+ "a CS345 final project designed by John Curley, Hunter Mann,\n"
+    	  		+ "Nic Plybon, Colton Shovlin and Alexander Walker (team14).\n"
+    	  		+ "This is the 3rd edition of Rimplex.";
+      	JOptionPane.showMessageDialog( null, message, "About Rimplex", 
+  				JOptionPane.PLAIN_MESSAGE );
+    	  break;
     }
 //	  } else if ( e.getSource() instanceof JMenu ) {
 //		  
@@ -514,7 +548,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 		break;
 	case '=':
 		if ( panel.isEqualsEnabled() ) {
-			
+			System.out.println( "IN EQUALS" );
 			runEquals();
 		} else {
 			
@@ -529,7 +563,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			
 	        panel.changeParenC(1);
 	        panel.handleExponent( false );
-			panel.handleExponent( false );
+
 		}
 		break;
 	case ')':
@@ -541,7 +575,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			panel.enableEquals();
 	        panel.changeParenC(-1);
 	        panel.handleExponent( true );
-			panel.handleExponent( true );
+
 		}
 		break;
 	case '^':
@@ -565,7 +599,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
 			panel.enableEquals();
 	        panel.toggleDecimal(false);
 	        panel.handleExponent( true );
-			panel.handleExponent( true );
+
 		}
 		break;
     default:	
@@ -598,9 +632,9 @@ private int setExponent( char operator ) {
 	String str = panel.getDisplay();
 	int newLine = str.indexOf( '\n' );
 	str = str.substring( newLine ).strip();
-	
+
 	if ( !TextFieldListener.getInstance().verifyTarget( str ) ) {
-		
+
 		errorMessage();
 	} else {
 		try {
@@ -685,6 +719,23 @@ private void runOperator( Operator op, int exponent ) {
 			
 			panel.enableAllNums();
 		}
+	} else {
+		
+        CalcPanel calc = CalcPanel.getInstance();
+        String bad = "Invalid Input";
+    	calc.setDisplay( calc.getDisplay().substring( 0, 
+    			( calc.getDisplay().indexOf( '\n' ) ) )
+    			+ "\n" );
+        	JOptionPane.showMessageDialog( null, bad, "Invalid Input", 
+    				JOptionPane.PLAIN_MESSAGE );
+        calc.enableEquals();
+        calc.resetDisplay();
+        calc.addToDisplay( "\n" );
+        calc.toggleAllNumsDI(true);
+        calc.enableAllNums();
+        calc.handleExponent(false);
+        calc.changeParenC( -1 );
+        
 	}
 }
 

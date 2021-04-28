@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ public class HistoryFrame extends JFrame {
 	private static JTextArea area;
 	private static JTextField windowDisplay;
 	private JWindow historyWindow;
+	
 	public HistoryFrame() {
 
 		createComponents();
@@ -28,6 +30,8 @@ public class HistoryFrame extends JFrame {
 		setSize( 450, 450 );
 		setTitle( "History" );
 		setVisible( false );
+		setUndecorated(true);
+		
 	}
 	
 	public void addComponents() {
@@ -39,6 +43,10 @@ public class HistoryFrame extends JFrame {
 		
 //	    history =  new JLabel();
 	    area = new JTextArea();
+	    
+//	    Color blue =  new Color( 51, 204, 255 );
+//		area.setForeground( blue );
+		
 	    
 		windowDisplay = new JTextField();
 		
