@@ -313,10 +313,12 @@ public class Expression {
     if (op.equals(Operator.ADDITION) && imagCoef < 0) {
       op = op.fromSymbol('-');
       imagCoef *= -1;
+      displayImagCoef *= -1;
     }
     if (op.equals(Operator.SUBTRACTION) && imagCoef < 0) {
       op = op.fromSymbol('+');
       imagCoef *= -1;
+      displayImagCoef *= -1;
     }
   }
 
