@@ -154,7 +154,7 @@ public class Calculate
       steps.add(takeStep(count, operators[order[i]]));
     }
 
-    //result.simplify();
+    // result.simplify();
 
     return result;
 

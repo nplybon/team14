@@ -25,7 +25,7 @@ public class Expression
   private boolean imagExp = false;
   private Double displayReal = 0.0;
   private Double displayImagCoef = 0.0;
-  
+
   private String space = " ";
 
   /**

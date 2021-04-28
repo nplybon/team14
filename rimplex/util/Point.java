@@ -4,8 +4,7 @@ package util;
  * Point class.
  *
  * @author team 14
- * @version 
- * This work complies with the JMU Honor Code.
+ * @version This work complies with the JMU Honor Code.
  */
 public class Point
 {
@@ -16,8 +15,10 @@ public class Point
   /**
    * Point constructor.
    * 
-   * @param a - first double
-   * @param b - second double
+   * @param a
+   *          - first double
+   * @param b
+   *          - second double
    */
   public Point(final double a, final double b)
   {
