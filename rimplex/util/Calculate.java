@@ -86,7 +86,7 @@ public class Calculate
       default:
         break;
     }
-    result.simplify();
+    
     return result;
   }
 
@@ -113,6 +113,7 @@ public class Calculate
         expressions[i] = result;
         count++;
         steps.add(takeStep(count, Operator.EXPONENT));
+        System.out.println(result);
       }
       if (expressions[i].hasLog())
       {
@@ -154,7 +155,7 @@ public class Calculate
       steps.add(takeStep(count, operators[order[i]]));
     }
 
-    //result.simplify();
+    result.simplify();
 
     return result;
 
@@ -224,7 +225,7 @@ public class Calculate
       default:
         break;
     }
-
+    
     return str;
   }
 
@@ -235,7 +236,6 @@ public class Calculate
    */
   public ArrayList<String> getSteps()
   {
-
     return steps;
   }
 

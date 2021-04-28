@@ -12,7 +12,6 @@ import util.OverflowException;
 
 class CalculateTest
 {
-
   
   @Test
   void testCalculateConstructor() throws InvalidExpressionException, OverflowException {
