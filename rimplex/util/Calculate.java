@@ -167,7 +167,7 @@ public class Calculate {
 
     switch (type) {
       case NOTHING:
-        str += "Intial Equation";
+        str += "Initial Equation";
         break;
       case ADDITION:
       case SUBTRACTION:
