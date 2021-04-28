@@ -25,6 +25,13 @@ import util.Operator;
 import util.OutputFormat;
 import util.OverflowException;
 
+/**
+ * 
+ *
+ * @author Colton Shovlin & Alex Walker
+ * @version 
+ * This work complies with the JMU Honor Code.
+ */
 public class ButtonListener implements ActionListener, WindowListener, KeyListener
 {
 
@@ -45,7 +52,7 @@ public class ButtonListener implements ActionListener, WindowListener, KeyListen
    *          JButton
    */
   @Override
-  public void actionPerformed(ActionEvent e)
+  public void actionPerformed(final ActionEvent e)
   {
     // TODO Auto-generated method stub
 //	  if ( e.getSource() instanceof AbstractButton ) {
