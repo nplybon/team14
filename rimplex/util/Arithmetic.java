@@ -212,7 +212,7 @@ public class Arithmetic
     
     if (exp.getExpPower() == 0)
     {
-    	result = new Expression(1.0, 1.0, 1, '+');
+    	result = new Expression(1.0, 0.0, 1, '+');
     }
 
     return result;
